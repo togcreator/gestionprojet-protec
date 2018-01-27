@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - ProjectAlert{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'projectalert.list'|trans({}, 'projectalert') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('back_projectalert_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'projectalert.add_button'|trans({}, 'projectalert') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('back_projectalert_index')}}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if projectAlerts %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'projectalert.open'|trans({}, 'projectalert') }}</th>
+                                <th>{{ 'projectalert.label'|trans({}, 'projectalert') }}</th>
+                                <th class="col-md-2 text-center">{{ 'projectalert.couleur'|trans({},'projectalert') }}</th>
+                                <th class="col-md-1 text-center">{{ 'projectalert.logo'|trans({},'projectalert') }}</th>
+                                <th class="text-center">{{ 'projectalert.actions'|trans({}, 'projectalert') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for projectalert in projectAlerts %}
+                            <tr>
+                                <td style="cursor:pointer">{{ projectalert.id }}</td>
+                                <td>
+                                    {% if projectalert.ouvert %}
+                                    <span class="label label-info">{{ 'global.yes'|trans }}</span> {% else %}
+                                    <span class="label label-default">{{ 'global.no'|trans }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ projectalert.label }}</td>
+                                <td class="col-md-2 text-center" style="background: {{ projectalert.couleur }};">{{ projectalert.couleur }}</td>
+                                <td class="col-md-1 text-center">
+                                    {% if projectalert.logo %}
+                                        <img src="{{ asset('uploads/' ~ projectalert.logo ) }}" alt="logo" style="max-width: 50%" />
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('back_projectalert_edit', { 'id': projectalert.id }) }}"><i class="icon-pen"></i> {{ 'projectalert.edit_button'|trans({}, 'projectalert') }}</a></li>
+                                                <li><a href="{{ path('back_projectalert_delete', { 'id': projectalert.id }) }}"
+                                                    data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'projectalert.del_button'|trans({}, 'projectalert') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'projectalert.no_data'|trans({}, 'projectalert') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>  
+    {# footer #}          
+    {% include 'foot.html.twig' %}
+
+{% endblock %}

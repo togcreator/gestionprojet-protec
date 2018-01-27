@@ -1,0 +1,146 @@
+    <div class="position_login" style="display:none;"><img src="{{ asset('assets/images/loading/please-wait.gif') }}"></div>
+    <table class="table datatable-basic table-mail">
+        <thead>
+            <tr>
+
+                <th width="8%" class=" {% if type == 'allmails' %}hidden{% endif %}">{{ 'table_mail.head.check'|trans }}</th>
+
+                <th width="8%">{{ 'table_mail.head.customer'|trans }}</th>
+                <th>{{ 'table_mail.head.message'|trans }}</th>
+                <th width="8%">{{ 'table_mail.head.attach'|trans }}</th>
+                <th width="8%">{{ 'table_mail.head.priority'|trans }}</th>
+                <th width="15%" class="no-sort">{{ 'table_mail.head.detail'|trans }}</th>
+            </tr>
+        </thead>
+ 
+        <tbody {% if options is defined %} data-link="row" class="rowlink allmailist" {% endif %} >
+            {% for mp in mails %}
+            <tr class="{% if mp['people'].lu == 0 %}unread{% else %}read{% endif %}" id="check-{{ mp['people'].id }}">
+                
+                <td class="table-inbox-checkbox rowlink-skip {% if type == 'allmails' %}hidden{% endif %}">
+                    <input type="checkbox" name="mailist[]" id="mailist_{{ mp['people'].id }}" value="{{mp['people'].id }}" class="styled mailist">
+                </td>
+                
+                <td class="table-inbox-name">
+                    <span class="media-left">
+                        {% if type == 'allmails' and mp['people'].id in data_trash %}
+                            <i class="icon-bin" style="font-size:30px"></i>
+                        {% elseif mp['people'].userto.id == app.user.id and mp['people'].way == 2 %}
+                            {% if mp['people'].mail.tbox.id == 1 %}
+                                <img src="{{ asset('assets/images/tbox/administration.png') }}" alt="img" class="img-circle img-xs" alt="">
+                            {% elseif mp['people'].mail.tbox.id == 2 %}
+                                <img src="{{ asset('assets/images/tbox/information.png') }}" alt="img" class="img-circle img-xs" alt="">
+                            {% elseif mp['people'].mail.tbox.id == 3 %}
+                                <img src="{{ asset('assets/images/tbox/formation.png') }}" alt="img" class="img-circle img-xs" alt="">
+                            {% elseif mp['people'].mail.tbox.id == 4 %}
+                                <img src="{{ asset('assets/images/tbox/proposition.png') }}" alt="img" class="img-circle img-xs" alt="">
+                            {% endif %}
+                        {% else %}
+                            <i class="icon-drawer-out" style="font-size:30px"></i>  
+                        {% endif %}
+                    </span>
+                    
+                    <div class="media-body media-middle">
+                        <span  {% if mp['people'].lu == 0 %}class="text-semibold"{% endif %}>
+                            {% if mp['people'].way == 2 %}
+                                {{ mp['custfrom'] }}
+                            {% else %}
+                                {{ mp['customer'] }}
+                            {% endif %}
+                        </span>
+                        <div class="text-muted text-size-small">
+                            {% if mp['people'].mail.daty|date('d-m-Y') == jour|date('d-m-Y') %}
+                                {{ mp['people'].mail.daty|date('H:i') }}
+                            {% else %}
+                                {{ mp['people'].mail.daty|date('d-m-Y H:i') }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <span class="mail-subject">{{ mp['people'].mail.sujet }}&nbsp;-&nbsp;</span>
+                    <span class="text-muted text-size-small">{{ mp['people'].mail.message|raw }}...</span>
+                </td>
+                <td>
+                    {% if mp['people'].mail.mailpj.count > 0 %}
+                        <i class="icon-attachment text-muted"></i>
+                    {% else %}
+                        {{ 'admin.none'|trans }}    
+                    {% endif %}
+                </td>
+                <td>
+                    <img src="{{ asset('assets/images/priorite/'~mp['people'].mail.priorite.id|priorite) }}">
+                </td>
+                <td>
+                    <a href="{{ path('mail_read') ~ "/" ~ mp['people'].mail.id }}">
+                        {{ 'table_mail.read'|trans }}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            {# {% for mp in mails %}
+                <tr class="{% if mp['people'].lu == 0 %}unread{% else %}read{% endif %}" id="check-{{ mp['people'].id }}">
+                    <td class="table-inbox-checkbox rowlink-skip">
+                        <input type="checkbox" name="mailist[]" id="mailist_{{ mp['people'].id }}" value="{{mp['people'].id }}" class="styled mailist">
+                    </td>
+                    <td class="table-inbox-name">
+                        <span class="media-left">
+                        {% if mp['people'].userto.id == app.user.id %}
+                            {% if mp['people'].mail.tbox.id == 1 %}
+                                <img src="{{ asset('assets/images/tbox/administration.png') }}" alt="img" class="img-circle img-xs" alt="">
+                            {% elseif mp['people'].mail.tbox.id == 2 %}
+                                <img src="{{ asset('assets/images/tbox/information.png') }}" alt="img" class="img-circle img-xs" alt="">
+                            {% elseif mp['people'].mail.tbox.id == 3 %}
+                                <img src="{{ asset('assets/images/tbox/formation.png') }}" alt="img" class="img-circle img-xs" alt="">
+                            {% elseif mp['people'].mail.tbox.id == 4 %}
+                                <img src="{{ asset('assets/images/tbox/proposition.png') }}" alt="img" class="img-circle img-xs" alt="">
+                            {% endif %}
+                        {% elseif type == 'allmails' and mp['people'].userto.id != app.user.id %}
+                            {% if mp['people'].mail.id in data_trash %}
+                                <img src="{{ asset('assets/images/trash.png') }}" alt="img" class="img-circle img-xs" alt="">
+                            {% else %}
+                                <img src="{{ asset('assets/images/send.png') }}" alt="img" class="img-circle img-xs" alt="">
+                            {% endif %}
+                        {% endif %}
+                </span>
+
+                        <div class="media-body media-middle">
+                            <span  {% if mp['people'].lu == 0 %}class="text-semibold"{% endif %}>
+                                {% if mp['people'].way == 2 %}
+                                    {{ mp['custfrom'] }}
+                                {% else %}
+                                    {{ mp['customer'] }}
+                                {% endif %}
+                            </span>
+                            <div class="text-muted text-size-small">
+                                {% if mp['people'].mail.daty|date('d-m-Y') == jour|date('d-m-Y') %}
+                                    {{ mp['people'].mail.daty|date('H:i') }}
+                                {% else %}
+                                    {{ mp['people'].mail.daty|date('d-m-Y H:i') }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </td>
+                    <td class="mail-message">
+                        <span class="mail-subject">{{ mp['people'].mail.sujet }}&nbsp;-&nbsp;</span>
+                        <span class="text-muted text-size-small">{{ mp['people'].mail.message|stringcut(150)|raw }}</span>
+                    </td>
+                    <td>
+                        {% if mp['people'].mail.mailpj.count > 0 %}
+                            <i class="icon-attachment text-muted"></i>
+                        {% else %}
+                            - Aucun -
+                        {% endif %}
+                    </td>
+                    <td class="table-inbox-star rowlink-skip">
+                     <img src="{{ asset('assets/images/priorite/'~mp['people'].mail.priorite.id|priorite) }}">
+                 </td>
+                 <td class="table-inbox-time">
+                    <a href="{{ path('mail_read') ~ "/" ~ mp['people'].mail.id }}">
+                        {{ 'table_mail.read'|trans }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %} #}
+    </tbody>
+</table>

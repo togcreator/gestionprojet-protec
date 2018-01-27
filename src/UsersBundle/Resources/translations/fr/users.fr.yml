@@ -1,0 +1,32 @@
+# general
+users.creation: Création
+users.login_title: Se connecter
+users.title: Compte d'utilisateurs
+users.edit_title: Modification du compte
+users.login_form: Connexion
+
+# form
+users.image: Image/photo
+users.username: Nom d'utilisateur
+users.password: Mot de passe
+users.lastlogin: Dernière connexion
+users.email: Email
+users.address: Adresse
+users.type: Type d'utilisateur
+users.firstname: Prénom
+users.lastname: Nom
+users.status: Etat de compte
+users.login_button: Connecter
+users.my_profile: Mon Profile
+users.title: Comptes d'utilisateurs
+users.active: Compte actif
+users.unactive: Compte inactif
+users.lang: Langage
+users.logout: Se déconnecter
+users.edit_password: Modifier le mot de passe
+users.confirm_delete: Voulez vous supprimer cet utilisateur ?
+
+# button
+users.add_button: Nouveau
+users.edit_button: Modifier
+users.del_button: Supprimer

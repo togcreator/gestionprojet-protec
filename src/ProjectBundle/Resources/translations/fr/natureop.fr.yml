@@ -1,0 +1,30 @@
+# natureop.fr.yml
+
+# general
+natureop.list: Liste des Nature Op
+natureop.creation: Nouveau priorité
+natureop.confirm_title: Confirmation
+
+# form
+natureop.open: Ouvert
+natureop.idWorkshop: Workshop
+natureop.label: Label
+natureop.couleur: Couleur
+natureop.obs: Observation
+natureop.note: Note
+natureop.actions: Action
+natureop.code: Code
+natureop.delai: Delai
+natureop.nomcouleur: Nom de la couleur
+natureop.imgcouleur: Image de la couleur
+natureop.img: Image
+natureop.version: Version
+natureop.confirm_delete: Êtes vous sûr de vouloir supprimer cette priorité ?
+
+# button
+natureop.add_button: Nouveau
+natureop.edit_button: Modifier
+natureop.del_button: Supprimer
+natureop.save_button: Enregistrer
+natureop.confirm_button: Oui, je confirme
+natureop.close_button: Non

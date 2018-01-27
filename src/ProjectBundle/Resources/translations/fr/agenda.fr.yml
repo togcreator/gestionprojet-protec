@@ -1,0 +1,65 @@
+# agenda.fr.yml
+
+# general
+agenda.title: Agenda
+agenda.step: Agenda
+agenda.modification: Modification
+agenda.ajax_title: Nouveau Agenda
+
+# form
+agenda.legend_info: Information
+agenda.legend_date: Date
+agenda.legend_other: Autre detail
+agenda.idTypeAgenda: Type d'agenda
+agenda.idBU: BU
+agenda.reference: Réference
+agenda.idLieu: Lieu
+agenda.idEntityJ: Entité
+agenda.idChantier: Chantier
+agenda.idZonage: Zonage
+agenda.idStrategie: Strategie
+agenda.idAgendaMaster: Agenda Master
+agenda.idProjetEtape: Etape du projet
+agenda.idProjetJalon: Etape Jalon du projet
+agenda.idProjetOperation: Etape de l'opération du projet
+agenda.idProjetIssue: Issue du projet
+agenda.idCRMOperation: Etape de l'opération CRM
+agenda.idCRMEtape: Etape du CRM
+agenda.idTypeuser: Type d'utilisateur
+agenda.idWork: Workshop
+agenda.idTypeWork: Type de Workshop
+agenda.idPriorite: Priorité
+agenda.idAlerte: Alerte
+agenda.idEvenement: Évenement
+agenda.titre: Titre
+agenda.operateurSaisie: Opérateur de saisie
+agenda.dureeCloture: Durée de cloture
+agenda.dureePrepa: Durée de préparation
+agenda.dateDebPrevue: Date du debut prévue
+agenda.dateFinPrevue: Date de fin prévue
+agenda.dateDebReelle: Date du debut réelle
+agenda.dateFinReelle: Date de fin réelle
+agenda.heureDebPrevue: Heure debut prévue
+agenda.heureFinPrevue: Heure fin prévue
+agenda.heureDebReelle: Heure debut réelle
+agenda.heureFinReelle: Heure fin réelle
+agenda.cloture: Cloture
+agenda.dateCloture: Date de cloture
+agenda.operateurCloture: Opérateur de cloture
+agenda.quoi: Quoi
+agenda.lieu: Lieu
+agenda.observations: Observations
+agenda.image1: Image 1
+agenda.image2: Image 2
+agenda.image3: Image 3
+agenda.image4: Image 4
+agenda.longitude: Longitude
+agenda.latitude: Latitude
+agenda.idWriter: Saisisseur
+agenda.valide: Valide
+agenda.version: Version
+
+# button
+agenda.add_button: Nouveau
+agenda.submit_button: Enregitrer
+agenda.close_button: Fermer

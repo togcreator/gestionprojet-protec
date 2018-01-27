@@ -1,0 +1,27 @@
+# priorite.fr.yml
+
+# general
+priorite.list: Liste des priorités
+priorite.creation: Nouveau priorité
+priorite.confirm_title: Confirmation
+
+# form
+priorite.open: Ouvert
+priorite.label: Label
+priorite.couleur: Couleur
+priorite.obs: Observation
+priorite.actions: Action
+priorite.code: Code
+priorite.delai: Delai
+priorite.nomcouleur: Nom de la couleur
+priorite.imgcouleur: Image de la couleur
+priorite.img: Image
+priorite.confirm_delete: Êtes vous sûr de vouloir supprimer cette priorité ?
+
+# button
+priorite.add_button: Nouveau
+priorite.edit_button: Modifier
+priorite.del_button: Supprimer
+priorite.save_button: Enregistrer
+priorite.confirm_button: Oui, je confirme
+priorite.close_button: Non

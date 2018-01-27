@@ -1,0 +1,213 @@
+# catalogue fr
+default: Tableau de bord
+
+# titre
+title:
+    fiche:
+        mail: Lire mail
+    list:
+        clients: Liste des Clients
+        cp: Liste des CP
+        mail: Liste des mails
+    envoi:
+        mail: Envoi mail
+
+message_empty: Le message ne peut être vide!
+verify_fields: Dans champs obligatoires sont vide!
+
+# admin
+admin:
+    welcome: Bienvenue, vous êtes connectés
+    outbox: Mail sortant
+    inbox: Mail entrant
+    home: Accueil
+    mailbox: Boîte mail
+    list: Liste
+    read: Lecture
+    write: Ecriture
+    statistics: Statistiques
+    invoices: Factures
+    schedule: Programme
+    draft: Brouillon
+    delete: Supprimer
+    cancel: Annuler
+    none: Aucun
+    trash: Corbeille
+    confirm:
+        message: Vous êtes sûre de continuer?
+        header: Confirmation
+        button: Supprimer
+    at: at
+    user:
+        profil: Mon profil
+        balance: Mon solde
+        messages: Messages
+        account_setting: Config du compte
+        logout: Deconnexion
+
+# mails list 
+list_mail:
+    my_inbox: Ma boîte de réception
+    outbox: Messages envoyés
+    all: Tous les messages
+    new: mails
+    trash: Supprimer
+    draft: Brouillon
+
+# mails table
+table_mail:
+    select: 
+        all: Selectionner tout
+        read: Selectionner lus
+        unread: Selectionner non lus
+        clear: Annuler selection
+    compose: Ecrire
+    delete: Supprimer
+    read: Voir
+    head:
+        check: Cocher
+        customer : Client
+        message: Message
+        attach: Attaché
+        priority: Priorité
+        detail: Détails
+    datatable:
+        filter: Filtre
+        text_filter : Saisir pour filtrer
+        show: Affichage
+        showing: Affichage
+        to: à
+        of: de
+        entries: entrées
+        nodata : Aucun résultat à afficher
+
+# mail read
+mail_read:
+    action:
+        reply: Répondre
+        reply_all: Répondre à tous
+        forward: Transférer
+        delete: Supprimer
+        print: Imprimer
+        share: Partager
+    to: À
+    AR_notif: Accusé de reception demandé
+    attachment: Pièces jointes
+    view: Afficher
+    download: Télécharger
+
+# mail write
+mail_write:
+    attach_files: Joindre fichiers
+    action:
+        send: Envoyer mail
+        save: Sauvegarder
+        cancel: Annuler
+        option:
+            send_mail_notif: Copie mail
+            send_sms_notif: Copie sms
+        print: Imprimer
+        share: Partager
+        copy_toggle: Copie
+        hidden_copy_toggle: Copie cachée
+        attach_files: Joindre fichiers
+        attachments: Attachments
+    form:
+        to_placeholder: Ajouter destinataire
+        to:
+            label: À            
+        subject: 
+            label: Sujet
+            placeholder: Ajouter subject
+        copy:
+            label: Copie à
+        hidden_copy:
+            label: Copie cachée
+        priority:
+            label: Priorité
+        box:
+            label: Boîte
+        AR_notif:
+            label: Accusé reception
+        EMAIL_notif:
+            label: Notification email
+        SMS_notif:
+            label: Notification SMS 
+        signature:
+            none: Aucune
+            add: Ajouter signature
+
+second_navbar:
+    gallery: Gallerie
+    others: Autres
+    general_page: Page principale
+    apps: Applications
+    inbox:
+        title: Boîte mail
+        list: Liste
+        write: Nouveau
+
+# menus
+menu:
+    dashboard: Tableau de bord
+    component:
+        defaut: Composants
+        table:
+            list:
+                defaut: Listes
+                clients: Clients
+                cp: CP
+    features: Fonctionnalités
+    page_kits: Kits de page
+    starter_kit: Kit de démarrage
+    changelog: Journal de changement
+
+# mail menus
+menu_mail:
+    action:
+        compose_mail: Nouveau message
+    navigation:
+        mail_box: Boîte mail
+        all: Tout
+        inbox: Boîte de réception
+        outbox: Messages envoyés
+        trash: Corbeille
+    filter:
+        title: Filtre
+        keywords: Mots clés
+        search: Rechercher...
+        date_interval: Intervalle de dates
+        box: Boîte au lettre
+    priority:
+        title: Priorités
+
+
+# Tableau
+table:
+    cp:
+        title: Liste des CP
+    clients:
+        title: Liste des entités juridique
+        column:
+            id: Identifiant
+            id_group: ID Groupe
+            ville_cp: Ville - CP
+            raisonSociale: Raison sociale
+            adresse: Adresse
+            phone: Téléphone / GSM
+            action: Actions
+            code: Code
+            city: Ville
+            insee: Insee
+            type: Type
+            bu: Business Unit
+            secteur_geo: Secteur géographique
+            voir: Voir fiche
+            edit: Modifier
+            remove: Delete
+
+# Messages
+message:
+    client:
+        suppression: Le client a été supprimé avec succès
+        modification: Modification avec succès

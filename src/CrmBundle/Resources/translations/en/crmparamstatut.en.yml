@@ -1,0 +1,28 @@
+# genenral
+crmparamstatut.list: List of Status
+crmparamstatut.confirm_title: Confirmation
+crmparamstatut.edition: Edition
+crmparamstatut.creation: New
+
+# form
+crmparamstatut.legend_info: Information
+crmparamstatut.open: Open
+crmparamstatut.label: Label
+crmparamstatut.couleur: Color
+crmparamstatut.obs: Observation
+crmparamstatut.nomcouleur: Color name
+crmparamstatut.imgcouleur: Color image
+crmparamstatut.logo: Logo
+crmparamstatut.version: Version
+crmparamstatut.note: Note
+crmparamstatut.idType: Type
+crmparamstatut.confirm_delete: Do yout really want to remove this ?
+crmparamstatut.actions: Action
+
+# button
+crmparamstatut.add_button: New
+crmparamstatut.save_button: Save
+crmparamstatut.edit_button: Edit
+crmparamstatut.del_button: Remove
+crmparamstatut.confirm_button: yes, i do
+crmparamstatut.close_button: No

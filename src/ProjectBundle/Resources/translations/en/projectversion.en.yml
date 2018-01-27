@@ -1,0 +1,43 @@
+# projectversion.en.yml
+
+# general
+project.version_user: Version
+projectversion.creation: New
+projectversion.edition: Edition
+projectversions.list: List of project version
+projectversions.no_data: No data
+
+# form
+projectversion.legend_info: Information
+projectversion.legend_date: Date
+projectversion.legend_other: Other details
+projectversion.idProjet: Project
+projectversion.reference: Reference
+projectversion.label: Label
+projectversion.description: Description
+projectversion.datedebut: Start date
+projectversion.datefin: End date
+projectversions.actions: Action
+projectversions.confirm_title: Confirmation
+projectversions.confirm_delete: Are you want to remove this ?
+projectversion.code: Code
+projectversion.idCreateur: Creator
+projectversion.idLeader: Leader
+projectversion.idArchitecte: Architecte
+projectversion.idSupportFonctionnel: Functional Support
+projectversion.idReferentDirection: Referrals
+projectversion.idSupportTechnique: Technical support
+projectversion.idReferentUtilisateurs: User references
+projectversion.idSupportTests: Test Support
+projectversion.idSupportDeploiement: Deployment support
+projectversion.joursHommesPrevus: Day man scheduled
+projectversion.joursHommesReels: Real Day Men
+projectversion.statut: Status
+
+# button
+projectversions.add_button: New
+projectversions.edit_button: Edit
+projectversions.del_button: Remove
+projectversion.submit_button: Save
+projectversions.confirm_button: yes, I do
+projectversions.close_button: No

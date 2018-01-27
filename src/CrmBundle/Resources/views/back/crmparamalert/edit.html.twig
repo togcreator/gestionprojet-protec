@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'crmparamalert.edition'|trans({}, 'crmparamalert') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('crmparamalert_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        {{ form_start(edit_form) }}
+                            <fieldset class="content-group">
+                                <label class="text-bold">{{ 'crmparamalert.legend_info'|trans({}, 'crmparamalert') }}</label>
+                                <div class="form-group col-md-12">
+                                    {% set name = 'crmparamalert.open'|trans({}, 'crmparamalert') %}
+                                    {{ form_label(edit_form.ouvert, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.ouvert, {'attr': {'class': 'form-control switchery'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamalert.label'|trans({}, 'crmparamalert') %}
+                                    {{ form_label(edit_form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.label, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamalert.typeAlerte'|trans({}, 'crmparamalert') %}
+                                    {{ form_label(edit_form.typeAlerte, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.typeAlerte, {'attr': {'class': 'form-control select2-search'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamalert.declenchementdelai'|trans({}, 'crmparamalert') %}
+                                    {{ form_label(edit_form.declenchementdelai, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.declenchementdelai, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamalert.typedelai'|trans({}, 'crmparamalert') %}
+                                    {{ form_label(edit_form.typedelai, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.typedelai, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamalert.nomcouleur'|trans({}, 'crmparamalert') %}
+                                    {{ form_label(edit_form.nomcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.nomcouleur, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamalert.couleur'|trans({}, 'crmparamalert') %}
+                                    {{ form_label(edit_form.couleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10" style="padding: 15px 0">
+                                        {{ form_widget(edit_form.couleur, {'attr': {'class': 'form-control colorpicker-show-input'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamalert.logo'|trans({}, 'crmparamalert') %}
+                                    {{ form_label(edit_form.logo, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10" style="padding: 15px 0">
+                                        {% set preview = asset('uploads/' ~ edit_form.vars.value.logo )|default('') %}
+                                        {% if preview %}{% set filetype = 'image' %}{% endif %}
+                                        {{ form_widget(edit_form.logo, {'attr': {'class': 'form-control upload-file', 'data-preview': preview, 'filetype': filetype|default('')}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    {% set name = 'crmparamalert.obligatoire'|trans({}, 'crmparamalert') %}
+                                    {{ form_label(edit_form.obligatoire, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.obligatoire, {'attr': {'class': 'form-control switchery'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    {% set name = 'crmparamalert.valide'|trans({}, 'crmparamalert') %}
+                                    {{ form_label(edit_form.valide, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.valide, {'attr': {'class': 'form-control switchery'}}) }}
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'crmparamalert.save_button'|trans({}, 'crmparamalert') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                    </div>
+                </div>
+                <!-- /form horizontal -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    {% include 'foot.html.twig' %}
+{% endblock %}

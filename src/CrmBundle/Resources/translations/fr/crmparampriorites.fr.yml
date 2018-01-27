@@ -1,0 +1,31 @@
+# genenral
+crmparampriorites.list: Liste de priorité
+crmparampriorites.confirm_title: Confirmation
+crmparampriorites.edition: Modification
+crmparampriorites.creation: Nouveau
+
+# form
+crmparampriorites.legend_info: Information
+crmparampriorites.open: Ouvert
+crmparampriorites.label: Label
+crmparampriorites.delai: Delai
+crmparampriorites.typedelai: Type de delai
+crmparampriorites.valide: Valide
+crmparampriorites.couleur: Couleur
+crmparampriorites.obs: Observation
+crmparampriorites.nomcouleur: Nom de la couleur
+crmparampriorites.imgcouleur: Image de la couleur
+crmparampriorites.logo: Logo
+crmparampriorites.version: Version
+crmparampriorites.note: Note
+crmparampriorites.idType: Type
+crmparampriorites.confirm_delete: Voulez vous vraiment supprimer cette priorité ?
+crmparampriorites.actions: Action
+
+# button
+crmparampriorites.add_button: Nouveau
+crmparampriorites.save_button: Enregistrer
+crmparampriorites.edit_button: Modification
+crmparampriorites.del_button: Supprimer
+crmparampriorites.confirm_button: Oui, je confirme
+crmparampriorites.close_button: Non

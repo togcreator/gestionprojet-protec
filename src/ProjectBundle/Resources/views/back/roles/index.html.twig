@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - roles{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'roles.list'|trans({}, 'roles') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('back_roles_new', {'idType': app.request.get('idType')})}}'">
+                            <b><i class="icon-add"></i></b> {{ 'roles.add_button'|trans({}, 'roles') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('back_roles_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if roles %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'roles.open'|trans({}, 'roles') }}</th>
+                                <th>{{ 'roles.wording'|trans({}, 'roles') }}</th>
+                                <th class="text-center">{{ 'roles.actions'|trans({}, 'roles') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for role in roles %}
+                            <tr>
+                                <td style="cursor:pointer">{{ role.id }}</td>
+                                <td>
+                                    {% if role.ouvert %}
+                                        <span class="label label-info">{{ 'global.yes'|trans }}</span>
+                                    {% else %}
+                                        <span class="label label-default">{{ 'global.no'|trans }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {# {% set lang = ''|lang(app.request.locale) %}
+                                    {% if lang == 'Fr' %} {{ loadContent(role.lib0) }}
+                                    {% elseif lang == 'En' %} {{ loadContent(role.lib1, role.lib0) }}
+                                    {% elseif lang == 'Nl' %} {{ loadContent(role.lib2, role.lib0) }}
+                                    {% elseif lang == 'De' %} {{ loadContent(role.lib3, role.lib0) }}
+                                    {% elseif lang == 'Es' %} {{ loadContent(role.lib4, role.lib0) }}
+                                    {% elseif lang == 'It' %} {{ loadContent(role.lib5, role.lib0) }}
+                                    {% endif %} #}
+                                   {{ role.label }}
+                                </td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('back_roles_edit', { 'id': role.id }) }}"><i class="icon-pen"></i> {{ 'roles.edit_button'|trans({}, 'roles') }}</a></li>
+                                                <li><a href="{{ path('back_roles_delete', { 'id': role.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'roles.del_button'|trans({}, 'roles') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'roles.no_data'|trans({}, 'roles') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>            
+{% endblock %}
+    
+{% block stylesheets %}
+    {% set dir = 'backoffice/' %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {% set dir = 'backoffice/' %}
+    {{ parent() }}
+{% endblock %}

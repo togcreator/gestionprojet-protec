@@ -1,0 +1,253 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-12 col-xs-12">
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'userclient.edition'|trans({}, 'userclient') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('user_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="nav nav-tabs nav-tabs-highlight">
+                            <li class="active"><a href="#info" data-toggle="tab">{{ 'userclient.tab.info'|trans({}, 'userclient')}}</a></li>
+                            <li><a href="#detail" data-toggle="tab">{{ 'userclient.tab.detail'|trans({}, 'userclient')}}</a></li>
+                            <li><a href="#agenda" data-toggle="tab">{{ 'userclient.tab.agenda'|trans({}, 'userclient')}}</a></li>
+                            <li><a href="#mail" data-toggle="tab">{{ 'userclient.tab.mail'|trans({}, 'userclient')}}</a></li>
+                            <li><a href="#note" data-toggle="tab">{{ 'userclient.tab.note'|trans({}, 'userclient')}}</a></li>
+                            <li><a href="#doc" data-toggle="tab">{{ 'userclient.tab.doc'|trans({}, 'userclient')}}</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="doc" class="tab-pane col-md-12">
+                               {% include 'UsersBundle:userclient:tab_doc.html.twig' with {userDocs: tabs.docs, user: userClient} %}
+                            </div>
+                            <div id="note" class="tab-pane col-md-12">
+                               {% include 'UsersBundle:userclient:tab_note.html.twig' with {userNotes: tabs.notes, user: userClient} %}
+                            </div>
+                            <div id="mail" class="tab-pane col-md-12">
+                               {% include 'UsersBundle:userclient:tab_mail.html.twig' with tabs.mail %}
+                            </div>
+                            <div id="agenda" class="tab-pane col-md-12">
+                               {% include 'UsersBundle:userclient:tab_agenda.html.twig' with {operations: tabs.agenda} %}
+                            </div>
+                            <div id="info" class="tab-pane active col-md-12">
+                                {{ form_start(edit_form) }}
+                                    <fieldset class="content-group">
+                                        <legend class="text-bold">{{ 'userclient.information'|trans({}, 'userclient')}}</legend>
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                {% set name = 'userclient.photo'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.photo, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {% if edit_form.vars.value.photo %}
+                                                    {% set preview = asset('uploads/' ~ edit_form.vars.value.photo) %}
+                                                    {% else %}
+                                                    {% set preview = '' %}
+                                                    {% endif %}
+                                                    {% if preview %} {% set filetype = 'image' %}{% else %} {% set filetype = '' %}{% endif %}
+                                                    {{ form_widget(edit_form.photo, {'attr': {'class': 'form-control upload-file', 'filetype': filetype, 'data-preview': preview}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.login'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.iDCompte, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.iDCompte, {'attr': {'class': 'form-control select2-search' }}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.nom'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.lastname, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.lastname, {'attr': {'class': 'form-control' }}) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.prenom'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.firstname, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.firstname, {'attr': {'class': 'form-control' }}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.email'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.email, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.email, {'attr': {'class': 'form-control' }}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.langage'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.langage, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.langage, {'attr': {'class': 'form-control' }}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.adr1'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.adr1, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.adr1, {'attr': {'class': 'form-control' }}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.adr2'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.adr2, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.adr2, {'attr': {'class': 'form-control' }}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.ville'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.ville, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.cp, {'attr': {'class': 'form-control' }}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.ville, {'attr': {'class': 'form-control' }}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.pays'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.pays, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.pays, {'attr': {'class': 'form-control select2-search' }}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.telephone'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.telephone, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.telephone, {'attr': {'class': 'form-control' }}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.gsm'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.gsm, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.gsm, {'attr': {'class': 'form-control' }}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.fax'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.fax, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.fax, {'attr': {'class': 'form-control' }}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <button type="submit" class="btn btn-primary" value="Edit">
+                                        {{ 'userclient.save_button'|trans({}, 'userclient') }}
+                                        <i class="icon-arrow-right14 position-right"></i>
+                                    </button>
+                            </div>
+                            <div id="detail" class="tab-pane col-md-12">
+                                <div class="panel-body">
+                                    <fieldset>
+                                        <legend class="text-bold">{{ 'userclient.detail'|trans({}, 'userclient')}}</legend>
+                                        <div class="row">
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.iDNatureUser'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.iDNatureUser, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.iDNatureUser, {'attr': {'class': 'form-control' }}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.iDGroupe'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.iDGroupe, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.iDGroupe, {'attr': {'class': 'form-control select2-search'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.iDGenre'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.iDGenre, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.iDGenre, {'attr': {'class': 'form-control' }}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.origine'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.origine, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.origine, {'attr': {'class': 'form-control' }}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6 col-xs-12">
+                                                {% set name = 'userclient.status'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.status, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.status, {'attr': {'class': 'form-control switchery' }}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <legend class="text-bold">{{ 'userclient.relation_utilisateur'|trans({}, 'userclient')}}</legend>
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                {% set name = 'relationbusinessuser.iDBusinessUnit'|trans({}, 'relationbusinessuser') %}
+                                                {{ form_label(edit_form.iDBusinessUnit, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.iDBusinessUnit, {'attr': {'class': 'form-control select2-search' }}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                {% set name = 'relationbusinessuser.iDRelation_Fonctionnelle'|trans({}, 'relationbusinessuser') %}
+                                                {{ form_label(edit_form.iDRelation_Fonctionnelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.iDRelation_Fonctionnelle, {'attr': {'class': 'form-control select2-search' }}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <br/>
+                                    <button type="submit" class="btn btn-primary" value="Edit">
+                                        {{ 'userclient.save_button'|trans({}, 'userclient') }}
+                                        <i class="icon-arrow-right14 position-right"></i>
+                                    </button>
+                                {{ form_end(edit_form, {'render_rest': true}) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

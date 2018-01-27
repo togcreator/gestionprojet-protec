@@ -1,0 +1,53 @@
+# messages.fr.yml
+
+# general
+default: Index
+project.title: Projet
+global.welcome: Bienvenue, vous êtes connecté
+global.salutation: Bonjour
+global.update_data: Mise à jour des données
+global.detail_log: Detail de log
+global.clear_list: Effacer la liste
+global.view_report: Voir le rapport
+global.today: Aujourd'hui
+global.home: Front office
+global.statistics: Statistique
+global.invoices: Facture
+global.schedule: Planning
+global.settings: Paramètre
+global.account_security: Sécurité du compte
+global.analytics: Gestion Analytique
+global.accessibility: Accessibilité
+global.all_settings: Paramètre
+global.support: Support
+global.actions: Actions
+global.active: Active
+global.setting_global: Paramètre
+global.appoitment: Sur rendez-vous
+global.all: Tout
+
+# back
+back.menu: Paramètre
+back.menu_dashboard: Tableau de bord
+back.menu_workshop: Workshop
+back.menu_project: Projet
+back.menu_statutType: Type de statut
+back.menu_entityj: Entité
+back.menu_users: Utilisateur
+back.menu_roles: Rôle des utilisateurs
+back.menu_project_versionuser: Version de projet de l'utilisateur
+back.menu_project_version: Version de projet
+back.menu_jalon: Jalon
+back.menu_priorite: Priorité
+back.menu_projectalert: Alerte de(s) Projet(s)
+
+# message alert
+global.timeout: Votre session est fini, vous devez vous connecter
+
+# lang
+lang.fr: Fr
+lang.en: En
+lang.nl: Nl
+lang.de: De
+lang.es: Es
+lang.it: It

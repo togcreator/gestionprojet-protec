@@ -1,0 +1,23 @@
+# relationbusinessentite.fr.yml
+
+# general
+relationbusinessentite.list: List of professional relationship
+relationbusinessentite.creation: New
+relationbusinessentite.edition: Edition
+relationbusinessentite.confirm_title: Confirmation
+relationbusinessentite.no_data: No data
+
+# form
+relationbusinessentite.iDentite: Entity
+relationbusinessentite.iDBusinessUnit: Business unit
+relationbusinessentite.iDRelationsProfessionnelles: Professional relationship
+relationbusinessentite.confirm_delete: Do you want to remove this ?
+
+# button
+relationbusinessentite.add_button: New
+relationbusinessentite.save_button: Save
+relationbusinessentite.submit_button: Save
+relationbusinessentite.edit_button: Edit
+relationbusinessentite.del_button: Remove
+relationbusinessentite.confirm_button: Yes, i do
+relationbusinessentite.close_button: No

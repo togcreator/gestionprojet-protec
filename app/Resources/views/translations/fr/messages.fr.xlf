@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+       <body>
+            <!-- === Front Menu === -->
+            <trans-unit id="main_menu">
+                <source xml:lang="en">main.menu</source>
+                <target xml:lang="en">Menu</target>
+            </trans-unit>
+            <trans-unit id="menu_homepage">
+                <source xml:lang="en">menu.homepage</source>
+                <target xml:lang="fr">Tableau de bord</target>
+            </trans-unit>
+            <trans-unit id="menu_dashboard">
+                <source xml:lang="en">menu.dashboard</source>
+                <target xml:lang="fr">Paramètre</target>
+            </trans-unit>
+            <trans-unit id="menu_compaign">
+                <source xml:lang="en">menu.compaign</source>
+                <target xml:lang="fr">Compaigne</target>
+            </trans-unit>
+            <trans-unit id="compaign_new">
+                <source xml:lang="en">compaign.new</source>
+                <target xml:lang="fr">Nouvelle compaigne</target>
+            </trans-unit>
+            <trans-unit id="menu_member">
+                <source xml:lang="en">menu.member</source>
+                <target xml:lang="fr">Utilisateur</target>
+            </trans-unit>
+            <trans-unit id="menu_project">
+                <source xml:lang="en">menu.project</source>
+                <target xml:lang="fr">Projet</target>
+            </trans-unit>
+
+            <!-- === users === -->
+            <trans-unit id="users_login_title">
+                <source xml:lang="en">users.login_title</source>
+                <target xml:lang="en">Se connecter</target>
+            </trans-unit>
+            <trans-unit id="users_edit_title">
+                <source xml:lang="en">users.edit_title</source>
+                <target xml:lang="en">Modification du compte</target>
+            </trans-unit>
+            <trans-unit id="users_login_form">
+                <source xml:lang="en">users.login_form</source>
+                <target xml:lang="en">Connexion</target>
+            </trans-unit>
+            <trans-unit id="users_username">
+                <source xml:lang="en">users.username</source>
+                <target xml:lang="en">Pseudo</target>
+            </trans-unit>
+            <trans-unit id="users_password">
+                <source xml:lang="en">users.password</source>
+                <target xml:lang="en">Mot de passe</target>
+            </trans-unit>
+            <trans-unit id="users_address">
+                <source xml:lang="en">users.address</source>
+                <target xml:lang="en">Adresse</target>
+            </trans-unit>
+            <trans-unit id="users_type">
+                <source xml:lang="en">users.type</source>
+                <target xml:lang="en">Type d'utilisateur</target>
+            </trans-unit>
+            <trans-unit id="users_firstname">
+                <source xml:lang="en">users.firstname</source>
+                <target xml:lang="en">Prénom</target>
+            </trans-unit>
+            <trans-unit id="users_lastname">
+                <source xml:lang="en">users.lastname</source>
+                <target xml:lang="en">Nom</target>
+            </trans-unit>
+            <trans-unit id="users_status">
+                <source xml:lang="en">users.status</source>
+                <target xml:lang="en">Etat de compte</target>
+            </trans-unit>
+            <trans-unit id="users_login_button">
+                <source xml:lang="en">users.login_button</source>
+                <target xml:lang="en">Connecter</target>
+            </trans-unit>
+            <trans-unit id="users_my_profile">
+                <source xml:lang="en">users.my_profile</source>
+                <target xml:lang="en">Mon Profile</target>
+            </trans-unit>
+            <trans-unit id="users_title">
+                <source xml:lang="en">users.title</source>
+                <target xml:lang="en">Utilisateur</target>
+            </trans-unit>
+            <trans-unit id="users_active">
+                <source xml:lang="en">users.active</source>
+                <target xml:lang="en">Compte actif</target>
+            </trans-unit>
+            <trans-unit id="users_unactive">
+                <source xml:lang="en">users.unactive</source>
+                <target xml:lang="en">Compte inactif</target>
+            </trans-unit>
+            <trans-unit id="users_add_button">
+                <source xml:lang="en">users.add_button</source>
+                <target xml:lang="en">Nouveau</target>
+            </trans-unit>
+            <trans-unit id="users_edit_button">
+                <source xml:lang="en">users.edit_button</source>
+                <target xml:lang="en">Modifier</target>
+            </trans-unit>
+            <trans-unit id="users_edit_delete">
+                <source xml:lang="en">users.del_button</source>
+                <target xml:lang="en">Supprimer</target>
+            </trans-unit>
+            <trans-unit id="users_lang">
+                <source xml:lang="en">users.lang</source>
+                <target xml:lang="en">Langage</target>
+            </trans-unit>
+            <trans-unit id="users_logout">
+                <source xml:lang="en">users.logout</source>
+                <target xml:lang="en">Se déconnecter</target>
+            </trans-unit>
+             
+            <!-- === compaign === -->
+            <trans-unit id="compaign_edit_button">
+                <source xml:lang="en">compaign.edit_button</source>
+                <target xml:lang="en">Modifier</target>
+            </trans-unit>
+            <trans-unit id="compaign_users">
+                <source xml:lang="en">compaign.users</source>
+                <target xml:lang="en">Membre</target>
+            </trans-unit>
+            <trans-unit id="compaign_changes">
+                <source xml:lang="en">compaign.changes</source>
+                <target xml:lang="en">Changes</target>
+            </trans-unit>
+            <trans-unit id="compaign_budget">
+                <source xml:lang="en">compaign.budget</source>
+                <target xml:lang="en">Budget</target>
+            </trans-unit>
+            <trans-unit id="compaign_status">
+                <source xml:lang="en">compaign.status</source>
+                <target xml:lang="en">Etat</target>
+            </trans-unit>
+            <trans-unit id="compaign_date_init">
+                <source xml:lang="en">compaign.date_init</source>
+                <target xml:lang="en">Date debut</target>
+            </trans-unit>
+            <trans-unit id="compaign_date_end">
+                <source xml:lang="en">compaign.date_end</source>
+                <target xml:lang="en">Date fin</target>
+            </trans-unit>
+            <trans-unit id="compaign_type">
+                <source xml:lang="en">compaign.type</source>
+                <target xml:lang="en">Type de compaign</target>
+            </trans-unit>
+            <trans-unit id="compaign_no_data">
+                <source xml:lang="en">compaign.no_data</source>
+                <target xml:lang="en">Aucun resultat</target>
+            </trans-unit>
+            <trans-unit id="compaign_marketing_title">
+                <source xml:lang="en">compaign.marketing_title</source>
+                <target xml:lang="en">Compaigne Marketing</target>
+            </trans-unit>
+            <trans-unit id="compaign_title">
+                <source xml:lang="en">compaign.title</source>
+                <target xml:lang="en">Compaigne</target>
+            </trans-unit>
+            <trans-unit id="compaign_new_title">
+                <source xml:lang="en">compaign.new_title</source>
+                <target xml:lang="en">Nouveau</target>
+            </trans-unit>
+
+            <!-- === workshop === -->
+            <trans-unit id="workshop_list">
+                <source xml:lang="en">workshop.list</source>
+                <target xml:lang="es">Liste de Workshop</target>
+            </trans-unit>
+            <trans-unit id="workshop_creation">
+                <source xml:lang="en">workshop.creation</source>
+                <target xml:lang="es">Ajouter un workshop</target>
+            </trans-unit>
+            <trans-unit id="workshop_id">
+                <source xml:lang="en">workshop.id</source>
+                <target xml:lang="en">Id</target>
+            </trans-unit>
+            <trans-unit id="workshop_open">
+                <source xml:lang="en">workshop.open</source>
+                <target xml:lang="en">Ouvert</target>
+            </trans-unit>
+            <trans-unit id="workshop_version">
+                <source xml:lang="en">workshop.version</source>
+                <target xml:lang="en">Version</target>
+            </trans-unit>
+            <trans-unit id="workshop_wording">
+                <source xml:lang="en">workshop.wording</source>
+                <target xml:lang="en">Libellé</target>
+            </trans-unit>
+            <trans-unit id="workshop.actions">
+                <source xml:lang="en">workshop.actions</source>
+                <target xml:lang="en">Actions</target>
+            </trans-unit>
+            <trans-unit id="workshop_add_button">
+                <source xml:lang="en">workshop.add_button</source>
+                <target xml:lang="en">Nouveau</target>
+            </trans-unit>
+            <trans-unit id="workshop_edit_button">
+                <source xml:lang="en">workshop.edit_button</source>
+                <target xml:lang="fr">Modifier</target>
+            </trans-unit>
+            <trans-unit id="workshop_del_button">
+                <source xml:lang="en">workshop.del_button</source>
+                <target xml:lang="en">Supprimer</target>
+            </trans-unit>
+            <trans-unit id="workshop_all">
+                <source xml:lang="en">workshop.all</source>
+                <target xml:lang="en">Tout</target>
+            </trans-unit>
+            <trans-unit id="workshop_appoitment">
+                <source xml:lang="en">workshop.appoitment</source>
+                <target xml:lang="en">Sur rendez-vous</target>
+            </trans-unit>
+            <trans-unit id="workshop_submit_button ">
+                <source xml:lang="en">workshop.submit_button</source>
+                <target xml:lang="en">Enregistrer</target>
+            </trans-unit>
+
+            
+
+            
+        </body>
+    </file>
+</xliff>

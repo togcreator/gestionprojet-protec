@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h5 class="modal-title">{{ 'OperationsIssues.confirm_title'|trans([], 'operationsissues') }}</h5>
+</div>
+
+<div class="modal-body">
+    <h2>{{ 'OperationsIssues.confirm_delete'|trans([], 'operationsissues')}}</h2>
+    {{ form_start(delete_form, {'attr': {'id': 'operationsissues_form'}}) }}
+    {{ form_end(delete_form) }}
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-danger" data-dismiss="modal">{{ 'OperationsIssues.close_button'|trans([], 'operationsissues') }}</button>
+    <button type="button" class="btn btn-primary" onclick="jQuery('#operationsissues_form').submit()">{{ 'OperationsIssues.confirm_button'|trans([], 'operationsissues') }}</button>
+</div>

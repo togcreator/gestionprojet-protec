@@ -1,0 +1,24 @@
+# general
+IssuesOrganisation.list: Organisation issue
+IssuesOrganisation.creation: New
+IssuesOrganisation.edition: Edition
+IssuesOrganisation.confirm_title: Confirmation
+
+# form
+IssuesOrganisation.legend_project: Project
+IssuesOrganisation.legend_info: Information
+IssuesOrganisation.idIssue: Operation issue
+IssuesOrganisation.commentaires: Comment
+IssuesOrganisation.actions: Action
+IssuesOrganisation.confirm_delete: Do you want to remove this ?
+IssuesOrganisation.no_data: No data
+
+# button
+IssuesOrganisation.add_button: New
+IssuesOrganisation.edit_button: Edit
+IssuesOrganisation.del_button: Remove
+IssuesOrganisation.save_button: Save
+IssuesOrganisation.submit_button: Save
+IssuesOrganisation.confirm_button: Yes, i do
+IssuesOrganisation.close_button: No
+

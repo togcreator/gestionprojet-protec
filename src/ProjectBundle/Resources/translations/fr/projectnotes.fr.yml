@@ -1,0 +1,36 @@
+# projetcnotes.fr.yml
+
+# general
+projectnotes.title: Note
+projectnotes._title: Les notes
+projectnotes.creation: Nouveau
+projectnotes.list: Liste de notes
+projectnotes.edition: Modification
+projectnotes.confirm_title: Confirmation
+
+# form
+projetnotes.legend_project: Projet
+projectnotes.legend_info: Information
+projectnotes.idProjetVersion: Projet
+projectnotes.idEtape: Etape
+projectnotes.idOperation: Operation
+projectnotes.idUser: Redacteur
+projectnotes.idIssue: Operation issue
+projectnotes.titre: Titre
+projectnotes.objet: Objet
+projectnotes.date: Date
+projectnotes.code: Code
+projectnotes.version: Version
+projectnotes.actions: Action
+projectnotes.confirm_delete: Voulez vous vraiment supprimer ce note ?
+projectnotes.no_data: Aucun resultat
+
+# button
+projectnotes.new_button: Nouvel note
+projectnotes.add_button: Nouveau
+projectnotes.submit_button: Enregistrer
+projectnotes.save_button: Enregistrer
+projectnotes.del_button: Supprimer
+projectnotes.edit_button: Modifier
+projectnotes.confirm_button: Oui, je confirme
+projectnotes.close_button: Non

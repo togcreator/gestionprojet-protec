@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - crmparamalert{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'crmparamalert.list'|trans({}, 'crmparamalert') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('crmparamalert_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'crmparamalert.add_button'|trans({}, 'crmparamalert') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('crmparamalert_index')}}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if crmParamAlerts %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'crmparamalert.open'|trans({}, 'crmparamalert') }}</th>
+                                <th>{{ 'crmparamalert.label'|trans({}, 'crmparamalert') }}</th>
+                                <th>{{ 'crmparamalert.typeAlerte'|trans({}, 'crmparamalert') }}</th>
+                                <th class="col-md-2 text-center">{{ 'crmparamalert.couleur'|trans({},'crmparamalert') }}</th>
+                                <th class="col-md-1 text-center">{{ 'crmparamalert.logo'|trans({},'crmparamalert') }}</th>
+                                <th class="text-center">{{ 'crmparamalert.actions'|trans({}, 'crmparamalert') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for crmparamalert in crmParamAlerts %}
+                            <tr>
+                                <td style="cursor:pointer" onclick="document.location = '{{ path('crmparamalert_show', { 'id': crmparamalert.id }) }}';">{{ crmparamalert.id }}</td>
+                                <td>{% if crmparamalert.ouvert %}
+                                    <span class="label label-info">{{ 'global.yes'|trans }}</span> {% else %}
+                                    <span class="label label-default">{{ 'global.no'|trans }}</span>
+                                    {% endif %}</td>
+                                <td>{{ crmparamalert.label }}</td>
+                                <td>
+                                    {% if crmparamalert.typeAlerte == 1 %}
+                                        {{ 'crmparamalert.alerte'|trans({},'crmparamalert') }}
+                                    {% else %}
+                                        {{ 'crmparamalert.rappel'|trans({},'crmparamalert') }}
+                                    {% endif %}
+                                </td>
+                                <td class="col-md-2 text-center" style="background: {{ crmparamalert.couleur }};">{{ crmparamalert.couleur }}</td>
+                                <td class="col-md-1 text-center">
+                                    {% if crmparamalert.logo %}
+                                        <img src="{{ asset('uploads/' ~ crmparamalert.logo ) }}" alt="logo" style="max-width: 50%" />
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('crmparamalert_edit', { 'id': crmparamalert.id }) }}"><i class="icon-pen"></i> {{ 'crmparamalert.edit_button'|trans({}, 'crmparamalert') }}</a></li>
+                                                <li><a href="{{ path('crmparamalert_delete', { 'id': crmparamalert.id }) }}"
+                                                    data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'crmparamalert.del_button'|trans({}, 'crmparamalert') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'crmparamalert.no_data'|trans({}, 'crmparamalert') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>  
+    {# footer #}          
+    {% include 'foot.html.twig' %}
+
+{% endblock %}

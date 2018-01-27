@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - natureop{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'natureop.list'|trans({}, 'natureop') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('back_natureop_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'natureop.add_button'|trans({}, 'natureop') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('back_natureop_index')}}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if natureops %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'natureop.open'|trans({}, 'natureop') }}</th>
+                                <th>{{ 'natureop.label'|trans({}, 'natureop') }}</th>
+                                <th class="col-md-2 text-center">{{ 'natureop.couleur'|trans({},'natureop') }}</th>
+                                <th class="col-md-1 text-center">{{ 'natureop.logo'|trans({},'natureop') }}</th>
+                                <th class="col-md-1 text-center">{{ 'natureop.note'|trans({},'natureop') }}</th>
+                                <th class="text-center">{{ 'natureop.actions'|trans({}, 'natureop') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for natureop in natureops %}
+                            <tr>
+                                <td style="cursor:pointer">{{ natureop.id }}</td>
+                                <td>
+                                    {% if natureop.ouvert %}
+                                    <span class="label label-info">{{ natureop.ouvert }}</span> {% else %}
+                                    <span class="label label-default">{{ natureop.ouvert }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ natureop.label }}</td>
+                                <td class="col-md-2 text-center" style="background: {{ natureop.couleur }};">{{ natureop.couleur }}</td>
+                                <td class="col-md-1 text-center">
+                                    {% if natureop.logo %}
+                                        <img src="{{ asset('uploads/' ~ natureop.logo ) }}" alt="logo" style="max-width: 50%" />
+                                    {% endif %}
+                                </td>
+                                <td class="col-md-1 text-center">{% if natureop.obs %}<i class="icon-file-text"></i>{% else %}<i class="icon-file-minus2" style="color: #ccc"></i>{% endif %}</td>
+
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('back_natureop_edit', { 'id': natureop.id }) }}"><i class="icon-pen"></i> {{ 'natureop.edit_button'|trans({}, 'natureop') }}</a></li>
+                                                <li><a href="{{ path('back_natureop_delete', { 'id': natureop.id }) }}"
+                                                    data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'natureop.del_button'|trans({}, 'natureop') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'natureop.no_data'|trans({}, 'natureop') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>  
+    {# footer #}          
+    {% include 'foot.html.twig' %}
+
+{% endblock %}

@@ -1,0 +1,29 @@
+# message.fr.yml
+
+# general
+global.crmetapes: CRM Stage
+global.crmetapesoperations: CRM Stage operation
+global.crmetapesrealisations: CRM Stage production
+global.crmdocsenvoyes: CRM document sent
+global.crmdocsrecus: CRM document receive
+global.crmoperationsusers: CRM Operation user
+
+# menu
+menu.crm: CRM
+menu.crm_etapes: Stage CRM
+menu.crm_etapesoperations: Stage operation CRM
+menu.crm_docsenvoyes: CRM document sent
+menu.crm_docsrecus: CRM document receive
+menu.crm_dossier: CRM folder(s)
+menu.crm_etapesrealisation: Stage production CRM
+menu.crm_operationsusers: User operation
+
+back.menu_crm: GRC / CRM
+back.menu_cycle: Cycles
+back.menu_activite: Activity
+back.menu_resultat: Result
+back.menu_access: Access
+back.menu_crmstatut: Status
+back.menu_crmstatuttype: Type
+back.menu_crmalert: Alert
+back.menu_crmpriorites: Priority

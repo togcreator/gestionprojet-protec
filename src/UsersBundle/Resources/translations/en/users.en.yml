@@ -1,0 +1,26 @@
+# general
+users.login_title: Login
+users.edit_title: Account edit 
+users.login_form: Connexion
+
+# form
+users.image: Image/photo
+users.username: Username
+users.password: Password
+users.address: Adress
+users.type: User roles
+users.firstname: Firstname
+users.lastname: Lastname
+users.status: Account state
+users.login_button: Login
+users.my_profile: My profil
+users.title: User
+users.active: Actif account
+users.unactive: Inactif account
+users.lang: Langage
+users.logout: Logout
+
+# button
+users.add_button: New
+users.edit_button: Edit
+users.del_button: Remove

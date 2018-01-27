@@ -1,0 +1,35 @@
+# projetcnotes.fr.yml
+
+# general
+projectnotes.creation: New
+projectnotes._title: Notes
+projectnotes.list: List of note
+projectnotes.edition: Edition
+projectnotes.confirm_title: Confirmation
+
+# form
+projetnotes.legend_project: Project
+projectnotes.legend_info: Information
+projectnotes.idProjetVersion: Project
+projectnotes.idEtape: Stage
+projectnotes.idOperation: Operation
+projectnotes.idUser: Creator
+projectnotes.idIssue: Issue operation 
+projectnotes.titre: Title
+projectnotes.objet: Object
+projectnotes.date: Date
+projectnotes.code: Code
+projectnotes.version: Version
+projectnotes.actions: Action
+projectnotes.confirm_delete: Do you want to remove this ?
+projectnotes.no_data: No data
+
+# button
+projectnotes.new_button: New note
+projectnotes.add_button: New
+projectnotes.submit_button: Save
+projectnotes.save_button: Save
+projectnotes.del_button: Remove
+projectnotes.edit_button: Edit
+projectnotes.confirm_button: Yes, i do
+projectnotes.close_button: No

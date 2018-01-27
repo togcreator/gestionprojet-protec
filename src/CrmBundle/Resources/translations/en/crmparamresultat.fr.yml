@@ -1,0 +1,27 @@
+# genenral
+crmparamresultat.list: Liste de resultat CRM
+crmparamresultat.confirm_title: Confirmation
+crmparamresultat.edition: Modification
+crmparamresultat.creation: Nouveau
+
+# form
+crmparamresultat.legend_info: Information
+crmparamresultat.open: Ouvert
+crmparamresultat.label: Label
+crmparamresultat.couleur: Couleur
+crmparamresultat.obs: Observation
+crmparamresultat.nomcouleur: Nom de la couleur
+crmparamresultat.imgcouleur: Image de la couleur
+crmparamresultat.logo: Logo
+crmparamresultat.version: Version
+crmparamresultat.idTyperesultat: Type de resultat
+crmparamresultat.confirm_delete: Voulez vous supprimer ce resultat?
+crmparamresultat.actions: Action
+
+# button
+crmparamresultat.add_button: Nouveau
+crmparamresultat.save_button: Enregistrer
+crmparamresultat.edit_button: Modification
+crmparamresultat.del_button: Supprimer
+crmparamresultat.confirm_button: Oui, je confirme
+crmparamresultat.close_button: Non

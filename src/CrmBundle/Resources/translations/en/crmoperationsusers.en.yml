@@ -1,0 +1,33 @@
+
+# general
+crmoperationsusers.title: CRM user operation
+crmoperationsusers.edition: Edition
+crmoperationsusers.creation: New
+crmoperationsusers.confirm_title: Confirmation
+crmoperationsusers.crm: CRM
+crmoperationsusers.info: Information
+crmoperationsusers.other: Other detail
+crmoperationsusers.date: Date
+
+# form
+crmoperationsusers.idCRM: CRM
+crmoperationsusers.idCycle: Cycle
+crmoperationsusers.idCycledetail: Cycle detail
+crmoperationsusers.idEtape: Stage
+crmoperationsusers.idOperation: Operation
+crmoperationsusers.mission: Mission
+crmoperationsusers.datedebut: Start date
+crmoperationsusers.datefin: End date
+crmoperationsusers.idRole: User role
+crmoperationsusers.flagActeur: Flag actor
+crmoperationsusers.flagInvite: Flag invite
+crmoperationsusers.idUser: User
+crmoperationsusers.confirm_delete: Do you want to remove this ?
+
+# button
+crmoperationsusers.add_button: New
+crmoperationsusers.edit_button: Edit
+crmoperationsusers.del_button: Remove
+crmoperationsusers.save_button: Save
+crmoperationsusers.close_button: No
+crmoperationsusers.confirm_button: Yes, i do

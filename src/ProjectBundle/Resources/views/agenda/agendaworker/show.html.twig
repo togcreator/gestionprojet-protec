@@ -1,0 +1,228 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Agendaworker</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ agendaWorker.id }}</td>
+            </tr>
+            <tr>
+                <th>Idtypeagenda</th>
+                <td>{{ agendaWorker.idTypeAgenda }}</td>
+            </tr>
+            <tr>
+                <th>Idbu</th>
+                <td>{{ agendaWorker.idBU }}</td>
+            </tr>
+            <tr>
+                <th>Reference</th>
+                <td>{{ agendaWorker.reference }}</td>
+            </tr>
+            <tr>
+                <th>Idlieu</th>
+                <td>{{ agendaWorker.idLieu }}</td>
+            </tr>
+            <tr>
+                <th>Idchantier</th>
+                <td>{{ agendaWorker.idChantier }}</td>
+            </tr>
+            <tr>
+                <th>Identityj</th>
+                <td>{{ agendaWorker.idEntityJ }}</td>
+            </tr>
+            <tr>
+                <th>Idstrategie</th>
+                <td>{{ agendaWorker.idStrategie }}</td>
+            </tr>
+            <tr>
+                <th>Idzonage</th>
+                <td>{{ agendaWorker.idZonage }}</td>
+            </tr>
+            <tr>
+                <th>Idagendamaster</th>
+                <td>{{ agendaWorker.idAgendaMaster }}</td>
+            </tr>
+            <tr>
+                <th>Idprojetoperation</th>
+                <td>{{ agendaWorker.idProjetOperation }}</td>
+            </tr>
+            <tr>
+                <th>Idprojetetape</th>
+                <td>{{ agendaWorker.idProjetEtape }}</td>
+            </tr>
+            <tr>
+                <th>Idprojetjalon</th>
+                <td>{{ agendaWorker.idProjetJalon }}</td>
+            </tr>
+            <tr>
+                <th>Idprojetissue</th>
+                <td>{{ agendaWorker.idProjetIssue }}</td>
+            </tr>
+            <tr>
+                <th>Idcrmoperation</th>
+                <td>{{ agendaWorker.idCRMOperation }}</td>
+            </tr>
+            <tr>
+                <th>Idcrmetape</th>
+                <td>{{ agendaWorker.idCRMEtape }}</td>
+            </tr>
+            <tr>
+                <th>Idtypeuser</th>
+                <td>{{ agendaWorker.idTypeuser }}</td>
+            </tr>
+            <tr>
+                <th>Iduser</th>
+                <td>{{ agendaWorker.idUser }}</td>
+            </tr>
+            <tr>
+                <th>Idwork</th>
+                <td>{{ agendaWorker.idWork }}</td>
+            </tr>
+            <tr>
+                <th>Idtypework</th>
+                <td>{{ agendaWorker.idTypeWork }}</td>
+            </tr>
+            <tr>
+                <th>Idpriorite</th>
+                <td>{{ agendaWorker.idPriorite }}</td>
+            </tr>
+            <tr>
+                <th>Idalerte</th>
+                <td>{{ agendaWorker.idAlerte }}</td>
+            </tr>
+            <tr>
+                <th>Idevenement</th>
+                <td>{{ agendaWorker.idEvenement }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ agendaWorker.titre }}</td>
+            </tr>
+            <tr>
+                <th>Datesaisie</th>
+                <td>{% if agendaWorker.datesaisie %}{{ agendaWorker.datesaisie|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Operateursaisie</th>
+                <td>{{ agendaWorker.operateurSaisie }}</td>
+            </tr>
+            <tr>
+                <th>Dureeprepa</th>
+                <td>{{ agendaWorker.dureePrepa }}</td>
+            </tr>
+            <tr>
+                <th>Dureecloture</th>
+                <td>{{ agendaWorker.dureeCloture }}</td>
+            </tr>
+            <tr>
+                <th>Datedebprevue</th>
+                <td>{% if agendaWorker.dateDebPrevue %}{{ agendaWorker.dateDebPrevue|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datefinprevue</th>
+                <td>{% if agendaWorker.dateFinPrevue %}{{ agendaWorker.dateFinPrevue|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datedebreelle</th>
+                <td>{% if agendaWorker.dateDebReelle %}{{ agendaWorker.dateDebReelle|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datefinreelle</th>
+                <td>{% if agendaWorker.dateFinReelle %}{{ agendaWorker.dateFinReelle|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Heuredebprevue</th>
+                <td>{% if agendaWorker.heureDebPrevue %}{{ agendaWorker.heureDebPrevue|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Heurefinprevue</th>
+                <td>{% if agendaWorker.heureFinPrevue %}{{ agendaWorker.heureFinPrevue|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Heuredebreelle</th>
+                <td>{% if agendaWorker.heureDebReelle %}{{ agendaWorker.heureDebReelle|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Heurefinreelle</th>
+                <td>{% if agendaWorker.heureFinReelle %}{{ agendaWorker.heureFinReelle|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Cloture</th>
+                <td>{{ agendaWorker.cloture }}</td>
+            </tr>
+            <tr>
+                <th>Datecloture</th>
+                <td>{% if agendaWorker.dateCloture %}{{ agendaWorker.dateCloture|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Operateurcloture</th>
+                <td>{{ agendaWorker.operateurCloture }}</td>
+            </tr>
+            <tr>
+                <th>Quoi</th>
+                <td>{{ agendaWorker.quoi }}</td>
+            </tr>
+            <tr>
+                <th>Lieu</th>
+                <td>{{ agendaWorker.lieu }}</td>
+            </tr>
+            <tr>
+                <th>Observations</th>
+                <td>{{ agendaWorker.observations }}</td>
+            </tr>
+            <tr>
+                <th>Image1</th>
+                <td>{{ agendaWorker.image1 }}</td>
+            </tr>
+            <tr>
+                <th>Image2</th>
+                <td>{{ agendaWorker.image2 }}</td>
+            </tr>
+            <tr>
+                <th>Image3</th>
+                <td>{{ agendaWorker.image3 }}</td>
+            </tr>
+            <tr>
+                <th>Image4</th>
+                <td>{{ agendaWorker.image4 }}</td>
+            </tr>
+            <tr>
+                <th>Longitude</th>
+                <td>{{ agendaWorker.longitude }}</td>
+            </tr>
+            <tr>
+                <th>Latitude</th>
+                <td>{{ agendaWorker.latitude }}</td>
+            </tr>
+            <tr>
+                <th>Idwriter</th>
+                <td>{{ agendaWorker.idWriter }}</td>
+            </tr>
+            <tr>
+                <th>Valide</th>
+                <td>{% if agendaWorker.valide %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Version</th>
+                <td>{{ agendaWorker.version }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('agenda_agendaworker_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('agenda_agendaworker_edit', { 'id': agendaWorker.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

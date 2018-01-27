@@ -1,0 +1,47 @@
+
+# general
+crmetapesoperations.title: CRM Opération
+crmetapesoperations.edition: Modification
+crmetapesoperations.creation: Nouveau
+crmetapesoperations.confirm_title: Confirmation
+crmetapesoperations.crm: CRM
+crmetapesoperations.info: Information
+crmetapesoperations.other: Autre detail
+crmetapesoperations.legend_user: Utilisateur
+crmetapesoperations.date: Date
+
+# form
+crmetapesoperations.idCRM: CRM
+crmetapesoperations.idCycle: Cycle
+crmetapesoperations.idCycledetail: Detail du Cycle
+crmetapesoperations.idDetailActivity: Detail activité
+crmetapesoperations.idEtape: Etape
+crmetapesoperations.code: Code
+crmetapesoperations.objet: Objet
+crmetapesoperations.reference: Réference
+crmetapesoperations.description: Description
+crmetapesoperations.user4affectation: Utilisateur affecté
+crmetapesoperations.userDate: Date affecté
+crmetapesoperations.datedebut: Date debut
+crmetapesoperations.datefin: Date fin
+crmetapesoperations.datedebutprevue: Date debut prevue
+crmetapesoperations.datefinprevue: Date fin prevue
+crmetapesoperations.datedebutreelle: Date debut réel
+crmetapesoperations.datefinreelle: Date fin réel
+crmetapesoperations.journeesHommesprevues: Journée hommes prevues
+crmetapesoperations.journeesHommesreelle: Journée hommes réelles
+crmetapesoperations.idStatut: Statut
+crmetapesoperations.idResultat: Resultat
+crmetapesoperations.idAlerte: Alerte
+crmetapesoperations.idPriorite: Priorité
+crmetapesoperations.idRappel: Rappel
+crmetapesoperations.idCommande: Commande
+crmetapesoperations.confirm_delete: Voulez vous supprimer cette opération ?
+
+# button
+crmetapesoperations.add_button: Nouveau
+crmetapesoperations.edit_button: Modifier
+crmetapesoperations.del_button: Supprimer
+crmetapesoperations.save_button: Enregistrer
+crmetapesoperations.close_button: Non
+crmetapesoperations.confirm_button: Oui, je confirme

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="es" datatype="plaintext" original="file.ext">
+        <body>
+
+        	<!-- === workshop === -->
+            <trans-unit id="workshop_list">
+                <source xml:lang="en">workshop.list</source>
+       			<target xml:lang="es">Lista de taller</target>
+            </trans-unit><!-- 
+            <trans-unit id="workshop_id">
+                <source xml:lang="en">workshop.id</source>
+       			<target xml:lang="fr">Id</target>
+            </trans-unit>
+            <trans-unit id="workshop_open">
+                <source xml:lang="en">workshop.open</source>
+       			<target xml:lang="fr">Ouvert</target>
+            </trans-unit>
+            <trans-unit id="workshop_add_button">
+                <source xml:lang="en">workshop.add_button</source>
+       			<target xml:lang="fr">Nouveau</target>
+            </trans-unit>
+            <trans-unit id="workshop_edit_button">
+                <source xml:lang="en">workshop.edit_button</source>
+       			<target xml:lang="fr">Modifier</target>
+            </trans-unit>
+            <trans-unit id="workshop_del_button">
+                <source xml:lang="en">workshop.del_button</source>
+       			<target xml:lang="fr">Supprimer</target>
+            </trans-unit> -->
+
+            <!-- === back === -->
+            <!-- <trans-unit id="back_menu_dashboard">
+                <source xml:lang="en">back.menu.dashboard</source>
+       			<target xml:lang="fr">Tableau de bord</target>
+            </trans-unit>
+            <trans-unit id="back_menu_workshop">
+                <source xml:lang="en">back.menu.workshop</source>
+       			<target xml:lang="fr">Workshop</target>
+            </trans-unit> -->
+
+        </body>
+    </file>
+</xliff>

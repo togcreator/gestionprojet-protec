@@ -1,0 +1,22 @@
+# usersparamnature.fr.yml
+
+# general
+usersparamnature.list: List of user nature
+usersparamnature.creation: New
+usersparamnature.edition: Edition
+usersparamnature.confirm_title: Confirmation
+usersparamnature.no_data: No data
+
+# form
+usersparamnature.label: Label
+usersparamnature.version: Version
+usersparamnature.confirm_delete: Are you want to remove this ?
+
+# button
+usersparamnature.add_button: New
+usersparamnature.save_button: Save
+usersparamnature.submit_button: Save
+usersparamnature.edit_button: Edit
+usersparamnature.del_button: Remove
+usersparamnature.confirm_button: Yes, i do
+usersparamnature.close_button: No

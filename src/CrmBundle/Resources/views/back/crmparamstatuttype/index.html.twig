@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - crmparamstatuttype{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'crmparamstatuttype.list'|trans({}, 'crmparamstatuttype') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('crmparamstatuttype_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'crmparamstatuttype.add_button'|trans({}, 'crmparamstatuttype') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('crmparamstatuttype_index')}}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if crmParamStatutTypes %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'crmparamstatuttype.open'|trans({}, 'crmparamstatuttype') }}</th>
+                                <th>{{ 'crmparamstatuttype.label'|trans({}, 'crmparamstatuttype') }}</th>
+                                <th class="text-center">{{ 'crmparamstatuttype.actions'|trans({},'crmparamstatuttype') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for crmparamstatuttype in crmParamStatutTypes %}
+                            <tr>
+                                <td style="cursor:pointer" onclick="document.location = '{{ path('crmparamstatuttype_show', { 'id': crmparamstatuttype.id }) }}';">{{ crmparamstatuttype.id }}</td>
+                                <td>{% if crmparamstatuttype.ouvert %}
+                                    <span class="label label-info">{{ 'global.yes'|trans }}</span> {% else %}
+                                    <span class="label label-default">{{ 'global.no'|trans }}</span>
+                                    {% endif %}</td>
+                                <td>{{ crmparamstatuttype.label }}</td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('crmparamstatuttype_edit', { 'id': crmparamstatuttype.id }) }}"><i class="icon-pen"></i> {{ 'crmparamstatuttype.edit_button'|trans({}, 'crmparamstatuttype') }}</a></li>
+                                                <li><a href="{{ path('crmparamstatuttype_delete', { 'id': crmparamstatuttype.id }) }}"
+                                                    data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'crmparamstatuttype.del_button'|trans({}, 'crmparamstatuttype') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'crmparamstatuttype.no_data'|trans({}, 'crmparamstatuttype') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>  
+    {# footer #}          
+    {% include 'foot.html.twig' %}
+
+{% endblock %}

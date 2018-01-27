@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - {{ 'project.etape'|trans({}, 'IssuesOrganisation')}}{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'IssuesOrganisation.list'|trans({}, 'IssuesOrganisation') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('issuesorganisation_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'IssuesOrganisation.add_button'|trans({}, 'IssuesOrganisation') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('issuesorganisation_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if IssuesOrganisations %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'IssuesOrganisation.idIssue'|trans({}, 'IssuesOrganisation') }}</th>
+                                <th>{{ 'IssuesOrganisation.commentaires'|trans({}, 'IssuesOrganisation') }}</th>
+                                <th class="text-center">{{ 'IssuesOrganisation.actions'|trans({}, 'IssuesOrganisation') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for IssuesOrgnisation in IssuesOrganisations %}
+                            <tr>
+                                <td style="cursor:pointer">{{ IssuesOrgnisation.id }}</td>
+                                <td>{{ IssuesOrgnisation.idIssue }}</td>
+                                <td>{{ IssuesOrgnisation.commentaires }}</td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('issuesorganisation_edit', { 'id': IssuesOrgnisation.id }) }}"><i class="icon-pen"></i> {{ 'IssuesOrganisation.edit_button'|trans({}, 'IssuesOrganisation') }}</a></li>
+                                                <li><a href="{{ path('issuesorganisation_delete', { 'id': IssuesOrgnisation.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'IssuesOrganisation.del_button'|trans({}, 'IssuesOrganisation') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'IssuesOrganisation.no_data'|trans({}, 'IssuesOrganisation') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>            
+{% endblock %}
+    
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

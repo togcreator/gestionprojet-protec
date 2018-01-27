@@ -1,0 +1,3 @@
+project:
+    resource: '@ProjectBundle/Controller/'
+    type: annotation

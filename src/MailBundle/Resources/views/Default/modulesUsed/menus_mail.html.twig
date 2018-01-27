@@ -1,0 +1,171 @@
+
+
+<!-- Actions -->
+<div class="sidebar-category">
+    <div class="category-title">
+        <span>Actions</span>
+        <ul class="icons-list">
+            <li><a href="#" data-action="collapse"></a></li>
+        </ul>
+    </div>
+
+    <div class="category-content">
+        <a href="{{ path('mail_envoi') }}" class="btn bg-indigo-400 btn-block">{{ 'menu_mail.action.compose_mail'|trans }}</a>
+    </div>
+</div>
+<!-- /actions -->
+
+
+<!-- Sub navigation -->
+<div class="sidebar-category">
+    <div class="category-title">
+        <span>Navigation</span>
+        <ul class="icons-list">
+            <li><a href="#" data-action="collapse"></a></li>
+        </ul>
+    </div>
+
+    <div class="category-content no-padding">
+        <ul class="navigation navigation-alt navigation-accordion no-padding-bottom">
+            <li class="navigation-header">{{ 'menu_mail.navigation.mail_box'|trans }}</li>
+            <li>
+                <a href="{{ path('mail_list') }}">
+                    <i class="icon-stars" ></i> {{ 'menu_mail.navigation.all'|trans }}
+                    {% if all_mails is defined and all_mails > 0 %}
+                        <span class="badge badge-success">{{ all_mails }}</span>
+                    {% else %}
+                        <span class="badge badge-success">0</span>
+                    {% endif %}
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('mail_inbox') }}">
+                    <i class="icon-drawer-in"></i> {{ 'menu_mail.navigation.inbox'|trans }}
+                    {% if nonlus is defined and nonlus > 0 %}
+                        <span class="badge badge-primary">{{ nonlus }}</span>
+                    {% else %}
+                        <span class="badge badge-primary">0</span>
+                    {% endif %}
+                </a>
+            </li>
+            <li><a href="{{ path('mail_outbox') }}"><i class="icon-drawer-out"></i> {{ 'menu_mail.navigation.outbox'|trans }}
+                    {% if all_out is defined and all_out > 0 %}
+                        <span class="badge badge-info">{{ all_out }}</span>
+                    {% else %}
+                        <span class="badge badge-info">0</span>
+                    {% endif %}
+                </a>
+            </li>
+            <li><a href="{{ path('mail_draft') }}" class="draft"><i class="icon-drawer"></i> {{ 'list_mail.draft'|trans }}
+                    {% if mail_draft is defined and mail_draft > 0 %}
+                        <span class="badge badge-default">{{ mail_draft }}</span>
+                    {% else %}
+                        <span class="badge badge-default">0</span>
+                    {% endif %}
+                </a>
+            </li>
+            <li class="navigation-divider"></li>
+            <li>
+                <a href="#">
+                    <i class="icon-spam"></i> Spam
+                    {% if spam is defined and spam > 0 %}
+                        <span class="badge badge-warning">{{ spam }}{% if spam > 99 %} + {% endif %}</span>
+                    {% else %}
+                        <span class="badge badge-warning">0</span>
+                    {% endif %}
+                </a>
+            </li>
+            <li><a href="{{ path('mail_trash_list') }}" class="trash"><i class="icon-bin"></i> {{ 'menu_mail.navigation.trash'|trans }}
+                    <span class="badge badge-danger">{{ mail_trash }}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- /sub navigation -->
+
+{% if type is defined  and type != 'trash' and type != 'draft' %}
+<!-- Sub navigation -->
+<div class="sidebar-category">
+    <div class="category-title">
+        <span>{{ 'menu_mail.filter.title'|trans }}</span>
+        <ul class="icons-list">
+            <li><a href="#" data-action="collapse"></a></li>
+        </ul>
+    </div>
+
+    <!-- Main navigation -->
+    <div class="sidebar-category-visible">
+
+        <div class="category-content no-padding">
+            <ul class="navigation navigation-main navigation-accordion">
+
+
+                <!-- Layout -->
+                <li style="margin: 20px;">
+                    <div class="form-group has-feedback">
+
+                        <div class="form-control-feedback">
+                            <i class="icon-search4 text-size-base"></i>
+                        </div>
+                        <input id="mots-cles" type="text" class="form-control filtre" placeholder="{{ 'menu_mail.filter.search'|trans }}">
+                    </div>
+                </li>
+                <li style="margin: 20px;">
+                    <div class="form-group has-feedback">
+                        <div class="form-control-feedback">
+                            <i class="icon-search4 text-size-base"></i>
+                        </div>
+                        <input id="date_filter" type="text" class="form-control daterange-left filtre" placeholder="{{ 'menu_mail.filter.date_interval'|trans }}...">
+                    </div>
+                </li>
+                <li>
+                    <a href="#"><i class="icon-comment-discussion"></i> <span>{{ 'menu_mail.filter.box'|trans }}</span></a>
+                    {% if tbox is defined %}
+                        <ul>
+                            {% for box in tbox %}
+                                <li id="{{ "box-" ~ box.id }}" class="filtre tbox"><a><input type="checkbox" class="styled filtre_tbox">
+                                        {%  if app.request.locale == 'en' and box.lib1 != "" %}
+                                            {{ box.lib1 }}
+                                        {% else %}
+                                            {{ box.lib0 }}
+                                        {% endif %}
+
+                                    </a></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+                <li>
+                    <a href="#"><i class="icon-tree5"></i> <span>{{ 'menu_mail.priority.title'|trans }}</span></a>
+                    {% if priorites is defined %}
+                        <ul>
+                            {% for priorite in priorites %}
+                                <li id="{{ "priorite-" ~ priorite.id }}" class="filtre priority"><a><input type="checkbox" class="styled filtre_priorite">
+                                        <img src="{{ asset('assets/images/priorite/'~priorite.id|priorite) }}" style="width:12%;height:12%;">&nbsp;
+                                        {%  if app.request.locale == 'en' and priorite.lib1 != "" %}
+                                            {{ priorite.lib1 }}
+                                        {% else  %}
+                                            {{ priorite.lib0 }}
+                                        {% endif %}
+                                    </a></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+                <li>
+                    <div class="category-content">
+                        <button type="button" class="btn bg-indigo btn-block legitRipple" id="filter_button" onclick="makeFilter()">{{ 'menu_mail.filter.search'|trans }} <i class="icon-search4 position-right"></i></button>
+                    </div>
+                </li>
+                <!-- /layout -->
+
+            </ul>
+            <span id="mailFilter" class="hidden position-right" data-link="{{ path('mail_filter') }}" data-img="{{ asset('assets/images/loading/please-wait.gif') }}" data-type="{% if type is defined %}{{ type }}{% endif %}" style="display:none"></span>
+        </div>
+    </div>
+    <!-- /main navigation -->
+
+</div>
+<!-- /sub navigation -->
+{% endif %}

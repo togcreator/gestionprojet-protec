@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-lg-12 col-xs-12">
+                            <!-- Marketing campaigns -->
+                            <div class="panel panel-white">
+                                <div class="panel-heading">
+                                    <h6 class="panel-title">{{ 'crmdocsrecus.title'|trans({}, 'crmdocsrecus') }}</h6>
+                                    <div class="heading-elements">
+                                        <button type="button" class="btn btn-primary pull-left" onclick="document.location.href = '{{ path('crmdocsrecus_new') }}'">{{ 'crmdocsrecus.add_button'|trans({}, 'crmdocsrecus') }}</button>
+                                        <span class="label bg-success heading-text">{{ crmDocsRecus|length }} {{ 'global.active'|trans }}</span>
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i> <span class="caret"></span></a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="#"><i class="icon-sync"></i> {{ 'global.update_data'|trans }}</a></li>
+                                                    <li><a href="#"><i class="icon-list-unordered"></i> {{ 'global.detail_log'|trans }}</a></li>
+                                                    <li><a href="#"><i class="icon-pie5"></i> {{ 'global.statistics'|trans }}</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#"><i class="icon-cross3"></i> {{ 'global.clear_list'|trans }}</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <table class="table text-nowrap datatable-basic">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>{{ 'crmdocsrecus.idOperation'|trans({}, 'crmdocsrecus') }}</th>
+                                                <th>{{ 'crmdocsrecus.idCrm'|trans({}, 'crmdocsrecus') }}</th>
+                                                <th>{{ 'crmdocsrecus.designation'|trans({}, 'crmdocsrecus') }}</th>
+                                                <th>{{ 'crmdocsrecus.dateReception'|trans({}, 'crmdocsrecus') }}</th>
+                                                <th>{{ 'global.actions'|trans }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for crmDocsRecus in crmDocsRecus %}
+                                            <tr>
+                                                <td>{{ crmDocsRecus.id }}</td>
+                                                <td>{% if crmDocsRecus.operation %}{{ crmDocsRecus.operation.objet }}{% endif %}</td>
+                                                <td>{{ crmDocsRecus.crm.label }}</td>
+                                                <td>{{ crmDocsRecus.designation }}</td>
+                                                <td>{{ crmDocsRecus.dateReception|date(date_format) }}</td>
+                                                <td class="text-center">
+                                                    <ul class="icons-list">
+                                                        <li class="dropdown">
+                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                                <i class="icon-menu9"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                                <li><a href="{{ path('crmdocsrecus_edit', { 'id': crmDocsRecus.id }) }}"><i class="icon-pen"></i> {{ 'crmdocsrecus.edit_button'|trans({}, 'crmdocsrecus') }}</a></li>
+                                                                <li><a href="{{ path('crmdocsrecus_delete', { 'id': crmDocsRecus.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'crmdocsrecus.del_button'|trans({}, 'crmdocsrecus') }}</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">(function($){ $(document.body).addClass('sidebar-xs')}(jQuery))</script>
+
+    
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-lg-12 col-xs-12">
+                            <div class="panel panel-flat">
+                                <div class="panel-heading">
+                                    <h1>{{ 'compaign.new_title'|trans }}</h1>
+                                </div>
+                                <div class="panel-body">
+                                    {{ form_start(form, {'attr':{'class': 'form-horizontal'}}) }}
+                                    <fieldset class="content-group">
+                                        <div class="form-group">
+                                            {% set name = 'compaign.budget'|trans %}
+                                            {{ form_label(form.budget, name, {'label_attr': {'class': 'control-label col-lg-2'}})|trans|raw }}
+                                            <div class="col-lg-10">
+                                                {{ form_widget(form.budget, {'attr': {'class': 'form-control'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            {% set name = 'compaign.status'|trans %}
+                                            {{ form_label(form.status, name, {'label_attr': {'class': 'control-label col-lg-2'}})|trans|raw }}
+                                            <div class="col-lg-10">
+                                                {{ form_widget(form.status, {'attr': {'class': 'form-control'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            {% set name = 'compaign.date_init'|trans %}
+                                            {{ form_label(form.dateDebut, name, {'label_attr': {'class': 'control-label col-lg-2'}})|trans|raw }}
+                                            <div class="col-lg-10">
+                                                {{ form_widget(form.dateDebut, {'attr': {'class': 'form-control'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            {% set name = 'compaign.date_end'|trans %}
+                                            {{ form_label(form.dateFin, name, {'label_attr': {'class': 'control-label col-lg-2'}})|trans|raw }}
+                                            <div class="col-lg-10">
+                                                {{ form_widget(form.dateFin, {'attr': {'class': 'form-control'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            {% set name = 'compaign.type'|trans %}
+                                            {{ form_label(form.idType, name, {'label_attr': {'class': 'control-label col-lg-2'}})|trans|raw }}
+                                            <div class="col-lg-10">
+                                                {{ form_widget(form.idType, {'attr': {'class': 'form-control'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            {% set name = 'compaign.users'|trans %}
+                                            {{ form_label(form.idUser, name, {'label_attr': {'class': 'control-label col-lg-2'}})|trans|raw }}
+                                            <div class="col-lg-10">
+                                                {{ form_widget(form.idUser, {'attr': {'class': 'form-control'}}) }}
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary" value="Create">
+                                            {{ 'compaign.new_button'|trans }}
+                                            <i class="icon-arrow-right14 position-right"></i>
+                                        </button>
+                                    </fieldset>
+                                    {{ form_end(form, {'render_rest': false}) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

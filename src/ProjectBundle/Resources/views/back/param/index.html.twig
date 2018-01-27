@@ -1,0 +1,192 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Dashboard content -->
+                <div class="row">
+                    <div class="col-lg-8">
+
+                        <!-- Marketing campaigns -->
+                        <div class="panel panel-white">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">{{ 'langage.title'|trans({}, 'langage') }}</h5><br/>
+                                <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('langage_new')}}'">
+                                    <b><i class="icon-add"></i></b> {{ 'langage.add_button'|trans({}, 'langage') }}
+                                </button>
+                                <div class="heading-elements">
+                                    <span class="label bg-success heading-text">{# 28 #} active</span>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table datatable-basic">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-md-2">#</th>
+                                            <th class="col-md-2">{{ 'langage.label'|trans({}, 'langage') }}</th>
+                                            <th class="col-md-2">{{ 'langage.iso'|trans({}, 'langage') }}</th>
+                                            <th class="col-md-2">{{ 'langage.abr'|trans({}, 'langage') }}</th>
+                                            <th class="text-center" style="width: 20px;">{{ 'langage.actions'|trans({}, 'langage') }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% if langages %}
+                                            {% for langage in langages %}
+                                        <tr>
+                                            <td><span>{{ langage.id }}</span></td>
+                                            <td><span>{{ langage.labels }}</span></td>
+                                            <td><span>{{ langage.iso }}</span></td>
+                                            <td><span>{{ langage.abr }}</span></td>
+                                            <td class="text-center">
+                                                <ul class="icons-list">
+                                                    <li class="dropdown">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i>
+                                                        <i class="icon-arrow-down12"></i>
+                                                        </a>
+                                                        <ul class="dropdown-menu dropdown-menu-right">
+                                                            <li>
+                                                                <a href="{{ path('langage_edit', { 'id': langage.id }) }}">
+                                                                    <i class="icon-pen"></i> {{ 'langage.edit_button'|trans({}, 'langage') }}
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                            <a href="{{ path('langage_delete', { 'id': langage.id }) }}">
+                                                                <i class="icon-folder-remove"></i> {{ 'langage.del_button'|trans({}, 'langage') }}</a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /marketing campaigns -->
+                    </div>
+
+                    <div class="col-lg-4">
+
+                        <!-- Daily financials -->
+                        <div class="panel panel-flat">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">{{ 'cookie.title'|trans({}, 'cookie') }}</h5>
+                                <div class="heading-elements">
+                                    
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="content-group-xs" id="bullets"></div>
+                                <ul class="media-list">
+                                    {% set cookie_lifetime = in_object('cookie_lifetime', params, 'getLabel') %}
+                                    {% if cookie_lifetime is not empty %}
+                                        {% set label = cookie_lifetime.label %}
+                                        {% set value = cookie_lifetime.value %}
+                                        {% set tid = cookie_lifetime.id %}
+                                    {% else %}
+                                        {% set label = 'cookie_lifetime' %}
+                                        {% set value = 3600 %}
+                                    {% endif %}
+                                    <li class="media">
+                                        <div class="media-left">
+                                            <a href="#" class="btn border-warning-400 text-warning-400 btn-flat btn-rounded btn-icon btn-xs valign-text-bottom legitRipple">
+                                                <i class="icon-watch2"></i>
+                                            </a>
+                                        </div>
+                                        
+                                        <div class="media-body">
+                                            {% set label_cookie = 'cookie.' ~ label %}
+                                            {{ label_cookie|trans({}, 'cookie')  }} <label class="label label-info" style="text-transform: normal"> {{ value ~ ' ' ~ 'cookie.second'|trans({}, 'cookie') }}</label>
+                                        </div>
+                                        <div class="media-right media-middle">
+                                            <ul class="icons-list">
+                                                <li class="dropdown text-muted">
+                                                    {% if tid is defined %}
+                                                        {% set url = path('back_param_edit', {'id': tid }) %}
+                                                    {% else %}
+                                                        {% set url = path('back_param_new') %}
+                                                    {% endif %}
+                                                    <a href="{{ url }}" class="dropdown-toggle">
+                                                        <i class="icon-cog3"></i> 
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    {% set cookie_life = in_object('cookie_life', params, 'getLabel') %}
+                                    {% if cookie_life is not empty %}
+                                        {% set label = cookie_life.label %}
+                                        {% set value = cookie_life.value %}
+                                        {% set nid = cookie_life.id %}
+                                    {% else %}
+                                        {% set label = 'cookie_life' %}
+                                        {% set value = 24 %}
+                                    {% endif %}
+                                    <li class="media">
+                                        <div class="media-left">
+                                            <a href="#" class="btn border-warning-400 text-warning-400 btn-flat btn-rounded btn-icon btn-xs valign-text-bottom legitRipple">
+                                                <i class="icon-watch2"></i>
+                                            </a>
+                                        </div>
+                                        
+                                        <div class="media-body">
+                                            {% set label_cookie = 'cookie.' ~ label %}
+                                            {{ label_cookie|trans({}, 'cookie')  }} <label class="label label-info">{{ value ~ ' ' ~ 'cookie.day'|trans({}, 'cookie') }}</label>
+                                        </div>
+                                        <div class="media-right media-middle">
+                                            <ul class="icons-list">
+                                                <li class="dropdown text-muted">
+                                                    {% if nid is defined %}
+                                                        {% set url = path('back_param_edit', {'id': nid }) %}
+                                                    {% else %}
+                                                        {% set url = path('back_param_new') %}
+                                                    {% endif %}
+                                                    <a href="{{ url }}">
+                                                        <i class="icon-cog3"></i> 
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /dashboard content -->
+            </div>
+            <!-- /main content -->
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+    {% set dir = 'backoffice/' %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {% set dir = 'backoffice/' %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/' ~ dir ~'js/plugins/ui/drilldown.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/' ~ dir ~'js/plugins/ui/fab.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/' ~ dir ~'js/plugins/ui/ripple.min.js') }}"></script>
+{% endblock %}

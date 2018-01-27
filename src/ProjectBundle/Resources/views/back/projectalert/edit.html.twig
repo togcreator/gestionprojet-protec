@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'projectalert.edition'|trans({}, 'projectalert') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('back_projectalert_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        {{ form_start(edit_form) }}
+                            <fieldset class="content-group">
+                                <div class="form-group col-md-12">
+                                    {% set name = 'projectalert.open'|trans({}, 'projectalert') %}
+                                    {{ form_label(edit_form.ouvert, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.ouvert, {'attr': {'class': 'form-control switchery'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'projectalert.label'|trans({}, 'projectalert') %}
+                                    {{ form_label(edit_form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.label, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'projectalert.couleur'|trans({}, 'projectalert') %}
+                                    {{ form_label(edit_form.couleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10" style="padding: 15px 0">
+                                        {{ form_widget(edit_form.couleur, {'attr': {'class': 'form-control colorpicker-show-input'}}) }}
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    {% set name = 'projectalert.nomcouleur'|trans({}, 'projectalert') %}
+                                    {{ form_label(edit_form.nomcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.nomcouleur, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'projectalert.typeAlerte'|trans({}, 'projectalert') %}
+                                    {{ form_label(edit_form.typeAlerte, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.typeAlerte, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'projectalert.declenchementdelai'|trans({}, 'projectalert') %}
+                                    {{ form_label(edit_form.declenchementdelai, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.declenchementdelai, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'projectalert.typedelai'|trans({}, 'projectalert') %}
+                                    {{ form_label(edit_form.typedelai, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.typedelai, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'projectalert.obligatoire'|trans({}, 'projectalert') %}
+                                    {{ form_label(edit_form.obligatoire, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.obligatoire, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    {% set name = 'projectalert.valide'|trans({}, 'projectalert') %}
+                                    {{ form_label(edit_form.valide, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10" style="padding: 15px 0">
+                                        {{ form_widget(edit_form.valide, {'attr': {'class': 'form-control switchery'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'projectalert.logo'|trans({}, 'projectalert') %}
+                                    {{ form_label(edit_form.logo, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10" style="padding: 15px 0">
+                                        {% set preview = asset('uploads/' ~ edit_form.vars.value.logo) %}
+                                        {{ form_widget(edit_form.logo, {'attr': {'class': 'form-control upload-file', 'data-preview': preview}}) }}
+                                    </div>
+                                </div>
+                                
+                            </fieldset>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'projectalert.save_button'|trans({}, 'projectalert') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                    </div>
+                </div>
+                <!-- /form horizontal -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+        {% include 'foot.html.twig' %}
+    </div>
+{% endblock %}

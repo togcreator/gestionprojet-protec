@@ -1,0 +1,44 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+    
+    encoders:
+        FOS\UserBundle\Model\UserInterface: md5
+
+    role_hierarchy:
+        ROLE_CLIENT:      ROLE_USER
+        ROLE_ADMIN:       ROLE_CLIENT
+        ROLE_SUPER_ADMIN: [ROLE_CLIENT, ROLE_ADMIN]
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+        in_memory:
+            memory: ~
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                use_referer: false
+                default_target_path: /
+                always_use_default_target_path: true
+                # if you are using Symfony < 2.8, use the following config instead:
+                # csrf_provider: form.csrf_provider
+
+            logout:
+                path:   /logout
+                success_handler: authentication_handler
+
+    access_control:
+        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, role: ROLE_CLIENT}

@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-12 col-xs-12">
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h2>{{ 'crmdocsrecus.edition'|trans({}, 'crmdocsrecus') }}</h2>
+                    </div>
+                    <div class="panel-body">
+                    {{ form_start(edit_form, {'attr': {'class':'form-horizontal'}}) }}
+                            <fieldset class="content-group">
+                                <legend class="text-bold">{{ 'crmdocsrecus.crm'|trans({}, 'crmdocsrecus') }}</legend>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'crmdocsrecus.idCrm'|trans({}, 'crmdocsrecus') %}
+                                        {{ form_label(edit_form.idCrm, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idCrm, {'attr': {'class': 'form-control select2-search'}}) }}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        {% set name = 'crmdocsrecus.idOperation'|trans({}, 'crmdocsrecus') %}
+                                        {{ form_label(edit_form.idOperation, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idOperation, {'attr': {'class': 'form-control select2-search'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <legend class="text-bold">{{ 'crmdocsrecus.info'|trans({}, 'crmdocsrecus') }}</legend>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'crmdocsrecus.designation'|trans({}, 'crmdocsrecus') %}
+                                        {{ form_label(edit_form.designation, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.designation, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'crmdocsrecus.nomdoc'|trans({}, 'crmdocsrecus') %}
+                                        {{ form_label(edit_form.nomdoc, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {% set preview = asset('uploads/document/' ~ edit_form.vars.value.nomdoc )|default('') %}
+                                            {{ form_widget(edit_form.nomdoc, {'attr': {'class': 'form-control upload-file', 'data-preview': preview, 'filetype': filetype|default('')}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'crmdocsrecus.dateReception'|trans({}, 'crmdocsrecus') %}
+                                        {{ form_label(edit_form.dateReception, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.dateReception, {'attr': {'class': 'form-control datepicker'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'crmdocsrecus.idTypedoc'|trans({}, 'crmdocsrecus') %}
+                                        {{ form_label(edit_form.idTypedoc, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idTypedoc, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'crmdocsrecus.origine'|trans({}, 'crmdocsrecus') %}
+                                        {{ form_label(edit_form.origine, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.origine, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <legend class="text-bold">{{ 'crmdocsrecus.other'|trans({}, 'crmdocsrecus') }}</legend>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'crmdocsrecus.referenceExterne'|trans({}, 'crmdocsrecus') %}
+                                        {{ form_label(edit_form.referenceExterne, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.referenceExterne, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'crmdocsrecus.reference'|trans({}, 'crmdocsrecus') %}
+                                        {{ form_label(edit_form.reference, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.reference, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'crmdocsrecus.nomRedacteurExterne'|trans({}, 'crmdocsrecus') %}
+                                        {{ form_label(edit_form.nomRedacteurExterne, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.nomRedacteurExterne, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'crmdocsrecus.idBiblio'|trans({}, 'crmdocsrecus') %}
+                                        {{ form_label(edit_form.idBiblio, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idBiblio, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'crmdocsrecus.idMail'|trans({}, 'crmdocsrecus') %}
+                                        {{ form_label(edit_form.idMail, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idMail, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                            <button type="submit" class="btn btn-primary" value="Create">
+                                {{ 'crmdocsrecus.save_button'|trans({}, 'crmdocsrecus') }}
+                                <i class="icon-arrow-right14 position-right"></i>
+                            </button>
+                            <div>{{ form_widget(edit_form.idUser, {'value': getCurrentUsers('id')}) }}</div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                        <script type="text/javascript">
+                            (function($){
+                                /* pour projet redirection */
+                                $('[name*="[idCrm]"]').on('change', function(){
+                                    var _location = document.location.href.toString().split('?');
+                                    _location = _location[0];
+                                    redirectTo(_location + '?idCRM=' + this.value);
+                                });
+                            }(jQuery));
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

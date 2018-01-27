@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-lg-12 col-xs-12">
+                            <!-- Marketing campaigns -->
+                            <div class="panel panel-flat">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">{{ 'users.title'|trans({}, 'users') }}</h5><br/>
+                                    <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('users_new') }}'">
+                                        <b><i class="icon-add"></i></b> {{ 'userclient.add_button'|trans({}, 'userclient') }}
+                                    </button>
+                                    <div class="heading-elements">
+                                        <span class="label bg-success heading-text">{{ users|length }} {{ 'global.active'|trans({}, 'users') }}</span>
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i> <span class="caret"></span></a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="#"><i class="icon-sync"></i> {{ 'global.update_data'|trans({}, 'users') }}</a></li>
+                                                    <li><a href="#"><i class="icon-list-unordered"></i> {{ 'global.detail_log'|trans({}, 'users') }}</a></li>
+                                                    <li><a href="#"><i class="icon-pie5"></i> {{ 'global.statistics'|trans({}, 'users') }}</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#"><i class="icon-cross3"></i> {{ 'global.clear_list'|trans({}, 'users') }}</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <table class="table datatable-basic">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>{{ 'users.username'|trans({}, 'users') }}</th>
+                                                <th>{{ 'users.email'|trans({}, 'users') }}</th>
+                                                <th>{{ 'users.lastlogin'|trans({}, 'users') }}</th>
+                                                <th class="no-sort">{{ 'global.actions'|trans }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% set date_format = date_format ~ ' H:i:s' %}
+                                        {% for user in users %}
+                                            <tr>
+                                                <td><a href="{{ path('users_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                                                <td>{{ user.username }}</td>
+                                                <td>{{ user.email }}</td>
+                                                <td>{{ user.lastlogin|date(date_format) }}</td>
+                                                <td class="text-center">
+                                                    <ul class="icons-list">
+                                                        <li class="dropdown">
+                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu9"></i></a>
+                                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                                <li><a href="{{ path('users_edit', { 'id': user.id }) }}"><i class="icon-pen"></i> {{ 'users.edit_button'|trans({}, 'users') }}</a></li>
+                                                                <li><a href="{{ path('users_delete', { 'id': user.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'users.del_button'|trans({}, 'users') }}</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

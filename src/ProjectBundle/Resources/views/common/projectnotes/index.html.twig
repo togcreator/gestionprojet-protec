@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <div id="modal_index" class="modal">
+        <div class="modal-dialog modal-full">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'projectnotes.list'|trans({}, 'projectnotes') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('projectnotes_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'projectnotes.add_button'|trans({}, 'projectnotes') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('projectnotes_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if projectNotes %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ 'projectnotes.date'|trans({}, 'projectnotes') }}</th>
+                                <th>{{ 'projectnotes.idProjetVersion'|trans({}, 'projectnotes') }}</th>
+                                <th>{{ 'projectnotes.idEtape'|trans({}, 'projectnotes') }}</th>
+                                <th>{{ 'projectnotes.idOperation'|trans({}, 'projectnotes') }}</th>
+                                <th>{{ 'projectnotes.titre'|trans({}, 'projectnotes') }}</th>
+                                <th>{{ 'projectnotes.idUser'|trans({}, 'projectnotes') }}</th>
+                                <th class="text-center">{{ 'projectnotes.actions'|trans({}, 'projectnotes') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for projectnotes in projectNotes %}
+                            <tr href="{{ path('projectnotes_ajax_get', {'idNote': projectnotes.id}) }}">
+                                <td data-order="{{ projectnotes.date|date('Y-m-d') }}">{{ projectnotes.date|date(date_format) }}</td>
+                                <td>
+                                    {% if projectnotes.project %}
+                                        {{ projectnotes.project.label }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if projectnotes.etape %}
+                                        {{ projectnotes.etape.object }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if projectnotes.operation %}
+                                        {{ projectnotes.operation.object }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ projectnotes.titre }}</td>
+                                <td>{{ projectnotes.user.firstname }} {{ projectnotes.user.lastname }}</td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('projectnotes_edit', { 'id': projectnotes.id }) }}"><i class="icon-pen"></i> {{ 'projectnotes.edit_button'|trans({}, 'projectnotes') }}</a></li>
+                                                <li><a href="{{ path('projectnotes_delete', { 'id': projectnotes.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'projectnotes.del_button'|trans({}, 'projectnotes') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'projectnotes.no_data'|trans({}, 'projectnotes') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>            
+    <script type="text/javascript">
+        $(document).on('dblclick', 'td', function(){
+            // le modal en question
+            var modal = $('#modal_index');
+            // on l'affiche
+            modal.modal('show');
+            // on supprime tous ses elements
+            modal.find('.modal-content *').remove();
+            /* charge après */
+            if( (href = $(this).parent().attr('href')) )
+                modal.find('.modal-content').load(href, function() {});
+        });
+    </script>
+{% endblock %}

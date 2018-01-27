@@ -1,0 +1,65 @@
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12 col-xs-12">
+            <!-- Marketing campaigns -->
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">{{ 'userdocs.list'|trans({}, 'userdocs') }}</h5><br/>
+                    <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('userdocs_new', {idUser: user.id}) }}'">
+                        <b><i class="icon-add"></i></b> {{ 'userdocs.add_button'|trans({}, 'userdocs') }}
+                    </button>
+                </div>
+                <div class="panel-body">
+            {% if userDocs %}
+                <table class="table datatable-basic">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'userdocs.designation'|trans({}, 'userdocs') }}</th>
+                            <th>{{ 'userdocs.download'|trans({}, 'userdocs') }}</th>
+                            <th class="no-sort">{{ 'global.actions'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in userDocs %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.designation }}</td>
+                            <td>
+                                {% if user.nomdoc %}<a ref="{{ asset('/uploads/document/') ~ user.nomdoc }}">{% endif %}
+                                    <i class="icon-attachment position-left"></i>
+                                {% if user.nomdoc %}</a>{% endif %}
+                            </td>
+                            <td class="text-center">
+                                <ul class="icons-list">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-menu9"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="{{ path('userdocs_edit', { 'id': user.id, idUser: user.id  }) }}"><i class="icon-pen"></i> {{ 'userdocs.edit_button'|trans({}, 'userdocs') }}</a></li>
+                                            <li><a href="{{ path('userdocs_delete', { 'id': user.id, idUser: user.id  }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'userdocs.del_button'|trans({}, 'userdocs') }}</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <table class="table datatable-show-all">
+                    <tbody>
+                        <tr>
+                            <td>{{ 'userdocs.no_data'|trans({}, 'userdocs') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                
+

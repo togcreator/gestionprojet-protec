@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - crmparamactivities{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'crmparamactivities.list'|trans({}, 'crmparamactivities') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('crmparamactivities_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'crmparamactivities.add_button'|trans({}, 'crmparamactivities') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('crmparamactivities_index')}}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if crmParamActivities %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'crmparamactivities.open'|trans({}, 'crmparamactivities') }}</th>
+                                <th>{{ 'crmparamactivities.label'|trans({}, 'crmparamactivities') }}</th>
+                                <th>{{ 'crmparamactivities.couleur'|trans({}, 'crmparamactivities') }}</th>
+                                <th class="text-center">{{ 'crmparamactivities.actions'|trans({}, 'crmparamactivities') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for crmparamactivities in crmParamActivities %}
+                            <tr>
+                                <td style="cursor:pointer" onclick="document.location = '{{ path('crmparamactivities_show', { 'id': crmparamactivities.id }) }}';">{{ crmparamactivities.id }}</td>
+                                <td>{% if crmparamactivities.ouvert %}
+                                    <span class="label label-info">{{ 'global.yes'|trans }}</span> {% else %}
+                                    <span class="label label-default">{{ 'global.no'|trans }}</span>
+                                    {% endif %}</td>
+                                <td>{{ crmparamactivities.label }}</td>
+                                <td {% if crmparamactivities.couleur %}style="background:{{ crmparamactivities.couleur }} {% endif %}">
+                                    {{ crmparamactivities.couleur }}
+                                </td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('crmparamactivities_edit', { 'id': crmparamactivities.id }) }}"><i class="icon-pen"></i> {{ 'crmparamactivities.edit_button'|trans({}, 'crmparamactivities') }}</a></li>
+                                                <li><a href="{{ path('crmparamactivities_delete', { 'id': crmparamactivities.id }) }}"
+                                                    data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'crmparamactivities.del_button'|trans({}, 'crmparamactivities') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'crmparamactivities.no_data'|trans({}, 'crmparamactivities') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>  
+    {# footer #}          
+    {% include 'foot.html.twig' %}
+
+{% endblock %}

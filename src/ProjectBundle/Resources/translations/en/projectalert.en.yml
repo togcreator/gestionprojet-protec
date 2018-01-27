@@ -1,0 +1,30 @@
+# project.fr.yml
+
+# general
+projectalert.list: Alert list
+projectalert.creation: New
+projectalert.edition: Edition
+projectalert.confirm_title: Confirmation
+
+# form
+projectalert.open: Open
+projectalert.label: Label
+projectalert.couleur: Color
+projectalert.nomcouleur: Color name
+projectalert.typeAlerte: Type of alert
+projectalert.declenchementdelai: Delay triggering
+projectalert.typedelai: Type of delay
+projectalert.valide: Valide
+projectalert.version: Version
+projectalert.obligatoire: Mandatory
+projectalert.actions: Action
+projectalert.logo: Logo
+projectalert.confirm_delete: Are you want to remove this alert ?
+
+# button
+projectalert.add_button: New
+projectalert.save_button: Save
+projectalert.edit_button: Edit
+projectalert.del_button: Remove
+projectalert.close_button: No
+projectalert.confirm_button: Yes, I do

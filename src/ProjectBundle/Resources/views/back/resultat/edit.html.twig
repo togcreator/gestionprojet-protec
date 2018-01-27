@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'resultat.edition'|trans({}, 'resultat') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('back_resultat_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        {{ form_start(edit_form) }}
+                            <fieldset class="content-group">
+                                <div class="form-group col-md-12">
+                                    {% set name = 'resultat.open'|trans({}, 'resultat') %}
+                                    {{ form_label(edit_form.ouvert, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.ouvert, {'attr': {'class': 'form-control switchery'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'resultat.label'|trans({}, 'resultat') %}
+                                    {{ form_label(edit_form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.label, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'resultat.couleur'|trans({}, 'resultat') %}
+                                    {{ form_label(edit_form.couleur, name, {'label_attr': {'class': 'control-label col-lg-2 '}})|raw }}
+                                    <div class="col-lg-10" style="padding: 15px 0">
+                                        {{ form_widget(edit_form.couleur, {'attr': {'class': 'form-control colorpicker-show-input'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'resultat.obs'|trans({}, 'resultat') %}
+                                    {{ form_label(edit_form.obs, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.obs, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'resultat.nomcouleur'|trans({}, 'resultat') %}
+                                    {{ form_label(edit_form.nomcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+
+                                        {{ form_widget(edit_form.nomcouleur, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'resultat.imgcouleur'|trans({}, 'resultat') %}
+                                    {{ form_label(edit_form.imgcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10" style="padding: 15px 0">
+                                        {% set preview = asset('uploads/' ~ edit_form.vars.value.imgcouleur) %}
+                                        {{ form_widget(edit_form.imgcouleur, {'attr': {'class': 'form-control upload-file',  'data-preview': preview}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'resultat.logo'|trans({}, 'resultat') %}
+                                    {{ form_label(edit_form.logo, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10" style="padding: 15px 0">
+                                        {% set preview = asset('uploads/' ~ edit_form.vars.value.logo) %}
+                                        {{ form_widget(edit_form.logo, {'attr': {'class': 'form-control upload-file', 'data-preview': preview}}) }}
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'resultat.save_button'|trans({}, 'resultat') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                    </div>
+                </div>
+                <!-- /form horizontal -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    {% include 'foot.html.twig' %}
+{% endblock %}

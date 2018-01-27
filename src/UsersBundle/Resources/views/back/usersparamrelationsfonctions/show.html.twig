@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h5 class="modal-title">{{ 'usersparamrelationsfonctions.confirm_title'|trans([], 'usersparamrelationsfonctions') }}</h5>
+</div>
+
+<div class="modal-body">
+    <h2>{{ 'usersparamrelationsfonctions.confirm_delete'|trans([], 'usersparamrelationsfonctions')}}</h2>
+    {{ form_start(delete_form, {'attr': {'id': 'usersparamrelationsfonctions_form'}}) }}
+    {{ form_end(delete_form) }}
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-danger" data-dismiss="modal">{{ 'usersparamrelationsfonctions.close_button'|trans([], 'usersparamrelationsfonctions') }}</button>
+    <button type="button" class="btn btn-primary" onclick="jQuery('#usersparamrelationsfonctions_form').submit()">{{ 'usersparamrelationsfonctions.confirm_button'|trans([], 'usersparamrelationsfonctions') }}</button>
+</div>

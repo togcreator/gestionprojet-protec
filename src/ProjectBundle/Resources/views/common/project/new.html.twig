@@ -1,0 +1,283 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{asset('assets/js/plugins/forms/styling.min.js')}}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+        <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'project.creation'|trans({}, 'project') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('project_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+
+                        {{ form_start(form, {'attr': {'class':'steps-form'}}) }}
+
+                            <fieldset class="content-group">
+                                <legend class="text-bold">{{ 'project.legend_project'|trans({}, 'project') }}</legend>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'project.label'|trans({}, 'project') %}
+                                        {{ form_label(form.label, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                        <div class="col-lg-8">
+                                            {{ form_widget(form.label, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+
+{#                                     <div class="form-group col-md-6">
+                                        {% set name = 'project.idTypeProjet'|trans({}, 'project') %}
+                                        {{ form_label(form.idTypeProjet, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                        <div class="col-lg-8"> #}
+                                            {{ form_widget(form.idTypeProjet, {'attr': {'class': 'form-control'}, 'value': 1}) }}
+                                        {# </div> #}
+                                    {# </div> #}
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'project.idLeader'|trans({}, 'project') %}
+                                        {{ form_label(form.idLeader, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                        <div class="col-lg-8">
+                                            {{ form_widget(form.idLeader, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'project.idWorkshop'|trans({}, 'project') %}
+                                        {{ form_label(form.idWorkshop, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                        <div class="col-lg-8">
+                                            {{ form_widget(form.idWorkshop, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'project.idEntiteJ'|trans({}, 'project') %}
+                                        {{ form_label(form.idEntiteJ, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                        <div class="col-lg-8">
+                                            {{ form_widget(form.idEntiteJ, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+
+                                    
+
+                                    {# <div class="form-group col-md-6">
+                                        {% set name = 'project.idVersionCours'|trans({}, 'project') %}
+                                        {{ form_label(form.idVersionCours, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                        <div class="col-lg-8"> #}
+                                            {{ form_widget(form.idVersionCours, {'attr': {'class': 'form-control'}, 'value': 1}) }}
+                                        {# </div> #}
+                                    {# </div> #}
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'project.reference'|trans({}, 'project') %}
+                                        {{ form_label(form.reference, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                        <div class="col-lg-8">
+                                            {{ form_widget(form.reference, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br/>
+                                <legend class="text-bold">{{ 'project.legend_description'|trans({}, 'project') }}</legend>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'project.descriptionPerimetres'|trans({}, 'project') %}
+                                        {{ form_label(form.descriptionPerimetres, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                        <div class="col-lg-8">
+                                            {{ form_widget(form.descriptionPerimetres, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <legend class="text-bold">{{ 'project.legend_date'|trans({}, 'project') }}</legend>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'project.datedebutPrevue'|trans({}, 'project') %}
+                                        {{ form_label(form.datedebutPrevue, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                        <div class="col-lg-8">
+                                            {{ form_widget(form.datedebutPrevue, {'attr': {'class': 'form-control datepicker'}}) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'project.datefinPrevue'|trans({}, 'project') %}
+                                        {{ form_label(form.datefinPrevue, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                        <div class="col-lg-8">
+                                            {{ form_widget(form.datefinPrevue, {'attr': {'class': 'form-control datepicker'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'project.datedebutReelle'|trans({}, 'project') %}
+                                        {{ form_label(form.datedebutReelle, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                        <div class="col-lg-8">
+                                            
+                                            {{ form_widget(form.datedebutReelle, {'attr': {'class': 'form-control datepicker'}}) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'project.datefinReelle'|trans({}, 'project') %}
+                                        {{ form_label(form.datefinReelle, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                        <div class="col-lg-8">
+                                            
+                                            {{ form_widget(form.datefinReelle, {'attr': {'class': 'form-control datepicker'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br/>
+                                <legend class="text-bold">{{ 'project.legend_other'|trans({}, 'project') }}</legend>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'project.joursHommesPrevus'|trans({}, 'project') %}
+                                        {{ form_label(form.joursHommesPrevus, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                        <div class="col-lg-8">
+                                            
+                                            {{ form_widget(form.joursHommesPrevus, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'project.joursHommesReels'|trans({}, 'project') %}
+                                        {{ form_label(form.joursHommesReels, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                        <div class="col-lg-8">
+                                            
+                                            {{ form_widget(form.joursHommesReels, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'project.statut'|trans({}, 'project') %}
+                                        {{ form_label(form.statut, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                        <div class="col-lg-8">
+                                            {{ form_widget(form.statut, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'project.modeAcces'|trans({}, 'project') %}
+                                        {{ form_label(form.modeAcces, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                        <div class="col-lg-8">
+                                            
+                                            {{ form_widget(form.modeAcces, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <legend class="text-bold">{{ 'project.legend_user'|trans({}, 'project') }}</legend>
+                                <div class="form-group">
+                                    {% set name = 'project.contact'|trans({}, 'project') %}
+                                    {{ form_label(form.contact, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                    <div class="col-lg-8">
+                                        {{ form_widget(form.contact, {'attr': {'class': 'form-control select-remote-data'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'project.user'|trans([], 'project') %}
+                                    {{ form_label(form.user, name, {'label_attr': {'class': 'control-label col-lg-2', 'style':'margin-top: 25px'}})|raw }}
+                                    <div class="col-lg-10" style="margin-top: 25px">
+                                        {{ form_widget(form.user, {'attr': {'class': 'form-control listbox-dynamic-options'}, 'row': 5}) }}
+                                    </div>
+                                </div>
+                                <div>{{ form_widget(form.idCreateur, {'value': app.session.get('log') }) }}</div>
+                            </fieldset>
+
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'project.submit_button'|trans({}, 'project') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(form, {'render_rest': true}) }}
+                        <script type="text/javascript">
+                            var lang = '{{ ''|lang(app.request.locale) }}'.toString().toLowerCase();
+                            var lang_tab = {'fr': 'lib0', 'en':'lib1', 'nl': 'lib2', 'de': 'lib3', 'es': 'lib4', 'it': 'lib5'};
+                            var desc_tab = {'fr': 'descriptionPerimetre0', 'en':'descriptionPerimetre1', 'nl': 'descriptionPerimetre2', 'de': 'descriptionPerimetre3', 'es': 'descriptionPerimetre4', 'it': 'descriptionPerimetre5'};
+                            // step index
+                            var step = {'Index': 0, 'Next': 1};
+
+                            //=============== select auto-completition ===================
+                            $(".select-remote-data").select2({
+                                ajax: {
+                                    url: '{{ path('project_contact')}}',
+                                    dataType: 'json',
+                                    delay: 250,
+                                    data: function (params) {
+                                        return {
+                                            q: params.term, // search term
+                                            page: params.page
+                                        };
+                                    },
+                                    processResults: function (data, params) {
+                                        // scrolling can be used
+                                        params.page = params.page || 1;
+
+                                        return {
+                                            results: data.items,
+                                            pagination: {
+                                                more: (params.page * 30) < data.total_count
+                                            }
+                                        };
+                                    },
+                                    cache: true
+                                },
+                            });
+                            //============================================================
+                            
+                        </script>
+                        <script type="text/javascript" src="{{ asset('assets/backoffice/js/plugins/forms/inputs/duallistbox.min.js') }}"></script>
+                        <script type="text/javascript">
+                            (function($){
+                                $('.listbox-dynamic-options').bootstrapDualListbox({
+                                    moveOnSelect: false,
+                                    infoText: '{{'roles.infotext'|trans({}, 'roles')}}',
+                                    infoTextFiltered: '',
+                                    infoTextEmpty: '',
+                                    filterPlaceHolder: '{{'roles.filterplaceholder'|trans({}, 'roles')}}',
+                                    filterTextClear: '{{'roles.filtertextclear'|trans({}, 'roles')}}'
+                                });
+                            }(jQuery))
+                        </script>
+                    </div>
+                </div>
+                <!-- /form horizontal -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    {# {% include 'footer.html.twig' %} #}
+{% endblock %}

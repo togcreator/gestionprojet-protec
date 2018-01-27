@@ -1,0 +1,31 @@
+# statut.fr.yml
+
+# general
+statut.list: Liste de statut des projets
+statut.creation: Ajouter un statut
+statut.edition: Modification du statut
+statut.confirm_title: Confirmation
+statut.no_data: Aucun resultat
+
+# form
+statut.open: Ouvert
+statut.wording: Libellé
+statut.version: Version
+statut.actions: Action
+statut.appoitment: Sur rendez-vous
+statut.all: Tout
+statut.confirm_delete: Êtes vous sûr vouloir supprimer ce statut ?
+statut.couleur: Couleur
+statut.obs: Observation
+statut.nomcouleur: Nom de la couleur
+statut.imgcouleur: Image de la couleur
+statut.logo: Logo
+
+# button
+statut.add_button: Nouveau statut
+statut.save_button: Enregistrer
+statut.submit_button: Enregistrer
+statut.edit_button: Modifier
+statut.del_button: Supprimer
+statut.confirm_button: Oui, je confirme
+statut.close_button: Non

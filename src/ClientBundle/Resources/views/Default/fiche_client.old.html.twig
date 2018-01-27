@@ -1,0 +1,305 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Fiche Clients{% endblock %}
+
+{% block stylesheets %}
+    <style type="text/css">
+        .info_client{
+            display:inline-block;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <!-- Page header -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Tables</span> - Responsive</h4>
+
+                <ul class="breadcrumb breadcrumb-caret position-right">
+                    <li><a href="{{ path('homepage') }}">Home</a></li>
+                    <li><a href="#">Tables</a></li>
+                    <li class="active">Responsive</li>
+                </ul>
+            </div>
+
+            <div class="heading-elements">
+                <div class="heading-btn-group">
+                    <a href="#" class="btn btn-link btn-float has-text text-size-small"><i class="icon-bars-alt text-indigo-400"></i><span>Statistics</span></a>
+                    <a href="#" class="btn btn-link btn-float has-text text-size-small"><i class="icon-calculator text-indigo-400"></i> <span>Invoices</span></a>
+                    <a href="#" class="btn btn-link btn-float has-text text-size-small"><i class="icon-calendar5 text-indigo-400"></i> <span>Schedule</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page header -->
+
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Basic responsive table -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">Fiche client</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list text-right ficheAction">
+                                <li><a data-action="collapse"></a></li>
+                                <li><a data-action="reload"></a></li>
+                                <li><a onclick="editFiche()"><i class="glyphicon glyphicon-pencil"></i></a></li>
+                                <li><a onclick="javascript:history.back();" data-action="close"></a></li>
+                            </ul>
+                            <ul class="icons-list text-right saveficheEdit" style="display:none">
+                                <li><a onclick="revertFiche()" id="revertFiche"><i class="glyphicon glyphicon-remove"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {% if app.request.query.get('update') is defined and app.request.query.get('update') == "ok"  %}
+                        <div class="panel-body">
+                            <h4 style="color: green; text-align: center;">{{ 'message.client.modification'|trans }}</h4>
+                        </div>
+                    {% endif %}
+
+                    <div class="table-responsive">
+                        <form class="form-horizontal form-validate-jquery" action="{%if id is defined %}{{ path('client_update_client') ~ "/" ~ id }}{% else %}{{ path('client_add_client') }}{% endif %}" method="post">
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <legend class="text-semibold"><i class="icon-reading position-left"></i> Informations sur le client</legend>
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Code :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.code, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Code...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.code }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Raison sociale :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.raisonSociale, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Raison Sociale...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.raisonSociale }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Adresse 1 :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.adr1, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Adresse 1...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.adr1 }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Adresse 2 :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.adr2, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Adresse 2...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.adr2 }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Ville :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.ville, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Ville...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.ville }}</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Code Postal :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.cp, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'CP...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.cp }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Pays :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.pays, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Pays...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.pays }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Tel :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.tel, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Tel...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.tel }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">GSM :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.gsm, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'GSM...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.gsm }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Fax :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.fax, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Fax...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.fax }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Email :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.email, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Email...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.email }}</div>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <legend class="text-semibold"><i class="icon-vcard position-left"></i> Informations complémentaires</legend>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Siret :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.siret, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Siret...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.siret }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">TVA intra-communautaire :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.tvaIntraCommunautaire, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'TVA Intra-Communautaire...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.tvaIntraCommunautaire }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">APE :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.ape, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'APE...'}}) }}
+                                            <div class="form-control-static info_client">{{ client.ape }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Tranche effectif :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.trancheEffectif, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Tranche Effectif...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.trancheEffectif }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Code Cegid :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.codeCegid, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Code Cegid...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.codeCegid }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Code Sage :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.codeSage, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Code Sage...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.codesage }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Code Exact :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.codeExact, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Code Exact...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.codeExact }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Origine :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.origine, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Origine...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.origine }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Echéance :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.echeance, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Echeance...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.echeance }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Version :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.version, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Version...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.version }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Site Web :</label>
+                                            <div class="col-lg-8">
+                                                {{ form_widget(form.siteweb, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'Site web...'}}) }}
+                                                <div class="form-control-static info_client">{{ client.siteWeb }}</div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+
+                            <div class="text-right editFicheButton" style="display:none">
+                                <button type="reset" class="btn btn-default" id="reset">Reset <i class="icon-reload-alt position-right"></i></button>
+                                <button type="submit" class="btn btn-primary">Submit <i class="glyphicon glyphicon-floppy-disk position-right"></i></button>
+                            </div>
+                        </div>
+
+                                    
+
+                            {{ form_rest(form) }}
+                            
+                        </form>
+                    </div>
+                </div>
+                <!-- /basic responsive table -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('assets/js/pages/form_validatation.js') }}"></script>
+    <script type="text/javascript">
+        function editFiche () {
+            $(".ficheAction").hide();
+            $(".saveficheEdit").show();
+            $(".info_client").hide();
+            $(".edit_client").removeClass('hidden');
+            $(".editFicheButton").show();
+        }
+
+        function revertFiche(){
+            $(".saveficheEdit").hide();
+            $(".ficheAction").show();
+            $(".edit_client").addClass('hidden');
+            $(".info_client").show();
+            $(".editFicheButton").hide();
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,46 @@
+# projectetapesoperations.fr.yml
+
+# general
+projectetapesoperations.title: Operation
+projectetapesoperations._title: Operation
+projectetapesoperations.creation: New
+projectetapesoperations.edition: Edition
+projectetapesoperations.list: List of operations
+
+# form
+etape.legend_project: Project
+etape.legend_info: Information
+etape.legend_other: other detail
+etape.legend_date: Date
+projectetapesoperations.idProjectVersion: Project
+projectetapesoperations.idEtape: Project stage
+projectetapesoperations.idAgenda: Agenda
+projectetapesoperations.idJalonActuel: Actual milestone
+projectetapesoperations.idJalonPrevu: scheduled milestone
+projectetapesoperations.object: Object
+projectetapesoperations.description: Description
+projectetapesoperations.datedebutprevue: Start Date
+projectetapesoperations.datefinprevue: End Date
+projectetapesoperations.dureeprevue: Expected duration
+projectetapesoperations.datedebutreelle: Actual start date
+projectetapesoperations.datefinreelle: Date fin réelle
+projectetapesoperations.dureereelle: Actual duration
+projectetapesoperations.idResultat: Result
+projectetapesoperations.idStatut: Status
+projectetapesoperations.idPriorite: Priority
+projectetapesoperations.idAlerte: Alert
+projectetapesoperations.journeesHommesprevues: Scheduled Man Day 
+projectetapesoperations.journeesHommesreelles: Real Man Day
+projectetapesoperations.actions: Action
+projectetapesoperations.confirm_delete: Do you want to remove this ?
+projectetapesoperations.idJalon: Milestone
+projectetapesoperations.no_data: No data
+
+# button
+projectetapesoperations.new_button: New operation
+projectetapesoperations.add_button: New
+projectetapesoperations.edit_button: Edit
+projectetapesoperations.del_button: Remove
+projectetapesoperations.submit_button: Save
+projectetapesoperations.close_button: No
+projectetapesoperations.confirm_button: yes, I do

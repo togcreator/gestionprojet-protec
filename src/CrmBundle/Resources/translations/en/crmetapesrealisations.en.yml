@@ -1,0 +1,32 @@
+
+# general
+crmetapesrealisations.title: CRM stage production
+crmetapesrealisations.edition: Edition
+crmetapesrealisations.creation: New
+crmetapesrealisations.confirm_title: Confirmation
+crmetapesrealisations.crm: CRM
+crmetapesrealisations.info: Information
+crmetapesrealisations.other: Other detail
+crmetapesrealisations.date: Date
+
+# form
+crmetapesrealisations.idCRM: CRM
+crmetapesrealisations.idEtape: Etape
+crmetapesrealisations.observations: Observation
+crmetapesrealisations.dateaffectation: Affectation date
+crmetapesrealisations.daterealisation: Production date
+crmetapesrealisations.idUser4affectation: Affectation user
+crmetapesrealisations.idUser4realisation: Production user
+crmetapesrealisations.dureerealisation: Production duration
+crmetapesrealisations.idStatut: Status
+crmetapesrealisations.idResultat: Result
+crmetapesrealisations.descriptionResultat: Result description
+crmetapesrealisations.confirm_delete: Do you want to remove this ?
+
+# button
+crmetapesrealisations.add_button: New
+crmetapesrealisations.edit_button: Edit
+crmetapesrealisations.del_button: Remove
+crmetapesrealisations.save_button: Save
+crmetapesrealisations.close_button: No
+crmetapesrealisations.confirm_button: yes, i do

@@ -1,0 +1,47 @@
+# general
+OperationsIssues.list: Liste d'issue pur l'opérations
+OperationsIssues.creation: Nouveau
+OperationsIssues.confirm_title: Confirmation
+OperationsIssues.title: Opération issue
+
+# form
+
+OperationsIssues.legend_project: Projet
+OperationsIssues.idProjectVersion: Projet
+OperationsIssues.legend_info: Information
+OperationsIssues.idEtape: Etape
+OperationsIssues.idOperation: Opération
+OperationsIssues.idAgenda: Agenda
+OperationsIssues.libelle: Libellé
+OperationsIssues.descriptionProbleme: Description du problème
+OperationsIssues.descriptionCorrection: Description de la correction
+OperationsIssues.legend_date: Date
+OperationsIssues.datedebut: Date début
+OperationsIssues.datefin: Date fin
+OperationsIssues.datedebutcorrection: Date de but de correction
+OperationsIssues.datefincorrection: Date de fin de correction
+OperationsIssues.datedebutvalidation: Date de debut de validation
+OperationsIssues.datefinvalidation: Date de fin de validation
+OperationsIssues.legend_users: Utilisateur
+OperationsIssues.idUser4creation: Créateur
+OperationsIssues.idUser4correction: Correcteur
+OperationsIssues.idUser4validation: Validateur
+OperationsIssues.legend_other: Autre detail
+OperationsIssues.idStatut: Statut
+OperationsIssues.idPriorite: Priorité
+OperationsIssues.version: Version
+OperationsIssues.no_data: Aucune données
+OperationsIssues.confirm_delete: Voulez vous supprimez cette issue ?
+OperationsIssues.project_none: ---- Projet -----
+OperationsIssues.etape_none: ---- Etape -----
+OperationsIssues.operation_none: ---- Operation -----
+OperationsIssues.agenda_none: ---- Agenda -----
+OperationsIssues.actions: Action
+
+# button
+OperationsIssues.add_button: Nouveau
+OperationsIssues.submit_button: Enregistrer
+OperationsIssues.edit_button: Modifier
+OperationsIssues.del_button: Supprimer
+OperationsIssues.confirm_button: Oui, je confirme
+OperationsIssues.close_button: Non

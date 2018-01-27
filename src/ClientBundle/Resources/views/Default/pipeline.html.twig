@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} {{ 'title.list.clients'|trans }}{% endblock %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Default ordering -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'client.pipeline.title'|trans }}</h5><br/>
+                        <form id="form">
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label class="control-label col-lg-4">{{ 'crmdossier.idOwner'|trans({}, 'crmdossier') }}</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control select2-search" name="select_owner">
+                                            <option value="0">{{ 'global.none'|trans }}</option>
+                                            {% for owner in Owners %}
+                                            <option value="{{ owner.id }}">{{ owner.firstname }} {{ owner.lastname }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                    
+                                <div class="form-group col-md-4">
+                                    <label class="control-label col-lg-4">{{ 'crmdossier.idWatcher'|trans({}, 'crmdossier') }}</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control select2-search" name="select_watcher">
+                                            <option value="0">{{ 'global.none'|trans }}</option>
+                                            {% for watcher in Watchers %}
+                                            <option value="{{ watcher.id }}">{{ watcher.firstname }} {{ watcher.lastname }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="heading-elements"></div>
+                    </div>
+                    <div class="row">
+                        <div class="column"></div>
+                    </div>
+
+                    <script type="text/javascript">
+                        (function($){
+
+                            function Select (data) {
+                                $.ajax({
+                                    url: "{{ path('pipeline_ajax_cycle') }}",
+                                    data: data,
+                                    success: function(response) {
+                                        $('.column').html(response);
+                                    }
+                                });
+                            }
+
+                            $(function(){
+                                $('[name="select_owner"]').on('change', function() {
+                                    if( $(this).val() == 0 ) return;
+
+                                    $('[name="select_watcher"]').val(0).trigger('change');
+                                    Select({id_owner: $(this).val() });
+                                });
+
+                                $('[name="select_watcher"]').on('change', function() {
+                                    if( $(this).val() == 0 ) return;
+
+                                    $('[name="select_owner"]').val(0).trigger('change');
+                                    Select({id_watcher: $(this).val() });
+                                });
+                            });
+
+                        }(jQuery))
+                    </script>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

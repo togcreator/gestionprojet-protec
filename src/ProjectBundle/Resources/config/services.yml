@@ -1,0 +1,15 @@
+services:
+    
+    # Label
+    Label.Label_Listener:
+        class: ProjectBundle\Annotation\Label\LabelListener
+        arguments: ['@annotations.reader', '@service_container']
+        tags:
+         - { name: doctrine.event_subscriber, connection: default}
+
+    # date
+    Date.Date_Listener:
+        class: ProjectBundle\Annotation\Date\DateListener
+        arguments: ['@annotations.reader']
+        tags:
+         - { name: doctrine.event_subscriber, connection: default}

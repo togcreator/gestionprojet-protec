@@ -1,0 +1,26 @@
+# relationuserentite.fr.yml
+
+# general
+relationuserentite.list: Liste de relation utilisateur et entité
+relationuserentite.creation: Nouveau
+relationuserentite.edition: Modification
+relationuserentite.confirm_title: Confirmation
+relationuserentite.no_data: Aucun resultat
+
+# form
+relationuserentite.iDUser: Utilisateur
+relationuserentite.idEntiteJ: Entité Juridique
+relationuserentite.bu: Business unit
+relationuserentite.iDRelation_Fonctionnelle: Fonction
+relationuserentite.iDUserEntite: Relation business unit
+relationuserentite.user: Utilisateur
+relationuserentite.confirm_delete: Êtes vous sûr vouloir supprimer cette relation ?
+
+# button
+relationuserentite.add_button: Nouveau
+relationuserentite.save_button: Enregistrer
+relationuserentite.submit_button: Enregistrer
+relationuserentite.edit_button: Modifier
+relationuserentite.del_button: Supprimer
+relationuserentite.confirm_button: Oui, je confirme
+relationuserentite.close_button: Non

@@ -1,0 +1,26 @@
+# relationbusinessentite.fr.yml
+
+# general
+relationbusinessentite.list: Relation entité juridique et professionnelles
+relationbusinessentite.creation: Nouveau
+relationbusinessentite.edition: Modification
+relationbusinessentite.confirm_title: Confirmation
+relationbusinessentite.no_data: Aucun resultat
+
+# form
+relationbusinessentite.iDentite: Entité juridique
+relationbusinessentite.iDBusinessUnit: Business unité
+relationbusinessentite.iDRelationsProfessionnelles: Relation professionnelles
+relationbusinessentite.relation: Relation professionnelles
+relationbusinessentite.business: Business unit
+relationbusinessentite.entitej: Entité juridique
+relationbusinessentite.confirm_delete: Êtes vous sûr vouloir supprimer cette relation ?
+
+# button
+relationbusinessentite.add_button: Nouveau
+relationbusinessentite.save_button: Enregistrer
+relationbusinessentite.submit_button: Enregistrer
+relationbusinessentite.edit_button: Modifier
+relationbusinessentite.del_button: Supprimer
+relationbusinessentite.confirm_button: Oui, je confirme
+relationbusinessentite.close_button: Non

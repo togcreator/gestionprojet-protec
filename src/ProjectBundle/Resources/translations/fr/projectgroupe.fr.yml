@@ -1,0 +1,11 @@
+# projectgroupe.fr;yml
+
+# form
+projectgroupe.creation: Création de groupe
+projectgroupe.label: Libellé
+projectgroupe.code: Code
+projectgroupe.datedebut: Date début
+projectgroupe.datefin: Date fin
+
+# button
+projectgroupe.submit_button: Enregistrer

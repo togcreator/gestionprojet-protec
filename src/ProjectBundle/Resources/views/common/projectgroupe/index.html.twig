@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Projectgroupes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Idprojet</th>
+                <th>Code</th>
+                <th>Lib0</th>
+                <th>Lib1</th>
+                <th>Lib2</th>
+                <th>Lib3</th>
+                <th>Lib4</th>
+                <th>Lib5</th>
+                <th>Lib6</th>
+                <th>Lib7</th>
+                <th>Lib8</th>
+                <th>Lib9</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Datecreation</th>
+                <th>Idcreateur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for projectGroupe in projectGroupes %}
+            <tr>
+                <td><a href="{{ path('common_projectgroupe_show', { 'id': projectGroupe.id }) }}">{{ projectGroupe.id }}</a></td>
+                <td>{{ projectGroupe.idProjet }}</td>
+                <td>{{ projectGroupe.code }}</td>
+                <td>{{ projectGroupe.lib0 }}</td>
+                <td>{{ projectGroupe.lib1 }}</td>
+                <td>{{ projectGroupe.lib2 }}</td>
+                <td>{{ projectGroupe.lib3 }}</td>
+                <td>{{ projectGroupe.lib4 }}</td>
+                <td>{{ projectGroupe.lib5 }}</td>
+                <td>{{ projectGroupe.lib6 }}</td>
+                <td>{{ projectGroupe.lib7 }}</td>
+                <td>{{ projectGroupe.lib8 }}</td>
+                <td>{{ projectGroupe.lib9 }}</td>
+                <td>{% if projectGroupe.datedebut %}{{ projectGroupe.datedebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if projectGroupe.datefin %}{{ projectGroupe.datefin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if projectGroupe.dateCreation %}{{ projectGroupe.dateCreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ projectGroupe.idCreateur }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('common_projectgroupe_show', { 'id': projectGroupe.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('common_projectgroupe_edit', { 'id': projectGroupe.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('common_projectgroupe_new') }}">Create a new projectGroupe</a>
+        </li>
+    </ul>
+{% endblock %}

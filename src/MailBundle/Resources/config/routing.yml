@@ -1,0 +1,119 @@
+mail_forward:
+    path: /mail/forward_mail
+    defaults: { _controller: MailBundle:ReadMail:ForwardMail }
+
+mailread_delete:
+    path: /mail/read/delete/{id}
+    defaults: { _controller: MailBundle:DeleteMails:deleteRead}
+    requirements:
+        id: \d+
+
+download_file:
+    path:     /download/{typepj}/{filename}
+    defaults: { _controller: MailBundle:DownloadAttach:downloadFile }
+    requirements:
+            typepj:  \d+
+
+draft_delete:
+    path: /mail/delete_draft
+    defaults: { _controller: MailBundle:DeleteMails:RemoveDraft }
+
+mail_draft:
+    path: /mail/draft
+    defaults: { _controller: MailBundle:ListeMail:DraftMail }
+
+search_mail:
+    path: /mail/search
+    defaults: { _controller: MailBundle:ListeMail:searchMail }
+
+mail_filter_dates:
+    path: /mail/filter_dates
+    defaults: { _controller: MailBundle:ListeMail:filterDates }
+
+mail_filter_mots_cles:
+    path: /mail/filter_mots_cles
+    defaults: { _controller: MailBundle:ListeMail:filterMotsCles }
+
+mail_filter_priorite:
+    path: /mail/filter_priorite
+    defaults: { _controller: MailBundle:ListeMail:filterPriorite }
+
+mail_filter_tbox:
+    path: /mail/filter_tbox
+    defaults: { _controller: MailBundle:ListeMail:filterTbox }
+
+mail_unread_list:
+    path: /mail/list_unread
+    defaults: { _controller: MailBundle:ListeMail:UnMailReadList}
+
+mail_read_list:
+    path: /mail/list_read
+    defaults: { _controller: MailBundle:ListeMail:MailReadList}
+
+mail_trash_list:
+    path: /mail/list_trash
+    defaults: { _controller: MailBundle:ListeMail:trashMailList }
+
+mail_trash:
+    path: /mail/trash
+    defaults: { _controller: MailBundle:DeleteMails:trashMail }
+
+mail_delete:
+    path: /mail/delete
+    defaults: { _controller: MailBundle:DeleteMails:deleteMail }
+
+mail_read:
+    path: /mail/read/{id}
+    defaults: { _controller: MailBundle:ReadMail:read, id: 1}
+    requirements:
+        id: \d+
+
+mail_outbox:
+    path: /mail/outbox
+    defaults: { _controller: MailBundle:ListeMail:outbox }
+
+mail_inbox:
+    path: /mail/inbox
+    defaults: { _controller: MailBundle:ListeMail:Inbox }
+
+mail_list:
+    path: /mail/liste_mails+
+    defaults: { _controller: MailBundle:ListeMail:ListerMail }
+
+mail_reply:
+    path: /mail/reply_mail+
+    defaults: { _controller: MailBundle:EnvoiMail:ReplyMail }
+
+mail_envoi:
+    path: /mail/envoi_mail+
+    defaults: { _controller: MailBundle:EnvoiMail:envoyerMail }
+
+mail_index:
+    path:     /mail
+    defaults: { _controller: MailBundle:ListeMail:ListerMail }
+
+search_mail:
+    path: /mail/search
+    defaults: { _controller: MailBundle:ListeMail:searchMail }
+    
+mail_filter:
+    path: /mail/mail_filter
+    defaults: { _controller: MailBundle:ListeMail:filterMail }
+
+mail_print:
+    path: /mail/print/{id}
+    defaults: { _controller: MailBundle:ReadMail:printMail, id: 1}
+    requirements:
+        id: \d+
+
+draft_read:
+    path: /mail/draft/{id}
+    defaults: { _controller: MailBundle:ReadMail:readDraft, id: 1}
+    requirements:
+        id: \d+
+
+draft_remove:
+    path: /mail/remove/{id}
+    defaults: { _controller: MailBundle:DeleteDraft:removeRead, id: 1}
+    requirements:
+        id: \d+

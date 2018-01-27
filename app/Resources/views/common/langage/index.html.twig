@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Langages list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Iso</th>
+                <th>Labels</th>
+                <th>Abr</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for langage in langages %}
+            <tr>
+                <td><a href="{{ path('common_langage_show', { 'id': langage.id }) }}">{{ langage.id }}</a></td>
+                <td>{{ langage.iso }}</td>
+                <td>{{ langage.labels }}</td>
+                <td>{{ langage.abr }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('common_langage_show', { 'id': langage.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('common_langage_edit', { 'id': langage.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('common_langage_new') }}">Create a new langage</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - {{ 'project.etape'|trans({}, 'projectetapesoperationsusers')}}{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <div id="modal_index" class="modal">
+        <div class="modal-dialog modal-full">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'projectetapesoperationsusers.list'|trans({}, 'projectetapesoperationsusers') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('operationsusers_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'projectetapesoperationsusers.add_button'|trans({}, 'projectetapesoperationsusers') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('Issuesrealisations_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if ProjectEtapesOperationsUsers %}
+                    <table class="table text-nowrap datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>{{ 'projectetapesoperationsusers.idProjetversion'|trans({}, 'projectetapesoperationsusers') }}</th>
+                                <th>{{ 'projectetapesoperationsusers.idEtape'|trans({}, 'projectetapesoperationsusers') }}</th>
+                                <th>{{ 'projectetapesoperationsusers.idOperation'|trans({}, 'projectetapesoperationsusers') }}</th>
+                                <th>{{ 'projectetapesoperationsusers.idUser'|trans({}, 'projectetapesoperationsusers') }}</th>
+                                <th>{{ 'projectetapesoperationsusers.datedebutPrevue'|trans({}, 'projectetapesoperationsusers') }}</th>
+                                <th>{{ 'projectetapesoperationsusers.datefinPrevue'|trans({}, 'projectetapesoperationsusers') }}</th>
+                                <th>{{ 'global.actions'|trans }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for projectetapesoperationsusers in ProjectEtapesOperationsUsers %}
+                            <tr href="{{ path('operationsusers_ajax_get', {'id': projectetapesoperationsusers.idUser}) }}">
+                                <td>{{ projectetapesoperationsusers.id }}</td>
+                                <td>
+                                    {% if projectetapesoperationsusers.projet %}
+                                        {{ projectetapesoperationsusers.projet.label }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if projectetapesoperationsusers.etape %}
+                                        {{ projectetapesoperationsusers.etape.object }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if projectetapesoperationsusers.operation %}
+                                        {{ projectetapesoperationsusers.operation.object }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ projectetapesoperationsusers.user.firstname }} {{ projectetapesoperationsusers.user.lastname }}</td>
+                                <td>
+                                    {% if projectetapesoperationsusers.agenda %}
+                                        {{ projectetapesoperationsusers.agenda.dateDebPrevue|date(date_format) }}
+                                    {% endif %}
+                                </td>
+                                <td>{% if projectetapesoperationsusers.agenda %}
+                                        {{ projectetapesoperationsusers.agenda.dateFinPrevue|date(date_format) }}
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('operationsusers_edit', { 'id': projectetapesoperationsusers.id }) }}"><i class="icon-pen"></i> {{ 'projectetapesoperationsusers.edit_button'|trans({}, 'projectetapesoperationsusers') }}</a></li>
+                                                <li><a href="{{ path('operationsusers_delete', { 'id': projectetapesoperationsusers.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'projectetapesoperationsusers.del_button'|trans({}, 'projectetapesoperationsusers') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'projectetapesoperationsusers.no_data'|trans({}, 'projectetapesoperationsusers') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>        
+    <script type="text/javascript">
+        $(document).on('dblclick', 'td', function(){
+            // le modal en question
+            var modal = $('#modal_index');
+            // on l'affiche
+            modal.modal('show');
+            // on supprime tous ses elements
+            modal.find('.modal-content *').remove();
+            console.info(this);
+            /* charge après */
+            if( (href = $(this).parent().attr('href')) )
+                modal.find('.modal-content').load(href, function() {});
+        });
+    </script>      
+{% endblock %}

@@ -1,0 +1,56 @@
+# projectetapesoperations.fr.yml
+
+# general
+projectetapesoperations.title: Opération
+projectetapesoperations._title: Les opérations
+projectetapesoperations.creation: Nouveau
+projectetapesoperations.edition: Edition
+projectetapesoperations.list: Liste des opérations
+projectetapesoperations.confirm_title: Confirmation
+projectetapesoperations.operation: Opération
+
+# form
+etape.legend_project: Projet
+etape.legend_info: Information
+etape.legend_other: Autre detail
+etape.legend_date: Date
+projectetapesoperations.legend_user: Utilisateur
+projectetapesoperations.idProjectVersion: Projet
+projectetapesoperations.idEtape: Etape du projet
+projectetapesoperations.idAgenda: Agenda
+projectetapesoperations.idJalonActuel: Jalon actuel
+projectetapesoperations.idJalonPrevu: Jalon prevu
+projectetapesoperations.object: Objet
+projectetapesoperations.description: Description
+projectetapesoperations.user4affectation: Utilisateur affecté
+projectetapesoperations.userDate: Date et heure
+projectetapesoperations.datedebutprevue: Date debut prevue
+projectetapesoperations.datefinprevue: Date fin prevue
+projectetapesoperations.dureeprevue: Durée prevue
+projectetapesoperations.datedebutreelle: Date debut réelle
+projectetapesoperations.datefinreelle: Date fin réelle
+projectetapesoperations.dureereelle: Durée réelle
+projectetapesoperations.datedebut: Opération débutant dans X jours
+projectetapesoperations.dateTermine: Opération se terminant dans X jours
+projectetapesoperations.dateAvance: Opération ayant X jours d'avance
+projectetapesoperations.dateRetard: Opération ayant X jours de retard
+projectetapesoperations.idResultat: Résultat
+projectetapesoperations.idStatut: Statut
+projectetapesoperations.idPriorite: Priorité
+projectetapesoperations.idAlerte: Alerte
+projectetapesoperations.journeesHommesprevues: Journée homme prévue
+projectetapesoperations.journeesHommesreelles: Journée homme réelle
+projectetapesoperations.actions: Action
+projectetapesoperations.confirm_delete: Voulez vous supprimer cette opérations ?
+projectetapesoperations.idJalon: Jalon
+projectetapesoperations.idRole: Role d'utilisateur
+projectetapesoperations.no_data: Aucune resultat
+
+# button
+projectetapesoperations.new_button: New operation
+projectetapesoperations.add_button: Nouveau
+projectetapesoperations.edit_button: Modifier
+projectetapesoperations.del_button: Supprimer
+projectetapesoperations.submit_button: Enregistrer
+projectetapesoperations.close_button: Non
+projectetapesoperations.confirm_button: Oui, je confirme

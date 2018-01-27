@@ -1,0 +1,331 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Liste des Clients{% endblock %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <div class="page-container">
+        <div class="page-content">
+            <div class="content-wrapper">
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'client.title.edit'|trans }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="collapse"></a></li>
+                                <li><a data-action="reload"></a></li>
+                                <li><a onclick="javascript:history.back();" data-action="close"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        <ul class="nav nav-tabs nav-tabs-highlight">
+                            <li class="active"><a href="#project" data-toggle="tab">{{ 'client.info.title'|trans }}</a></li>
+                            <li><a href="#activity" data-toggle="tab">{{ 'client.info.activity'|trans}}</a></li>
+                            <li><a href="#user" data-toggle="tab">{{ 'client.contact.title'|trans}}</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="user" class="tab-pane col-md-12">
+                               {% include 'ClientBundle:default:contact.html.twig' %}
+                            </div>
+                            <div id="activity" class="tab-pane col-md-12">
+                               {% include 'ClientBundle:default:tab_index.html.twig' with {id: id} %}
+                            </div>
+                            <div id="project" class="tab-pane active col-md-12">
+                                <form class="form-horizontal form-validate-jquery" action="{{ path('client_update_client', { 'id': id }) }}" method="post">
+
+                                    <fieldset class="content-group">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="panel panel-flat">
+                                                    <div class="panel-body">
+                                                        {# <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.idGroupe, 'client.fiche.id_group'|trans) }} {# <span class="text-danger">*</span> </label>
+                                                            {{ form_errors(form.idGroupe) }}
+                                                            <div class="col-lg-8">
+                                                                {{ form_widget(form.idGroupe, {'attr': {'class': 'form-control touchspin-empty', 'required': 'required', 'placeholder' : 'client.fiche.id_group'|trans}}) }}
+                                                            </div>
+                                                        </div> #}
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.raisonSociale, 'client.fiche.raisonSociale'|trans) }} </label>
+                                                            {{ form_errors(form.raisonSociale) }}
+                                                            <div class="form-group has-feedback col-lg-8">
+                                                                {{ form_widget(form.raisonSociale, {'attr': {'class': 'form-control input-xs', 'placeholder' : 'client.fiche.raisonSociale'|trans}}) }}
+                                                                <div class="form-control-feedback">
+                                                                    <i class="icon-file-text2"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.adr1, 'client.fiche.adresse'|trans) }}</label>
+                                                            {{ form_errors(form.adr1) }}
+                                                            <div class="form-group has-feedback col-lg-8">
+                                                                {{ form_widget(form.adr1, {'attr': {'class': 'form-control input-xs', 'placeholder' : 'client.fiche.adresse'|trans}}) }}
+                                                                <div class="form-control-feedback">
+                                                                    <i class="icon-pin-alt"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.adr2, 'client.fiche.adresse2'|trans) }}</label>
+                                                            {{ form_errors(form.adr2) }}
+                                                            <div class="form-group has-feedback col-lg-8">
+                                                                {{ form_widget(form.adr2, {'attr': {'class': 'form-control input-xs', 'placeholder' : 'client.fiche.adresse2'|trans}}) }}
+                                                                <div class="form-control-feedback">
+                                                                    <i class="icon-pin-alt"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.cp, 'client.fiche.cp'|trans) }}</label>
+                                                            {{ form_errors(form.cp) }}
+                                                            <div class="form-group has-feedback col-lg-8">
+                                                                {{ form_widget(form.cp, {'attr': {'class': 'form-control input-xs select2-search', 'placeholder' : 'client.fiche.cp'|trans}}) }}
+                                                                <div class="form-control-feedback">
+                                                                    <i class="icon-office"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.ville, 'client.fiche.city'|trans) }}</label>
+                                                            {{ form_errors(form.ville) }}
+                                                            <div class="form-group has-feedback col-lg-8">
+                                                                {{ form_widget(form.ville, {'attr': {'class': 'form-control input-xs', 'placeholder' : 'client.fiche.city'|trans}}) }}
+                                                                <div class="form-control-feedback">
+                                                                    <i class="icon-office"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.pays, 'client.fiche.country'|trans) }}</label>
+                                                            {{ form_errors(form.pays) }}
+                                                            <div class="form-group has-feedback col-lg-8">
+                                                                {{ form_widget(form.pays, {'attr': {'class': 'form-control input-xs', 'placeholder' : 'client.fiche.country'|trans}}) }}
+                                                                <div class="form-control-feedback">
+                                                                    <i class="icon-office"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.tel, 'client.fiche.phone'|trans) }}</label>
+                                                            {{ form_errors(form.tel) }}
+                                                            <div class="form-group has-feedback col-lg-8">
+                                                                {{ form_widget(form.tel, {'attr': {'class': 'form-control input-xs', 'placeholder' : 'client.fiche.phone'|trans}}) }}
+                                                                <div class="form-control-feedback">
+                                                                    <i class="glyphicon glyphicon-phone-alt"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.gsm, 'client.fiche.gsm'|trans) }}</label>
+                                                            {{ form_errors(form.gsm) }}
+                                                            <div class="form-group has-feedback col-lg-8">
+                                                                {{ form_widget(form.gsm, {'attr': {'class': 'form-control input-xs', 'placeholder' : 'client.fiche.gsm'|trans}}) }}
+                                                                <div class="form-control-feedback">
+                                                                    <i class="icon-headset"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.fax, 'client.fiche.fax'|trans) }}</label>
+                                                            {{ form_errors(form.fax) }}
+                                                            <div class="form-group has-feedback col-lg-8">
+                                                                {{ form_widget(form.fax, {'attr': {'class': 'form-control input-xs', 'placeholder' : 'client.fiche.fax'|trans}}) }}
+                                                                <div class="form-control-feedback">
+                                                                    <i class="icon-mail-read"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.email, 'client.fiche.email'|trans) }}</label>
+                                                            {{ form_errors(form.email) }}
+                                                            <div class="form-group has-feedback col-lg-8">
+                                                                {{ form_widget(form.email, {'attr': {'class': 'form-control input-xs', 'placeholder' : 'client.fiche.email'|trans}}) }}
+                                                                <div class="form-control-feedback">
+                                                                    <i class="icon-mention"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.echeance, 'client.fiche.deadline'|trans) }}</label>
+                                                            {{ form_errors(form.echeance) }}
+                                                            <div class="col-lg-8">
+                                                                {{ form_widget(form.echeance, {'attr': {'class': 'form-control touchspin-empty', 'placeholder' : 'client.fiche.deadline'|trans}}) }}
+                                                            </div>
+                                                        </div>  
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.siteweb, 'client.fiche.website'|trans) }}</label>
+                                                            {{ form_errors(form.siteweb) }}
+                                                            <div class="col-lg-8">
+                                                                {{ form_widget(form.siteweb, {'attr': {'class': 'form-control', 'placeholder' : 'client.fiche.website'|trans}}) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.version, 'client.fiche.version'|trans) }}</label>
+                                                            {{ form_errors(form.version) }}
+                                                            <div class="col-lg-8">
+                                                                {{ form_widget(form.version, {'attr': {'class': 'form-control touchspin-empty', 'placeholder' : 'client.fiche.version'|trans}}) }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="panel panel-flat">
+                                                    <div class="panel-body">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.latitude, 'client.fiche.latitude'|trans) }}</label>
+                                                            {{ form_errors(form.latitude) }}
+                                                            <div class="form-group has-feedback col-lg-8">
+                                                                {{ form_widget(form.latitude, {'attr': {'class': 'form-control input-xs', 'placeholder' : 'client.fiche.latitude'|trans}}) }}
+                                                                <div class="form-control-feedback">
+                                                                    <i class="icon-pin-alt"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.longitude, 'client.fiche.longitude'|trans) }}</label>
+                                                            {{ form_errors(form.longitude) }}
+                                                            <div class="form-group has-feedback col-lg-8">
+                                                                {{ form_widget(form.longitude, {'attr': {'class': 'form-control input-xs','placeholder' : 'client.fiche.longitude'|trans}}) }}
+                                                                <div class="form-control-feedback">
+                                                                    <i class="icon-pin-alt"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.siret, 'client.fiche.siret'|trans) }}</label>
+                                                            {{ form_errors(form.siret) }}
+                                                            <div class="col-lg-8">
+                                                                {{ form_widget(form.siret, {'attr': {'class': 'form-control', 'placeholder' : 'client.fiche.siret'|trans}}) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.tvaIntraCommunautaire, 'client.fiche.intra_community_vat'|trans) }}</label>
+                                                            {{ form_errors(form.tvaIntraCommunautaire) }}
+                                                            <div class="col-lg-8">
+                                                                {{ form_widget(form.tvaIntraCommunautaire, {'attr': {'class': 'form-control', 'placeholder' : 'client.fiche.intra_community_vat'|trans}}) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.ape, 'client.fiche.epa'|trans) }}</label>
+                                                            {{ form_errors(form.ape) }}
+                                                            <div class="col-lg-8">
+                                                                {{ form_widget(form.ape, {'attr': {'class': 'form-control', 'placeholder' : 'client.fiche.epa'|trans}}) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.trancheEffectif, 'client.fiche.staff_bracket'|trans) }}</label>
+                                                            {{ form_errors(form.trancheEffectif) }}
+                                                            <div class="col-lg-8">
+                                                                {{ form_widget(form.trancheEffectif, {'attr': {'class': 'form-control', 'placeholder' : 'client.fiche.staff_bracket'|trans}}) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.codeCegid, 'client.fiche.code_cegid'|trans) }}</label>
+                                                            {{ form_errors(form.codeCegid) }}
+                                                            <div class="col-lg-8">
+                                                                {{ form_widget(form.codeCegid, {'attr': {'class': 'form-control', 'placeholder' : 'client.fiche.code_cegid'|trans}}) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.codeSage, 'client.fiche.code_sage'|trans) }}</label>
+                                                            {{ form_errors(form.codeSage) }}
+                                                            <div class="col-lg-8">
+                                                                {{ form_widget(form.codeSage, {'attr': {'class': 'form-control', 'placeholder' : 'client.fiche.code_sage'|trans}}) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.codeExact, 'client.fiche.code_exact'|trans) }}</label>
+                                                            {{ form_errors(form.codeExact) }}
+                                                            <div class="col-lg-8">
+                                                                {{ form_widget(form.codeExact, {'attr': {'class': 'form-control', 'placeholder' : 'client.fiche.code_exact'|trans}}) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.origine, 'client.fiche.origin'|trans) }}</label>
+                                                            {{ form_errors(form.origine) }}
+                                                            <div class="form-group has-feedback col-lg-8">
+                                                                {{ form_widget(form.origine, {'attr': {'class': 'form-control', 'placeholder' : 'client.fiche.origin'|trans}}) }}
+                                                                <div class="form-control-feedback">
+                                                                    <i class="icon-help"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.idOrigine, 'client.fiche.origin_id'|trans) }}</label>
+                                                            {{ form_errors(form.idOrigine) }}
+                                                            <div class="col-lg-8">
+                                                                {{ form_widget(form.idOrigine, {'attr': {'class': 'form-control  touchspin-empty', 'placeholder' : 'client.fiche.origin_id'|trans}}) }}
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.idTypePaiement, 'client.fiche.id_type_payement'|trans) }}</label>
+                                                            {{ form_errors(form.idTypePaiement) }}
+                                                            <div class="col-lg-8">
+                                                                {{ form_widget(form.idTypePaiement, {'attr': {'class': 'form-control touchspin-empty', 'placeholder' : 'client.fiche.id_type_payement'|trans}}) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.idTypeFacturation, 'client.fiche.id_type_facturation'|trans) }}</label>
+                                                            {{ form_errors(form.idTypeFacturation) }}
+                                                            <div class="col-lg-8">
+                                                                {{ form_widget(form.idTypeFacturation, {'attr': {'class': 'form-control touchspin-empty', 'placeholder' : 'client.fiche.id_type_facturation'|trans}}) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-4">{{ form_label(form.idFormeJuridique, 'client.fiche.id_legal_form'|trans) }}</label>
+                                                            {{ form_errors(form.idFormeJuridique) }}
+                                                            <div class="col-lg-8">
+                                                                {{ form_widget(form.idFormeJuridique, {'attr': {'class': 'form-control touchspin-empty', 'placeholder' : 'client.fiche.id_legal_form'|trans}}) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group text-right" style="margin-top:-12px;">
+                                                            <button type="reset" class="btn btn-default" id="reset">{{'client.fiche.reset'|trans}} <i class="icon-reload-alt position-right"></i></button>
+                                                            <button type="submit" class="btn btn-primary">{{'client.fiche.submit'|trans}} <i class="glyphicon glyphicon-floppy-saved position-right"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    {{ form_rest(form) }}
+                                    <script type="text/javascript">
+                                        (function($){
+                                            var codePostal = [];
+                                            {% for code in codePostal %}
+                                                codePostal['{{ code.code }}'] = {
+                                                    'id': '{{ code.id }}',
+                                                    'code': '{{ code.code }}',
+                                                    'ville': '{{ code.ville }}',
+                                                    'lat': '{{ code.lat }}',
+                                                    'lng': '{{ code.lng }}',
+                                                };
+                                            {% endfor %}
+
+                                            $(function(){
+                                                $('[name*="cp"]').select2().on('change', function() {
+                                                    var val = this.value;
+                                                    console.info(val);
+                                                    if(!val) return;
+
+                                                    // ville
+                                                    $('[name*="ville"]').val(codePostal[val].ville);
+                                                    // latitude
+                                                    $('[name*="latitude"]').val(codePostal[val].lat)
+                                                    // longitude
+                                                    $('[name*="longitude"]').val(codePostal[val].lng)
+                                                });
+                                            })
+                                        }(jQuery))
+                                    </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

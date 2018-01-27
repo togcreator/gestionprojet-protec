@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h5 class="modal-title">{{ 'projectetape.confirm_title'|trans([], 'projectetape') }}</h5>
+</div>
+
+<div class="modal-body">
+    <h2>{{ 'projectetape.confirm_delete'|trans([], 'projectetape')}}</h2>
+    {{ form_start(delete_form, {'attr': {'id': 'projectetape_form'}}) }}
+    {{ form_end(delete_form) }}
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-danger" data-dismiss="modal">{{ 'projectetape.close_button'|trans([], 'projectetape') }}</button>
+    <button type="button" class="btn btn-primary" onclick="jQuery('#projectetape_form').submit()">{{ 'projectetape.confirm_button'|trans([], 'projectetape') }}</button>
+</div>

@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-lg-12 col-xs-12">
+                            <div class="panel panel-flat">
+                                <div class="panel-heading">
+                                    <h2>{{ 'crmoperationsusers.creation'|trans({}, 'crmoperationsusers') }}</h2>
+                                </div>
+                                <div class="panel-body">
+                                {{ form_start(form, {'attr': {'class':'form-horizontal'}}) }}
+                                        <fieldset class="content-group">
+                                            <legend class="text-bold">{{ 'crmoperationsusers.crm'|trans({}, 'crmoperationsusers') }}</legend>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    {% set name = 'crmoperationsusers.idCRM'|trans({}, 'crmoperationsusers') %}
+                                                    {{ form_label(form.idCRM, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(form.idCRM, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'crmoperationsusers.idEtape'|trans({}, 'crmoperationsusers') %}
+                                                    {{ form_label(form.idEtape, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(form.idEtape, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'crmoperationsusers.idOperation'|trans({}, 'crmoperationsusers') %}
+                                                    {{ form_label(form.idOperation, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(form.idOperation, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <legend class="text-bold">{{ 'crmoperationsusers.info'|trans({}, 'crmoperationsusers') }}</legend>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    {% set name = 'crmoperationsusers.mission'|trans({}, 'crmoperationsusers') %}
+                                                    {{ form_label(form.mission, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(form.mission, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <legend class="text-bold">{{ 'crmoperationsusers.date'|trans({}, 'crmoperationsusers') }}</legend>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmoperationsusers.datedebut'|trans({}, 'crmoperationsusers') %}
+                                                    {{ form_label(form.datedebut, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(form.datedebut, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmoperationsusers.datefin'|trans({}, 'crmoperationsusers') %}
+                                                    {{ form_label(form.datefin, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(form.datefin, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <legend class="text-bold">{{ 'crmoperationsusers.other'|trans({}, 'crmoperationsusers') }}</legend>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    {% set name = 'crmoperationsusers.idRole'|trans({}, 'crmoperationsusers') %}
+                                                    {{ form_label(form.idRole, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(form.idRole, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'crmoperationsusers.flagActeur'|trans({}, 'crmoperationsusers') %}
+                                                    {{ form_label(form.flagActeur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(form.flagActeur, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'crmoperationsusers.flagInvite'|trans({}, 'crmoperationsusers') %}
+                                                    {{ form_label(form.flagInvite, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(form.flagInvite, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>{{ form_widget(form.idUser, {'value': app.user.id}) }}</div>
+                                        </fieldset>
+                                        <button type="submit" class="btn btn-primary" value="Create">
+                                            {{ 'crmoperationsusers.save_button'|trans({}, 'crmoperationsusers') }}
+                                            <i class="icon-arrow-right14 position-right"></i>
+                                        </button>
+                                    {{ form_end(form, {'render_rest': true}) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+{% endblock %}

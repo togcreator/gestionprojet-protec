@@ -1,0 +1,46 @@
+# projectetape.fr.yml
+projectetape.title: Étape
+projectetape.creation: Nouveau
+projectetape.edition: Modification
+projectetape.list: Liste des étapes
+projectetape.confirm_title: Confirmation
+projectetape.etape: Etape
+
+# form
+etape.step: Etape
+etape.legend_project: Projet
+etape.legend_info: Information
+etape.legend_date: Date
+etape.legend_other: Autre details
+projectetape.idProjetversion: Projet
+projectetape.object: Objet
+projectetape.code: Code
+projectetape.reference: Réference
+projectetape.description: Description
+projectetape.datedebutprevue: Date de debut prevue
+projectetape.datefinprevue: Date de fin prevue
+projectetape.datedebutreelle: Date de debut réelle
+projectetape.datefinreelle: Date de fin réelle
+projectetape.datedebut: Etape débutant dans X jours
+projectetape.dateTermine: Etape se terminant dans X jours
+projectetape.dateAvance: Etape ayant X jours d'avance
+projectetape.dateRetard: Etape ayant X jours de retard
+projectetape.idResultat: Resultat
+projectetape.flagAction: Action
+projectetape.flagIdee: Idée
+projectetape.flagInformation: Information
+projectetape.idStatut: Statut
+projectetape.confirm_delete: Voulez vous vraiment supprimer cet étape ?
+projectetape.no_data: Aucun resultat
+projectetape.actions: Action
+projectetape.idRole: Role d'utilisateur
+
+# button
+projectetape.new: Etape
+projectetape.new_button: Nouvel étape
+projectetape.add_button: Nouveau
+projectetape.edit_button: Modifier
+projectetape.del_button: Supprimer
+projectetape.submit_button: Enregistrer
+projectetape.confirm_button: Oui, je confirme
+projectetape.close_button: Non

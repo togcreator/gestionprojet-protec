@@ -1,0 +1,22 @@
+# usersparamrelationsfonctions.fr.yml
+
+# general
+usersparamrelationsfonctions.list: List of relation
+usersparamrelationsfonctions.creation: New
+usersparamrelationsfonctions.edition: Edition
+usersparamrelationsfonctions.confirm_title: Confirmation
+usersparamrelationsfonctions.no_data: No data
+
+# form
+usersparamrelationsfonctions.label: Label
+usersparamrelationsfonctions.version: Version
+usersparamrelationsfonctions.confirm_delete: Are you want to remove this ?
+
+# button
+usersparamrelationsfonctions.add_button: New
+usersparamrelationsfonctions.save_button: Save
+usersparamrelationsfonctions.submit_button: Save
+usersparamrelationsfonctions.edit_button: Edit
+usersparamrelationsfonctions.del_button: Remove
+usersparamrelationsfonctions.confirm_button: Yes, i do
+usersparamrelationsfonctions.close_button: No

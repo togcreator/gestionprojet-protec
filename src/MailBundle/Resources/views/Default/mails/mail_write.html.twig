@@ -1,0 +1,663 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() ~ 'title.envoi.mail'|trans }}{% endblock %}
+
+{% block stylesheet %}
+<style>
+    .bg-customized {
+        background-color: rgba(33, 150, 243, 0.66);
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+    {% include 'header.html.twig' %}
+
+    <!-- /page header -->
+    <form id="myform" name="form" method="post" action="{{ path('mail_envoi') }}" enctype="multipart/form-data">
+        <!-- popup :: to -->
+        <div class="modal fade" id="product_view" style="width:100%; height:100%;">
+            <div class="page-container">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- Main content -->
+                <div class="content-wrapper modal-content">
+                    <!-- Basic example -->
+                    <div class="panel panel-flat">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Liste des contacts possibles</h5>
+                            </button>
+                        </div>
+                        <div class="panel-heading">
+                            <div class="heading-elements">
+                                <ul class="icons-list">
+                                    <li><a data-action="collapse"></a></li>
+                                    <li><a data-action="reload"></a></li>
+                                    <li><a data-dismiss="modal"><i class="icon-cross2"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="content-group row">
+                                <div class="col-xs-6">
+                                    <select class="priorite" id="combo1">
+                                        <option value="contact">Contact</option>
+                                        <option value="salarie">Salarié</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-6">
+                                    <select class="priorite" id="combo2">
+                                        <option value="prospects" selected="selected">prospects</option>
+                                        <option value="clients">clients</option>
+                                        <option value="partenaires">partenaires</option>
+                                        <option value="concurrents">concurents</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <select multiple="multiple" class="form-control listbox">
+                                <option value="option1" selected="selected">Classical mechanics</option>
+                                <option value="option2">Electromagnetism</option>
+                                <option value="option4">Relativity</option>
+                            </select>
+                            <div class="text-right"  style="padding-top: 10px;"><button class="btn bg-blue">Valider</button></div>
+                        </div>
+                    </div>
+                    <!-- /basic example -->
+
+                </div>
+                <!-- /main content -->
+            </div>
+        </div>
+        <!-- /popup :: to -->
+
+        <!-- Page container -->
+        <div class="page-container">
+
+            <!-- Page content -->
+            <div class="page-content">
+
+                <!-- Main sidebar -->
+                <div class="sidebar sidebar-main sidebar-default sidebar-separate">
+                    <div class="sidebar-content">
+                        {% include "MailBundle:Default:modulesUsed/menus_mail.html.twig" %}
+                    </div>
+                </div>
+                <!-- /main sidebar -->
+
+
+                <!-- Main content -->
+                <div class="content-wrapper">
+
+                    <!-- Single mail -->
+                    <div class="panel panel-white">
+
+                        <!-- Mail toolbar -->
+                        <div class="panel-toolbar panel-toolbar-inbox">
+                            <div class="navbar navbar-default">
+                                <ul class="nav navbar-nav visible-xs-block no-border">
+                                    <li>
+                                        <a class="text-center collapsed" data-toggle="collapse" data-target="#inbox-toolbar-toggle-single">
+                                            <i class="icon-circle-down2"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="navbar-collapse collapse" id="inbox-toolbar-toggle-single">
+                                    <div class="btn-group navbar-btn">
+                                <button type="submit" id="btn-send" class="btn bg-blue" {# onclick="$('#myform').submit();" #}><i class="icon-checkmark3 position-left"></i> {{ 'mail_write.action.send'|trans }}</button>
+                                    </div>
+
+                                    <div class="btn-group navbar-btn">
+                                        <input type="hidden" id="msgSaveValue" name="save_brouillon" value="">
+                                        
+                                        <a href="" class="btn btn-default" id="btn-save"><i class="icon-plus2"></i> <span class="hidden-xs position-right" >{{ 'mail_write.action.save'|trans }}</span></a>
+                                        <a href="{{ path('mail_list') }}" class="btn btn-default"><i class="icon-cross2"></i> <span class="hidden-xs position-right">{{ 'mail_write.action.cancel'|trans }}</span></a>
+
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu7"></i>
+                                                <span class="caret"></span>
+                                            </button>
+
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a onclick="$('.notif_email').click();"><span >{{ 'mail_write.action.option.send_mail_notif'|trans }}</span><i class="glyphicon glyphicon-envelope"></i></a></li>
+                                        <li><a onclick="$('.notif_sms').click();"><span>{{ 'mail_write.action.option.send_sms_notif'|trans }}</span><i class="glyphicon glyphicon-comment"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /mail toolbar -->
+
+                        <!-- Mail details -->
+                        <div class="table-responsive mail-details-write">
+                            <table class="table">
+                                <tbody>
+                                <tr><label class="checkbox-inline checkbox-switchery checkbox-right switchery-xs hidden">
+                                        <input type="checkbox" class="switchery" checked="checked">
+                                <td style="width: 150px"><span data-toggle="modal" data-target="#product_view">{{ 'mail_write.form.to.label'|trans }}:</span></td>
+                                        <td class="no-padding">
+                                            <select name="to_recipient[]" class="form-control select2_single" multiple="multiple">
+                                                {{ recipients|raw }}
+                                            </select>
+                                        </td>
+                                        <td style="width: 250px" class="text-right" colspan="3">
+                                            <ul class="list-inline list-inline-separate no-margin">
+                                        <li><a onclick="$('#divCopy').fadeToggle();">{{ 'mail_write.action.copy_toggle'|trans }}</a></li>
+                                        <li><a onclick="$('#divHiddenCopy').fadeToggle();">{{ 'mail_write.action.hidden_copy_toggle'|trans }}</a></li>
+                                            </ul>
+                                        </td>
+                                    </label>
+                                </tr>
+                                <tr id="divCopy" style="display:none">
+                            <td>{{ 'mail_write.form.copy.label'|trans }}:</td>
+                                    <td class="no-padding">
+                                        <select name="copyto_recipient[]" class="form-control select2_single" multiple="multiple">
+                                            {{ recipients|raw }}
+                                        </select>
+                                    </td>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr id="divHiddenCopy" style="display:none">
+                            <td>{{ 'mail_write.form.hidden_copy.label'|trans }}:</td>
+                                    <td class="no-padding">
+                                        <select name="hiddencopyto_recipient[]" class="form-control select2_single" multiple="multiple">
+                                            {{ recipients|raw }}
+                                        </select>
+                                    </td>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                            <td>{{ 'mail_write.form.subject.label'|trans }}:</td>
+                                    <td class="no-padding">{{ form_widget(form.sujet) }}</td>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                            <td>{{ 'mail_write.form.priority.label'|trans }}:</td>
+                                    <td class="no-padding">
+                                {#  {{ form_widget(form.priorite) }}  #}
+                                <select name="form[priorite]" class="priorite">
+                                    {% for p in priorites %}
+                                            {%  if app.request.locale == 'fr' %}
+                                                <option value="{{ p.id }}">{{ p.lib0 }}</option>
+                                            {% elseif app.request.locale == 'en' and (p.lib1 != "" ) %}
+                                                <option value="{{ p.id }}">{{ p.lib1 }}</option>
+                                            {% else %}
+                                                <option value="{{ p.id }}">{{ p.lib0 }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                </select>
+                                    </td>
+                            <td>{{ 'mail_write.form.box.label'|trans }} :</td>
+                                    <td class="no-padding col-xs-3" >
+                                        <select name="idTBox" class="priorite">
+                                            {% for tbox in boites %}
+                                        {%  if app.request.locale == 'fr' %}
+                                            <option value="{{ tbox.id }}">{{ tbox.lib0 }}</option>
+                                        {% elseif app.request.locale == 'en' %}
+                                            <option value="{{ tbox.id }}">{{ tbox.lib1 }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-xs-3">
+                                <label class="checkbox-inline checkbox-switchery checkbox-right switchery-xs">
+                                    {{ form_widget(form.flagAR) }}
+                                    {{ 'mail_write.form.AR_notif.label'|trans }}:
+                                        </label>
+                                    </td>
+                                    <td class="col-xs-3">
+                                        <label class="checkbox-inline checkbox-switchery checkbox-right switchery-xs">
+                                            {{ form_widget(form.flagNotifEMail) }}
+                                    {{ 'mail_write.form.EMAIL_notif.label'|trans }}:
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="checkbox-inline checkbox-switchery checkbox-right switchery-xs">
+                                            {{ form_widget(form.flagNotifSMS) }}
+                                    {{ 'mail_write.form.SMS_notif.label'|trans }}:
+                                        </label>
+                                    </td>
+                                    <td colspan="2">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <ul class="list-inline no-margin">
+                                            {{ form_widget(form_pj.file) }}
+                                            {# <input type="file" name="hiddendrive" id="hiddendrive" style="display:none" onchange="getDriveValue();"> #}
+                                            <li><a href="#attachement" onclick="getFile();"><i class="icon-attachment position-left"></i> {{ 'mail_write.attach_files'|trans }}</a></li>
+                                            {#<li><a href="#attachement" onclick="getDrive();"><i class="icon-cloud-upload2 position-left"></i> Protec drive</a></li>#}
+
+                                            <li onclick="Dropbox.choose(options)"><a href="#"><span data-toggle="modal"><i class="icon-cloud-upload2 position-left"></i> Protec drive</span></a></li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-right" colspan="3">
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        {#
+                            <div class="modal fade" id="dropbox_links" style="width:50%; margin:auto;">
+                                <div class="page-container">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <!-- Main content -->
+                                    <div class="modal-content">
+                                        <!-- Basic example -->
+                                        <div class="panel panel-flat">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Ajouter des liens dropbox</h5>
+                                            </div>
+                                            <div class="panel-heading">
+                                                <div class="heading-elements">
+                                                    <ul class="icons-list">
+                                                        <li><a data-action="collapse"></a></li>
+                                                        <li><a data-dismiss="modal"><i class="icon-cross2"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel-body" style="">
+                                                <!-- <div class="content-group row">
+                                                   <div class="form-group attach_links">
+                                                        <label class="col-lg-3 control-label">Lien:</label>
+                                                        <div class="col-lg-9">
+                                                            <input type="text" class="form-control input_link touchspin-set-value" placeholder="Lien dropbox">
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                                <div class="content-group link_line">
+                                                    <div class="row link_row attach_links">
+                                                        <label class="col-lg-3 control-label">Lien Dropbox:</label>
+                                                        <div class="input-group col-lg-9">
+                                                            <input type="text" class="form-control touchspin-button-group input_link" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="content-group row">
+                                                   <div class="text-left col-xs-4"  style="padding-top: 10px;">
+                                                        <a href="https://www.dropbox.com/share/links" target="_blank" class="btn bg-blue text-left" ><i class="icon-cloud-upload2 position-left"></i> Dropbox</a>
+                                                    </div>
+                                                    <div class="text-center col-xs-4" style="padding-top: 10px;">
+                                                        <button type="button" class="btn btn-default add_new_row">Add</button>
+                                                        <button type="button" class="btn btn-default remove_row">Remove</button>
+                                                    </div>
+                                                    <div class="text-right col-xs-4"  style="padding-top: 10px;">
+                                                        <button class="btn bg-blue" id="add_links" disabled="true">Valider</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /basic example -->
+
+                                    </div>
+                                    <!-- /main content -->
+                                </div>
+                            </div>
+
+                        #}
+                        </div>
+                        <!-- /mail details -->
+
+
+                        <!-- Mail container -->
+                        <div class="mail-container-write">
+                            {{ form_widget(form.message) }}
+                            <!-- Email sample (demo) -->
+                            <table border="0" cellpadding="0" cellspacing="0" align="center">
+                            </table>
+                            <!-- /email sample (demo) -->
+                            <fieldset class="form-group" style="padding-right:2%;padding-left:2%;">
+                                <legend class="glyphicon glyphicon-pencil text-center"> Signature</legend>
+                                <p><input type="radio" value="no" class="styled" name="signature" checked="checked">{{ 'mail_write.form.signature.none'|trans }}</p>
+                                <p><input type="radio" value="yes" class="styled" name="signature">{{ 'mail_write.form.signature.add'|trans }}</p>
+                                <div style="width:100%; display:none; bottom:0;" id="signature-div" class="container-fluid" >
+                                    <textarea rows="10%"  style="padding-right:10%;padding-left:10%;  resize:vertical" cols="100%" name="signature-content" id="signature" class="summernote"></textarea>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <!-- /mail container -->
+
+
+                        <!-- Attachments -->
+                        <div class="mail-attachments-container" id="attachement">
+                            <h6 class="mail-attachments-heading">{{ 'mail_read.attachment'|trans }}</h6>
+
+                            <ul class="mail-attachments">
+
+                                <li>
+								<span style="display:inline-block">
+                                    <div><i class="icon-attachment position-left"></i></div>
+                                    <span class="mail-attachments-preview">
+
+                                    </span>
+                                </span>
+                                    <div class="mail-attachments-content" id="fileAttachments">
+                                        {#<ul class="list-inline list-inline-condensed no-margin">
+                                            <li class="text-muted">736 KB</li>
+                                            <li><a href="#">View</a></li>
+                                            <li><a href="#">Remove</a></li>
+                                        </ul>#}
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="mail-attachments">
+                                <li>
+                                    <span style="display:inline-block">
+                                        <div><i class="icon-cloud-upload2 position-left"></i>
+                                             
+                                        </div>
+                                    </span>
+
+                                    <div class="mail-attachments-content" id="driveAttachments">
+                                        <span id="liens_dropbox" class="hidden">
+                                            <input type="text" name="dropbox_link" value="" class="tokenfield" id="dropbox_link">
+                                        </span>
+                                        <!-- <span class="text-semibold">assignment_letter.pdf</span>
+
+                                        <ul class="list-inline list-inline-condensed no-margin">
+                                            <li class="text-muted">736 KB</li>
+                                            <li><a href="#">View</a></li>
+                                            <li><a href="#">Remove</a></li>
+                                        </ul> -->
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- /attachments -->
+
+                    </div>
+                    <!-- /single mail -->
+
+                </div>
+                <!-- /main content -->
+
+            </div>
+            <!-- /page content -->
+
+        </div>
+        <!-- /page container -->
+
+    </form>
+
+{% endblock %}
+
+    {% block javascripts %}
+
+        {{ parent() }}
+
+        {# // data-app-key : la clé de l'application #}
+        <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="awvi2tlfc4hp0no"></script>
+
+        <script type="text/javascript" src="{{ asset('assets/js/pages/mail_list_write.js') }}"></script>
+
+        <!-- Theme JS files :: mail_write -->
+        <script type="text/javascript" src="{{ asset('assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+
+        <script type="text/javascript" src="{{ asset('assets/js/pages/mail_list_write.js') }}"></script>
+        <!-- /theme JS files :: mail_write -->
+
+        <script type="text/javascript" src="{{ asset('assets/js/plugins/forms/tags/tokenfield.min.js') }}"></script>
+
+        <!-- Theme JS files :: form_editable -->
+       <script type="text/javascript" src="{{ asset('assets/js/plugins/forms/editable/editable.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/plugins/extensions/mockjax.min.js') }}"></script>
+       
+        <script type="text/javascript" src="{{ asset('assets/js/plugins/notifications/pnotify.min.js') }}"></script>
+
+        <script type="text/javascript" src="{{ asset('assets/js/plugins/forms/styling/switchery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/plugins/forms/inputs/autosize.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/pages/form_dual_listboxes.js') }}"></script>
+        <!-- /theme JS files -->
+
+
+        <!-- Theme JS files :: form_dual_listboxes -->
+        <script type="text/javascript" src="{{ asset('assets/js/plugins/forms/inputs/duallistbox.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/pages/form_input_groups.js') }}"></script>
+        <!-- /theme JS files :: form_dual_listboxes -->
+
+        <script type="text/javascript">
+        function formatBytes(a,b){
+            if(0==a)return"0 Bytes";
+            var c=1024,d=b||2,e=["o","Ko","Mo","Go","To","Po","Eo","Zo","Yo"],f=Math.floor(Math.log(a)/Math.log(c));
+            return parseFloat((a/Math.pow(c,f)).toFixed(d))+" "+e[f];
+        }
+
+        options = {
+
+            // Required. Called when a user selects an item in the Chooser.
+            success: function(files) {
+                $.each(files, function(index, val) {
+                    //tmp = tmp+val.link+",";
+                    $('#dropbox_link').tokenfield('createToken', { value: val.link, label: val.name+' ('+formatBytes(val.bytes)+')' });
+                });
+                $(".token-label").css('max-width', '100%');
+                if ($("#liens_dropbox").hasClass('hidden')) {
+                    $("#liens_dropbox").removeClass('hidden');
+                }
+            },
+
+            cancel: function() {
+
+            },
+
+            linkType: "preview",
+
+            multiselect: true,
+
+            // extensions: ['.pdf', '.doc', '.docx'],
+        };
+
+        file = {
+            // Unique ID for the file, compatible with Dropbox API v2.
+            id: "id:...",
+
+            // Name of the file.
+            name: "filename.txt",
+
+            // URL to access the file, which varies depending on the linkType specified when the
+            // Chooser was triggered.
+            link: "https://...",
+
+            // Size of the file in bytes.
+            bytes: 464,
+
+            // URL to a 64x64px icon for the file based on the file's extension.
+            icon: "https://...",
+
+            // A thumbnail URL generated when the user selects images and videos.
+            // If the user didn't select an image or video, no thumbnail will be included.
+            thumbnailLink: "https://...?bounding_box=75&mode=fit",
+
+            // Boolean, whether or not the file is actually a directory
+            isDir: false,
+        };
+
+        $("#dropbox_link").change(function() {
+            if($(this).val() == ''){
+               $("#liens_dropbox").addClass('hidden') 
+            }
+        });
+           
+            $('#combo1').click(function(){
+                if(this.value.substring(0,3) == 'con') {
+                    $('#combo2').empty();
+                    $('#combo2').append('<option value=\"prospects\">prospects</option>'+
+                            '<option value=\"clients\">clients</option>'+
+                            '<option value=\"partenaires\">partenaires</option>'+
+                            '<option value=\"concurrents\">concurents</option>'
+                    )
+                }else {
+                    $('#combo2').empty();
+                    $('#combo2').append('<option value=\"contrat\">En contrat</option>'+
+                            '<option value=\"stagiaire\">Stagiaire</option>'
+                    )
+                }
+            });
+
+            $('input[name=signature]').on('change', function() {
+                if(this.value == "no") {
+                    $('#signature-div').fadeOut();
+                }else {
+                    $('#signature-div').fadeIn();
+                }
+            });
+
+            $( ".select2_single" ).select2({
+                placeholder: "{{ 'mail_write.form.to_placeholder'|trans }}",
+                width: "100%"
+            });
+
+            $('.priorite').select2({
+                minimumResultsForSearch: Infinity
+            });
+
+            $('#divCopy').hide();
+            $('#divHiddenCopy').hide();
+
+            function getFile() {
+                $('.upfile').click();
+            }
+
+            function getFileValue() {
+                var nom = $('.upfile').val().split("\\");
+                $('#fileAttachments').html('<span class="text-semibold"><i class="icon-image2"></i>&nbsp;'+nom[2]+'</span>');
+            }
+            function getDrive() {
+                $('#hiddendrive').click();
+            }
+
+            function getDriveValue() {
+                $('#driveAttachments').append('<i class=\"icon-file-zip\"> '+$('#hiddendrive').val()+';</i>');
+            }
+
+            $('#btn-copy').on('click', function(e) {
+                        e.preventDefault();
+                        $('#divCopy').fadeToggle();
+                        $('#divCopy').focus();
+                    }
+            );
+
+            $('#btn-hidden-copy').on('click' ,function(e) {
+                e.preventDefault();
+                $('#divHiddenCopy').fadeToggle();
+                $('#divHiddenCopy').focus();
+            });
+            $('.dropdown-toggle').dropdown();
+
+            $('#btn-save').on('click', function(e) {
+                e.preventDefault();
+
+                if($('#form_message').val() == ''){
+                    new PNotify({
+                        text: '{{ "message_empty"|trans }}',
+                        addclass: 'bg-info-300 alert alert-styled-left',
+                        delay: 2000,
+                        buttons: {
+                            sticker: false,
+                            closer: true
+                        },
+                        type: 'error'
+                    }); 
+               }else {                   
+                    $('#msgSaveValue').attr('value', 'save_brouillon');
+                    $('#myform').submit();
+               }
+            });
+
+            $('#btn-send').on('click', function(e) {
+                e.preventDefault();
+
+                if($('#form_message').val() == '' ){
+                    new PNotify({
+                        text: '{{ "verify_fields"|trans }}',
+                        addclass: 'bg-info-300 alert alert-styled-left',
+                        delay: 2000,
+                        buttons: {
+                            sticker: false,
+                            closer: true
+                        },
+                        type: 'error'
+                    }); 
+               }else {                   
+                    $('#myform').submit();
+               }
+            });
+
+            //jQuery(document).on('copy', function(e){ alert('copying!') });
+
+            $(".add_new_row").on("click", function(){
+                $("div.link_row:last").clone().insertAfter("div.link_row:last");
+                //var data = $( "#dropbox_link" ).html();
+                //$("#dropbox_link").hide().html(data).fadeIn('fast');
+            });
+
+            $(".remove_row").on("click", function(){
+                if( $('.link_row').length > 1){
+                    $(".link_row:last").fadeOut(300, function() { $(this).remove(); });
+                }
+            });
+
+            $(".input_link").on("keyup", function(){
+                var full = false;
+                $(".input_link").each(function (){
+                    var value = $.trim($(this).val());
+                    if( value.length > 0) {
+                        full = true;
+                    }
+                });
+                (full) ? $("#add_links").prop("disabled", false) : $("#add_links").prop("disabled", true);
+            });
+
+
+            $("#add_links").on("click", function(e){
+                e.preventDefault();
+                var lien = "";
+                $(".attach_links").each(function(){
+                    var tmp = $( this ).find( "input" ).val();
+
+                    if( tmp != ''){
+                        lien = lien+tmp+",";
+                        /*var html = "<span class='tag label bg-indigo-400 remove_liens'>"+tmp+"<button class='remove_links'></button>x</span><br/>";
+                        $("#driveAttachments").append(html);*/
+                    }
+                });
+                $('#dropbox_link').tokenfield('setTokens', lien);
+                $("#dropbox_link").attr('value', lien);
+                $("#add_links").prop("disabled", true);
+                // $("#dropbox_links").modal("hide");
+                $(".attach_links").empty();
+                $(".attach_links").html(
+                    '<label class="col-lg-3 control-label">Lien Dropbox:</label>'+
+                    '<div class="input-group col-lg-9">'+
+                        '<input type="text" class="form-control touchspin-button-group input_link" value="">'+
+                    '</div>'
+                );
+            });
+
+            // Basic initialization
+            $('.tokenfield').tokenfield();
+
+        </script>
+    {% endblock %}

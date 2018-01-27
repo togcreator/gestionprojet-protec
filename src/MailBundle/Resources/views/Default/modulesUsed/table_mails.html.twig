@@ -1,0 +1,54 @@
+<div class="panel-heading">
+    <h6 class="panel-title">{{ title }} </h6>
+
+    {% if new_today is defined %}
+    <div class="heading-elements not-collapsible new_today">
+        <span class="label bg-blue heading-text" id="new_today">{{ new_today }} {{ 'list_mail.new'|trans }}</span>
+    </div>
+    {% endif %}
+</div>
+<div class="hidden">
+   <span class="hidden datatable_filter" data-filter="{{ 'table_mail.datatable.filter'|trans }}" data-textfilter="{{ 'table_mail.datatable.text_filter'|trans }}" data-show="{{ 'table_mail.datatable.show'|trans }}"></span>
+</div>
+<div class="panel-toolbar panel-toolbar-inbox">
+    <div class="navbar navbar-default">
+        <ul class="nav navbar-nav visible-xs-block no-border">
+            <li>
+                <a class="text-center collapsed" data-toggle="collapse" data-target="#inbox-toolbar-toggle-multiple">
+                    <i class="icon-circle-down2"></i>
+                </a>
+            </li>
+        </ul>
+
+        <div class="navbar-collapse collapse" id="inbox-toolbar-toggle-multiple">
+            {% if type == 'inbox' or type == 'outbox' %}
+                <div class="btn-group navbar-btn">
+                    <button type="button" class="btn btn-default btn-icon btn-checkbox-all">
+                        <input type="checkbox" class="styled checkList">
+                    </button>
+
+                    <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)" class="checkAllList">{{ 'table_mail.select.all'|trans }}</a></li>
+                        <li><a href="javascript:void(0)" class="unCheckList">{{ 'table_mail.select.clear'|trans }}</a></li>
+                    </ul>
+                </div>
+            {% endif %}
+
+            <div class="btn-group navbar-btn">
+                <a href="{{ path('mail_envoi') }}" class="btn btn-default"><i class="icon-pencil7"></i> <span class="hidden-xs position-right">{{ 'table_mail.compose'|trans }}</span></a>
+                {% if type == 'inbox' or type == 'outbox' %}
+                    <button type="button" class="btn btn-default hidden" id="trashMails"><i class="icon-bin"></i> <span class="hidden-xs position-right" data-urldelete="{{ path('mail_trash') }}">{{ 'list_mail.trash'|trans }}</span></button>
+                    <button type="button" class="btn btn-default"><i class="icon-spam"></i> <span class="hidden-xs position-right">Spam</span></button>
+                {% endif %}
+                <span class="type_mails hidden" id="{{type}}"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="table-responsive" id="all_mails">
+    {% include "MailBundle:Default:modulesUsed/mails_table.html.twig" %}
+</div>

@@ -1,0 +1,21 @@
+# entity.fr.yml
+EntityJ: Entité
+entity.list: Liste des Entités
+entity.creation: Crée une entité
+entity.edition: Modification de l'entité
+entity.confirm_title: Confirmation
+entity.confirm_delete: Êtes vous sur de vouloir supprimer cette entité ?
+entity.no_data: Aucun resultat
+
+# form
+entity.name: Nom/Appelation
+entity.description: Description
+entity.actions: Action
+
+# button
+entity.edit_button: Modifier
+entity.del_button: Supprimer
+entity.submit_button: Enregistrer
+entity.add_button: Nouvelle entité
+entity.confirm_button: Oui, je confirme
+entity.close_button: Non

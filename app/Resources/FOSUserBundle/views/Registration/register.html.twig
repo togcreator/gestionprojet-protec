@@ -1,0 +1,27 @@
+{% extends "@FOSUser/layout_form_fos_user.html.twig" %}
+
+{% block title %}{{ parent() }} Créer un Compte{% endblock %}
+
+{% block fos_user_content %}
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                {% include "@FOSUser/Registration/register_content.html.twig" %}
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+{% endblock fos_user_content %}
+
+{% block javascript %}
+    <script type="text/javascript" src="{{ asset('assets/js/pages/login.js') }}"></script>
+{% endblock %}

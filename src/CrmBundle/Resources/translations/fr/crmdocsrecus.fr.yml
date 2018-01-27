@@ -1,0 +1,35 @@
+
+# general
+crmdocsrecus.title: CRM documents réçus
+crmdocsrecus.edition: Modification
+crmdocsrecus.creation: Nouveau
+crmdocsrecus.confirm_title: Confirmation
+crmdocsrecus.crm: CRM
+crmdocsrecus.info: Information
+crmdocsrecus.other: Autre detail
+
+# form
+crmdocsrecus.idCrm: CRM
+crmdocsrecus.idEtape: Etape
+crmdocsrecus.idOperation: Opération
+crmdocsrecus.code: Code
+crmdocsrecus.origine: Origine
+crmdocsrecus.idBiblio: Biblio
+crmdocsrecus.idMail: Adresse mail
+crmdocsrecus.referenceExterne: Réference externe
+crmdocsrecus.reference: Réference
+crmdocsrecus.nomRedacteurExterne: Nom du redacteur externe
+crmdocsrecus.designation: Désignation
+crmdocsrecus.nomdoc: Nom du document
+crmdocsrecus.idTypedoc: Type du document
+crmdocsrecus.dateReception: Date de réception
+crmdocsrecus.version: Version
+crmdocsrecus.confirm_delete: Voulez vous supprimer ce document ?
+
+# button
+crmdocsrecus.add_button: Nouveau
+crmdocsrecus.edit_button: Modifier
+crmdocsrecus.del_button: Supprimer
+crmdocsrecus.save_button: Enregistrer
+crmdocsrecus.close_button: Non
+crmdocsrecus.confirm_button: Oui, je confirme

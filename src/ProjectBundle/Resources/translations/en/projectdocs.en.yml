@@ -1,0 +1,48 @@
+
+# general
+projectdocs.title: Project document
+projectdocs._title: Documents
+projectdocs.edition: Edition
+projectdocs.creation: New
+projectdocs.confirm_title: Confirmation
+projectdocs.project: Project
+projectdocs.info: Information
+projectdocs.other:  Other detail
+
+# form
+projectdocs.idProject: Project
+projectdocs.idEtape: Stage
+projectdocs.idOperation: Operation
+projectdocs.titre: Titre
+projectdocs.code: Code
+projectdocs.date: Date
+projectdocs.idUser: Redactor
+projectdocs.origine: Origin
+projectdocs.idBiblio: Biblio
+projectdocs.idMail: Mail Address
+projectdocs.referenceExterne: External reference
+projectdocs.reference: Reference
+projectdocs.nomRedacteurExterne: Writer name external
+projectdocs.designation: Label
+projectdocs.nomdoc: Document name
+projectdocs.idTypedoc: Document type
+projectdocs.dateReception: Date receive
+projectdocs.version: Version
+projectdocs.download: Téléchargement
+projectdocs.confirm_delete: Do you want to remove this document?
+projectdocs.no_data: No data
+
+# onglet
+projectdocs.not_started: Not started
+projectdocs.in_progress: In progress
+projectdocs.review: Review
+projectdocs.done: Done
+
+# button
+projectdocs.new_button: New document
+projectdocs.add_button: New
+projectdocs.edit_button: Edit
+projectdocs.del_button: remove
+projectdocs.save_button: Save
+projectdocs.close_button: Close
+projectdocs.confirm_button: yes, i do

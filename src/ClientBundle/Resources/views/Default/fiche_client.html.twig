@@ -1,0 +1,426 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} {{ 'client.breadcrumb.customer_card'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+
+        .info_client{
+            display:inline-block;
+            margin-top:-10px;
+        }
+
+        .fiche {
+            background-color: #eeeded;
+            color: black;
+            padding-top:0px;
+        }
+
+        .nav-tabs {
+            background-color: #eeeded;
+        }
+
+        .panel-body {
+            box-shadow: none;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .infos {
+            padding-bottom: 16px;
+        }
+
+        h6 {
+            top: 5px;
+        }
+
+        .row, .tabbable {
+            padding: 10px;
+        }
+
+        .info_compl {
+            padding-bottom: 24px;
+        }
+
+        .notif {
+            position: fixed;
+            z-index: 1;
+            top: 50%;
+            left: 25%;
+            right: 25%;
+        }
+        
+        .notif_scroll {
+            opacity: 0.7;
+            top: 15%;
+        }
+
+    </style>
+{% endblock %}
+
+{% block body %}
+    <!-- Page header -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{{ 'client.breadcrumb.customer_card'|trans }}</span></h4>
+                <ul class="breadcrumb breadcrumb-caret position-right">
+                    <li><a href="{{ path('homepage') }}">{{ 'client.breadcrumb.home'|trans }}</a></li>
+                    <li><a href="{{ path('client_liste_clients') }}">{{ 'client.breadcrumb.customer'|trans }}</a></li>
+                    <li class="active">{{ 'client.breadcrumb.customer_card'|trans }}</li>
+                </ul>
+            </div>
+
+            <div class="heading-elements">
+                <div class="heading-btn-group">
+                    <a href="#" class="btn btn-link btn-float has-text text-size-small"><i class="icon-bars-alt text-indigo-400"></i><span>{{ 'admin.statistics'|trans }}</span></a>
+                    <a href="#" class="btn btn-link btn-float has-text text-size-small"><i class="icon-calculator text-indigo-400"></i> <span>{{ 'admin.invoices'|trans }}</span></a>
+                    <a href="#" class="btn btn-link btn-float has-text text-size-small"><i class="icon-calendar5 text-indigo-400"></i> <span>{{ 'admin.schedule'|trans }}</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page header -->
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Basic responsive table -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'client.breadcrumb.customer_card'|trans }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list text-right ficheAction">
+                                <li><a data-action="collapse"></a></li>
+                                <li><a onclick="editFiche()"><i class="glyphicon glyphicon-pencil"></i></a></li>
+                                <li><a onclick="javascript:history.back();"><i class="glyphicon glyphicon-remove"></i></a></li>
+                            </ul>
+                            <ul class="icons-list text-right saveficheEdit" style="display:none">
+                                <li><a onclick="revertFiche()" id="revertFiche"><i class="glyphicon glyphicon-remove"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                <div class="panel-body">
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs bg-#eeeded top-divided nav-sm nav-tabs-component">
+                            <li class="active"><a href="#tab_client" data-toggle="tab" style="color:black"><i class="glyphicon glyphicon-info-sign"></i> {{ 'client.menu.customer'|trans }}</a></li>
+                            <li><a href="#tab_contact" data-toggle="tab" style="color:black"><i class="glyphicon glyphicon-earphone"></i> {{ 'client.menu.contact'|trans }}</a></li>
+                        </ul>
+
+                        {% if app.request.query.get('update') is defined and app.request.query.get('update') == "ok"  %}
+                        <div align="center" class="notif">
+                            <div class="text-left alert alert-success alert-styled-left alert-arrow-left alert-bordered">
+                                <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+                                <span class="text-semibold"> {{ 'message.client.modification'|trans }} </span>
+                            </div>
+                        </div>
+
+                        {% endif %}
+                        <div class="tab-content">
+                        <div class=" tab-pane active"   id="tab_client">
+                        <form class="form-validate-jquery" action="{% if id is defined %}{{ path('client_update_client') ~ "/" ~ id }}{% else %}{{ path('client_add_client') }}{% endif %}" method="post">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-12">
+                                    <div class="panel panel-body border-top-info">
+                                        <div class="text-left">
+                                            <h6 class="text-semibold no-margin"><i class="icon-vcard position-left"></i>{{'client.fiche.info_customer'|trans}}</h6>
+                                        </div>
+                                        <ul class="dropdown-menu fiche" style="display: block; position: static; width: 100%; margin-top: 0; padding-left: 0px; padding-right:0px; box-shadow: ;">
+                                            <li class="infos">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.adresse'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.adr1, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.adresse'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.adr1 }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="infos">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.adresse2'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.adr2, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.adresse2'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.adr2 }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="infos">    
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.city'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.ville, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.city'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.ville }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="infos">    
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.cp'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.cp, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.cp'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.cp }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="infos">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.country'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.pays, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.country'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.pays }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                    </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="panel panel-body border-top-info">
+                                        <div class="text-left">
+                                            <h6 class="text-semibold no-margin"><i class="icon-vcard position-left"></i>{{'client.fiche.contact_customer'|trans}}</h6>
+                                        </div>
+                                        <ul class="dropdown-menu fiche" style="display: block; position: static; width: 100%; margin-top: 0; padding: 10px; ">        
+                                            <li class="infos">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.phone'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.tel, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.phone'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.tel }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="infos">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.gsm'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.gsm, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.gsm'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.gsm }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="infos">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.fax'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.fax, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.fax'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.fax }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="infos">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.email'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.email, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.email'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.email }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            
+                                            <li class="infos">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.website'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.siteweb, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.website'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.siteWeb }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-12">
+                                    <div class="panel panel-body border-top-info">
+                                        <div class="text-left">
+                                            <h6 class="text-semibold no-margin"><i class="icon-vcard position-left"></i>{{'client.fiche.more_info'|trans}}</h6>
+                                        </div>
+                                        <ul class="dropdown-menu fiche" style="display: block; position: static; width: 100%; margin-top: 0;">
+
+                                            <li class="info_compl">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.siret'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.siret, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.siret'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.siret }}</span>
+                                                    </div>
+                                                </div>
+                                            <li>
+                                            </li class="info_compl">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.intra_community_vat'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.tvaIntraCommunautaire, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.intra_community_vat'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.tvaIntraCommunautaire }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="info_compl">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.epa'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.ape, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.epa'|trans}}) }}
+                                                    <span class="form-control-static info_client">{{ client.ape }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="info_compl">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.code'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.code, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.code'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.code }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="info_compl">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.raisonSociale'|trans}}:</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.raisonSociale, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.raisonSociale'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.raisonSociale }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="info_compl">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.staff_bracket'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.trancheEffectif, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.staff_bracket'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.trancheEffectif }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="info_compl">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.code_cegid'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.codeCegid, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.code_cegid'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.codeCegid }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="info_compl">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.code_sage'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.codeSage, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.code_sage'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.codesage }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="info_compl">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.code_exact'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.codeExact, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.code_exact'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.codeExact }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="info_compl">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.origin'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.origine, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.origin'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.origine }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="info_compl">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.deadline'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.echeance, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.deadline'|trans}}) }}
+                                                        <span class="form-control-static info_client">{{ client.echeance }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="info_compl">
+                                                <div class="form-group">
+                                                    <label class="col-lg-4 control-label">{{'client.fiche.version'|trans}} :</label>
+                                                    <div class="col-lg-8">
+                                                        {{ form_widget(form.version, {'attr': {'class': 'form-control hidden edit_client', 'placeholder': 'client.fiche.version'|trans, 'style': 'padding-top:0px'}}) }}
+                                                        <span class="form-control-static info_client">{{ client.version }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="text-right editFicheButton" style="display:none; position: static; width: 100%; margin-top: 0; padding-right: 15px" >
+                                <button type="reset" class="btn btn-default" id="reset">{{'client.fiche.reset'|trans}} <i class="icon-reload-alt position-right"></i></button>
+                                 <button type="submit" class="btn btn-primary">{{'client.fiche.submit'|trans}} <i class="glyphicon glyphicon-floppy-saved position-right"></i></button>
+                            </div>
+                        {{ form_rest(form) }}
+                            
+                        </form>
+                        </div>                                  
+
+                        <div class="tab-pane" id="tab_contact">
+                            Destiné au contact
+                        </div>
+                        </div>                                  
+
+                    </div>
+                </div>
+                </div>
+                <!-- /basic responsive table -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/js/pages/form_validatation.js') }}"></script>
+    <script type="text/javascript">
+        function editFiche () {
+            $(".ficheAction").hide();
+            $(".saveficheEdit").show();
+            $(".info_client").hide();
+            $(".edit_client").removeClass('hidden');
+            $(".edit_client").css({"margin-top": "-10px"});
+            $(".editFicheButton").show();
+        }
+
+        function revertFiche(){
+            $(".saveficheEdit").hide();
+            $(".ficheAction").show();
+            $(".edit_client").addClass('hidden');
+            $(".info_client").show();
+            $(".editFicheButton").hide();
+        }
+
+        $(document).on('scroll', function() {
+            /*if(parseInt(($('html').offset().top)) < 10){*/
+                $('.notif').addClass('notif_scroll');
+            /*} */               
+        });
+
+        $('.notif').on('click', function() {
+            $(this).hide();
+        })
+    </script>
+{% endblock %}

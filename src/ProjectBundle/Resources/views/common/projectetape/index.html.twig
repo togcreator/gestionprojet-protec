@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - {{ 'projectetape.etape'|trans({}, 'projectetape')}}{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'projectetape.list'|trans({}, 'projectetape') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('projectetape_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'projectetape.add_button'|trans({}, 'projectetape') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('projectetape_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if projectEtapes %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'projectetape.idProjetversion'|trans({}, 'projectetape') }}</th>
+                                <th>{{ 'projectetape.object'|trans({}, 'projectetape') }}</th>
+                                <th>{{ 'projectetape.datedebutreelle'|trans({}, 'projectetape') }}</th>
+                                <th>{{ 'projectetape.datefinreelle'|trans({}, 'projectetape') }}</th>
+                                <th class="text-center">{{ 'projectetape.actions'|trans({}, 'projectetape') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for projectetape in projectEtapes %}
+                            <tr>
+                                <td style="cursor:pointer">{{ projectetape.id }}</td>
+                                <td>{{ projectetape.projet.label }}</td>
+                                <td>{{ projectetape.object }}</td>
+                                <td>{{ projectetape.datedebutreelle|date(date_format) }}</td>
+                                <td>{{ projectetape.datefinreelle|date(date_format) }}</td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('projectetape_edit', { 'id': projectetape.id }) }}"><i class="icon-pen"></i> {{ 'projectetape.edit_button'|trans({}, 'projectetape') }}</a></li>
+                                                <li><a href="{{ path('projectetape_delete', { 'id': projectetape.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'projectetape.del_button'|trans({}, 'projectetape') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'projectetape.no_data'|trans({}, 'projectetape') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+{% endblock %}
+    
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,25 @@
+# general
+IssuesOrganisation.list: Liste d'Issue organisation
+IssuesOrganisation.creation: Nouveau
+IssuesOrganisation.edition: Modification
+IssuesOrganisation.confirm_title: Confirmation
+
+# form
+IssuesOrganisation.legend_project: Projet
+IssuesOrganisation.legend_info: Information
+IssuesOrganisation.idIssue: Issue opération
+IssuesOrganisation.commentaires: Commentaires
+IssuesOrganisation.version: Version
+IssuesOrganisation.actions: Action
+IssuesOrganisation.confirm_delete: Voulez vous supprimer cette issue d'organisation?
+IssuesOrganisation.no_data: Aucun resultat
+
+# button
+IssuesOrganisation.add_button: Nouveau
+IssuesOrganisation.edit_button: Modification
+IssuesOrganisation.del_button: Supprimer
+IssuesOrganisation.save_button: Enregistrer
+IssuesOrganisation.submit_button: Enregistrer
+IssuesOrganisation.confirm_button: Oui, je confirme
+IssuesOrganisation.close_button: Non
+

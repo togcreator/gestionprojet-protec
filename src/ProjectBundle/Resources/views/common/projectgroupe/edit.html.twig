@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {% set dir = 'backoffice/' %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{asset('assets/js/plugins/forms/styling.min.js')}}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {% set dir = 'backoffice/' %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'ProjectBundle:back:head.html.twig' %}
+
+        <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'projectgroupe.edition'|trans({}, 'project') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('project_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+
+                        {{ form_start(edit_form, {'attr': {'class':'steps-basic'}}) }}
+                            <h6>{{ 'projectgroupe.step'|trans({}, 'project') }}</h6>
+
+
+                            <fieldset class="content-group">
+
+                                <div class="form-group">
+                                    {% set lg = ''|lang(app.request.locale) %}
+                                    {% set default = '' %}
+                                    {% if lg == 'Fr' %} {% set default = loadContent(projectGroupe.lib0) %}
+                                    {% elseif lg == 'En' %} {% set default = loadContent(projectGroupe.lib1, projectGroupe.lib0) %}
+                                    {% elseif lg == 'Nl' %} {% set default = loadContent(projectGroupe.lib2, projectGroupe.lib0) %}
+                                    {% elseif lg == 'De' %} {% set default = loadContent(projectGroupe.lib3, projectGroupe.lib0) %}
+                                    {% elseif lg == 'Es' %} {% set default = loadContent(projectGroupe.lib4, projectGroupe.lib0) %}
+                                    {% elseif lg == 'It' %} {% set default = loadContent(projectGroupe.lib5, projectGroupe.lib0) %}
+                                    {% endif %}
+                                    {% set name = 'projectgroupe.label'|trans({}, 'project') %}
+                                    {{ form_label(edit_form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.label, {'attr': {'class': 'form-control'}, 'value': default}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'projectgroupe.code'|trans({}, 'project') %}
+                                    {{ form_label(edit_form.code, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.code, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'projectgroupe.datedebut'|trans({}, 'project') %}
+                                    {{ form_label(edit_form.datedebut, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.datedebut, {'attr': {'class': 'form-control datepicker'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'projectgroupe.datefin'|trans({}, 'project') %}
+                                    {{ form_label(edit_form.datefin, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.datefin, {'attr': {'class': 'form-control datepicker'}}) }}
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                            
+                            {% include 'ProjectBundle:common:stepwizzard.html.twig' with {'project':edit_form} %}
+
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'projectgroupe.submit_button'|trans({}, 'project') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                        <script type="text/javascript">
+                            (function($){
+                                $(function(){
+                                    var lang = '{{ ''|lang(app.request.locale) }}'.toString().toLowerCase();
+                                    var lang_tab = {'fr': 'lib0', 'en':'lib1', 'nl': 'lib2', 'de': 'lib3', 'es': 'lib4', 'it': 'lib5'};
+                                    $('[name*="label"]').on('keyup', function() {
+                                        $('[name*="[%s]"]'.replace('%s', lang_tab[lang])).val(this.value);
+                                    })
+                                });
+                            }(jQuery));
+                        </script>
+                    </div>
+                </div>
+                <!-- /form horizontal -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    {% include 'ProjectBundle:back:foot.html.twig' %}
+{% endblock %}

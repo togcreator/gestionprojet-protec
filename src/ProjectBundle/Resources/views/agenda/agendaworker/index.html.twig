@@ -1,0 +1,203 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-lg-12 col-xs-12">
+                            <!-- Marketing campaigns -->
+                            <div class="panel panel-flat">
+                                <div class="panel-heading">
+                                    <h6 class="panel-title">{{ 'agenda.title'|trans({}, 'agenda') }}</h6>
+                                    <div class="heading-elements">
+                                        
+                                        {# <span class="label bg-success heading-text">{{ agendas|length }} {{ 'global.active'|trans({}, 'agenda') }}</span> #}
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i> <span class="caret"></span></a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="#"><i class="icon-sync"></i> {{ 'global.update_data'|trans }}</a></li>
+                                                    <li><a href="#"><i class="icon-list-unordered"></i> {{ 'global.detail_log'|trans({}, 'agenda') }}</a></li>
+                                                    <li><a href="#"><i class="icon-pie5"></i> {{ 'global.statistics'|trans }}</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#"><i class="icon-cross3"></i> {{ 'global.clear_list'|trans }}</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="fullcalendar-event-colors"></div>
+                                    <script type="text/javascript">
+                                        var eventColors = [
+                                        // pour operation
+                                        // {% if agendaWorkers.project_etapes_operations is defined %}
+                                        //     {% for operation in agendaWorkers.project_etapes_operations %}
+                                        //     {% if operation[0].dateDebPrevue|date('Y-m-d') and operation[0].dateFinPrevue|date('Y-m-d') %}
+                                        //     {
+                                        //         title: '{{ 'projectetapesoperations.title'|trans({}, 'projectetapesoperations') }} - {{ operation.object|raw }}',
+                                        //         start: '{{ operation[0].dateDebPrevue|date('Y-m-d') }}',
+                                        //         end: '{{ operation[0].dateFinPrevue|date('Y-m-d') }}',
+                                        //         color: '#EF5350',
+                                        //         url: '{{ path('projectetapesoperations_edit', {'id': operation.id }) }}'
+                                        //     },
+                                        //     {% endif %}
+                                        //     {% if operation[0].dateDebReelle|date('Y-m-d') and operation[0].dateFinReelle|date('Y-m-d') %}
+                                        //     {
+                                        //         title: '{{ 'projectetapesoperations.title'|trans({}, 'projectetapesoperations') }} - {{ operation.object|raw }}',
+                                        //         start: '{{ operation[0].dateDebReelle|date('Y-m-d') }}',
+                                        //         end: '{{ operation[0].dateFinReelle|date('Y-m-d') }}',
+                                        //         color: '#26A69A',
+                                        //         url: '{{ path('projectetapesoperations_edit', {'id': operation.id }) }}'
+                                        //     },
+                                        //     {% endif %}
+                                        //     {% endfor %}
+                                        // {% endif %}
+
+                                        // // pour etape
+                                        // {% if agendaWorkers.project_etapes is defined %}
+                                        //     {% for etape in agendaWorkers.project_etapes %}
+                                        //     {% if etape[0].dateDebPrevue|date('Y-m-d') and etape[0].dateFinPrevue|date('Y-m-d') %}
+                                        //     {
+                                        //         title: '{{ 'projectetape.title'|trans({}, 'projectetape') }} - {{ etape.object|raw }}',
+                                        //         start: '{{ etape[0].dateDebPrevue|date('Y-m-d') }}',
+                                        //         end: '{{ etape[0].dateFinPrevue|date('Y-m-d') }}',
+                                        //         color: '#EF5350',
+                                        //         url: '{{ path('projectetape_edit', {'id': etape.id }) }}'
+                                        //     },
+                                        //     {% endif %}
+                                        //     {% if etape[0].dateDebReelle|date('Y-m-d') and etape[0].dateFinReelle|date('Y-m-d') %}
+                                        //     {
+                                        //         title: '{{ 'projectetape.title'|trans({}, 'projectetape') }} - {{ etape.object|raw }}',
+                                        //         start: '{{ etape[0].dateDebReelle|date('Y-m-d') }}',
+                                        //         end: '{{ etape[0].dateFinReelle|date('Y-m-d') }}',
+                                        //         color: '#26A69A',
+                                        //         url: '{{ path('projectetape_edit', {'id': etape.id }) }}'
+                                        //     },
+                                        //     {% endif %}
+                                        //     {% endfor %}
+                                        // {% endif %}
+
+                                        // // pour issue
+                                        // {% if agendaWorkers.project_etapes_operations_issues is defined %}
+                                        //     {% for issue in agendaWorkers.project_etapes_operations_issues %}
+                                        //     {% if issue[0].dateDebPrevue|date('Y-m-d') and issue[0].dateFinPrevue|date('Y-m-d') %}
+                                        //     {
+                                        //         title: '{{ 'OperationsIssues.title'|trans({}, 'OperationsIssues') }} - {{ issue.libelle|raw }}',
+                                        //         start: '{{ issue[0].dateDebPrevue|date('Y-m-d') }}',
+                                        //         end: '{{ issue[0].dateFinPrevue|date('Y-m-d') }}',
+                                        //         color: '#EF5350',
+                                        //         url: '{{ path('operationsissues_edit', {'id': issue.id }) }}'
+                                        //     },
+                                        //     {% endif %}
+                                        //     {% if issue[0].dateDebReelle|date('Y-m-d') and issue[0].dateFinReelle|date('Y-m-d') %}
+                                        //     {
+                                        //         title: '{{ 'OperationsIssues.title'|trans({}, 'OperationsIssues') }} - {{ issue.libelle|raw }}',
+                                        //         start: '{{ issue[0].dateDebReelle|date('Y-m-d') }}',
+                                        //         end: '{{ issue[0].dateFinReelle|date('Y-m-d') }}',
+                                        //         color: '#26A69A',
+                                        //         url: '{{ path('operationsissues_edit', {'id': issue.id }) }}'
+                                        //     },
+                                        //     {% endif %}
+                                        //     {% endfor %}
+                                        // {% endif %}
+
+                                        // pour etapes operations
+                                        {% if agendaWorkers.crm_etapes_operations is defined %}
+                                            {% for retour in agendaWorkers.crm_etapes_operations %}
+
+                                                {% if retour.dateDebReelle|date('Y-m-d') %}
+                                                    {% set datedebut = retour.dateDebReelle|date('Y-m-d') %}
+                                                {% else %}
+                                                    {% set datedebut = retour.dateDebPrevue|date('Y-m-d') %}
+                                                {% endif %}
+
+                                                {% if retour.dateFinReelle|date('Y-m-d') %}
+                                                    {% set datefin = retour.dateFinReelle|date('Y-m-d') %}
+                                                {% else %}
+                                                    {% set datefin = retour.dateFinPrevue|date('Y-m-d') %}
+                                                {% endif %}
+
+                                                {% if retour.firstname and retour.lastname %}
+                                                    {% set user = ' - ' ~ retour.firstname|capitalize ~ ' ' ~ retour.lastname|capitalize %}
+                                                {% else %}
+                                                    {% set user = '' %}
+                                                {% endif %}
+
+                                                {% set label = ' - ' ~ retour[0].label|capitalize|raw|default('') %}
+
+                                                {
+                                                    title: '{{ retour.objet|capitalize ~ label ~ user }}',
+                                                    start: '{{ datedebut }}',
+                                                    end: '{{ datefin }}',
+                                                    color: '{{ retour.couleur|default('#26A69A') }}',
+                                                    url: '{{ path('crmetapesoperations_edit', {'id': retour.id }) }}'
+                                                },
+                                            {% endfor %}
+                                        {% endif %}
+                                        ];
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">(function($){ $(document.body).addClass('sidebar-xs')}(jQuery))</script>
+    
+    <!-- /footer -->
+    <!--/ modal form /-->
+    <div id="modal_remote" class="modal">
+        <div class="modal-dialog modal-full">
+            <div class="modal-content">
+                
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        (function($){
+            $('a').on('click', function(){
+                var href = this.href;
+                $('#modal_remote').attr('data-href', href).click();
+            });
+
+            // Load remote content
+            $('#modal_remote').on('show.bs.modal', function() {
+                var  url = $(this).attr('data-href');
+                $(this).find('.modal-content').load(url, function() {
+
+                    // // Init Select2 when loaded
+                    $('.select').select2({
+                        minimumResultsForSearch: Infinity
+                    });
+                });
+            });
+        }(jQuery))
+    </script>
+
+    {# calendar #}
+    <script type="text/javascript" src="{{asset('assets/backoffice/js/plugins/ui/moment/moment.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/backoffice/js/plugins/ui/fullcalendar/fullcalendar.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/backoffice/js/plugins/ui/fullcalendar/lang/all.js')}}"></script>
+    <script type="text/javascript">
+        (function($){
+             // Event colors
+            $('.fullcalendar-event-colors').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                defaultDate: Date.now(),
+                editable: true,
+                events: eventColors,
+                locale: '{{ app.request.locale }}'.toLowerCase()
+            });
+        }(jQuery))
+    </script>
+
+{% endblock %}

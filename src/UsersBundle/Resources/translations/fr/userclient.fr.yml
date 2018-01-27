@@ -1,0 +1,59 @@
+# userclient.fr.yml
+
+# general
+userclient.list: Liste des utilisateurs
+userclient.creation: Nouveau
+userclient.edition: Modification / Consultation
+userclient.confirm_title: Confirmation
+userclient.no_data: Aucun resultat
+
+# form
+userclient.info_login: Information de connexion
+userclient.info_general: Information 
+userclient.information: Information
+userclient.detail: Détail
+userclient.photo: Photo/Image
+userclient.login: Compte utilisateur
+userclient.nom: Nom
+userclient.prenom: Prénom
+userclient.email: Email
+userclient.firstname: Nom
+userclient.lastname: Prénom
+userclient.langage: Langue
+userclient.adr1: Adresse
+userclient.adr2: Adresse 2
+userclient.ville: Code Postal / Ville
+userclient.pays: Pays
+userclient.telephone: Téléphone
+userclient.gsm: Téléphone portable
+userclient.fax: fax
+userclient.iDNatureUser: Nature utilisateur
+userclient.iDGroupe: Groupe
+userclient.iDGenre: Genre
+userclient.cp: Code postal
+userclient.origine: Origine
+userclient.version: Version
+userclient.status: Statut
+userclient.business: Business Unit
+userclient.natureuser: Nature 
+userclient.fonction: Fonction
+userclient.service: Service
+userclient.entreprise: Entreprise
+userclient.confirm_delete: Êtes vous sûr vouloir supprimer cet utilisateur ?
+userclient.relation_utilisateur: Relation fonctionnelle
+userclient.tab:
+    info: Identité
+    detail: Profil
+    agenda: Agenda
+    mail: Messagerie
+    note: Note
+    doc: Document
+
+# button
+userclient.add_button: Nouveau
+userclient.save_button: Enregistrer
+userclient.submit_button: Enregistrer
+userclient.edit_button: Modifier / Consulter
+userclient.del_button: Supprimer
+userclient.confirm_button: Oui, je confirme
+userclient.close_button: Non

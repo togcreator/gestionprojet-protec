@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <!-- /page header -->
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-12 col-xs-12">
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'relationbusinessentite.edition'|trans({}, 'relationbusinessentite') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('relationbusinessentite_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        {{ form_start(edit_form) }}
+                            <fieldset class="content-group">
+                                <div class="form-group">
+                                    {% set name = 'relationbusinessentite.iDentite'|trans({}, 'relationbusinessentite') %}
+                                    {{ form_label(edit_form.iDentite, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.iDentite, {'attr': {'class': 'form-control select2-search' }}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'relationbusinessentite.iDBusinessUnit'|trans({}, 'relationbusinessentite') %}
+                                    {{ form_label(edit_form.iDBusinessUnit, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.iDBusinessUnit, {'attr': {'class': 'form-control select2-search' }}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'relationbusinessentite.iDRelationsProfessionnelles'|trans({}, 'relationbusinessentite') %}
+                                    {{ form_label(edit_form.iDRelationsProfessionnelles, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.iDRelationsProfessionnelles, {'attr': {'class': 'form-control select2-search' }}) }}
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <button type="submit" class="btn btn-primary" value="Edit">
+                                {{ 'relationbusinessentite.save_button'|trans({}, 'relationbusinessentite') }}
+                                <i class="icon-arrow-right14 position-right"></i>
+                            </button>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

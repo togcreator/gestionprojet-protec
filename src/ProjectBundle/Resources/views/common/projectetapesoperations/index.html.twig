@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'projectetapesoperations.list'|trans({}, 'projectetapesoperations') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('projectetapesoperations_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'projectetapesoperations.add_button'|trans({}, 'projectetapesoperations') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('projectetapesoperations_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if projectEtapesOperations %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'projectetapesoperations.idProjectVersion'|trans({}, 'projectetapesoperations') }}</th>
+                                <th>{{ 'projectetapesoperations.idEtape'|trans({}, 'projectetapesoperations') }}</th>
+                                <th>{{ 'projectetapesoperations.object'|trans({}, 'projectetapesoperations') }}</th>
+                                <th>{{ 'projectetapesoperations.datedebutreelle'|trans({}, 'projectetapesoperations') }}</th>
+                                <th>{{ 'projectetapesoperations.datefinreelle'|trans({}, 'projectetapesoperations') }}</th>
+                                <th>{{ 'projectetapesoperations.dureereelle'|trans({}, 'projectetapesoperations') }}</th>
+                                <th class="text-center">{{ 'projectetapesoperations.actions'|trans({}, 'projectetapesoperations') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for projectetapesoperations in projectEtapesOperations %}
+                            <tr>
+                                <td style="cursor:pointer">{{ projectetapesoperations.id }}</td>
+                                <td>
+                                    {% if projectetapesoperations.projet %}
+                                    {{ projectetapesoperations.projet.label }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if projectetapesoperations.etape %}
+                                    {{ projectetapesoperations.etape.object }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ projectetapesoperations.object }}</td>
+                                <td>{{ projectetapesoperations.datedebutreelle|date(date_format) }}</td>
+                                <td>{{ projectetapesoperations.datefinreelle|date(date_format) }}</td>
+                                <td>{{ projectetapesoperations.dureereelle }}</td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('projectetapesoperations_edit', { 'id': projectetapesoperations.id }) }}"><i class="icon-pen"></i> {{ 'projectetapesoperations.edit_button'|trans({}, 'projectetapesoperations') }}</a></li>
+                                                <li><a href="{{ path('projectetapesoperations_delete', { 'id': projectetapesoperations.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'projectetapesoperations.del_button'|trans({}, 'projectetapesoperations') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'projectetapesoperations.no_data'|trans({}, 'projectetapesoperations') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>            
+{% endblock %}

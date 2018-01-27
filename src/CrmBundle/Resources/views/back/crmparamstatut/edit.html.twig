@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'crmparamstatut.edition'|trans({}, 'crmparamstatut') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('crmparamstatut_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        {{ form_start(edit_form) }}
+                            <fieldset class="content-group">
+                                <label class="text-bold">{{ 'crmparamstatut.legend_info'|trans({}, 'crmparamstatut') }}</label>
+                                <div class="form-group col-md-12">
+                                    {% set name = 'crmparamstatut.open'|trans({}, 'crmparamstatut') %}
+                                    {{ form_label(edit_form.ouvert, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.ouvert, {'attr': {'class': 'form-control switchery'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamstatut.idType'|trans({}, 'crmparamstatut') %}
+                                    {{ form_label(edit_form.idType, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idType, {'attr': {'class': 'form-control select2-search'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamstatut.label'|trans({}, 'crmparamstatut') %}
+                                    {{ form_label(edit_form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.label, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamstatut.obs'|trans({}, 'crmparamstatut') %}
+                                    {{ form_label(edit_form.obs, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.obs, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamstatut.nomcouleur'|trans({}, 'crmparamstatut') %}
+                                    {{ form_label(edit_form.nomcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.nomcouleur, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamstatut.couleur'|trans({}, 'crmparamstatut') %}
+                                    {{ form_label(edit_form.couleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10" style="padding: 15px 0">
+                                        {{ form_widget(edit_form.couleur, {'attr': {'class': 'form-control colorpicker-show-input'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamstatut.imgcouleur'|trans({}, 'crmparamstatut') %}
+                                    {{ form_label(edit_form.imgcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10" style="padding: 15px 0">
+                                        {% set preview = asset('uploads/' ~ edit_form.vars.value.imgcouleur )|default('') %}
+                                        {{ form_widget(edit_form.imgcouleur, {'attr': {'class': 'form-control upload-file',  'data-preview': preview}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamstatut.logo'|trans({}, 'crmparamstatut') %}
+                                    {{ form_label(edit_form.logo, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10" style="padding: 15px 0">
+                                        {% set preview = asset('uploads/' ~ edit_form.vars.value.logo )|default('') %}
+                                        {{ form_widget(edit_form.logo, {'attr': {'class': 'form-control upload-file', 'data-preview': preview}}) }}
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'crmparamstatut.save_button'|trans({}, 'crmparamstatut') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                    </div>
+                </div>
+                <!-- /form horizontal -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    {% include 'foot.html.twig' %}
+{% endblock %}

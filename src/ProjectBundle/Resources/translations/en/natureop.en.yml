@@ -1,0 +1,30 @@
+# natureop.en.yml
+
+# general
+natureop.list: List of Nature Op
+natureop.creation: New
+natureop.confirm_title: Confirmation
+
+# form
+natureop.open: Open
+natureop.idWorkshop: Workshop
+natureop.label: Label
+natureop.couleur: Color
+natureop.obs: Observation
+natureop.actions: Action
+natureop.note: Note
+natureop.code: Code
+natureop.delai: Delay
+natureop.nomcouleur: Color name
+natureop.imgcouleur: Color image
+natureop.logo: Logo
+natureop.version: Version
+natureop.confirm_delete: Are you want to remove this ?
+
+# button
+natureop.add_button: New
+natureop.edit_button: Edit
+natureop.del_button: Remove
+natureop.save_button: Save
+natureop.confirm_button: Yes, I do
+natureop.close_button: No

@@ -1,0 +1,10 @@
+# param.fr.yml
+
+param.edition: Modification de paramètre
+param.new_title: Nouveau paramètre
+param.label: Libellé
+param.value: Valeur
+
+# button
+param.edit_button: Modifier
+param.submit_button: Enregistrer

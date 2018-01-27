@@ -1,0 +1,28 @@
+# genenral
+crmparamstatut.list: Liste de Statut
+crmparamstatut.confirm_title: Confirmation
+crmparamstatut.edition: Modification
+crmparamstatut.creation: Nouveau
+
+# form
+crmparamstatut.legend_info: Information
+crmparamstatut.open: Ouvert
+crmparamstatut.label: Label
+crmparamstatut.couleur: Couleur
+crmparamstatut.obs: Observation
+crmparamstatut.nomcouleur: Nom de la couleur
+crmparamstatut.imgcouleur: Image de la couleur
+crmparamstatut.logo: Logo
+crmparamstatut.version: Version
+crmparamstatut.note: Note
+crmparamstatut.idType: Type
+crmparamstatut.confirm_delete: Voulez vous vraiment supprimer ce statut ?
+crmparamstatut.actions: Action
+
+# button
+crmparamstatut.add_button: Nouveau
+crmparamstatut.save_button: Enregistrer
+crmparamstatut.edit_button: Modification
+crmparamstatut.del_button: Supprimer
+crmparamstatut.confirm_button: Oui, je confirme
+crmparamstatut.close_button: Non

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-12 col-xs-12">
+                    <!-- Marketing campaigns -->
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">{{ 'relationuserentite.list'|trans({}, 'relationuserentite') }}</h5><br/>
+                            <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('relationuserentite_new') }}'">
+                                <b><i class="icon-add"></i></b> {{ 'relationuserentite.add_button'|trans({}, 'relationuserentite') }}
+                            </button>
+                        </div>
+                    {% if relationUserEntites %}
+                        <table class="table datatable-basic">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>{{ 'relationuserentite.user'|trans({}, 'relationuserentite') }}</th>
+                                    <th>{{ 'relationuserentite.idEntiteJ'|trans({}, 'relationuserentite') }}</th>
+                                    <th>{{ 'relationuserentite.iDRelation_Fonctionnelle'|trans({}, 'relationuserentite') }}</th>
+                                    <th>{{ 'global.actions'|trans }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for relation in relationUserEntites %}
+                                <tr>
+                                    <td>{{ relation.id }}</td>
+                                    <td>{{ relation.user.firstname }} {{ relation.user.lastname }}</td>
+                                    <td>{{ relation.entite.raisonSociale }}</td>
+                                    <td>{% if relation.relations_fonction %}{{ relation.relations_fonction.label }}{% endif %}</td>
+                                    
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-menu9"></i>
+                                                </a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="{{ path('relationuserentite_edit', { 'id': relation.id }) }}"><i class="icon-pen"></i> {{ 'relationuserentite.edit_button'|trans({}, 'relationuserentite') }}</a></li>
+                                                    <li><a href="{{ path('relationuserentite_delete', { 'id': relation.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'relationuserentite.del_button'|trans({}, 'relationuserentite') }}</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'relationuserentite.no_data'|trans({}, 'relationuserentite') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+{% endblock %}

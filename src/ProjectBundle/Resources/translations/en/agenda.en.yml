@@ -1,0 +1,65 @@
+# agenda.fr.yml
+
+# general
+agenda.title: Agenda
+agenda.step: Agenda
+agenda.modification: Edition
+agenda.ajax_title: New Agenda
+
+# form
+agenda.legend_info: Information
+agenda.legend_date: Date
+agenda.legend_other: Other details
+agenda.idTypeAgenda: Agenda type
+agenda.idBU: BU
+agenda.reference: Reference
+agenda.idLieu: Lieu
+agenda.idEntityJ: Entity
+agenda.idChantier: Construction
+agenda.idZonage: Zoning
+agenda.idStrategie: Strategy
+agenda.idAgendaMaster: Master agenda
+agenda.idProjetEtape: Projet step
+agenda.idProjetJalon: Step milestone project
+agenda.idProjetOperation: Stage of the project operation
+agenda.idProjetIssue: Project outcome
+agenda.idCRMOperation: Step of the CRM operation
+agenda.idCRMEtape: CRM Stage
+agenda.idTypeuser: User type
+agenda.idWork: Workshop
+agenda.idTypeWork: Type of Workshop
+agenda.idPriorite: Priority
+agenda.idAlerte: Alert
+agenda.idEvenement: Event
+agenda.titre: Title
+agenda.operateurSaisie: Input operator
+agenda.dureeCloture: Closing Time
+agenda.dureePrepa: Preparation time
+agenda.dateDebPrevue: Planned start date
+agenda.dateFinPrevue: Expected end date
+agenda.dateDebReelle: Date of actual start
+agenda.dateFinReelle: Actual End Date
+agenda.heureFinPrevue: Expected End Time
+agenda.heureDebPrevue: Scheduled start time
+agenda.heureDebReelle: Real start time
+agenda.heureFinReelle: Real end time
+agenda.cloture: Closure
+agenda.dateCloture: Closing Date
+agenda.operateurCloture: Close operator
+agenda.quoi: What
+agenda.lieu: Place
+agenda.observations: Observation
+agenda.image1: Image 1
+agenda.image2: Image 2
+agenda.image3: Image 3
+agenda.image4: Image 4
+agenda.longitude: Longitude
+agenda.latitude: Latitude
+agenda.idWriter: Grabber
+agenda.valide: Valid
+agenda.version: Version
+
+# button
+agenda.add_button: New
+agenda.submit_button: Save
+agenda.close_button: Close

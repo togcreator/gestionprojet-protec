@@ -1,0 +1,34 @@
+# general
+IssuesRealisations.creation: New
+IssuesRealisations.edition: Edition
+IssuesRealisations.confirm_title: Confirmation
+
+# form
+IssuesRealisations.list: Issue production list
+IssuesRealisations.legend_project: Project
+IssuesRealisations.legend_info: Information
+IssuesRealisations.legend_date: Date
+IssuesRealisations.idProjetVersion: Project
+IssuesRealisations.idEtape: Stage
+IssuesRealisations.idIssue: Operation issue
+IssuesRealisations.observations: Observation
+IssuesRealisations.dateafectation: Affectation date
+IssuesRealisations.daterealisation: Production date
+IssuesRealisations.dureerealisation: Production duration
+IssuesRealisations.legend_other: Other detail
+IssuesRealisations.idUser4realisation: Realisator
+IssuesRealisations.idUser4affectation: Affectation
+IssuesRealisations.idStatut: Statut
+IssuesRealisations.idResultat: Result
+IssuesRealisations.actions: Action
+IssuesRealisations.confirm_delete: Do you want to remove this ?
+IssuesRealisations.no_data: No result
+
+# button
+IssuesRealisations.add_button: New
+IssuesRealisations.submit_button: Save
+IssuesRealisations.save_button: Save
+IssuesRealisations.edit_button: Edit
+IssuesRealisations.del_button: Remove
+IssuesRealisations.confirm_button: yes, i do
+IssuesRealisations.close_button: No

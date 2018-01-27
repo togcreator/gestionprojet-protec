@@ -1,0 +1,224 @@
+<!-- Second navbar -->
+<div class="navbar navbar-default" id="navbar-second">
+    <ul class="nav navbar-nav no-border visible-xs-block">
+        <li><a class="text-center collapsed" data-toggle="collapse" data-target="#navbar-second-toggle"><i class="icon-menu7"></i></a></li>
+    </ul>
+
+    <div class="navbar-collapse collapse" id="navbar-second-toggle">
+        <ul class="nav navbar-nav navbar-nav-material">
+            <li><a href="{{ path('homepage') }}"><i class="icon-display4 position-left"></i> {{ 'default'|trans }}</a></li>
+
+            <li class="dropdown mega-menu mega-menu-wide">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-puzzle4 position-left"></i> {{ 'menu.component.defaut'|trans }} <span class="caret"></span></a>
+
+                <div class="dropdown-menu dropdown-content">
+                    <div class="dropdown-content-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <span class="menu-heading underlined">Forms</span>
+                                <ul class="menu-list">
+                                    <li>
+                                        <a href="#"><i class="icon-pencil3"></i> Form components</a>
+                                        <ul>
+                                            <li><a href="#">Basic inputs</a></li>
+                                            <li>
+                                                <a href="#">Selects</a>
+                                                <ul>
+                                                    <li><a href="#">Select2 selects</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Validation</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <span class="menu-heading underlined">Appearance</span>
+                                <ul class="menu-list">
+                                    <li>
+                                        <a href="#"><i class="icon-grid"></i> Components</a>
+                                        <ul>
+                                            <li><a href="#">Modals</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <span class="menu-heading underlined">Extensions</span>
+                                <ul class="menu-list">
+                                    <li>
+                                        <a href="#"><i class="icon-puzzle4"></i> Extensions</a>
+                                        <ul>
+                                            <li><a href="#">Image cropper</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <span class="menu-heading underlined">Tables</span>
+                                <ul class="menu-list">
+                                    <li>
+                                        <a href="#"><i class="icon-grid7"></i> {{ 'menu.component.table.list.defaut'|trans }}</a>
+                                        <ul>
+                                            <li><a href="{{ path('client_liste_clients') }}">{{ 'menu.component.table.list.clients'|trans }}</a></li>
+                                            <li><a href="{{ path('client_liste_cp') }}">{{ 'menu.component.table.list.cp'|trans }}</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="dropdown mega-menu mega-menu-wide">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-stars position-left"></i> {{ 'menu.features'|trans }} <span class="caret"></span></a>
+
+                <div class="dropdown-menu dropdown-content">
+                    <div class="dropdown-content-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <span class="menu-heading underlined">Main content</span>
+                                <ul class="menu-list">
+                                    <li>
+                                        <a href="#"><i class="icon-stack2"></i> Page layouts</a>
+                                        <ul>
+                                            <li><a href="#">Fixed main navbar</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <span class="menu-heading underlined">Layout</span>
+                                <ul class="menu-list">
+                                    <li>
+                                        <a href="#"><i class="icon-indent-decrease2"></i> Sidebars</a>
+                                        <ul>
+                                            <li><a href="#">Default collapsible</a></li>
+                                            <li>
+                                                <a href="#">Dual sidebar</a>
+                                                <ul>
+                                                    <li><a href="#">Dual sidebar</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="#">Double sidebar</a>
+                                                <ul>
+                                                    <li><a href="#">Collapse main sidebar</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Separate categories</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <span class="menu-heading underlined">Data visualization</span>
+                                <ul class="menu-list">
+                                    <li>
+                                        <a href="#"><i class="icon-graph"></i> Echarts library</a>
+                                        <ul>
+                                            <li><a href="#">Lines and areas</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <span class="menu-heading underlined">Extras</span>
+                                <ul class="menu-list">
+                                    <li><a href="#"><i class="icon-spinner3 spinner position-left"></i> CSS3 animations</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-make-group position-left"></i> {{ 'menu.page_kits'|trans }} <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu width-250">
+                    <li class="dropdown-header"> {{ 'second_navbar.general_page'|trans }}</li>
+                    <li class="dropdown-submenu">
+                        <a href="#"><i class="icon-task"></i> Blog</a>
+                        <ul class="dropdown-menu width-200">
+                            <li class="dropdown-header highlight">Options</li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown-submenu">
+                        <a href="#"><i class="icon-images2"></i> {{ 'second_navbar.gallery'|trans }}</a>
+                        <ul class="dropdown-menu width-200">
+                            <li class="dropdown-header highlight">Options</li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown-submenu">
+                        <a href="#"><i class="icon-grid6"></i> {{ 'second_navbar.others'|trans }}</a>
+                        <ul class="dropdown-menu width-200">
+                            <li class="dropdown-header highlight">Options</li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown-header"> {{ 'second_navbar.apps'|trans }} </li>
+                    <li class="dropdown-submenu">
+                        <a href="#"><i class="icon-envelop2"></i> {{ 'second_navbar.inbox.title'|trans }}</a>
+                        <ul class="dropdown-menu width-200">
+                            <li class="dropdown-header highlight">Mail</li>
+                            <li><a href="{{ path('mail_list') }}">{{ 'second_navbar.inbox.list'|trans }}</a></li>
+                            <li><a href="{{ path('mail_envoi') }}">{{ 'second_navbar.inbox.write'|trans }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-strategy position-left"></i> {{ 'menu.starter_kit'|trans }} <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu width-200">
+                    <li class="dropdown-header">Basic layouts</li>
+                    <li class="dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-grid2"></i> Columns</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header highlight">Options</li>
+                            <li class="dropdown-submenu">
+                                <a href="#">Three columns</a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-header highlight">Sidebar position</li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Four columns</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-nav-material navbar-right">
+            <li>
+                <a href="#">
+                    <i class="icon-history position-left"></i>
+                    {{ 'menu.changelog'|trans }}
+                    <span class="label label-inline position-right bg-success-400">1.6</span>
+                </a>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-cog3"></i>
+                    <span class="visible-xs-inline-block position-right">Share</span>
+                    <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- /second navbar -->

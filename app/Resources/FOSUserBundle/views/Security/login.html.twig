@@ -1,0 +1,35 @@
+{% extends "@FOSUser/layout_form_fos_user.html.twig" %}
+
+{% block title %}{{ parent() }} Se connecter{% endblock %}
+
+{% block fos_user_content %}
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <div class="col-md-5" style="margin: 15% auto 0; float: none;">
+                    {{ include('@FOSUser/Security/login_content.html.twig') }}
+                </div>
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+{% endblock fos_user_content %}
+
+{% block stylesheet %}
+    <style type="text/css">
+    </style>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript" src="{{ asset('assets/js/plugins/forms/validation/validate.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/pages/login_validation.js') }}"></script>
+{% endblock %}

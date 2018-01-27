@@ -1,0 +1,269 @@
+# catalogue en
+default: Dashboard
+
+# titre
+title:
+    fiche:
+        mail: Read mail
+    list:
+        clients: Customers List
+        cp: CP List
+        mail: Mails list
+    envoi:
+        mail: Send mail
+
+message_empty: The message cannot be empty!
+verify_fields: Some required fields are empty!
+
+# admin
+admin:
+    welcome: Welcome, you're connected
+    outbox: Outbox
+    inbox: Inbox
+    home: Home
+    mailbox: Mail box
+    list: List
+    read: Read
+    write: Write
+    statistics: Statistics
+    invoices: Invoices
+    schedule: Schedule
+    draft: Draft
+    delete: Remove
+    cancel: Cancel
+    none: None
+    trash: Trash
+    confirm:
+        message: Are you sure to continue?
+        header: Confirmation
+        button: Remove
+    at: à
+    user:
+        profil: My profil
+        balance: My balance
+        messages: Messages
+        account_setting: Account settings
+        logout: Logout
+
+# mails list 
+list_mail:
+    my_inbox: My Inbox
+    outbox: Sent mail(s)
+    all: All messages
+    new: mails
+    trash: Trash
+    draft: Draft
+
+# mails table
+table_mail:
+    select: 
+        all: Select all
+        read: Select read
+        unread: Select unread
+        clear: Clear selection
+    compose: Compose
+    delete: Delete
+    read: Read
+    head:
+        check: Check
+        customer : Customer
+        message: Message
+        attach: Attach
+        priority: Priority
+        detail: Details
+    datatable:
+        filter: Filter
+        text_filter : Type to filter
+        show: Show
+        showing: Showing
+        to: to
+        of: of
+        entries: entries
+        nodata : No data available in table
+
+# mail read
+mail_read:
+    action:
+        reply: Reply
+        reply_all: Reply to all
+        forward: Forward
+        delete: Delete
+        print: Print
+        share: Share
+    to: To
+    AR_notif: receipt acknowledgment requested
+    attachment: Attachment
+    view: View
+    download: Download
+
+# mail write
+mail_write:
+    attach_files: Attach files
+    action:
+        send: Send mail
+        save: Save
+        cancel: Cancel
+        option:
+            send_mail_notif: Send mail copy
+            send_sms_notif: Send sms copy
+        print: Print
+        share: Share
+        copy_toggle: Copy
+        hidden_copy_toggle: Hidden copy
+        attach_files: Attach files
+        attachments: Attachments
+    form:
+        to_placeholder: Add recipient
+        to:
+            label: To
+        subject: 
+            label: Subject
+            placeholder: Add subject
+        copy:
+            label: Copy To
+        hidden_copy:
+            label: Hidden copy
+        priority:
+            label: Priority
+        box:
+            label: Box Type
+        AR_notif:
+            label: receipt confirmation
+        EMAIL_notif:
+            label: Email notification
+        SMS_notif:
+            label: SMS notification
+        signature:
+            none: None
+            add: Add signature
+
+second_navbar:
+    gallery: Gallery
+    others: Others
+    general_page: General page
+    apps: Apps
+    inbox:
+        title: Inbox
+        list: Mail list
+        write: Mail write
+
+# menus
+menu:
+    dashboard: Dashboard
+    component:
+        defaut: Components
+        table:
+            list:
+                defaut: Lists
+                clients: Customers
+                cp: CP
+    features: Features
+    page_kits: Page Kits
+    starter_kit: Starter Kit
+    changelog: Changelog
+
+# mail menus
+menu_mail:
+    action:
+        compose_mail: New mail
+    navigation:
+        mail_box: Mail box
+        all: All
+        inbox: Inbox
+        outbox: Sent mail(s)
+        trash: Trash
+    filter:
+        title: Filter
+        keywords: Keywords
+        search: Search...
+        date_interval: Date interval
+        box: Box
+    priority:
+        title: Priorities
+
+# 
+
+
+
+# Tableau
+table:
+    cp:
+        title: CP Lists
+    clients:
+        title: Customers List
+        column:
+            id: ID
+            id_group: ID Group
+            ville_cp: City - ZipCode
+            raisonSociale: Corporate name
+            adresse: Adress
+            phone: Phone / GSM
+            action: Actions
+            code: Code
+            city: City
+            insee: Insee
+            secteur_geo: Geographic area
+            voir: Read
+            edit: edit
+            remove: Delete
+
+# Messages
+message:
+    client:
+        suppression: The customer was successfully deleted
+        modification: Successfully updated
+
+# Fiche client
+client:
+    fiche:
+        add: Add
+        edit: Edit
+        customer: customer
+        id_group: Group ID
+        code: Code
+        raisonSociale: Corporate name
+        adresse: Adress 1
+        adresse2: Adress 2
+        cp: ZipCode
+        city: City
+        country: Country
+        phone: Phone
+        gsm: GSM
+        fax: Fax
+        email: Email
+        date_creation: Date creation
+        deadline: Deadline
+        website: Web site
+        version: Version
+        latitude: Latitude
+        longitude: Longitude
+        siret: Siret
+        intra_community_vat: Intra-community VAT
+        epa: EPA
+        staff_bracket: Staff bracket
+        code_cegid: Code Cegid
+        code_exact: Code Exact
+        code_sage: Code Sage
+        origin: Origin
+        origin_id: Origin ID
+        id_user_creation: User ID creation
+        id_type_payement: Payement type ID
+        id_type_facturation: ID chargin type
+        id_legal_form: ID legal form
+        submit: Submit
+        reset: Reset
+        info_customer: Customer information
+        contact_customer: Contact
+        more_info: Complementary information
+    breadcrumb:
+        home: Home
+        customer: Customers list
+        add_customer: Add customer
+        edit_customer: Edit customer
+        customer_card: Customer card
+    title:
+        add_customer: Add a customer
+        edit_client: Edit customer card
+    menu:
+        customer: Customer
+        contact: Contact

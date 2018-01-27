@@ -1,0 +1,55 @@
+
+{% if contacts %}
+    <table class="table datatable-basic">
+        <thead>
+            <tr>
+                <th>{{ 'client.contact.id'|trans }}</th>
+                <th>{{ 'client.contact.firstname'|trans }}</th>
+                <th>{{ 'client.contact.lastname'|trans }}</th>
+                <th>{{ 'client.contact.typeprofession'|trans }}</th>
+                <th class="text-center">{{ 'projectdocs.actions'|trans({}, 'projectdocs') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+                {% set pro = contact[0] %}
+            <tr>
+                <td>{{ contact.id }}</td>
+                <td>{{ contact.firstname }}</td>
+                <td>{{ contact.lastname }}</td>
+                <td>{% if pro %}{{ pro.label }}{% endif %}</td>
+                <td class="text-center">
+                    <ul class="icons-list">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-menu9"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="{{ path('user_edit', { 'id': contact.id}) }}"><i class="icon-pen"></i> {{ 'projectdocs.edit_button'|trans({}, 'projectdocs') }}</a></li>
+                                <li><a href="{{ path('user_delete', {'id': contact.id}) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'projectdocs.del_button'|trans({}, 'projectdocs') }}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <table class="table datatable-show-all">
+        <thead>
+            <tr>
+                <th>{{ 'client.contact.id'|trans }}</th>
+                <th>{{ 'client.contact.firstname'|trans }}</th>
+                <th>{{ 'client.contact.lastname'|trans }}</th>
+                <th>{{ 'client.contact.typeprofession'|trans }}</th>
+                <th class="text-center">{{ 'projectdocs.actions'|trans({}, 'projectdocs') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ 'global.no_data'|trans }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endif %}

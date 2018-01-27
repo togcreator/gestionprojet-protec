@@ -1,0 +1,36 @@
+# projectetape.fr.yml
+projectetape.title: Stage
+project.etape: Stage
+projectetape.creation: New
+projectetape.edition: Edition
+projectetape.list: List of Etape
+projectetape.confirm_title: Confirmation
+
+# form
+etape.step: Etape
+etape.legend_info: Information
+etape.legend_date: Date
+etape.legend_other: Other detail
+projectetape.object: Object
+projectetape.code: Code
+projectetape.reference: Reference
+projectetape.description: Description
+projectetape.datedebutprevue: Planned start date
+projectetape.datefinprevue: Planned end date
+projectetape.datedebutreelle: Actual start date
+projectetape.datefinreelle: Actual end date
+projectetape.idResultat: Result
+projectetape.flagAction: Action
+projectetape.flagIdee: Idea
+projectetape.flagInformation: Information
+projectetape.idStatut: Status
+projectetape.confirm_delete: Are you want to remove this ?
+projectetape.no_data: No data
+projectetape.new: Stage
+
+# button
+projectetape.new_button: New stage
+projectetape.add_button: New
+projectetape.edit_button: Edition
+projectetape.confirm_button: yes, I do
+projectetape.close_button: No

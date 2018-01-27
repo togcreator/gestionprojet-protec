@@ -1,0 +1,357 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <!-- === global === -->
+            <trans-unit id="default">
+                <source xml:lang="en">default</source>
+                <target xml:lang="en">Index</target>
+            </trans-unit>
+            <trans-unit id="global_welcome">
+                <source xml:lang="en">global.welcome</source>
+                <target xml:lang="en">Welcome, you're connected</target>
+            </trans-unit>
+             <trans-unit id="global_salutation">
+                <source xml:lang="en">global.salutation</source>
+                <target xml:lang="en">Good morning</target>
+            </trans-unit>
+            <trans-unit id="project_title">
+                <source xml:lang="en">project.title</source>
+                <target xml:lang="en">Project</target>
+            </trans-unit>
+            <trans-unit id="global_update_data">
+                <source xml:lang="en">global.update_data</source>
+                <target xml:lang="en">Update data</target>
+            </trans-unit>
+            <trans-unit id="global_detail_log">
+                <source xml:lang="en">global.detail_log</source>
+                <target xml:lang="en">Detail log</target>
+            </trans-unit>
+            <trans-unit id="global_clear_list">
+                <source xml:lang="en">global.clear_list</source>
+                <target xml:lang="en">Clear list</target>
+            </trans-unit>
+            <trans-unit id="global_view_report">
+                <source xml:lang="en">global.view_report</source>
+                <target xml:lang="en">View report</target>
+            </trans-unit>
+            <trans-unit id="global_today">
+                <source xml:lang="en">global.today</source>
+                <target xml:lang="en">Today</target>
+            </trans-unit>
+            <trans-unit id="global_home">
+                <source xml:lang="en">global.home</source>
+                <target xml:lang="en">Home</target>
+            </trans-unit>
+            <trans-unit id="global_statistics">
+                <source xml:lang="en">global.statistics</source>
+                <target xml:lang="en">Statistics</target>
+            </trans-unit>
+            <trans-unit id="global_invoices">
+                <source xml:lang="en">global.invoices</source>
+                <target xml:lang="en">Invoices</target>
+            </trans-unit>
+            <trans-unit id="global_schedule">
+                <source xml:lang="en">global.schedule</source>
+                <target xml:lang="en">Schedule</target>
+            </trans-unit>
+            <trans-unit id="global_settings">
+                <source xml:lang="en">global.settings</source>
+                <target xml:lang="en">Settings</target>
+            </trans-unit>
+            <trans-unit id="global_account_security">
+                <source xml:lang="en">global.account_security</source>
+                <target xml:lang="en">Account security</target>
+            </trans-unit>
+            <trans-unit id="global_analytics">
+                <source xml:lang="en">global.analytics</source>
+                <target xml:lang="en">Analytics</target>
+            </trans-unit>
+            <trans-unit id="global_accessibility">
+                <source xml:lang="en">global.accessibility</source>
+                <target xml:lang="en">Accessibility</target>
+            </trans-unit>
+            <trans-unit id="global_all_settings">
+                <source xml:lang="en">global.all_settings</source>
+                <target xml:lang="en">All settings</target>
+            </trans-unit>
+            <trans-unit id="global_support">
+                <source xml:lang="en">global.support</source>
+                <target xml:lang="en">Support</target>
+            </trans-unit>
+            <trans-unit id="global_actions">
+                <source xml:lang="en">global.actions</source>
+                <target xml:lang="en">Actions</target>
+            </trans-unit>
+            <trans-unit id="global_active">
+                <source xml:lang="en">global.active</source>
+                <target xml:lang="en">Active</target>
+            </trans-unit>
+            <trans-unit id="global_second">
+                <source xml:lang="en">global.second</source>
+                <target xml:lang="en">Second</target>
+            </trans-unit>
+            <trans-unit id="global_day">
+                <source xml:lang="en">global.day</source>
+                <target xml:lang="en">day</target>
+            </trans-unit>
+
+            <!-- === Front Menu === -->
+            <trans-unit id="main_menu">
+                <source xml:lang="en">main.menu</source>
+                <target xml:lang="en">Main menu</target>
+            </trans-unit>
+            <trans-unit id="menu_homepage">
+                <source xml:lang="en">menu.homepage</source>
+                <target xml:lang="fr">Dashboard</target>
+            </trans-unit>
+            <trans-unit id="menu_dashboard">
+                <source xml:lang="en">menu.dashboard</source>
+                <target xml:lang="fr">Dashboard</target>
+            </trans-unit>
+            <trans-unit id="menu_compaign">
+                <source xml:lang="en">menu.compaign</source>
+                <target xml:lang="fr">Compaign</target>
+            </trans-unit>
+            <trans-unit id="menu_member">
+                <source xml:lang="en">menu.member</source>
+                <target xml:lang="fr">Member</target>
+            </trans-unit>
+            <trans-unit id="compaign_new">
+                <source xml:lang="en">compaign.new</source>
+                <target xml:lang="fr">add new</target>
+            </trans-unit>
+            <trans-unit id="menu_project">
+                <source xml:lang="en">menu.project</source>
+                <target xml:lang="fr">Project</target>
+            </trans-unit>
+
+            <!-- === users === -->
+            <trans-unit id="users_login_title">
+                <source xml:lang="en">users.login_title</source>
+                <target xml:lang="en">Login</target>
+            </trans-unit>
+            <trans-unit id="users_edit_title">
+                <source xml:lang="en">users.edit_title</source>
+                <target xml:lang="en">Edit account</target>
+            </trans-unit>
+            <trans-unit id="users_login_form">
+                <source xml:lang="en">users.login_form</source>
+                <target xml:lang="en">Login form</target>
+            </trans-unit>
+            <trans-unit id="users_username">
+                <source xml:lang="en">users.username</source>
+                <target xml:lang="en">Username</target>
+            </trans-unit>
+            <trans-unit id="users_password">
+                <source xml:lang="en">users.password</source>
+                <target xml:lang="en">Password</target>
+            </trans-unit>
+            <trans-unit id="users_address">
+                <source xml:lang="en">users.address</source>
+                <target xml:lang="en">Address</target>
+            </trans-unit>
+            <trans-unit id="users_type">
+                <source xml:lang="en">users.type</source>
+                <target xml:lang="en">Type</target>
+            </trans-unit>
+            <trans-unit id="users_firstname">
+                <source xml:lang="en">users.firstname</source>
+                <target xml:lang="en">Firstname</target>
+            </trans-unit>
+            <trans-unit id="users_lastname">
+                <source xml:lang="en">users.lastname</source>
+                <target xml:lang="en">Lastname</target>
+            </trans-unit>
+            <trans-unit id="users_status">
+                <source xml:lang="en">users.status</source>
+                <target xml:lang="en">Status</target>
+            </trans-unit>
+            <trans-unit id="users_login_button">
+                <source xml:lang="en">users.login_button</source>
+                <target xml:lang="en">Login</target>
+            </trans-unit>
+            <trans-unit id="users_my_profile">
+                <source xml:lang="en">users.my_profile</source>
+                <target xml:lang="en">My Profile</target>
+            </trans-unit>
+            <trans-unit id="users_title">
+                <source xml:lang="en">users.title</source>
+                <target xml:lang="en">Users</target>
+            </trans-unit>
+            <trans-unit id="users_active">
+                <source xml:lang="en">users.active</source>
+                <target xml:lang="en">Active account</target>
+            </trans-unit>
+            <trans-unit id="users_unactive">
+                <source xml:lang="en">users.unactive</source>
+                <target xml:lang="en">Unactive account</target>
+            </trans-unit>
+            <trans-unit id="users_add_button">
+                <source xml:lang="en">users.add_button</source>
+                <target xml:lang="en">New user</target>
+            </trans-unit>
+            <trans-unit id="users_edit_button">
+                <source xml:lang="en">users.edit_button</source>
+                <target xml:lang="en">Edit</target>
+            </trans-unit>
+            <trans-unit id="users_edit_delete">
+                <source xml:lang="en">users.del_button</source>
+                <target xml:lang="en">Delete</target>
+            </trans-unit>
+            <trans-unit id="users_lang">
+                <source xml:lang="en">users.lang</source>
+                <target xml:lang="en">Language</target>
+            </trans-unit>
+            <trans-unit id="users_logout">
+                <source xml:lang="en">users.logout</source>
+                <target xml:lang="en">Logout</target>
+            </trans-unit>
+          
+            <!-- === compaign === -->
+            <trans-unit id="compaign_edit_button">
+                <source xml:lang="en">compaign.edit_button</source>
+                <target xml:lang="en">Edit</target>
+            </trans-unit>
+            <trans-unit id="compaign_users">
+                <source xml:lang="en">compaign.users</source>
+                <target xml:lang="en">Users</target>
+            </trans-unit>
+            <trans-unit id="compaign_changes">
+                <source xml:lang="en">compaign.changes</source>
+                <target xml:lang="en">Changes</target>
+            </trans-unit>
+            <trans-unit id="compaign_budget">
+                <source xml:lang="en">compaign.budget</source>
+                <target xml:lang="en">Budget</target>
+            </trans-unit>
+            <trans-unit id="compaign_status">
+                <source xml:lang="en">compaign.status</source>
+                <target xml:lang="en">Status</target>
+            </trans-unit>
+            <trans-unit id="compaign_date_init">
+                <source xml:lang="en">compaign.date_init</source>
+                <target xml:lang="en">Init date</target>
+            </trans-unit>
+            <trans-unit id="compaign_date_end">
+                <source xml:lang="en">compaign.date_end</source>
+                <target xml:lang="en">last date</target>
+            </trans-unit>
+            <trans-unit id="compaign_type">
+                <source xml:lang="en">compaign.type</source>
+                <target xml:lang="en">Compaign type</target>
+            </trans-unit>
+            <trans-unit id="compaign_no_data">
+                <source xml:lang="en">compaign.no_data</source>
+                <target xml:lang="en">No result data</target>
+            </trans-unit>
+            <trans-unit id="compaign_marketing_title">
+                <source xml:lang="en">compaign.marketing_title</source>
+                <target xml:lang="en">Marketing Compaign</target>
+            </trans-unit>
+            <trans-unit id="compaign_title">
+                <source xml:lang="en">compaign.title</source>
+                <target xml:lang="en">Compaign</target>
+            </trans-unit>
+            <trans-unit id="compaign_new_title">
+                <source xml:lang="en">compaign.new_title</source>
+                <target xml:lang="en">New compaign</target>
+            </trans-unit>
+
+        	<!-- === workshop === -->
+            <trans-unit id="workshop_list">
+                <source xml:lang="en">workshop.list</source>
+       			<target xml:lang="es">Workshop List</target>
+            </trans-unit>
+            <trans-unit id="workshop_creation">
+                <source xml:lang="en">workshop.creation</source>
+                <target xml:lang="es">New workshop</target>
+            </trans-unit>
+            <trans-unit id="workshop_id">
+                <source xml:lang="en">workshop.id</source>
+       			<target xml:lang="en">Id</target>
+            </trans-unit>
+            <trans-unit id="workshop_open">
+                <source xml:lang="en">workshop.open</source>
+       			<target xml:lang="en">Open</target>
+            </trans-unit>
+            <trans-unit id="workshop_wording">
+                <source xml:lang="en">workshop.wording</source>
+                <target xml:lang="en">Label</target>
+            </trans-unit>
+            <trans-unit id="workshop_version">
+                <source xml:lang="en">workshop.version</source>
+                <target xml:lang="en">Version</target>
+            </trans-unit>
+            <trans-unit id="workshop.actions">
+                <source xml:lang="en">workshop.actions</source>
+                <target xml:lang="en">Actions</target>
+            </trans-unit>
+            <trans-unit id="workshop_add_button">
+                <source xml:lang="en">workshop.add_button</source>
+       			<target xml:lang="en">New</target>
+            </trans-unit>
+            <trans-unit id="workshop_edit_button">
+                <source xml:lang="en">workshop.edit_button</source>
+       			<target xml:lang="fr">Edit</target>
+            </trans-unit>
+            <trans-unit id="workshop_del_button">
+                <source xml:lang="en">workshop.del_button</source>
+       			<target xml:lang="en">Delete</target>
+            </trans-unit>
+            <trans-unit id="workshop_all">
+                <source xml:lang="en">workshop.all</source>
+                <target xml:lang="en">All</target>
+            </trans-unit>
+            <trans-unit id="workshop_appoitment">
+                <source xml:lang="en">workshop.appoitment</source>
+                <target xml:lang="en">On appoitment</target>
+            </trans-unit>
+            <trans-unit id="workshop_submit_button ">
+                <source xml:lang="en">workshop.submit_button</source>
+                <target xml:lang="en">Save</target>
+            </trans-unit>
+
+            <!-- === back === -->
+            <trans-unit id="back_menu">
+                <source xml:lang="en">back.menu</source>
+       			<target xml:lang="en">Settings</target>
+            </trans-unit>
+            <trans-unit id="back_menu_dashboard">
+                <source xml:lang="en">back.menu_dashboard</source>
+                <target xml:lang="en">Dashboard</target>
+            </trans-unit>
+            <trans-unit id="back_menu_workshop">
+                <source xml:lang="en">back.menu_workshop</source>
+       			<target xml:lang="en">Workshop</target>
+            </trans-unit>
+
+            <!-- === lang === -->
+            <trans-unit id="lang_fr">
+                <source xml:lang="en">lang.fr</source>
+                <target xml:lang="en">Fr</target>
+            </trans-unit>
+            <trans-unit id="lang_en">
+                <source xml:lang="en">lang.en</source>
+                <target xml:lang="en">En</target>
+            </trans-unit>
+            <trans-unit id="lang_nl">
+                <source xml:lang="en">lang.nl</source>
+                <target xml:lang="en">Nl</target>
+            </trans-unit>
+            <trans-unit id="lang_de">
+                <source xml:lang="en">lang.de</source>
+                <target xml:lang="en">De</target>
+            </trans-unit>
+            <trans-unit id="lang_es">
+                <source xml:lang="en">lang.es</source>
+                <target xml:lang="en">Es</target>
+            </trans-unit>
+            <trans-unit id="lang_it">
+                <source xml:lang="en">lang.it</source>
+                <target xml:lang="en">It</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

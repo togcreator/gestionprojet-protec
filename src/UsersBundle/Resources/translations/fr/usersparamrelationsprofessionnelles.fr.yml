@@ -1,0 +1,23 @@
+# usersparamrelationsprofessionnelles.fr.yml
+
+# general
+usersparamrelationsprofessionnelles.list: Liste de relation professionnelles utilisateur
+usersparamrelationsprofessionnelles.creation: Nouveau
+usersparamrelationsprofessionnelles.edition: Modification
+usersparamrelationsprofessionnelles.confirm_title: Confirmation
+usersparamrelationsprofessionnelles.no_data: Aucun resultat
+
+# form
+usersparamrelationsprofessionnelles.IDNatureUser: Nature utilisateur
+usersparamrelationsprofessionnelles.label: Libellé
+usersparamrelationsprofessionnelles.version: Version
+usersparamrelationsprofessionnelles.confirm_delete: Êtes vous sûr vouloir supprimer ce nature ?
+
+# button
+usersparamrelationsprofessionnelles.add_button: Nouveau
+usersparamrelationsprofessionnelles.save_button: Enregistrer
+usersparamrelationsprofessionnelles.submit_button: Enregistrer
+usersparamrelationsprofessionnelles.edit_button: Modifier
+usersparamrelationsprofessionnelles.del_button: Supprimer
+usersparamrelationsprofessionnelles.confirm_button: Oui, je confirme
+usersparamrelationsprofessionnelles.close_button: Non

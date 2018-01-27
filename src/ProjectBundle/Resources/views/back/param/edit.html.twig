@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {% set dir = 'backoffice/' %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {% set dir = 'backoffice/' %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'param.edition'|trans({}, 'param') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('back_param_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        {{ form_start(edit_form) }}
+                            <fieldset class="content-group">
+                                {# <legend class="text-bold">Basic inputs</legend> #}
+
+                                <div class="form-group">
+                                    {% set name = 'param.label'|trans({}, 'param') %}
+                                    {{ form_label(edit_form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|trans|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.label, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <br/><br/>
+                                <div class="form-group">
+                                    {% set name = 'param.value'|trans({}, 'param') %}
+                                    {{ form_label(edit_form.value, name, {'label_attr': {'class': 'control-label col-lg-2'}})|trans|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.value, {'attr': {'class': 'form-control'}, 'row': 5}) }}
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary" value="Edit" name="submit">{{ 'param.edit_button'|trans({}, 'param') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

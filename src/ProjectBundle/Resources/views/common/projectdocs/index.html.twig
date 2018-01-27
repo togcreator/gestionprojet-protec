@@ -1,0 +1,251 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+                        
+                        <div class="col-lg-12 col-xs-12">
+                            <!-- project -->
+                            <div class="panel panel-white">
+                                <div class="panel-heading">
+                                    {% if project is defined and project %}
+                                        <h6 class="panel-title">{{ 'project.title'|trans({}, 'project') }}: {{ project.label|capitalize }}</h6>
+                                    {% else %}
+                                        <h6 class="panel-title">{{ 'project.title'|trans({}, 'project') }}</h6>
+                                    {% endif %}
+                                    <div class="heading-elements">
+                                        <button type="button" style="margin-right: 10px" class="btn btn-primary pull-right" href="{{ path('projectdocs_filters') }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-filter3 position-left"></i>Filter</button>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    {% if project is defined and project %}
+                                        <h6 class="panel-title">{{ 'project.idWorkshop'|trans({}, 'project') }}: {{ project.workshop.label|capitalize }}</h6>
+                                    {% else %}
+                                        <h6 class="panel-title">{{ 'project.idWorkshop'|trans({}, 'project') }}</h6>
+                                        <div class="heading-elements">
+                                            <div class="form-group">
+                                                <select name="projectdocs[tri]" class="form-control pull-right">
+                                                    <option value="0">{{ 'global.sort_by'|trans }}</option>
+                                                    <option value="idWorkshop"{% if sortBy == 'idWorkshop' %} selected{% endif %}>{{ 'project.idWorkshop'|trans({}, 'project') }}</option>
+                                                    <option value="idLeader"{% if sortBy == 'idLeader' %} selected{% endif %}>{{ 'project.idLeader'|trans({}, 'project') }}</option>
+                                                    <option value="idPriorite"{% if sortBy == 'idPriorite' %} selected{% endif %}>{{ 'projectetapesoperations.idPriorite'|trans({}, 'projectetapesoperations') }}</option>
+                                                    <option value="idRole"{% if sortBy == 'idRole' %} selected{% endif %}>{{ 'projectetapesoperations.idRole'|trans({}, 'projectetapesoperations') }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        {# si c'est avec tri #}
+                        <div class="col-xs-12">
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="panel">
+                                    <div class="panel-heading bg-blue-400" style="padding: 10px 15px">
+                                        <i class="icon-menu3 icon-1x position-left"></i>
+                                        <span class="heading-text text-size-large text-bold">{{ 'projectdocs.not_started'|trans({}, 'projectdocs') }}</span>
+                                    </div>
+                                    <div class="heading-elements">
+                                        {# {% if 'etape' in docs|keys %} #}
+                                        {# <span class="heading-text text-bold">{{ docs.etape|length + docs.operation|length }}</span> #}
+                                        {# {% endif %} #}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="panel-heading bg-pink-400" style="padding: 10px 15px">
+                                    <i class="icon-cog4 icon-1x position-left"></i>
+                                    <span class="heading-text text-size-large text-bold">{{ 'projectdocs.in_progress'|trans({}, 'projectdocs') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="panel-heading bg-teal-400" style="padding: 10px 15px">
+                                    <i class="icon-question7 icon-1x position-left"></i>
+                                    <span class="heading-text text-size-large text-bold">{{ 'projectdocs.review'|trans({}, 'projectdocs') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="panel-heading bg-orange-400" style="padding: 10px 15px">
+                                    <i class="icon-checkmark icon-1x position-left"></i>
+                                    <span class="heading-text text-size-large text-bold">{{ 'projectdocs.done'|trans({}, 'projectdocs') }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% set index = 0 %}
+                        {% for tri, project in projectdocs %}
+
+                            <div class="col-xs-12">
+                                <div class="col-xs-12"> 
+                                    <div class="panel-heading bg-grey-400" style="padding: 10px 15px; height: 40px">
+                                        <i class="icon-filter3 icon-1x position-left"></i>
+                                        <span class="heading-text text-size-large text-bold">{{ tri }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            {% if project is defined and project %}
+                                {% for key, etapes in project %}
+
+                                    
+                                        {# {% for etap in etape %}
+                                            {{ dump(etap) }}
+                                        {% endfor %}
+                                        
+                                        {{ dump(e) }}
+                                    {% endfor %}
+ #}
+                                    {# {% for etape in docs.etape %} #}
+                                        {# {% set file = doc_file(etape.docs) %} #}
+
+                                        {# {% if index <= 0 %}<div class="col-xs-12" style="padding-top: 15px">{% endif %} #}
+
+                                        {% for idStatut, etap in etapes %}
+                                            <div class="col-xs-12" style="padding-top: 15px">
+                                            {% for etape in etap %}
+                                                {% set file = doc_file(etape.docs) %}
+                                         <div class="col-sm-6 col-lg-3 {% if idStatut == 6%}pull-right{% endif %}">
+                                            <div class="thumbnail">
+                                                <div class="caption" style="padding: 10px 17px">
+                                                    <div class="content-group-sm media">
+                                                        <div class="media-body">
+                                                            <h6 class="text-semibold no-margin">
+                                                                 <a href="{{ path('projectdocs_attach', {'id': etape.id, 'type': 'etape', 'attach': 'operation'}) }}" class="text-default" data-target="#modal_remote" data-toggle="modal">{{ etape.object }}</a>
+                                                                 <a href="#" class="text-default">{{ etape.object }}</a>
+                                                            </h6>
+                                                        </div>
+                                                        <div class="media-right">
+                                                            {% set etapeUser = etape.user4affectation %}
+                                                            {% if etapeUser|length > 0 %}
+                                                                {% if etapeUser.0.user.image|length > 0 %}
+                                                                    <img src="{{ asset('uploads/image/') ~ etapeUser.0.user.image }}" class="img-circle img-sm" alt=""/>
+                                                                {% else %}
+                                                                    <img src="{{ asset('assets/images/placeholder.jpg') }}" class="img-circle img-sm" alt="" />
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {% if file.image|length > 0 %}
+                                                <div class="thumb">
+                                                    <img src="{{ asset('uploads/') ~ file.image }}" alt="">
+                                                </div>
+                                                {% else %}{% set img = 0 %}
+                                                {% endif %}
+
+                                                <div class="panel-footer panel-footer-transparent" {% if img is defined %}style="margin-top: 0"{% endif %} >
+                                                    <div class="heading-elements">
+
+                                                        <span class="heading-text pull-left">
+                                                            <ul class="list-inline list-inline-separate heading-text" style="margin-left: 0{% if img is defined %};margin-top: 0{% endif %}">
+                                                                <li style="padding-right: 15px">
+                                                                    {% if etape.user4affectation|length > 0  %}<a href="{{ path('projectdocs_attach', {'id': etape.id, 'type': 'etape', 'attach': 'image'}) }}" data-target="#modal_remote" data-toggle="modal">{% endif %}
+                                                                    <i class="icon-users position-left" style="margin-right: 3px"></i> ({{ etape.user4affectation|length }})
+                                                                    {% if etape.user4affectation|length > 0  %}</a>{% endif %}
+                                                                </li>
+
+                                                                <li style="padding-right: 15px"><i class="icon-calendar position-left" style="margin-right: 3px"></i> {{ etape.datefinprevue|date('M d') }}</li>
+
+                                                                <li style="padding-right: 15px">
+                                                                    {% if file.pop|length > 0  %}<a href="{{ path('projectdocs_attach', {'id': etape.id, 'type': 'etape', 'attach': 'attach'}) }}" data-target="#modal_remote" data-toggle="modal">{% endif %}
+                                                                    <i class="icon-attachment position-left" style="margin-right: 3px"></i> ({{ file.pop|length }})
+                                                                    {% if file.pop|length > 0  %}</a>{% endif %}
+                                                                </li>
+
+                                                                <li style="padding-right: 0px">
+                                                                    {% if etape.notes|length > 0 %}<a href="{{ path('projectnotes_index', {'idEtape': etape.id}) }}">{% endif %}
+                                                                    <i class="icon-file-text position-left" style="margin-right: 3px"></i> ({{ etape.notes|length }})
+                                                                    {% if etape.notes|length > 0 %}</a>{% endif %}
+                                                                </li>
+                                                            </ul>
+                                                        </span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                            {% endfor %}
+                                            </div>
+                                        {% endfor %}
+                 
+
+                                       
+                                    {# {% endfor %} #}
+
+                                    {# for operation before #}
+                                    {# {% for operation in docs.operation %}
+                                        {% set file = doc_file(operation.docs) %}
+                                        <div class="col-sm-6 col-lg-3">
+                                            <div class="thumbnail">
+                                                <div class="caption" style="padding: 10px 17px">
+                                                    <div class="content-group-sm media">
+                                                        <div class="media-body">
+                                                            <h6 class="text-semibold no-margin">
+                                                                <a href="#" class="text-default">{{ operation.object }}</a>
+                                                            </h6>
+                                                        </div>
+                                                        <div class="media-right">
+                                                            <img src="{{ asset('assets/images/placeholder.jpg') }}" class="img-circle img-sm" alt="" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {% if file.image|length > 0 %}
+                                                <div class="thumb">
+                                                    <img src="{{ asset('uploads/') ~ file.image }}" alt="">
+                                                </div>
+                                                {% else %}{% set img = 0 %}
+                                                {% endif %}
+
+                                                <div class="panel-footer panel-footer-transparent" {% if img is defined %}style="margin-top: 0"{% endif %} >
+                                                    <div class="heading-elements">
+
+                                                        <span class="heading-text pull-left">
+                                                            <ul class="list-inline list-inline-separate heading-text" style="margin-left: 0{% if img is defined %};margin-top: 0{% endif %}">
+                                                                {% if 'pop' in file|keys %}
+                                                                <li style="padding-right: 15px"><i class="icon-users position-left" style="margin-right: 3px"></i> ({{ file.pop|length }})</li>
+                                                                {% endif %}
+                                                                <li style="padding-right: 15px"><i class="icon-calendar position-left" style="margin-right: 3px"></i> {{ operation.datefinprevue|date('M d') }}</li>
+                                                                {% if 'pop' in file|keys %}
+                                                                <li style="padding-right: 15px"><i class="icon-attachment position-left" style="margin-right: 3px"></i> ({{ file.pop|length }})</li>
+                                                                {% endif %}
+                                                                {% if 'pop' in file|keys %}
+                                                                <li style="padding-right: 0px"><i class="icon-file-text position-left" style="margin-right: 3px"></i> ({{ file.pop|length }})</li>
+                                                                {% endif %}
+                                                            </ul>
+                                                        </span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}  #}
+
+                                    {# </div> #}
+                                
+                                {% endfor %}
+                            {% endif %}
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">(function($){ $(document.body).addClass('sidebar-xs')}(jQuery))</script>
+    <script type="text/javascript">
+        (function($){
+            $('[name*="[tri]"]').on('change', function(){
+                if( this.value == 0 ) return;
+                var _location = document.location.href.toString().replace(/\?\w+=\w+/g, '');
+                // return
+                redirectTo(_location + '?sortBy=' + this.value);
+            });
+        }(jQuery))
+    </script>
+{% endblock %}

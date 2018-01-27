@@ -1,0 +1,69 @@
+client_add_client:
+    path: /add_client
+    defaults: { _controller: ClientBundle:AddClient:add }
+
+client_delete_client:
+    path: /delete_client/{id}
+    defaults: { _controller: ClientBundle:DeleteClient:delete, id: 0 }
+    requirements:
+        id: \d+
+
+client_update_client:
+    path: /update_client/{id}
+    defaults: { _controller: ClientBundle:UpdateClient:update, id: 0 }
+    requirements:
+        id: \d+
+
+client_fiche_client:
+    path: /fiche_client/{id}
+    defaults: { _controller: ClientBundle:FicheClient:voirFiche, id: 1 }
+    requirements:
+        id: \d+
+
+client_paginate_cp:
+    path: /paginate_cp
+    defaults: { _controller: ClientBundle:ListeCP:paginate }
+
+client_liste_cp:
+    path: /liste_cp
+    defaults: { _controller: ClientBundle:ListeCP:listeCP }
+
+client_paginate_clients:
+    path: /paginate_clients
+    defaults: { _controller: ClientBundle:ListeClient:paginate }
+
+client_liste_clients:
+    path: /liste_clients
+    defaults: { _controller: ClientBundle:ListeClient:listeClient }
+
+clients_ajax_cycle:
+    path: /ajax_client
+    defaults: { _controller: ClientBundle:UpdateClient:ajaxClient }
+
+client_filter_index:
+    path: /filter_client
+    defaults: { _controller: ClientBundle:FilterClient:index }
+
+client_filter_search:
+    path: /filter_search_client
+    defaults: { _controller: ClientBundle:FilterClient:filter }
+
+pipeline_index:
+    path: /pipeline
+    defaults: { _controller: ClientBundle:Pipeline:index }
+
+pipeline_ajax_cycle:
+    path: /ajax_pipeline
+    defaults: { _controller: ClientBundle:Pipeline:pipelineAjax }
+
+pipeline_attach:
+    path: /attach_pipeline
+    defaults: { _controller: ClientBundle:Pipeline:pipelineAttach }
+
+srih_index:
+    path: /srih
+    defaults: { _controller: ClientBundle:Srih:index }
+
+# client_main:
+#     path:     /
+#     defaults: { _controller: ClientBundle:Default:index }

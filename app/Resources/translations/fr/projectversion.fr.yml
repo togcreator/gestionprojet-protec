@@ -1,0 +1,42 @@
+# projectversion.fr.yml
+
+# general
+
+projectversion.creation: Nouveau version de projet
+projectversions.list: Liste de version de projet
+projectversions.no_data: Aucun resultat
+
+
+# form
+projectversion.idProjet: Projet
+projectversion.reference: Réference
+projectversion.label: Libellé
+projectversion.description: Description
+projectversion.datedebut: Date Debut
+projectversion.datefin: Date Fin
+projectversions.actions: Action
+projectversions.confirm_title: Confirmation
+projectversions.confirm_delete: Êtes vous sûr de vouloir supprimer cette version ?
+projectversion.code: Code
+projectversion.idCreateur: Createur
+projectversion.idLeader: Leader
+projectversion.idArchitecte: Architecte
+projectversion.idSupportFonctionnel: Support Fonctionnel
+projectversion.idReferentDirection: Réferent de direction
+projectversion.idSupportTechnique: Support Technique
+projectversion.idReferentUtilisateurs: Réferent utilisateur
+projectversion.idSupportTests: Support de test
+projectversion.idSupportDeploiement: Support déploiement
+projectversion.joursHommesPrevus: Jour homme Prévu
+projectversion.joursHommesReels: Jour homme réel
+projectversion.statut: Statut
+
+
+# button
+projectversions.add_button: Nouveau
+projectversions.edit_button: Modifier
+projectversions.del_button: Supprimer
+projectversion.submit_button: Enregistrer
+projectversions.confirm_button: Oui, je confirme
+projectversions.close_button: Non
+

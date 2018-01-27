@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'crmparamcyclesdetailsactivity.edition'|trans({}, 'crmparamcyclesdetailsactivity') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('crmparamcyclesdetailsactivity_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        {{ form_start(edit_form) }}
+                            <fieldset class="content-group">
+                                <label class="text-bold">{{ 'crmparamcyclesdetailsactivity.legend_info'|trans({}, 'crmparamcyclesdetailsactivity') }}</label>
+                                <div class="form-group col-md-12">
+                                    {% set name = 'crmparamcyclesdetailsactivity.open'|trans({}, 'crmparamcyclesdetailsactivity') %}
+                                    {{ form_label(edit_form.ouvert, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.ouvert, {'attr': {'class': 'form-control switchery'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamcyclesdetailsactivity.idCycle'|trans({}, 'crmparamcyclesdetailsactivity') %}
+                                    {{ form_label(edit_form.idCycle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idCycle, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamcyclesdetailsactivity.idCycledetail'|trans({}, 'crmparamcyclesdetailsactivity') %}
+                                    {{ form_label(edit_form.idCycledetail, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idCycledetail, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamcyclesdetailsactivity.idActivite'|trans({}, 'crmparamcyclesdetailsactivity') %}
+                                    {{ form_label(edit_form.idActivite, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idActivite, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamcyclesdetailsactivity.label'|trans({}, 'crmparamcyclesdetailsactivity') %}
+                                    {{ form_label(edit_form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.label, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamcyclesdetailsactivity.idPriorite'|trans({}, 'crmparamcyclesdetailsactivity') %}
+                                    {{ form_label(edit_form.idPriorite, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idPriorite, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamcyclesdetailsactivity.delaiRealisation'|trans({}, 'crmparamcyclesdetailsactivity') %}
+                                    {{ form_label(edit_form.delaiRealisation, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.delaiRealisation, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamcyclesdetailsactivity.reminderNBJJ'|trans({}, 'crmparamcyclesdetailsactivity') %}
+                                    {{ form_label(edit_form.reminderNBJJ, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.reminderNBJJ, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamcyclesdetailsactivity.reminderHH'|trans({}, 'crmparamcyclesdetailsactivity') %}
+                                    {{ form_label(edit_form.reminderHH, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.reminderHH, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparamcyclesdetailsactivity.reminderMM'|trans({}, 'crmparamcyclesdetailsactivity') %}
+                                    {{ form_label(edit_form.reminderMM, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.reminderMM, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'crmparamcyclesdetailsactivity.save_button'|trans({}, 'crmparamcyclesdetailsactivity') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'foot.html.twig' %}
+{% endblock %}

@@ -1,0 +1,1021 @@
+<?php
+
+namespace Protec\MailBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Mail
+ *
+ * @ORM\Table(name="mail",indexes={@ORM\Index(name="ByUser", columns={"idUser", "idTbox", "date", "id"}),
+ *                                 @ORM\Index(name="ByTbox", columns={"idTbox", "date", "id"}),
+ *                                 @ORM\Index(name="ByProjet", columns={"idProjetTask", "date", "id"}),
+ *                                 @ORM\Index(name="ByClient", columns={"idEntiteJuridique", "date", "id"}),
+ *                                 @ORM\Index(name="ByChantier", columns={"idChantier", "date", "id"}),
+ *                                 @ORM\Index(name="ByStrategie", columns={"idStrategie", "date", "id"}),
+ *                                 @ORM\Index(name="ByCRM", columns={"idCRMTask", "idUser", "id"})})
+ * @ORM\Entity(repositoryClass="Protec\MailBundle\Repository\MailRepository")
+ */
+class Mail
+{
+    /**
+     * @var int
+     *
+     * @ORM\Id
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Protec\UserBundle\Entity\User", inversedBy="mails")
+     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $daty;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Protec\MailBundle\Entity\ParamMailTbox", inversedBy="mails")
+     * @ORM\JoinColumn(name="idTbox", referencedColumnName="id")
+     */
+    private $tbox;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Protec\MailBundle\Entity\ParamMailTsujet", inversedBy="mails")
+     * @ORM\JoinColumn(name="idTsujet", referencedColumnName="id")
+     */
+    private $tsujet;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="codemail", type="string", nullable=true, length=255, options={"default": ""})
+     */
+    private $codemail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="datePrevue", type="string", nullable=true, nullable=true, length=255, options={"default": ""})
+     */
+    private $datePrevue;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="heurePrevue", type="string", nullable=true, length=255, options={"default": ""})
+     */
+    private $heurePrevue;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Protec\MailBundle\Entity\ParamMailPriorites", inversedBy="mails")
+     * @ORM\JoinColumn(name="idPriorite", referencedColumnName="id")
+     */
+    private $priorite;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="flagAR", type="smallint", options={"default": 0})
+     */
+    private $flagAR;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="flagNotifEMAIL", type="smallint", options={"default": 0})
+     */
+    private $flagNotifEMAIL;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="flagNotifSMS", type="smallint", options={"default": 0})
+     */
+    private $flagNotifSMS;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idUserAgenda", type="integer", options={"default": 0})
+     */
+    private $idUserAgenda;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idProjetTask", type="integer", options={"default": 0})
+     */
+    private $idProjetTask;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idCRMTask", type="integer", options={"default": 0})
+     */
+    private $idCRMTask;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idStrategie", type="integer", options={"default": 0})
+     */
+    private $idStrategie;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idChantier", type="integer", options={"default": 0})
+     */
+    private $idChantier;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idAffaire", type="integer", options={"default": 0})
+     */
+    private $idAffaire;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Protec\ClientBundle\Entity\Client", inversedBy="mails")
+     * @ORM\JoinColumn(name="idEntiteJuridique", referencedColumnName="id")
+     */
+    private $entiteJuridique;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date4trash", type="datetime", nullable=true)
+     */
+    private $date4trash;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datesaisie", type="datetime", nullable=true)
+     */
+    private $datesaisie;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="langue", type="smallint", options={"default": 0})
+     */
+    private $langue;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="version", type="smallint", options={"default": 0})
+     */
+    private $version;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sujet", type="string", length=255, options={"default": ""})
+     */
+    private $sujet;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="string", length=255, options={"default": ""})
+     */
+    private $message;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="keywords", type="string", length=255, options={"default": ""})
+     */
+    private $keywords;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Protec\MailBundle\Entity\MailPeople", cascade={"remove"}, mappedBy="mail")
+     */
+    private $mailPeople;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Protec\MailBundle\Entity\MailPJ", cascade={"remove"}, mappedBy="mail")
+     */
+    private $mailPJ;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Protec\MailBundle\Entity\MailSpam", mappedBy="mail")
+     */
+    private $spam;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Protec\MailBundle\Entity\MailMessage", mappedBy="mail")
+     */
+    private $mailMessage;
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set daty
+     *
+     * @param \DateTime $daty
+     *
+     * @return Mail
+     */
+    public function setDaty($daty)
+    {
+        $this->daty = $daty;
+
+        return $this;
+    }
+
+    /**
+     * Get daty
+     *
+     * @return \DateTime
+     */
+    public function getDaty()
+    {
+        return $this->daty;
+    }
+
+    /**
+     * Set codemail
+     *
+     * @param string $codemail
+     *
+     * @return Mail
+     */
+    public function setCodemail($codemail)
+    {
+        $this->codemail = $codemail;
+
+        return $this;
+    }
+
+    /**
+     * Get codemail
+     *
+     * @return string
+     */
+    public function getCodemail()
+    {
+        return $this->codemail;
+    }
+
+    /**
+     * Set datePrevue
+     *
+     * @param string $datePrevue
+     *
+     * @return Mail
+     */
+    public function setDatePrevue($datePrevue)
+    {
+        $this->datePrevue = $datePrevue;
+
+        return $this;
+    }
+
+    /**
+     * Get datePrevue
+     *
+     * @return string
+     */
+    public function getDatePrevue()
+    {
+        return $this->datePrevue;
+    }
+
+    /**
+     * Set heurePrevue
+     *
+     * @param string $heurePrevue
+     *
+     * @return Mail
+     */
+    public function setHeurePrevue($heurePrevue)
+    {
+        $this->heurePrevue = $heurePrevue;
+
+        return $this;
+    }
+
+    /**
+     * Get heurePrevue
+     *
+     * @return string
+     */
+    public function getHeurePrevue()
+    {
+        return $this->heurePrevue;
+    }
+
+    /**
+     * Set flagAR
+     *
+     * @param integer $flagAR
+     *
+     * @return Mail
+     */
+    public function setFlagAR($flagAR)
+    {
+        $this->flagAR = $flagAR;
+
+        return $this;
+    }
+
+    /**
+     * Get flagAR
+     *
+     * @return int
+     */
+    public function getFlagAR()
+    {
+        return $this->flagAR;
+    }
+
+    /**
+     * Set flagNotifEMAIL
+     *
+     * @param integer $flagNotifEMAIL
+     *
+     * @return Mail
+     */
+    public function setFlagNotifEMAIL($flagNotifEMAIL)
+    {
+        $this->flagNotifEMAIL = $flagNotifEMAIL;
+
+        return $this;
+    }
+
+    /**
+     * Get flagNotifEMAIL
+     *
+     * @return int
+     */
+    public function getFlagNotifEMAIL()
+    {
+        return $this->flagNotifEMAIL;
+    }
+
+    /**
+     * Set flagNotifSMS
+     *
+     * @param integer $flagNotifSMS
+     *
+     * @return Mail
+     */
+    public function setFlagNotifSMS($flagNotifSMS)
+    {
+        $this->flagNotifSMS = $flagNotifSMS;
+
+        return $this;
+    }
+
+    /**
+     * Get flagNotifSMS
+     *
+     * @return int
+     */
+    public function getFlagNotifSMS()
+    {
+        return $this->flagNotifSMS;
+    }
+
+    /**
+     * Set idUserAgenda
+     *
+     * @param integer $idUserAgenda
+     *
+     * @return Mail
+     */
+    public function setIdUserAgenda($idUserAgenda)
+    {
+        $this->idUserAgenda = $idUserAgenda;
+
+        return $this;
+    }
+
+    /**
+     * Get idUserAgenda
+     *
+     * @return int
+     */
+    public function getIdUserAgenda()
+    {
+        return $this->idUserAgenda;
+    }
+
+    /**
+     * Set idProjetTask
+     *
+     * @param integer $idProjetTask
+     *
+     * @return Mail
+     */
+    public function setIdProjetTask($idProjetTask)
+    {
+        $this->idProjetTask = $idProjetTask;
+
+        return $this;
+    }
+
+    /**
+     * Get idProjetTask
+     *
+     * @return int
+     */
+    public function getIdProjetTask()
+    {
+        return $this->idProjetTask;
+    }
+
+    /**
+     * Set idCRMTask
+     *
+     * @param integer $idCRMTask
+     *
+     * @return Mail
+     */
+    public function setIdCRMTask($idCRMTask)
+    {
+        $this->idCRMTask = $idCRMTask;
+
+        return $this;
+    }
+
+    /**
+     * Get idCRMTask
+     *
+     * @return int
+     */
+    public function getIdCRMTask()
+    {
+        return $this->idCRMTask;
+    }
+
+    /**
+     * Set idStrategie
+     *
+     * @param integer $idStrategie
+     *
+     * @return Mail
+     */
+    public function setIdStrategie($idStrategie)
+    {
+        $this->idStrategie = $idStrategie;
+
+        return $this;
+    }
+
+    /**
+     * Get idStrategie
+     *
+     * @return int
+     */
+    public function getIdStrategie()
+    {
+        return $this->idStrategie;
+    }
+
+    /**
+     * Set idChantier
+     *
+     * @param integer $idChantier
+     *
+     * @return Mail
+     */
+    public function setIdChantier($idChantier)
+    {
+        $this->idChantier = $idChantier;
+
+        return $this;
+    }
+
+    /**
+     * Get idChantier
+     *
+     * @return int
+     */
+    public function getIdChantier()
+    {
+        return $this->idChantier;
+    }
+
+    /**
+     * Set idAffaire
+     *
+     * @param integer $idAffaire
+     *
+     * @return Mail
+     */
+    public function setIdAffaire($idAffaire)
+    {
+        $this->idAffaire = $idAffaire;
+
+        return $this;
+    }
+
+    /**
+     * Get idAffaire
+     *
+     * @return int
+     */
+    public function getIdAffaire()
+    {
+        return $this->idAffaire;
+    }
+
+    /**
+     * Set date4trash
+     *
+     * @param \DateTime $date4trash
+     *
+     * @return Mail
+     */
+    public function setDate4trash($date4trash)
+    {
+        $this->date4trash = $date4trash;
+
+        return $this;
+    }
+
+    /**
+     * Get date4trash
+     *
+     * @return \DateTime
+     */
+    public function getDate4trash()
+    {
+        return $this->date4trash;
+    }
+
+    /**
+     * Set datesaisie
+     *
+     * @param \DateTime $datesaisie
+     *
+     * @return Mail
+     */
+    public function setDatesaisie($datesaisie)
+    {
+        $this->datesaisie = $datesaisie;
+
+        return $this;
+    }
+
+    /**
+     * Get datesaisie
+     *
+     * @return \DateTime
+     */
+    public function getDatesaisie()
+    {
+        return $this->datesaisie;
+    }
+
+    /**
+     * Set langue
+     *
+     * @param integer $langue
+     *
+     * @return Mail
+     */
+    public function setLangue($langue)
+    {
+        $this->langue = $langue;
+
+        return $this;
+    }
+
+    /**
+     * Get langue
+     *
+     * @return int
+     */
+    public function getLangue()
+    {
+        return $this->langue;
+    }
+
+    /**
+     * Set version
+     *
+     * @param integer $version
+     *
+     * @return Mail
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * Get version
+     *
+     * @return int
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * Set sujet
+     *
+     * @param string $sujet
+     *
+     * @return Mail
+     */
+    public function setSujet($sujet)
+    {
+        $this->sujet = $sujet;
+
+        return $this;
+    }
+
+    /**
+     * Get sujet
+     *
+     * @return string
+     */
+    public function getSujet()
+    {
+        return $this->sujet;
+    }
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     *
+     * @return Mail
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Set keywords
+     *
+     * @param string $keywords
+     *
+     * @return Mail
+     */
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $keywords;
+
+        return $this;
+    }
+
+    /**
+     * Get keywords
+     *
+     * @return string
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->mailPeople = new ArrayCollection();
+        $this->mailPJ = new ArrayCollection();
+    }
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return Mail
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Protec\UserBundle\Entity\User $user
+     *
+     * @return Mail
+     */
+    public function setUser(\Protec\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Protec\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set tbox
+     *
+     * @param \Protec\MailBundle\Entity\ParamMailTbox $tbox
+     *
+     * @return Mail
+     */
+    public function setTbox(\Protec\MailBundle\Entity\ParamMailTbox $tbox)
+    {
+        $this->tbox = $tbox;
+
+        return $this;
+    }
+
+    /**
+     * Get tbox
+     *
+     * @return \Protec\MailBundle\Entity\ParamMailTbox
+     */
+    public function getTbox()
+    {
+        return $this->tbox;
+    }
+
+    /**
+     * Set tsujet
+     *
+     * @param \Protec\MailBundle\Entity\ParamMailTsujet $tsujet
+     *
+     * @return Mail
+     */
+    public function setTsujet(\Protec\MailBundle\Entity\ParamMailTsujet $tsujet)
+    {
+        $this->tsujet = $tsujet;
+
+        return $this;
+    }
+
+    /**
+     * Get tsujet
+     *
+     * @return \Protec\MailBundle\Entity\ParamMailTsujet
+     */
+    public function getTsujet()
+    {
+        return $this->tsujet;
+    }
+
+    /**
+     * Set priorite
+     *
+     * @param \Protec\MailBundle\Entity\ParamMailPriorites $priorite
+     *
+     * @return Mail
+     */
+    public function setPriorite(\Protec\MailBundle\Entity\ParamMailPriorites $priorite)
+    {
+        $this->priorite = $priorite;
+
+        return $this;
+    }
+
+    /**
+     * Get priorite
+     *
+     * @return \Protec\MailBundle\Entity\ParamMailPriorites
+     */
+    public function getPriorite()
+    {
+        return $this->priorite;
+    }
+
+    /**
+     * Set entiteJuridique
+     *
+     * @param \Protec\ClientBundle\Entity\Client $entiteJuridique
+     *
+     * @return Mail
+     */
+    public function setEntiteJuridique(\Protec\ClientBundle\Entity\Client $entiteJuridique)
+    {
+        $this->entiteJuridique = $entiteJuridique;
+
+        return $this;
+    }
+
+    /**
+     * Get entiteJuridique
+     *
+     * @return \Protec\ClientBundle\Entity\Client
+     */
+    public function getEntiteJuridique()
+    {
+        return $this->entiteJuridique;
+    }
+
+    /**
+     * Add $mailPeople
+     *
+     * @param \Protec\MailBundle\Entity\MailPeople $mailPeople
+     *
+     * @return Mail
+     */
+    public function addMailPeople(\Protec\MailBundle\Entity\MailPeople $mailPeople)
+    {
+        $this->mailPeople[] = $mailPeople;
+
+        return $this;
+    }
+
+    /**
+     * Remove mailPeople
+     *
+     * @param \Protec\MailBundle\Entity\MailPeople $mailPeople
+     */
+    public function removeMailPeople(\Protec\MailBundle\Entity\MailPeople $mailPeople)
+    {
+        $this->mailPeople->removeElement($mailPeople);
+    }
+
+    /**
+     * Get mailPeople
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMailPeople()
+    {
+        return $this->mailPeople;
+    }
+
+    /**
+     * Add mailPJ
+     *
+     * @param \Protec\MailBundle\Entity\MailPJ $mailPJ
+     *
+     * @return Mail
+     */
+    public function addMailPJ(\Protec\MailBundle\Entity\MailPJ $mailPJ)
+    {
+        $this->mailPJ[] = $mailPJ;
+
+        return $this;
+    }
+
+    /**
+     * Remove mailPJ
+     *
+     * @param \Protec\MailBundle\Entity\MailPJ $mailPJ
+     */
+    public function removeMailPJ(\Protec\MailBundle\Entity\MailPJ $mailPJ)
+    {
+        $this->mailPJ->removeElement($mailPJ);
+    }
+
+    /**
+     * Get mailPJ
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMailPJ()
+    {
+        return $this->mailPJ;
+    }
+
+    /**
+     * Set trash
+     *
+     * @param \Protec\MailBundle\Entity\MailTrash $trash
+     *
+     * @return Mail
+    */
+    public function setTrash(\Protec\MailBundle\Entity\MailTrash $trash = null)
+    {
+        $this->trash = $trash;
+
+        return $this;
+    }
+
+    /**
+     * Get trash
+     *
+     * @return \Protec\MailBundle\Entity\MailTrash
+     */
+    public function getTrash()
+    {
+        return $this->trash;
+    }
+
+    /**
+     * Set spam
+     *
+     * @param \Protec\MailBundle\Entity\MailSpam $spam
+     *
+     * @return Mail
+     */
+    public function setSpam(\Protec\MailBundle\Entity\MailSpam $spam = null)
+    {
+        $this->spam = $spam;
+
+        return $this;
+    }
+
+    /**
+     * Get spam
+     *
+     * @return \Protec\MailBundle\Entity\MailSpam
+     */
+    public function getSpam()
+    {
+        return $this->spam;
+    }
+
+    /**
+     * Add mailPerson
+     *
+     * @param \Protec\MailBundle\Entity\MailPeople $mailPerson
+     *
+     * @return Mail
+     */
+    public function addMailPerson(\Protec\MailBundle\Entity\MailPeople $mailPerson)
+    {
+        $this->mailPeople[] = $mailPerson;
+
+        return $this;
+    }
+
+    /**
+     * Remove mailPerson
+     *
+     * @param \Protec\MailBundle\Entity\MailPeople $mailPerson
+     */
+    public function removeMailPerson(\Protec\MailBundle\Entity\MailPeople $mailPerson)
+    {
+        $this->mailPeople->removeElement($mailPerson);
+    }
+
+    /**
+     * Set mailMessage
+     *
+     * @param \Protec\MailBundle\Entity\MailMessage $mailMessage
+     *
+     * @return Mail
+     */
+    public function setMailMessage(\Protec\MailBundle\Entity\MailMessage $mailMessage = null)
+    {
+        $this->mailMessage = $mailMessage;
+
+        return $this;
+    }
+
+    /**
+     * Get mailMessage
+     *
+     * @return \Protec\MailBundle\Entity\MailMessage
+     */
+    public function getMailMessage()
+    {
+        return $this->mailMessage;
+    }
+}

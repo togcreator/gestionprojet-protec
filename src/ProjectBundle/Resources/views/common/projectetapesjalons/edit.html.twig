@@ -1,0 +1,197 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{asset('assets/js/plugins/forms/styling/switchery.min.js')}}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+        <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                {{ form_start(edit_form) }}
+
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'projectetapejalons.edition'|trans({}, 'projectetapejalons') }}</h5>
+                        <div class="heading-elements">
+                            <button type="button" class="btn btn-primary pull-left" style="margin-right: 10px" onclick="document.location = '{{  path('projectetapesjalons_new') }}'"> <b><i class="icon-add"></i></b> {{ 'projectnotes.add_button'|trans({}, 'projectnotes') }}</button>
+                            <button type="button" class="btn btn-primary btn-danger pull-left" href="{{ path('projectetapesjalons_delete', { 'id': edit_form.vars.value.id }) }}" style="margin-right: 10px" data-target="#modal_remote" data-toggle="modal"> <b><i class="icon-folder-remove"></i></b> {{ 'projectnotes.del_button'|trans({}, 'projectnotes') }}</button>
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('projectetapesjalons_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        
+                            <fieldset class="content-group">
+                                <legend class="text-bold">{{ 'etape.legend_project'|trans({}, 'projectetapejalons') }}</legend>
+                                <div class="form-group">
+                                    {% set name = 'projectetapejalons.idProjectversion'|trans({}, 'projectetapejalons') %}
+                                    {{ form_label(edit_form.idProjectVersion, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        <span class="input-group-addon">
+                                        {{ form_widget(edit_form.idProjectVersion, {'attr': {'class': 'form-control'}}) }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'projectetapejalons.idEtape'|trans({}, 'projectetapejalons') %}
+                                    {{ form_label(edit_form.idEtape, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        <span class="input-group-addon">
+                                        {{ form_widget(edit_form.idEtape, {'attr': {'class': 'form-control'}}) }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'projectetapejalons.idTypeJalon'|trans({}, 'projectetapejalons') %}
+                                    {{ form_label(edit_form.idTypeJalon, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        <span class="input-group-addon">
+                                        {{ form_widget(edit_form.idTypeJalon, {'attr': {'class': 'form-control'}}) }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <legend class="text-bold">{{ 'etape.legend_info'|trans({}, 'projectetapejalons') }}</legend>
+                                    <div class="form-group">
+                                        {% set name = 'projectetapejalons.object'|trans({}, 'projectetapejalons') %}
+                                        {{ form_label(edit_form.object, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            <span class="input-group-addon">
+                                            {{ form_widget(edit_form.object, {'attr': {'class': 'form-control'}}) }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        {% set name = 'projectetapejalons.description'|trans({}, 'projectetapejalons') %}
+                                        {{ form_label(edit_form.description, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            <span class="input-group-addon">
+                                            {{ form_widget(edit_form.description, {'attr': {'class': 'form-control'}}) }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        {% set name = 'projectetapejalons.dateprevue'|trans({}, 'projectetapejalons') %}
+                                        {{ form_label(edit_form.dateprevue, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            <span class="input-group-addon">
+                                            {{ form_widget(edit_form.dateprevue, {'attr': {'class': 'form-control datepicker'}}) }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        {% set name = 'projectetapejalons.datereelle'|trans({}, 'projectetapejalons') %}
+                                        {{ form_label(edit_form.datereelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            <span class="input-group-addon">
+                                            {{ form_widget(edit_form.datereelle, {'attr': {'class': 'form-control datepicker'}}) }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        {% set name = 'projectetapejalons.journeesHommesprevues'|trans({}, 'projectetapejalons') %}
+                                        {{ form_label(edit_form.journeesHommesprevues, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            <span class="input-group-addon">
+                                            {{ form_widget(edit_form.journeesHommesprevues, {'attr': {'class': 'form-control'}}) }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        {% set name = 'projectetapejalons.journeesHommesreelles'|trans({}, 'projectetapejalons') %}
+                                        {{ form_label(edit_form.journeesHommesreelles, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            <span class="input-group-addon">
+                                            {{ form_widget(edit_form.journeesHommesreelles, {'attr': {'class': 'form-control'}}) }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        {% set name = 'projectetapejalons.idResultat'|trans({}, 'projectetapejalons') %}
+                                        {{ form_label(edit_form.idResultat, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            <span class="input-group-addon">
+                                            {{ form_widget(edit_form.idResultat, {'attr': {'class': 'form-control'}}) }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                            </fieldset>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'projectetapejalons.submit_button'|trans({}, 'projectetapejalons') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                        <script type="text/javascript">
+                            (function($){
+                                // notification
+                                var notify = {
+                                    success: function(message) {
+                                        $.jGrowl(message, {
+                                            header: '{{ 'global.notify_header_success'|trans }}',
+                                            theme: 'bg-success'
+                                        })
+                                    },
+                                    error: function(message) {
+                                        $.jGrowl(message, {
+                                            header: '{{ 'global.notify_header_error'|trans }}',
+                                            theme: 'bg-danger'
+                                        });
+                                    }
+                                };
+
+                                // pour idProjetversion
+                                $('[name*="[idProjectVersion]"]').on('change', function(){
+                                    var self = this;
+                                    if(parseInt(this.value))
+                                        $.ajax({
+                                            url: '{{ path('projectetapesjalons_ajax_get') }}',
+                                            data: {idProjectVersion: parseInt(this.value), request: 'etapes' },
+                                            success: function(response) {
+                                                // remove before
+                                                $('[name*="[idEtape]"]').find('option:not([value="0"])').remove();
+                                                if( !response.result ) 
+                                                    return notify.error('{{ 'global.notify_error'|trans }}');
+                                                // success
+                                                notify.success('{{ 'global.notify_success'|trans }}');
+                                                for(var i in response.data)
+                                                    $('[name*="[idEtape]"]').append('<option value="'+i+'">'+response.data[i]+'</option>').focus();
+                                            }
+                                        });
+                                });
+                            }(jQuery))
+                        </script>
+                    </div>
+                </div>
+                <!-- /form horizontal -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+{% endblock %}

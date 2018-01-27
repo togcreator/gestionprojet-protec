@@ -1,0 +1,212 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-lg-12 col-xs-12">
+                            <div class="panel panel-flat">
+                                <div class="panel-heading">
+                                    <h2>{{ 'crmdossier.edition'|trans({}, 'crmdossier') }}</h2>
+                                </div>
+                                <div class="panel-body">
+                                {{ form_start(edit_form, {'attr': {'class':'form-horizontal'}}) }}
+                                        <fieldset class="content-group">
+                                            <legend class="text-bold">{{ 'crmdossier.crm'|trans({}, 'crmdossier') }}</legend>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    {% set preview = asset('uploads/' ~ edit_form.vars.value.icone )|default('') %}
+                                                    {% set name = 'crmdossier.icone'|trans({}, 'crmdossier') %}
+                                                    {% if preview %}{% set filetype = 'image' %}{% endif %}
+                                                    {{ form_label(edit_form.icone, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.icone, {'attr': {'class': 'form-control upload-file', 'data-preview': preview, 'filetype': filetype|default('')}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmdossier.idEntiteJ'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.idEntiteJ, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idEntiteJ, {'attr': {'class': 'form-control select-search'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmdossier.idCycle'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.idCycle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idCycle, {'attr': {'class': 'form-control select-search'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <legend class="text-bold">{{ 'crmdossier.info'|trans({}, 'crmdossier') }}</legend>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    {% set name = 'crmdossier.label'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.label, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set lg = ''|lang(app.request.locale) %}
+                                                    {% set default = '' %}
+                                                    {% if lg == 'Fr' %} {% set default = loadContent(crmdossier.descriptionPerimetre0) %}
+                                                    {% elseif lg == 'En' %} {% set default = loadContent(crmdossier.descriptionPerimetre1, crmdossier.descriptionPerimetre0) %}
+                                                    {% elseif lg == 'Nl' %} {% set default = loadContent(crmdossier.descriptionPerimetre2, crmdossier.descriptionPerimetre0) %}
+                                                    {% elseif lg == 'De' %} {% set default = loadContent(crmdossier.descriptionPerimetre3, crmdossier.descriptionPerimetre0) %}
+                                                    {% elseif lg == 'Es' %} {% set default = loadContent(crmdossier.descriptionPerimetre4, crmdossier.descriptionPerimetre0) %}
+                                                    {% elseif lg == 'It' %} {% set default = loadContent(crmdossier.descriptionPerimetre5, crmdossier.descriptionPerimetre0) %}
+                                                    {% endif %}
+                                                    {% set name = 'crmdossier.descriptionPerimetres'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.descriptionPerimetres, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.descriptionPerimetres, {'attr': {'class': 'form-control'}, 'value': default}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <legend class="text-bold">{{ 'crmdossier.date'|trans({}, 'crmdossier') }}</legend>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmdossier.datedebutPrevue'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.datedebutPrevue, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.datedebutPrevue, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmdossier.datefinPrevue'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.datefinPrevue, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.datefinPrevue, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmdossier.datedebutReelle'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.datedebutReelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.datedebutReelle, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmdossier.datefinReelle'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.datefinReelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.datefinReelle, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <legend class="text-bold">{{ 'crmdossier.other'|trans({}, 'crmdossier') }}</legend>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmdossier.idWatcher'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.idWatcher, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idWatcher, {'attr': {'class': 'form-control select-search'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmdossier.idOwner'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.idOwner, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idOwner, {'attr': {'class': 'form-control select-search'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmdossier.Rakingprevu'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.Rakingprevu, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.Rakingprevu, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmdossier.Rakingactuel'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.Rakingactuel, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.Rakingactuel, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmdossier.idResultat'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.idResultat, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idResultat, {'attr': {'class': 'form-control select-search'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmdossier.descriptionResultat'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.descriptionResultat, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.descriptionResultat, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmdossier.idMarketSegment'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.idMarketSegment, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idMarketSegment, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmdossier.statut'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.statut, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.statut, {'attr': {'class': 'form-control select-search'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmdossier.modeAcces'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.modeAcces, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.modeAcces, {'attr': {'class': 'form-control select-search'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmdossier.reference'|trans({}, 'crmdossier') %}
+                                                    {{ form_label(edit_form.reference, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.reference, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>{{ form_widget(edit_form.idCreateur, {'value': app.session.get('log')}) }}</div>
+                                        </fieldset>
+                                        <button type="submit" class="btn btn-primary" value="Create">
+                                            {{ 'crmdossier.save_button'|trans({}, 'crmdossier') }}
+                                            <i class="icon-arrow-right14 position-right"></i>
+                                        </button>
+                                    {{ form_end(edit_form, {'render_rest': true}) }}
+                                    <script type="text/javascript">
+                                        var lang = '{{ ''|lang(app.request.locale) }}'.toString().toLowerCase();
+                                        var desc_tab = {'fr': 'descriptionPerimetre0', 'en':'descriptionPerimetre1', 'nl': 'descriptionPerimetre2', 'de': 'descriptionPerimetre3', 'es': 'descriptionPerimetre4', 'it': 'descriptionPerimetre5'};
+                                        var preview = [];
+
+                                        // select with search
+                                        $(".select-search").select2();                                      
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+{% endblock %}

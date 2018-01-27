@@ -1,0 +1,26 @@
+# genenral
+crmparamcycles.list: Liste des cycles CRM
+crmparamcycles.confirm_title: Confirmation
+crmparamcycles.edition: Modification
+crmparamcycles.creation: Nouveau
+
+# form
+crmparamcycles.legend_info: Information
+crmparamcycles.open: Ouvert
+crmparamcycles.label: Label
+crmparamcycles.couleur: Couleur
+crmparamcycles.obs: Observation
+crmparamcycles.nomcouleur: Nom de la couleur
+crmparamcycles.imgcouleur: Image de la couleur
+crmparamcycles.logo: Logo
+crmparamcycles.version: Version
+crmparamcycles.confirm_delete: Voulez vous supprimer ce cycle?
+crmparamcycles.actions: Action
+
+# button
+crmparamcycles.add_button: Nouveau
+crmparamcycles.save_button: Enregistrer
+crmparamcycles.edit_button: Modification
+crmparamcycles.del_button: Supprimer
+crmparamcycles.confirm_button: Oui, je confirme
+crmparamcycles.close_button: Non

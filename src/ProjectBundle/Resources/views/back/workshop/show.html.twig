@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h5 class="modal-title">{{ 'workshop.confirm_title'|trans([], 'workshop') }}</h5>
+</div>
+
+<div class="modal-body">
+    <h2>{{ 'workshop.confirm_delete'|trans([], 'workshop')}}</h2>
+    {{ form_start(delete_form, {'attr': {'id': 'workshop_form'}}) }}
+    {{ form_end(delete_form) }}
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-danger" data-dismiss="modal">{{ 'workshop.close_button'|trans([], 'workshop') }}</button>
+    <button type="button" class="btn btn-primary" onclick="jQuery('#workshop_form').submit()">{{ 'workshop.confirm_button'|trans([], 'workshop') }}</button>
+</div>

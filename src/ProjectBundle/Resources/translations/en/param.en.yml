@@ -1,0 +1,13 @@
+# param.fr.yml
+
+# general
+param.edition: Edition
+param.new_title: New
+
+# form
+param.label: Label
+param.value: Value
+
+# button
+param.edit_button: Edit
+param.submit_button: Save

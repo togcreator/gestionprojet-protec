@@ -1,0 +1,29 @@
+# jalon.fr.yml
+
+# general
+jalon.list: Jalon list
+jalon.edition: Edition
+jalon.creation: New Jalon
+jalon.confirm_title: Confirmation
+
+# form
+jalon.open: Open
+jalon.label: Label
+jalon.version: Version
+jalon.couleur: Color
+jalon.obs: Observation
+jalon.nomcouleur: Color name
+jalon.imgcouleur: Color image
+jalon.logo: Logo
+jalon.note: Note
+jalon.actions: Action
+jalon.confirm_delete: Are you want to remove this Jalon ?
+
+# button
+jalon.add_button: New
+jalon.edit_button: Edit
+jalon.del_button: Remove
+jalon.save_button: Save
+jalon.submit_button: save
+jalon.confirm_button: Yes, I do
+jalon.close_button: No

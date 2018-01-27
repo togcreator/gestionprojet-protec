@@ -1,0 +1,26 @@
+# genenral
+crmparamtyperesultat.list: Liste type de résultat CRM
+crmparamtyperesultat.confirm_title: Confirmation
+crmparamtyperesultat.edition: Modification
+crmparamtyperesultat.creation: Nouveau
+
+# form
+crmparamtyperesultat.legend_info: Information
+crmparamtyperesultat.open: Ouvert
+crmparamtyperesultat.label: Label
+crmparamtyperesultat.couleur: Couleur
+crmparamtyperesultat.obs: Observation
+crmparamtyperesultat.nomcouleur: Nom de la couleur
+crmparamtyperesultat.imgcouleur: Image de la couleur
+crmparamtyperesultat.logo: Logo
+crmparamtyperesultat.version: Version
+crmparamtyperesultat.confirm_delete: Voulez vous supprimer cette type?
+crmparamtyperesultat.actions: Action
+
+# button
+crmparamtyperesultat.add_button: Nouveau
+crmparamtyperesultat.save_button: Enregistrer
+crmparamtyperesultat.edit_button: Modification
+crmparamtyperesultat.del_button: Supprimer
+crmparamtyperesultat.confirm_button: Oui, je confirme
+crmparamtyperesultat.close_button: Non

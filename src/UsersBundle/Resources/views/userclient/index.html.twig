@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-12 col-xs-12">
+                    <!-- Marketing campaigns -->
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">{{ 'userclient.list'|trans({}, 'userclient') }}</h5><br/>
+                            <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('user_new') }}'">
+                                <b><i class="icon-add"></i></b> {{ 'userclient.add_button'|trans({}, 'userclient') }}
+                            </button>
+                        </div>
+                    {% if userClients %}
+                        <table class="table datatable-basic">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>{{ 'userclient.lastname'|trans({}, 'userclient') }}</th>
+                                    <th>{{ 'userclient.firstname'|trans({}, 'userclient') }}</th>
+                                    <th>{{ 'userclient.email'|trans({}, 'userclient') }}</th>
+                                    {# <th>{{ 'userclient.status'|trans({}, 'userclient') }}</th> #}
+                                    <th class="no-sort">{{ 'global.actions'|trans }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in userClients %}
+                                <tr>
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.firstname }}</td>
+                                    <td>{{ user.lastname }}</td>
+                                    <td>{{ user.email }}</td>
+                                    {# <td>{% if user.status %}
+                                        <span class="label bg-blue">{{ 'global.active'|trans }}</span>
+                                        {% else %}
+                                            <span class="label bg-danger">{{ 'global.unactive'|trans }}</span>
+                                        {% endif %}
+                                    </td> #}
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-menu9"></i>
+                                                </a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="{{ path('user_edit', { 'id': user.id }) }}"><i class="icon-pen"></i> {{ 'userclient.edit_button'|trans({}, 'userclient') }}</a></li>
+                                                    <li><a href="{{ path('user_delete', { 'id': user.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'userclient.del_button'|trans({}, 'userclient') }}</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'userclient.no_data'|trans({}, 'userclient') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+{% endblock %}

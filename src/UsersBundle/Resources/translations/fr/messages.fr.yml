@@ -1,0 +1,25 @@
+# general
+
+# global
+global.userclient: Utilisateurs
+global.users: Liste des comptes d'utilisateurs
+global.relationbusinessentite: Relation business entité
+global.relationbusinessuser: Relation fonctionnelle utilisateur
+global.relationuserentite: Relation utilisateur entité
+global.usernotes: Note d'utilisateur
+
+
+# back
+back.menu_users: Compte utilisateur
+back.menu_user_client: Utilisateur
+back.menu_param_user: Paramètre utilisateur
+back.menu_usersparamnature: Nature utilisateur
+back.menu_usersparamrelationsfonctions: Relation fonctionnelle utilisateur
+back.menu_relation: Relation
+back.menu_relationbusinessentite: Relation entité professionnelle
+back.menu_usersparamrelationsprofessionnelles: Relation professionnelle utilisateur
+back.menu_relationbusinessuser: Relation fonctionnelle utilisateur
+back.menu_relationuserentite: Relation entité utilisateur
+
+# users
+users.connect_as: "En tant que:"

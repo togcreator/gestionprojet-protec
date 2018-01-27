@@ -1,0 +1,24 @@
+# relationbusinessentite.fr.yml
+
+# general
+relationbusinessentite.list: List of fonctionnal relationship
+relationbusinessentite.creation: New
+relationbusinessentite.edition: Edition
+relationbusinessentite.confirm_title: Confirmation
+relationbusinessentite.no_data: No data
+
+# form
+relationbusinessuser.iDUser: User
+relationbusinessuser.iDBusinessUnit: Business unity
+relationbusinessuser.iDRelation_Fonctionnelle: Fonctionnal relationship
+relationbusinessuser.relation: Fonctionnal relationship
+relationbusinessentite.confirm_delete: Do you want to remove this ?
+
+# button
+relationbusinessentite.add_button: New
+relationbusinessentite.save_button: Save
+relationbusinessentite.submit_button: Save
+relationbusinessentite.edit_button: Edit
+relationbusinessentite.del_button: Remove
+relationbusinessentite.confirm_button: Yes, i do
+relationbusinessentite.close_button: No

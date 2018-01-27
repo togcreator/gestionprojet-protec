@@ -1,0 +1,103 @@
+# messages.fr.yml
+
+# general
+default: Index
+global.project_crm: Project management
+project.title: Project
+global.welcome: Welcome, you're connected
+global.salutation: Good morning
+global.update_data: Update data
+global.detail_log: Detail de log
+global.clear_list: Clear list
+global.view_report: View report
+global.today: Today
+global.home: Dashboard
+global.statistics: Statistics
+global.invoices: Invoices
+global.schedule: Schedule
+global.settings: Settings
+global.account_security: Account security
+global.analytics: Analytics
+global.accessibility: Accessibility
+global.all_settings: All settings
+global.support: Support
+global.actions: Actions
+global.active: Active
+global.unactive: Unactive
+global.setting_global: Global settings
+global.appoitment: On appoitment
+global.all: All
+global.search: Search
+global.show: Show
+global._START_of_END_/_TOTAL_entries: _START_ of _END_/_TOTAL_ entries
+global.pagination_first: First
+global.pagination_previous: Pevious
+global.pagination_next: Next
+global.pagination_last: Last
+global.default: Default
+global.actions: Action
+global.male: Man
+global.female: Woman
+global.gother: Other
+
+# notify
+global.notify_header_success: Success
+global.notify_header_error: Erreur
+global.notify_success: Request made
+global.notify_success_login: You're connected
+global.notify_error: An error occurred or the table contains no data
+global.notify_success_update: Update made
+global.notify_success_insert: Insert made
+global.notify_success_delete: Remove made
+global.none: ---- Leave empty or Choose ----
+global.browse: Browse
+global.no_file: No file
+global.active: Active
+global.yes: Yes
+global.no: No
+
+# menu
+menu.agenda: Agenda
+menu.etape: Stage
+menu.etape_jalon: Milestone stage
+menu.projectetapesoperations: Stage operation
+menu.operationsissues: Issue operation 
+menu.issuesrealisations: Production Issue 
+menu.issuesorganisation: Organization Issue
+menu.notes: Note
+menu.messenger: Post & Messaging
+
+
+# back
+back.menu: Settings
+back.menu_dashboard: Dashboard
+back.menu_settings: Setting
+back.menu_workshop: Workshop
+back.menu_project: Project
+back.menu_statutType: Status type
+back.menu_entityj: Entity
+back.menu_users: User
+back.menu_roles: Users roles
+back.menu_project_versionuser: Project version user
+back.menu_project_version: Project version
+back.menu_jalon: Jalon
+back.menu_priorite: Priority
+back.menu_projectalert: Project alert
+back.menu_evironment: Environment
+back.menu_langage: Langage
+back.menu_droit: Access
+back.menu_natureop: Nature Op
+
+# message alert
+global.timeout: Your session is going out
+
+# lang
+lang.fr: Fr
+lang.en: En
+lang.nl: Nl
+lang.de: De
+lang.es: Es
+lang.it: It
+
+# button
+global.close_button: Fermer

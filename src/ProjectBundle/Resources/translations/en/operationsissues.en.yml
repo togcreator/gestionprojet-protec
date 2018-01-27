@@ -1,0 +1,46 @@
+# general
+OperationsIssues.list: Issue list
+OperationsIssues.creation: New
+OperationsIssues.confirm_title: Confirmation
+
+# form
+
+OperationsIssues.legend_project: Project
+OperationsIssues.idProjectVersion: Project
+OperationsIssues.legend_info: Information
+OperationsIssues.idEtape: Stage
+OperationsIssues.idOperation: Operation
+OperationsIssues.idAgenda: Agenda
+OperationsIssues.libelle: Label
+OperationsIssues.descriptionProbleme: problem description
+OperationsIssues.descriptionCorrection: Correction description
+OperationsIssues.legend_date: Date
+OperationsIssues.datedebut: Start date
+OperationsIssues.datefin: End Date
+OperationsIssues.datedebutcorrection: Start vorrection date
+OperationsIssues.datefincorrection: End correction date
+OperationsIssues.datedebutvalidation: Start validation date
+OperationsIssues.datefinvalidation: End validation date
+OperationsIssues.legend_users: User
+# OperationsIssues.idUser4creation: Créateur
+OperationsIssues.idUser4correction: Corrector
+OperationsIssues.idUser4validation: Validator
+OperationsIssues.legend_other: Other detail
+OperationsIssues.idStatut: Status
+OperationsIssues.idPriorite: Priority
+OperationsIssues.version: Version
+OperationsIssues.no_data: No data
+OperationsIssues.confirm_delete: Do you want to remove this?
+OperationsIssues.project_none: ---- No project -----
+OperationsIssues.etape_none: ---- No stage -----
+OperationsIssues.operation_none: ---- No operation -----
+# OperationsIssues.agenda_none: ---- Agenda -----
+OperationsIssues.actions: Action
+
+# button
+OperationsIssues.add_button: New
+OperationsIssues.submit_button: Save
+OperationsIssues.edit_button: Edit
+OperationsIssues.del_button: Remove
+OperationsIssues.confirm_button: Yes, I do
+OperationsIssues.close_button: No

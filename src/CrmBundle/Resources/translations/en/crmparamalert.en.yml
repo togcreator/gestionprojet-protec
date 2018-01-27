@@ -1,0 +1,32 @@
+# genenral
+crmparamalert.list: List of alert
+crmparamalert.confirm_title: Confirmation
+crmparamalert.edition: Edition
+crmparamalert.creation: New
+
+# form
+crmparamalert.legend_info: Information
+crmparamalert.open: Ouvert
+crmparamalert.label: Label
+crmparamalert.typeAlerte: Type
+crmparamalert.declenchementdelai: Trigger delay
+crmparamalert.typedelai: Delai type
+crmparamalert.obligatoire: Mandatory
+crmparamalert.valide: Valid
+crmparamalert.couleur: Color
+crmparamalert.obs: Observation
+crmparamalert.nomcouleur: Color name
+crmparamalert.imgcouleur: Color image
+crmparamalert.logo: Logo
+crmparamalert.version: Version
+crmparamalert.idType: Type
+crmparamalert.confirm_delete: Do you really want to remove this ?
+crmparamalert.actions: Action
+
+# button
+crmparamalert.add_button: New
+crmparamalert.save_button: Save
+crmparamalert.edit_button: Edit
+crmparamalert.del_button: Remove
+crmparamalert.confirm_button: Yes, i do
+crmparamalert.close_button: No

@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+        <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'projectversionusers.edition'|trans({}, 'projectversionuser') }} - {{ projectVersionUser.user.firstname }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                {% if app.request.get('idProject') %}
+                                <li><a data-action="close" href="{{ path('project_edit', {'id': app.request.get('idProject')}) }}#user"></a></li>
+                                {% elseif app.request.get('idOperation') %}
+                                <li><a data-action="close" href="{{ path('projectetapesoperations_edit', {'id': app.request.get('idOperation')}) }}#user"></a></li>
+                                {% else %}
+                                <li><a data-action="close" href="{{ path('projectversionuser_index') }}"></a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+
+                        {{ form_start(edit_form) }}
+                            <fieldset class="content-group">
+                                <legend class="text-bold">{{ 'project.legend_project'|trans({}, 'project')}}</legend>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'projectversionusers.idProjetVersion'|trans({}, 'projectversionuser') %}
+                                        {{ form_label(edit_form.idProjetVersion, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idProjetVersion, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <legend class="text-bold">{{ 'project.legend_user'|trans({}, 'project')}}</legend>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'project.idUser'|trans({}, 'project') %}
+                                        {{ form_label(edit_form.idUser, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idUser, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'projectversionusers.idRole'|trans({}, 'projectversionuser') %}
+                                        {{ form_label(edit_form.idRole, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idRole, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'projectversionusers.mission'|trans({}, 'projectversionuser') %}
+                                        {{ form_label(edit_form.mission, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.mission, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <legend class="text-bold">{{ 'project.legend_date'|trans({}, 'project')}}</legend>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'projectversionusers.datedebut'|trans({}, 'projectversionuser') %}
+                                        {{ form_label(edit_form.datedebut, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.datedebut, {'attr': {'class': 'form-control datepicker'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'projectversionusers.datefin'|trans({}, 'projectversionuser') %}
+                                        {{ form_label(edit_form.datefin, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.datefin, {'attr': {'class': 'form-control datepicker'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'projectversionusers.submit_button'|trans({}, 'projectversionuser') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                    </div>
+                </div>
+                <!-- /form horizontal -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    {% include 'foot.html.twig' %}
+{% endblock %}

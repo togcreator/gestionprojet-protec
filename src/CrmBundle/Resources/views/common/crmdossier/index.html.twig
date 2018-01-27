@@ -1,0 +1,195 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <!-- /page header -->
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-12 col-xs-12">
+                <!-- Marketing campaigns -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h6 class="panel-title">{{ 'crmdossier.title'|trans({}, 'crmdossier') }}</h6>
+                        <div class="heading-elements">
+                            <span style="display: none">
+                                <a id="combobox" href="{{ path('crmfilters_index', {id: 0}) }}" data-target="#modal_remote" data-toggle="modal"></a>
+                                <a id="filter_trash" href="{{ path('crmfilters_index', {id: 0, action: 'trash'}) }}" data-target="#modal_remote" data-toggle="modal"></a>
+                            </span>
+                            <button type="button" style="margin-right: 10px" class="btn btn-primary filter pull-left" href="{{path('crmfilters_index')}}" data-target="#modal_remote" data-toggle="modal"><i class="icon-filter3 position-left"></i>{{ 'project.filter_button'|trans({}, 'project') }}</button>
+                            <button type="button" class="btn btn-primary pull-left" onclick="document.location.href = '{{ path('crmdossier_new') }}'"><i class="icon-add position-left"></i>{{ 'crmdossier.add_button'|trans({}, 'crmdossier') }}</button>
+                            <span class="label bg-success heading-text">{{ crmDossiers|length }} {{ 'global.active'|trans }}</span>
+                            <ul class="icons-list">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i> <span class="caret"></span></a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="#"><i class="icon-sync"></i> {{ 'global.update_data'|trans }}</a></li>
+                                        <li><a href="#"><i class="icon-list-unordered"></i> {{ 'global.detail_log'|trans }}</a></li>
+                                        <li><a href="#"><i class="icon-pie5"></i> {{ 'global.statistics'|trans }}</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#"><i class="icon-cross3"></i> {{ 'global.clear_list'|trans }}</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div style="display: none" class="datatable-toolbar">
+                            {# par tri #}
+                            <div>
+                                {% set selected = app.request.get('orderby')|default('idStatut') %}
+                                <select name="search_operations[tri]" class="form-control col-md-4">
+                                    <option value="idStatut"{% if selected and selected == 'idStatut' %} selected="select" {% endif %}>{{ 'global.sorting'|trans }} - {{ 'crmdossier.statut'|trans({}, 'crmdossier') }}</option>
+                                    <option value="datefinprevue"{% if selected and selected == 'datefinprevue' %} selected="select" {% endif %}>{{ 'global.sorting'|trans }} - {{ 'project.datefinPrevue'|trans({}, 'project') }}</option>
+                                    <option value="idEntiteJ"{% if selected and selected == 'idEntiteJ' %} selected="select" {% endif %}>{{ 'global.sorting'|trans }} - {{ 'crmdossier.idEntiteJ'|trans({}, 'crmdossier') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <table class="table text-nowrap datatable-basic">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>{{ 'crmdossier.label'|trans({}, 'crmdossier') }}</th>
+                                    <th>{{ 'crmdossier.idCycle'|trans({}, 'crmdossier') }}</th>
+                                    <th>{{ 'crmdossier.idEntiteJ'|trans({}, 'crmdossier') }}</th>
+                                    <th>{{ 'crmdossier.datedebut'|trans({}, 'crmdossier') }}</th>
+                                    <th>{{ 'crmdossier.datefin'|trans({}, 'crmdossier') }}</th>
+                                    <th>{{ 'global.actions'|trans }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for key, crm in crmDossiers %}
+
+                                <tr class="active border-double clickable project_users animated" data-toggle="collapse" data-target=".accordion_users_{{ key }}">
+                                    <td class="bg-primary primary-300" style="background-color: #64B5F6; text-transform: uppercase"><i class="icon-arrow-down22"></i>{{ ET(key) }}</td>
+                                    <td style="background-color: #64B5F6;"></td>
+                                    <td style="background-color: #64B5F6;"></td>
+                                    <td style="background-color: #64B5F6;"></td>
+                                    <td style="background-color: #64B5F6;"></td>
+                                    <td style="background-color: #64B5F6;"></td>
+                                    <td style="background-color: #64B5F6;"></td>
+                                </tr>
+
+                                {% for crmdossier in crm %}
+                                <tr class="accordion_users_{{ key }}">
+                                    <td>{{ crmdossier.id }}</td>
+                                    <td>{{ crmdossier.label }}</td>
+                                    <td>{{ crmdossier.cycle.label }}</td>
+                                    <td>{{ crmdossier.entite.raisonSociale }}</td>
+                                    <td>
+                                        {% if crmdossier.datedebutReelle|date(date_format) %}
+                                            {{ crmdossier.datedebutReelle|date(date_format) }}
+                                        {% else %}
+                                            {{ crmdossier.datedebutPrevue|date(date_format) }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if crmdossier.datefinReelle|date(date_format) %}
+                                            {{ crmdossier.datefinReelle|date(date_format) }}
+                                        {% else %}
+                                            {{ crmdossier.datefinPrevue|date(date_format) }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-menu9"></i>
+                                                </a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="{{ path('crmdossier_edit', { 'id': crmdossier.id }) }}"><i class="icon-pen"></i> {{ 'crmdossier.edit_button'|trans({}, 'crmdossier') }}</a></li>
+                                                    <li><a href="{{ path('crmdossier_delete', { 'id': crmdossier.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'crmdossier.del_button'|trans({}, 'crmdossier') }}</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        /* not sorting */
+        var bSort = false;
+
+        /* pour datatable */
+        function initComplete () {
+            var $ = jQuery;
+
+            // api
+            var head = $('.datatable-header'),
+            select = $('.datatable-toolbar').find('div select[name*="tri"]')
+                .on('change', function() {
+                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                    // val
+                    if( val != 0 )
+                        redirectTo("{{ path('crmdossier_index') }}?orderby="+val);
+                });
+
+            // for tri/sorting
+            $('<div class="dataTables_filter form-group"></div>')
+                .insertAfter( head.find('.dataTables_filter') )
+                .append(select);
+        }
+
+        /* pour filtre */
+        (function($){
+
+            /* pour combobox */
+            $(document).on('change', '[name*="[title]"]', function(){
+                $('#modal_remote').modal('hide');
+                var a = $('#combobox');
+                if( this.value )
+                    a.attr('href', a.attr('href').toString().replace(/=\d+/g, '='+this.value));
+                else
+                    /* pour this.value == 0 */
+                    a.attr('href', a.attr('href').toString().replace(/\?\w+=\d+/g, ''));
+                a.click();
+            });
+
+            /* pour supprimer trash */
+            $(document).on('click', '#trash', function() {
+                /* title */
+                var select = $(this).parent().find('[name*="[title]"]');
+                if( select.val() == 0 ) return;
+
+                // if( window.confirm('{{ 'project.confirmfilter_delete'|trans({}, 'project') }}') ) {
+                    $('#modal_remote').modal('hide');
+                    var a = $('#filter_trash')
+                        a.attr('href', a.attr('href').toString().replace(/=\d+/g, '='+select.val()));
+                        a.click();
+                // }
+            });
+
+            /* pour ajout */
+            $(document).on('click', '#add', function() {
+                var label = $('[name*="[label]"]');
+                if( !label.val() ) return;
+                /* rendre 0 pour ajout */
+                label.parents('form').find('[name*="[mode]"]').val(0);
+
+                /* ajax */
+                $.ajax({
+                    url: '{{ path('crmfilters_index', {'action': 'validate'}) }}',
+                    data: {label: label.val()},
+                    success: function(response) {
+                        if( !response.return ) return $('#projectsearch_form').submit();
+                        label.parents('form').find('.alert').html('{{ 'project.filter_label_error'|trans({}, 'project') }}').show();
+                        /* rendre 1 pour l'edition */
+                        label.parents('form').find('[name*="[mode]"]').val(1);
+                    }
+                });
+            });
+
+            {% if mode is defined and mode == 0 %}
+            $('button.filter').click();
+            {% endif %}
+
+        }(jQuery))
+    </script>
+{% endblock %}

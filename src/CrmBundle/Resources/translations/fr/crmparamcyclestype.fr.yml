@@ -1,0 +1,26 @@
+# genenral
+crmparamcyclestype.list: Liste des type de cycles CRM
+crmparamcyclestype.confirm_title: Confirmation
+crmparamcyclestype.edition: Modification
+crmparamcyclestype.creation: Nouveau
+
+# form
+crmparamcyclestype.legend_info: Information
+crmparamcyclestype.open: Ouvert
+crmparamcyclestype.label: Libellé
+crmparamcyclestype.couleur: Couleur
+crmparamcyclestype.obs: Observation
+crmparamcyclestype.nomcouleur: Nom de la couleur
+crmparamcyclestype.imgcouleur: Image de la couleur
+crmparamcyclestype.logo: Logo
+crmparamcyclestype.version: Version
+crmparamcyclestype.confirm_delete: Voulez vous supprimer cette cyle type?
+crmparamcyclestype.actions: Action
+
+# button
+crmparamcyclestype.add_button: Nouveau
+crmparamcyclestype.save_button: Enregistrer
+crmparamcyclestype.edit_button: Modification
+crmparamcyclestype.del_button: Supprimer
+crmparamcyclestype.confirm_button: Oui, je confirme
+crmparamcyclestype.close_button: Non

@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - statut{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'statut.list'|trans({}, 'statut') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('back_statut_new', {'idType': app.request.get('idType')})}}'">
+                            <b><i class="icon-add"></i></b> {{ 'statut.add_button'|trans({}, 'statut') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('back_statutType_index')}}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if statuts %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'statut.open'|trans({}, 'statut') }}</th>
+                                <th>{{ 'statut.wording'|trans({}, 'statut') }}</th>
+                                <th class="text-center">{{ 'statut.actions'|trans({}, 'statut') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for statut in statuts %}
+                            <tr>
+                                <td style="cursor:pointer">{{ statut.id }}</td>
+                                <td>
+                                     {% if statut.ouvert %}
+                                    <span class="label label-info">{{ 'global.yes'|trans }}</span> {% else %}
+                                    <span class="label label-default">{{ 'global.no'|trans }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ statut.label }}</td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('back_statut_edit', { 'id': statut.id, 'idType': statut.idType }) }}"><i class="icon-pen"></i> {{ 'statut.edit_button'|trans({}, 'statut') }}</a></li>
+                                                <li><a href="{{ path('back_statut_delete', { 'id': statut.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'statut.del_button'|trans({}, 'statut') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <script type="text/javascript">
+                        var ajax = {};
+                            ajax.url = '{{ path('back_statut_get', {'idType': app.request.get('idType'), }) }}';
+                    </script>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'statut.no_data'|trans({}, 'statut') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>            
+    {% include 'foot.html.twig' %}
+{% endblock %}

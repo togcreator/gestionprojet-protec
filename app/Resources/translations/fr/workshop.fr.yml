@@ -1,0 +1,12 @@
+# whorkshop
+
+# general
+workshop.edition: Modification
+workshop.label: Libellé
+workshop.confirm_title: Confirmation
+workshop.confirm_delete: Êtes vous sûr de vouloir supprimer ce workshop ?
+
+# button
+workshop.save_button: Enregistrer
+workshop.confirm_button: Oui, je confirme
+workshop.close_button: Non

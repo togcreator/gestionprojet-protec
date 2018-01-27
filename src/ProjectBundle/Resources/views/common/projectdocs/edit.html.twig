@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-lg-12 col-xs-12">
+                            <div class="panel panel-flat">
+                                <div class="panel-heading">
+                                    <h2>{{ 'projectdocs.edition'|trans({}, 'projectdocs') }}</h2>
+                                    <div class="heading-elements">
+                                        <button type="button" class="btn btn-primary pull-left" style="margin-right: 10px" onclick="document.location = '{{  path('projectdocs_new') }}'"> <b><i class="icon-add"></i></b> {{ 'projectnotes.add_button'|trans({}, 'projectnotes') }}</button>
+                                        <button type="button" class="btn btn-primary btn-danger pull-left" href="{{ path('projectdocs_delete', { 'id': edit_form.vars.value.id }) }}" style="margin-right: 10px" data-target="#modal_remote" data-toggle="modal"> <b><i class="icon-folder-remove"></i></b> {{ 'projectnotes.del_button'|trans({}, 'projectnotes') }}</button>
+                                        <ul class="icons-list">
+                                            {% if app.request.get('idProject') %}
+                                            <li><a data-action="close" href="{{ path('project_edit', {'id': app.request.get('idProject')}) }}#docs"></a></li>
+                                            {% elseif app.request.get('idOperation') %}
+                                            <li><a data-action="close" href="{{ path('projectetapesoperations_edit', {'id': app.request.get('idOperation')}) }}#docs"></a></li>
+                                            {% else %}
+                                            <li><a data-action="close" href="{{ path('projectdocs_list') }}"></a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                {{ form_start(edit_form, {'attr': {'class':'form-horizontal'}}) }}
+                                        <fieldset class="content-group">
+                                            <legend class="text-bold">{{ 'projectdocs.project'|trans({}, 'projectdocs') }}</legend>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    {% set name = 'projectdocs.idProjet'|trans({}, 'projectdocs') %}
+                                                    {{ form_label(edit_form.idProjet, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idProjet, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'projectdocs.idEtape'|trans({}, 'projectdocs') %}
+                                                    {{ form_label(edit_form.idEtape, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idEtape, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'projectdocs.idOperation'|trans({}, 'projectdocs') %}
+                                                    {{ form_label(edit_form.idOperation, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idOperation, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'projectdocs.idIssue'|trans({}, 'projectdocs') %}
+                                                    {{ form_label(edit_form.idIssue, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idIssue, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <legend class="text-bold">{{ 'projectdocs.info'|trans({}, 'projectdocs') }}</legend>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    {% set name = 'projectdocs.designation'|trans({}, 'projectdocs') %}
+                                                    {{ form_label(edit_form.designation, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.designation, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'projectdocs.nomdoc'|trans({}, 'projectdocs') %}
+                                                    {{ form_label(edit_form.nomdoc, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10" style="padding: 15px 0">
+                                                        {% set preview = asset('uploads/' ~ edit_form.vars.value.nomdoc)|default('') %}
+                                                        {{ form_widget(edit_form.nomdoc, {'attr': {'class': 'form-control upload-file', 'data-preview': preview}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'projectdocs.dateReception'|trans({}, 'projectdocs') %}
+                                                    {{ form_label(edit_form.dateReception, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.dateReception, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    {% set name = 'projectdocs.idTypedoc'|trans({}, 'projectdocs') %}
+                                                    {{ form_label(edit_form.idTypedoc, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idTypedoc, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'projectdocs.origine'|trans({}, 'projectdocs') %}
+                                                    {{ form_label(edit_form.origine, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.origine, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <legend class="text-bold">{{ 'projectdocs.other'|trans({}, 'projectdocs') }}</legend>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    {% set name = 'projectdocs.referenceExterne'|trans({}, 'projectdocs') %}
+                                                    {{ form_label(edit_form.referenceExterne, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.referenceExterne, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'projectdocs.reference'|trans({}, 'projectdocs') %}
+                                                    {{ form_label(edit_form.reference, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.reference, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'projectdocs.nomRedacteurExterne'|trans({}, 'projectdocs') %}
+                                                    {{ form_label(edit_form.nomRedacteurExterne, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.nomRedacteurExterne, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </fieldset>
+                                        <button type="submit" class="btn btn-primary" value="Create">
+                                            {{ 'projectdocs.save_button'|trans({}, 'projectdocs') }}
+                                            <i class="icon-arrow-right14 position-right"></i>
+                                        </button>
+                                        <div>{{ form_widget(edit_form.idUser, {'value': getCurrentUsers('id')}) }}</div>
+                                    {{ form_end(edit_form, {'render_rest': true}) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+{% endblock %}

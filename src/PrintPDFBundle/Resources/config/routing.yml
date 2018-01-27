@@ -1,0 +1,3 @@
+print_pdf_homepage:
+    path:     /pdf
+    defaults: { _controller: PrintPDFBundle:Default:pdf }

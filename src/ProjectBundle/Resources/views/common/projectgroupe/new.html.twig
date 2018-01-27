@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {% set dir = 'backoffice/' %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{asset('assets/js/plugins/forms/styling.min.js')}}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {% set dir = 'backoffice/' %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'ProjectBundle:back:head.html.twig' %}
+
+        <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'projectgroupe.creation'|trans({}, 'projectgroupe') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('project_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+
+                        {{ form_start(form, {'attr': {'class':'steps-basic'}}) }}
+                            {% include 'ProjectBundle:common:stepwizzard.html.twig' with {'menu':'project', 'mode':'one'} %}
+
+                            <fieldset class="content-group">
+
+                                <div class="form-group">
+                                    {% set name = 'projectgroupe.label'|trans({}, 'projectgroupe') %}
+                                    {{ form_label(form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(form.label, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'projectgroupe.code'|trans({}, 'projectgroupe') %}
+                                    {{ form_label(form.code, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(form.code, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'projectgroupe.datedebut'|trans({}, 'projectgroupe') %}
+                                    {{ form_label(form.datedebut, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(form.datedebut, {'attr': {'class': 'form-control datepicker'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'projectgroupe.datefin'|trans({}, 'projectgroupe') %}
+                                    {{ form_label(form.datefin, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(form.datefin, {'attr': {'class': 'form-control datepicker'}}) }}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    {{ form_widget(form.idCreateur, {'value': app.user.id }) }}
+                                </div>
+                            </fieldset>
+                            
+                            {% include 'ProjectBundle:common:stepwizzard.html.twig' with {'menu':'project', 'mode':'two'} %}
+
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'projectgroupe.submit_button'|trans({}, 'projectgroupe') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(form, {'render_rest': true}) }}
+                        <script type="text/javascript">
+                            (function($){
+                                $(function(){
+                                    var lang = '{{ ''|lang(app.request.locale) }}'.toString().toLowerCase();
+                                    var lang_tab = {'fr': 'lib0', 'en':'lib1', 'nl': 'lib2', 'de': 'lib3', 'es': 'lib4', 'it': 'lib5'};
+                                    $('[name*="label"]').on('keydown', function() {
+                                        console.info( 'keu');
+                                        $('[name*="[%s]"]'.replace('%s', lang_tab[lang])).val(this.value);
+                                    })
+                                });
+                            }(jQuery));
+                            var step_index = 0;
+                        </script>
+                    </div>
+                </div>
+                <!-- /form horizontal -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    {% include 'ProjectBundle:back:foot.html.twig' %}
+{% endblock %}

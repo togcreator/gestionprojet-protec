@@ -1,0 +1,51 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}{{ parent() }} Compte Créé{% endblock %}
+
+{% block fos_user_content %}
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Wells -->
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-4">
+                        <div class="panel panel-body border-top-primary">
+                            <div class="text-center">
+                                {% if app.request.hasPreviousSession %}
+                                    {% for type, messages in app.session.flashbag.all() %}
+                                        {% for message in messages %}
+                                            <div class="flash-{{ type }}">
+                                                <h6 class="no-margin text-semibold">{{ message|trans({}, 'FOSUserBundle') }}</h6>
+                                            </div>
+                                        {% endfor %}
+                                    {% endfor %}
+                                {% endif %}
+                                <h6 class="no-margin text-semibold">{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</h6>
+                                <p class="content-group-sm text-muted">
+                                    {% if targetUrl %}
+                                <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+                                {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /wells -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+{% endblock fos_user_content %}

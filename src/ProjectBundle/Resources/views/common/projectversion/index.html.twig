@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - {{ 'project.version_user'|trans({}, 'projectversion')}}{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'projectversions.list'|trans({}, 'projectversion') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('projectversion_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'projectversions.add_button'|trans({}, 'projectversion') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('projectversion_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if projectversions %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'projectversion.reference'|trans({}, 'projectversion') }}</th>
+                                <th>{{ 'projectversion.label'|trans({}, 'projectversion') }}</th>
+                                <th>{{ 'projectversion.description'|trans({}, 'projectversion') }}</th>
+                                <th>{{ 'projectversion.datedebut'|trans({}, 'projectversion') }}</th>
+                                <th>{{ 'projectversion.datefin'|trans({}, 'projectversion') }}</th>
+                                <th class="text-center">{{ 'projectversions.actions'|trans({}, 'projectversion') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for projectversion in projectversions %}
+                            <tr>
+                                <td style="cursor:pointer">{{ projectversion.id }}</td>
+                                <td>{{ projectversion.reference }}</td>
+                                <td>{{ projectversion.label }}</td>
+                                <td>{{ projectversion.description }}</td>
+                                <td>{{ projectversion.datedebut|date(date_format) }}</td>
+                                <td>{{ projectversion.datefin|date(date_format) }}</td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('projectversion_edit', { 'id': projectversion.id }) }}"><i class="icon-pen"></i> {{ 'projectversions.edit_button'|trans({}, 'projectversion') }}</a></li>
+                                                <li><a href="{{ path('projectversion_delete', { 'id': projectversion.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'projectversions.del_button'|trans({}, 'projectversion') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'projectversions.no_data'|trans({}, 'projectversion') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>            
+    {% include 'foot.html.twig' %}
+{% endblock %}

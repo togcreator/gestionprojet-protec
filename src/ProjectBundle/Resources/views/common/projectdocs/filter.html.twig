@@ -1,0 +1,341 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h5 class="modal-title">{{ 'project.filter'|trans([], 'project') }}</h5>
+</div>
+<div class="modal-body">
+	{{ form_start(form, {'attr': {'id': 'projectsearch_form', 'action': path('projectdocs_filters') }}) }}
+		<fieldset>
+            <div class="form-group col-lg-12">
+                <div class="form-group col-md-6">
+                    {% set name = 'project.label'|trans({}, 'project') %}
+                    {{ form_label(form.label, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                    <div class="col-lg-8">
+                        {{ form_widget(form.label, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-lg-12">
+                <div class="form-group col-md-6">
+                    {% set name = 'projectdocs.prevision'|trans({}, 'projectdocs') %}
+                    {{ form_label(form.prevision, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                    <div class="col-lg-8">
+                        {{ form_widget(form.prevision, {'attr': {'class': 'form-control switchery'}}) }}
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    {% set name = 'projectdocs.realisation'|trans({}, 'projectdocs') %}
+                    {{ form_label(form.realisation, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                    <div class="col-lg-8">
+                        {{ form_widget(form.realisation, {'attr': {'class': 'form-control switchery'}}) }}
+                    </div>
+                </div>
+            </div>
+			<div class="tabbable">
+				<ul class="nav nav-tabs nav-tabs-highlight">
+					<li class="active"><a href="#project" data-toggle="tab">{{ 'project.title'|trans({}, 'project')}}</a></li>
+					<li><a href="#etape" data-toggle="tab">{{ 'projectetape.title'|trans({}, 'projectetape')}}</a></li>
+					<li><a href="#operation" data-toggle="tab">{{ 'projectetapesoperations.title'|trans({}, 'projectetapesoperations')}}</a></li>
+					<li><a href="#date" data-toggle="tab">{{ 'project.date'|trans({}, 'project')}}</a></li>
+                    <li><a href="#tri" data-toggle="tab">{{ 'global.sorting'|trans}}</a></li>
+					<li><a href="#save" data-toggle="tab">{{ 'project.filter_save'|trans({}, 'project')}}</a></li>
+				</ul>
+				<div class="tab-content">
+					<div id="project" class="tab-pane active col-md-12">
+						<div class="form-group col-md-6">
+                            {% set name = 'project.idWorkshop'|trans({}, 'project') %}
+                            {{ form_label(form.idWorkshop, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                            <div class="col-lg-8">
+                                {{ form_widget(form.idWorkshop, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+						</div>
+                        <div class="form-group col-md-6">
+                            {% set name = 'project.idUser'|trans({}, 'project') %}
+                            {{ form_label(form.responsible, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                            <div class="col-lg-8">
+                                {{ form_widget(form.responsible, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+					</div>
+					
+					<div id="etape" class="tab-pane col-md-12">
+						<div class="form-group col-md-6">
+                            {% set name = 'projectetape.idStatut'|trans({}, 'projectetape') %}
+                            {{ form_label(form.idStatut, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                            <div class="col-lg-8">
+                                {{ form_widget(form.idStatut, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+						</div>
+                        <div class="form-group col-md-6">
+                            {% set name = 'projectetape.idRole'|trans({}, 'projectetape') %}
+                            {{ form_label(form.idRole, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                            <div class="col-lg-8">
+                                {{ form_widget(form.idRole, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+					</div>
+					
+					<div id="operation" class="tab-pane col-md-12">
+						<div class="form-group col-md-6">
+                            {% set name = 'projectetapesoperations.idPriorite'|trans({}, 'projectetapesoperations') %}
+                            {{ form_label(form.idPriorite, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                            <div class="col-lg-8">
+                                {{ form_widget(form.idPriorite, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+						</div>
+						<div class="form-group col-md-6">
+                            {% set name = 'projectetapesoperations.idStatut'|trans({}, 'projectetapesoperations') %}
+                            {{ form_label(form.idStatutO, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                            <div class="col-lg-8">
+                                {{ form_widget(form.idStatutO, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+						</div>
+                        <div class="form-group col-md-6">
+                            {% set name = 'projectetapesoperations.idJalon'|trans({}, 'projectetapesoperations') %}
+                            {{ form_label(form.idJalon, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                            <div class="col-lg-8">
+                                {{ form_widget(form.idJalon, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            {% set name = 'projectetapesoperations.idRole'|trans({}, 'projectetapesoperations') %}
+                            {{ form_label(form.idRoleO, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                            <div class="col-lg-8">
+                                {{ form_widget(form.idRoleO, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+					</div>
+
+					<div id="date" class="tab-pane col-md-12">
+                        <legend class="text-bold">{{ 'projectetape.title'|trans({}, 'projectetape') }}</legend>
+						<div class="row">
+                            <div class="form-group col-md-6">
+                                {% set name = 'projectetape.datedebutprevue'|trans({}, 'projectetape') %}
+                                {{ form_label(form.datedebutPrevueE, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.datedebutPrevueE, {'attr': {'class': 'form-control datepicker'}}) }}
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                {% set name = 'projectetape.datefinprevue'|trans({}, 'projectetape') %}
+                                {{ form_label(form.datefinPrevueE, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.datefinPrevueE, {'attr': {'class': 'form-control datepicker'}}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                {% set name = 'projectetape.datedebutreelle'|trans({}, 'projectetape') %}
+                                {{ form_label(form.datedebutReelE, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.datedebutReelE, {'attr': {'class': 'form-control datepicker'}}) }}
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                {% set name = 'projectetape.datefinreelle'|trans({}, 'projectetape') %}
+                                {{ form_label(form.datefinReelE, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.datefinReelE, {'attr': {'class': 'form-control datepicker'}}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                {% set name = 'projectetape.datedebut'|trans({}, 'projectetape') %}
+                                {{ form_label(form.dateDebutE, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.dateDebutE, {'attr': {'class': 'form-control', 'type': 'number'}}) }}
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                {% set name = 'projectetape.dateTermine'|trans({}, 'projectetape') %}
+                                {{ form_label(form.dateTermineE, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.dateTermineE, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                {% set name = 'projectetape.dateAvance'|trans({}, 'projectetape') %}
+                                {{ form_label(form.dateAvanceE, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.dateAvanceE, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                {% set name = 'projectetape.dateRetard'|trans({}, 'projectetape') %}
+                                {{ form_label(form.dateRetardE, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.dateRetardE, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <legend class="text-bold">{{ 'projectetapesoperations.title'|trans({}, 'projectetapesoperations') }}</legend>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                {% set name = 'projectetapesoperations.datedebutprevue'|trans({}, 'projectetapesoperations') %}
+                                {{ form_label(form.datedebutPrevueO, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    
+                                    {{ form_widget(form.datedebutPrevueO, {'attr': {'class': 'form-control datepicker'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                {% set name = 'projectetapesoperations.datefinprevue'|trans({}, 'projectetapesoperations') %}
+                                {{ form_label(form.datefinPrevueO, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    
+                                    {{ form_widget(form.datefinPrevueO, {'attr': {'class': 'form-control datepicker'}}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                {% set name = 'projectetapesoperations.datedebutreelle'|trans({}, 'projectetapesoperations') %}
+                                {{ form_label(form.datedebutReelO, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.datedebutReelO, {'attr': {'class': 'form-control datepicker'}}) }}
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                {% set name = 'projectetapesoperations.datefinreelle'|trans({}, 'projectetapesoperations') %}
+                                {{ form_label(form.datefinReelO, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.datefinReelO, {'attr': {'class': 'form-control datepicker'}}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                {% set name = 'projectetapesoperations.datedebut'|trans({}, 'projectetapesoperations') %}
+                                {{ form_label(form.dateDebutO, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.dateDebutO, {'attr': {'class': 'form-control datepicker'}}) }}
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                {% set name = 'projectetapesoperations.dateTermine'|trans({}, 'projectetapesoperations') %}
+                                {{ form_label(form.dateTermineO, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.dateTermineO, {'attr': {'class': 'form-control datepicker'}}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                {% set name = 'projectetapesoperations.dateAvance'|trans({}, 'projectetapesoperations') %}
+                                {{ form_label(form.dateAvanceO, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.dateAvanceO, {'attr': {'class': 'form-control datepicker'}}) }}
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                {% set name = 'projectetapesoperations.dateRetard'|trans({}, 'projectetapesoperations') %}
+                                {{ form_label(form.dateRetardO, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.dateRetardO, {'attr': {'class': 'form-control datepicker'}}) }}
+                                </div>
+                            </div>
+                        </div>
+					</div>
+                    <div id="tri" class="tab-pane col-md-12">
+                        <div class="form-group col-md-6">
+                            {% set name = 'global.sorting'|trans({}, 'project') %}
+                            {{ form_label(form.tri, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                            <div class="col-lg-8">
+                                {{ form_widget(form.tri, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                    </div>
+					<div id="save" class="tab-pane col-md-12">
+						<div class="form-group col-md-6">
+                            {% set name = 'project.flagprive'|trans({}, 'project') %}
+                            {{ form_label(form.flagprive, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                            <div class="col-lg-8">
+                                {{ form_widget(form.flagprive, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+        <div>
+            {{ form_widget(form.idUser, {'value': getCurrentUsers('id') }) }}
+        </div>
+	{{ form_end(form, {'render_rest': true}) }}
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary btn btn-danger" data-dismiss="modal">{{ 'project.closesearch_button'|trans([], 'project') }}</button>
+    <button type="button" class="btn btn-primary" onclick="jQuery('#projectsearch_form').submit()">
+    	<i class="icon-search4"></i>
+    	{{ 'project.search_button'|trans([], 'project') }}
+    </button>
+</div>
+<script type="text/javascript">
+	(function($){
+		// datepicker
+        $(function() {
+            $('.datepicker').each(function(){
+                if( !this.value ) return;
+                var date = this.value.toString().replace(/-/g,'/');
+                // to evoid data horrible
+                if(date.toString().indexOf('/') == 0 || date.toString().indexOf('-') == 0) return $(this).val('');
+                // default value
+                $(this).attr('placeholder', date.toString()); 
+                // visual value
+                $(this).val($.datepicker.formatDate(window.date_format, new Date(this.value)));
+            }).datepicker({
+                onSelect: function(){
+                    var val = this.value;
+                    // default value
+                    $(this).attr('placeholder', val); 
+                    // visual value
+                    $(this).val($.datepicker.formatDate(window.date_format, new Date(this.value)));
+                }
+            });
+
+            /** pour prevision **/
+            function prevision (_this) {
+                if( !_this.checked )
+                    $('[name*="[datedebutPrevueE]"], [name*="[datefinPrevueE]"], [name*="[datedebutPrevueO"], [name*="datefinPrevueO"]').parents('.form-group').hide();
+                else
+                    $('[name*="[datedebutPrevueE]"], [name*="[datefinPrevueE]"], [name*="[datedebutPrevueO]"], [name*="[datefinPrevueO]"]').parents('.form-group').show();
+            }
+
+            /** pour realisation **/
+            function realisation (_this) {
+                /** not checked **/
+                if( !_this.checked )
+                    $('[name*="[datedebutReelE]"], [name*="[datefinReelE]"], [name*="[datedebutReelO]"], [name*="[datefinReelO]"]').parents('.form-group').hide();
+                else
+                    $('[name*="[datedebutReelE]"], [name*="[datefinReelE]"], [name*="[datedebutReelO]"], [name*="[datefinReelO]"]').parents('.form-group').show();
+            }
+
+            // event
+            $('.switchery').each(function(){
+                var switchery = new Switchery(this);
+
+                /** en init **/
+                prevision(this);
+                realisation(this);
+
+                // pour change
+                $(this).on('change', function() {
+                    if( /prevision/g.test($(this).attr('name')) )
+                        prevision(this);
+
+                    if( /realisation/g.test($(this).attr('name')) ) 
+                        realisation(this);
+                });
+            })
+        });
+	}(jQuery))
+</script>

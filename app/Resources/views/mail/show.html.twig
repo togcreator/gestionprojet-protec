@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Mail</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mail.id }}</td>
+            </tr>
+            <tr>
+                <th>Daty</th>
+                <td>{% if mail.daty %}{{ mail.daty|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Codemail</th>
+                <td>{{ mail.codemail }}</td>
+            </tr>
+            <tr>
+                <th>Dateprevue</th>
+                <td>{{ mail.datePrevue }}</td>
+            </tr>
+            <tr>
+                <th>Heureprevue</th>
+                <td>{{ mail.heurePrevue }}</td>
+            </tr>
+            <tr>
+                <th>Flagar</th>
+                <td>{{ mail.flagAR }}</td>
+            </tr>
+            <tr>
+                <th>Flagnotifemail</th>
+                <td>{{ mail.flagNotifEMAIL }}</td>
+            </tr>
+            <tr>
+                <th>Flagnotifsms</th>
+                <td>{{ mail.flagNotifSMS }}</td>
+            </tr>
+            <tr>
+                <th>Iduseragenda</th>
+                <td>{{ mail.idUserAgenda }}</td>
+            </tr>
+            <tr>
+                <th>Idprojettask</th>
+                <td>{{ mail.idProjetTask }}</td>
+            </tr>
+            <tr>
+                <th>Idcrmtask</th>
+                <td>{{ mail.idCRMTask }}</td>
+            </tr>
+            <tr>
+                <th>Idstrategie</th>
+                <td>{{ mail.idStrategie }}</td>
+            </tr>
+            <tr>
+                <th>Idchantier</th>
+                <td>{{ mail.idChantier }}</td>
+            </tr>
+            <tr>
+                <th>Idaffaire</th>
+                <td>{{ mail.idAffaire }}</td>
+            </tr>
+            <tr>
+                <th>Date4trash</th>
+                <td>{% if mail.date4trash %}{{ mail.date4trash|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datesaisie</th>
+                <td>{% if mail.datesaisie %}{{ mail.datesaisie|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Langue</th>
+                <td>{{ mail.langue }}</td>
+            </tr>
+            <tr>
+                <th>Version</th>
+                <td>{{ mail.version }}</td>
+            </tr>
+            <tr>
+                <th>Sujet</th>
+                <td>{{ mail.sujet }}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>{{ mail.message }}</td>
+            </tr>
+            <tr>
+                <th>Keywords</th>
+                <td>{{ mail.keywords }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mail_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mail_edit', { 'id': mail.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

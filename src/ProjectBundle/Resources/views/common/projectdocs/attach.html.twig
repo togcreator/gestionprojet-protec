@@ -1,0 +1,70 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h5 class="modal-title">{{ 'projectdocs.title'|trans([], 'projectdocs') }}</h5>
+</div>
+
+<div class="modal-body">
+	
+	{% if 'image' in return|keys %}
+		<table class="table datatable-basic">
+			<thead>
+                <tr>
+                    <th>{{ '#' }}</th>
+                    <th>{{ 'users.image'|trans({}, 'users') }}</th>
+                    <th>{{ 'users.firstname'|trans({}, 'users') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+            	{% for etape in return.image %}
+            		{% for etapeUsers in etape.user4affectation %}
+	            	<tr>
+	            		<td>{{ etapeUsers.user.id }}</td>
+	            		<td>
+	            			{% if etapeUsers.user.image|length > 0 %}
+	            				<img src="{{ asset('uploads/image/') ~ etapeUsers.user.image }}" width="120px" />
+	            			{% else %}
+	            				<img src="{{ asset('assets/images/placeholder.jpg') }}"  width="120px" />
+	            			{% endif %}
+	            		</td>
+	            		<td>{{ etapeUsers.user.firstname }}</td>
+	            	</tr>
+            		{% endfor %}
+            	{% endfor %}
+            </tbody>
+            <tbody>
+		</table>
+	{% endif %}
+
+	{% if 'attach' in return|keys %}
+		<table class="table datatable-basic">
+			<thead>
+                <tr>
+                    <th>{{ '#' }}</th>
+                    <th>{{ 'projectetape.title'|trans({}, 'projectetape') }}</th>
+                    <th>{{ 'projectdocs.idTypedoc'|trans({}, 'projectdocs') }}</th>
+                    <th>{{ 'projectdocs.download'|trans({}, 'projectdocs') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+            	{% for attach in return.attach %}
+            	<tr>
+            		<td>{{ attach.id }}</td>
+            		<td>{{ attach.designation }}</td>
+            		<td>{{ attach.origine }}</td>
+            		<td>
+            			<a href="{{ asset('uploads/') ~ attach.nomdoc }}" target="_blank">
+            				<i class="icon-attachment position-left"></i>
+            			</a>
+            		</td>
+            	</tr>
+            	{% endfor %}
+            </tbody>
+            <tbody>
+		</table>
+	{% endif %}
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" data-dismiss="modal">{{ 'projectdocs.close_button'|trans([], 'projectdocs') }}</button>
+</div>

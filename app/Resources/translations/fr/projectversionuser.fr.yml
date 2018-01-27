@@ -1,0 +1,22 @@
+# projectversionuser.fr.yml
+
+# general
+projectversionusers.list: Liste de Version de projet
+projectversionusers.no_data: Aucun resultat
+projectversionusers.creation: Nouveau version de projet
+projectversionusers.confirm_title: Confirmation
+
+# form
+projectversionusers.mission: Mission
+projectversionusers.datedebut: Date Debut
+projectversionusers.datefin: Date Fin
+projectversionusers.actions: Action
+projectversionusers.confirm_delete: Êtes vous sûr de vouloir supprimer ?
+
+# button
+projectversionusers.add_button: Nouvelle version de projet
+projectversionusers.submit_button: Enregistrer
+projectversionusers.edit_button: Modifier
+projectversionusers.del_button: Supprimer
+projectversionusers.close_button: Non
+projectversionusers.confirm_button: Oui, je confirme

@@ -1,0 +1,26 @@
+# whorkshop
+
+# general
+workshop.creation: New
+workshop.list: List of workshop
+workshop.edition: Edition
+workshop.label: Label
+workshop.confirm_title: Confirmation
+workshop.confirm_delete: Do you want to remove this ?
+
+# form
+workshop.open: Open
+workshop.wording: Label
+workshop.couleur: Color
+workshop.obs: Observation
+workshop.nomcouleur: Color name
+workshop.imgcouleur: Color image
+workshop.logo: Logo
+workshop.note: Note
+workshop.actions: Action
+
+# button
+workshop.submit_button: Save
+workshop.save_button: Save
+workshop.confirm_button: yes, I do
+workshop.close_button: No

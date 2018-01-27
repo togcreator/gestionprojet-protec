@@ -1,0 +1,25 @@
+# relationuserentite.fr.yml
+
+# general
+relationuserentite.list: List of entity user relationship
+relationuserentite.creation: New
+relationuserentite.edition: Edition
+relationuserentite.confirm_title: Confirmation
+relationuserentite.no_data: No data
+
+# form
+relationuserentite.iDUser: User
+relationuserentite.idEntiteJ: Entity J
+relationuserentite.iDRelation_Fonctionnelle: Worker
+relationuserentite.iDUserEntite: User entity
+relationuserentite.user: User
+relationuserentite.confirm_delete: Do you want to remove this ?
+
+# button
+relationuserentite.add_button: New
+relationuserentite.save_button: Save
+relationuserentite.submit_button: Save
+relationuserentite.edit_button: Edit
+relationuserentite.del_button: Remove
+relationuserentite.confirm_button: Yes, i do
+relationuserentite.close_button: No

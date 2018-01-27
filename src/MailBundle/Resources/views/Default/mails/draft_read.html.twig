@@ -1,0 +1,146 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() ~ 'title.fiche.mail'|trans }}{% endblock %}
+
+{% block body %}
+    <!-- popup remove confirmation -->
+        
+        <div id="remove_confirm" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{ 'admin.confirm.header'|trans }}</h4>
+              </div>
+              <div class="modal-body">
+                <p>{{ 'admin.confirm.message'|trans }}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'admin.cancel'|trans }}</button>
+                <a href="{{ path('draft_remove', {'id': draft.id}) }}"  class="btn btn-danger"><i class="glyphicon glyphicon-floppy-remove"></i> <span class="hidden-xs position-right">{{ 'admin.confirm.button'|trans }}</span></a>
+              </div>
+            </div>
+
+          </div>
+        </div>    
+    <!-- /popup remove confirmation -->
+
+    <!-- Page header -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{{ 'admin.mailbox'|trans }}</span> - {{ 'admin.read'|trans }}</h4>
+
+                <ul class="breadcrumb breadcrumb-caret position-right">
+                    <li><a href="{{ path('homepage') }}">{{ 'admin.home'|trans }}</a></li>
+                    <li><a href="#">{{ 'admin.mailbox'|trans }}</a></li>
+                    <li class="active">{{ 'admin.read'|trans }}</li>
+                </ul>
+            </div>
+
+            <div class="heading-elements">
+                <div class="heading-btn-group">
+                    <a href="#" class="btn btn-link btn-float has-text text-size-small"><i class="icon-bars-alt text-indigo-400"></i><span>{{ 'admin.statistics'|trans }}</span></a>
+                    <a href="#" class="btn btn-link btn-float has-text text-size-small"><i class="icon-calculator text-indigo-400"></i> <span>{{ 'admin.invoices'|trans }}</span></a>
+                    <a href="#" class="btn btn-link btn-float has-text text-size-small"><i class="icon-calendar5 text-indigo-400"></i> <span>{{ 'admin.schedule'|trans }}</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page header -->
+
+
+    <!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main sidebar -->
+        <div class="sidebar sidebar-main sidebar-default sidebar-separate">
+            <div class="sidebar-content">
+                {% include "MailBundle:Default:modulesUsed/menus_mail.html.twig" %}
+            </div>
+        </div>
+        <!-- /main sidebar -->
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+
+            <!-- Single mail -->
+            <div class="panel panel-white">
+
+                <!-- Mail toolbar -->
+                <div class="panel-toolbar panel-toolbar-inbox">
+                    <div class="navbar navbar-default">
+                        <ul class="nav navbar-nav visible-xs-block no-border">
+                            <li>
+                                <a class="text-center collapsed" data-toggle="collapse" data-target="#inbox-toolbar-toggle-single">
+                                    <i class="icon-circle-down2"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="navbar-collapse collapse" id="inbox-toolbar-toggle-single">
+                            <div class="btn-group navbar-btn">
+
+                            <a class="btn btn-default btn-lg" data-toggle="modal" data-target="#remove_confirm"><span><i class="icon-bin"></i> </span>{{ 'admin.delete'|trans }}</a>
+                            </div>
+
+                            <div class="pull-right-lg">
+                                <p class="navbar-text"></p>
+                                <div class="btn-group navbar-btn"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /mail toolbar -->
+                <!-- /single mail -->
+            </div>
+
+            <!-- Title with left icon -->
+            <div class="panel panel-white">
+                <div class="panel-heading">
+                    <h6 class="panel-title"><i class="icon-envelop3 position-left"></i> <strong>{{ 'admin.draft'|trans }}</strong></h6>
+                </div>
+
+                <div class="panel-body">
+                    <ul class="media-list chat-stacked content-group">
+                        <li class="media">
+                            <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}" class="img-circle img-md" alt=""></div>
+                            <div class="media-body">
+                                <div class="media-heading pointer in">
+                                    <div class="text-semibold">
+                                        
+                                        &nbsp;<span class="text-muted">{{ user.firstname }}&lt;{{ user.email }}&gt;</span>
+                                    </div>
+                                    <span class="media-annotation pull-right">
+                                    </span>
+                                    <span class="text-muted in_str"></span>
+                                    <div id="div_" class="well">
+                                        {{ draft.texte|raw }}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    
+                </div>
+            </div>
+            <!-- /title with left icon -->
+
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+    {% endblock %}
+
+{% block javascripts %}
+{% endblock %}

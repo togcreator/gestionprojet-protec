@@ -1,0 +1,23 @@
+# entity.fr.yml
+
+# general
+EntityJ: Entity
+entity.list: List of Entity
+entity.creation: New
+entity.edition: Edition
+entity.confirm_title: Confirmation
+entity.confirm_delete: Are you want to remove this ?
+entity.no_data: no data
+
+# form
+entity.name: Label
+entity.description: Description
+entity.actions: Action
+
+# button
+entity.edit_button: Edit
+entity.del_button: Remove
+entity.submit_button: Save
+entity.add_button: New
+entity.confirm_button: Yes, I do
+entity.close_button: No

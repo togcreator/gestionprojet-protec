@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Compaigns list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Iduser</th>
+                <th>Budget</th>
+                <th>Status</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for compaign in compaigns %}
+            <tr>
+                <td><a href="{{ path('compaign_show', { 'id': compaign.id }) }}">{{ compaign.id }}</a></td>
+                <td>{{ compaign.idUser }}</td>
+                <td>{{ compaign.budget }}</td>
+                <td>{{ compaign.status }}</td>
+                <td>{% if compaign.dateDebut %}{{ compaign.dateDebut|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if compaign.dateFin %}{{ compaign.dateFin|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ compaign.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('compaign_show', { 'id': compaign.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('compaign_edit', { 'id': compaign.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('compaign_new') }}">Create a new compaign</a>
+        </li>
+    </ul>
+{% endblock %}

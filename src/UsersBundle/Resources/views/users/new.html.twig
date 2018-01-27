@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-lg-12 col-xs-12">
+                            <div class="panel panel-flat">
+                                <div class="panel-heading">
+                                    <h2>{{ 'users.creation'|trans({}, 'users')}}</h2>
+                                </div>
+                                <div class="panel-body">
+                                <form action="{{ path('fos_user_registration_register') }}" method="post" class="form">
+                                    <fieldset class="content-group">
+                                        <legend class="text-bold">{{ 'userclient.info_login'|trans({}, 'userclient') }}</legend>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                {% set name = 'form.username'|trans %}
+                                                {{ form_label(form.username, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.username, {'attr': {'class': 'form-control upload-file', 'data-preview': ''}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group">
+                                                {% set name = 'form.password'|trans %}
+                                                {{ form_label(form.plainPassword.first, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control', 'id': 'password'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group">
+                                                {% set name = 'form.password_confirmation'|trans %}
+                                                {{ form_label(form.plainPassword.second, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control', 'id': 'repeat_password'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                {% set name = 'form.email'|trans %}
+                                                {{ form_label(form.email, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary" value="Create">
+                                            {{ 'users.add_button'|trans({}, 'users') }}
+                                            <i class="icon-arrow-right14 position-right"></i>
+                                        </button>
+                                    </fieldset>
+                                    {{ form_end(form, {'render_rest': true}) }}
+                                    <script type="text/javascript">
+                                        (function($){
+                                            $('.form').on('submit', function(e) {
+                                                e.preventDefault();
+
+                                                var second = $('[name*="[second]"]')
+                                                var label = second.parents('.form-group').find('label').html();
+                                                if( $('[name*="[first]"]').val().toString() != $('[name*="[second]"]').val().toString() ) {
+                                                    alert("{{ 'project.form_null'|trans({}, 'project') }} " + label);
+                                                    return false;
+                                                } else
+                                                    this.submit();
+                                            });
+                                            
+                                        }(jQuery))
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+{% endblock %}

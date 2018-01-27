@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Userssessions list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Sessiontoken</th>
+                <th>Ipclient</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for usersSession in usersSessions %}
+            <tr>
+                <td><a href="{{ path('common_userssession_show', { 'id': usersSession.id }) }}">{{ usersSession.id }}</a></td>
+                <td>{{ usersSession.sessionToken }}</td>
+                <td>{{ usersSession.ipClient }}</td>
+                <td>{% if usersSession.date %}{{ usersSession.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('common_userssession_show', { 'id': usersSession.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('common_userssession_edit', { 'id': usersSession.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('common_userssession_new') }}">Create a new usersSession</a>
+        </li>
+    </ul>
+{% endblock %}

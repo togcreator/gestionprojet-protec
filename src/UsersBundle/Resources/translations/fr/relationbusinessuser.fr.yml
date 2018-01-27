@@ -1,0 +1,25 @@
+# relationbusinessuser.fr.yml
+
+# general
+relationbusinessuser.list: Liste de relation fonctionnelles
+relationbusinessuser.creation: Nouveau
+relationbusinessuser.edition: Modification
+relationbusinessuser.confirm_title: Confirmation
+relationbusinessuser.no_data: Aucun resultat
+
+# form
+relationbusinessuser.iDUser: Utilisateur
+relationbusinessuser.iDBusinessUnit: Business unité
+relationbusinessuser.iDRelation_Fonctionnelle: Relation fonctionnelle
+relationbusinessuser.relation: Relation fonctionnelle
+relationbusinessuser.business: Relation business
+relationbusinessuser.confirm_delete: Êtes vous sûr vouloir supprimer cette relation ?
+
+# button
+relationbusinessuser.add_button: Nouveau
+relationbusinessuser.save_button: Enregistrer
+relationbusinessuser.submit_button: Enregistrer
+relationbusinessuser.edit_button: Modifier
+relationbusinessuser.del_button: Supprimer
+relationbusinessuser.confirm_button: Oui, je confirme
+relationbusinessuser.close_button: Non

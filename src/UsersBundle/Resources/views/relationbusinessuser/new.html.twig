@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <!-- /page header -->
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-12 col-xs-12">
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'relationbusinessuser.creation'|trans({}, 'relationbusinessuser') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('relationbusinessuser_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        {{ form_start(form) }}
+                            <fieldset class="content-group">
+                                <div class="form-group">
+                                    {% set name = 'relationbusinessuser.iDUser'|trans({}, 'relationbusinessuser') %}
+                                    {{ form_label(form.iDUser, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(form.iDUser, {'attr': {'class': 'form-control select2-search' }}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'relationbusinessuser.iDBusinessUnit'|trans({}, 'relationbusinessuser') %}
+                                    {{ form_label(form.iDBusinessUnit, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(form.iDBusinessUnit, {'attr': {'class': 'form-control select2-search' }}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'relationbusinessuser.iDRelation_Fonctionnelle'|trans({}, 'relationbusinessuser') %}
+                                    {{ form_label(form.iDRelation_Fonctionnelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(form.iDRelation_Fonctionnelle, {'attr': {'class': 'form-control select2-search' }}) }}
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <button type="submit" class="btn btn-primary" value="Edit">
+                                {{ 'relationbusinessuser.save_button'|trans({}, 'relationbusinessuser') }}
+                                <i class="icon-arrow-right14 position-right"></i>
+                            </button>
+                        {{ form_end(form, {'render_rest': true}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

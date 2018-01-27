@@ -1,0 +1,48 @@
+# crmdossier.fr.yml
+
+# general
+crmdossier.title: CRM
+crmdossier.creation: New 
+crmdossier.edition: Edition
+crmdossier.confirm_title: Confirmation
+crmdossier.crm: CRM
+
+# form
+# legend
+crmdossier.users: Users
+crmdossier.user: User
+crmdossier.icone: Icon
+crmdossier.idEntiteJ: Entity
+crmdossier.info: Information
+crmdossier.date: Date
+crmdossier.other: toher detail
+crmdossier.label: Label
+crmdossier.idTypeProjet: Project type
+crmdossier.idCreateur: Creator
+crmdossier.code: Code
+crmdossier.reference: Reference
+crmdossier.descriptionPerimetres: Parameter description 
+crmdossier.datedebutPrevue: Planned start date
+crmdossier.datefinPrevue: Planned end date
+crmdossier.statut: Status
+crmdossier.datedebutReelle: Actual start date
+crmdossier.datefinReelle: Actual end date
+crmdossier.modeAcces: Access mode
+crmdossier.idMarketSegment: Market segment
+crmdossier.idWatcher: Watcher
+crmdossier.Rakingprevu: Ranking planned
+crmdossier.Rakingactuel: Ranking actual
+crmdossier.idResultat: Result
+crmdossier.idOwner: Owner
+crmdossier.descriptionResultat: Result description
+crmdossier.confirm_delete: Do you want to remove this folder ?
+
+# button
+crmdossier.add_button: New folder
+crmdossier.submit_button: Save
+crmdossier.save_button: Save
+crmdossier.edit_button: Edit
+crmdossier.del_button: Remove
+crmdossier.close_button: No
+crmdossier.confirm_button: Yes, i do
+crmdossier.closesearch_button: Close

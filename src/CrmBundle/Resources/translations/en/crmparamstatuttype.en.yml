@@ -1,0 +1,20 @@
+# genenral
+crmparamstatuttype.list: List of type status
+crmparamstatuttype.confirm_title: Confirmation
+crmparamstatuttype.edition: Edition
+crmparamstatuttype.creation: New
+
+# form
+crmparamstatuttype.legend_info: Information
+crmparamstatuttype.open: Open
+crmparamstatuttype.label: Label
+crmparamstatuttype.confirm_delete: Do yout really want to remove this ?
+crmparamstatuttype.actions: Action
+
+# button
+crmparamstatuttype.add_button: New
+crmparamstatuttype.save_button: Save
+crmparamstatuttype.edit_button: Edit
+crmparamstatuttype.del_button: Remove
+crmparamstatuttype.confirm_button: yes, i do
+crmparamstatuttype.close_button: No

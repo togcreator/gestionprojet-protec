@@ -1,0 +1,40 @@
+# projectetapejalons.en.yml
+
+# general
+projectetapejalons._title: Milestone Stage
+projectetapejalons.creation: New
+projectetapejalons.edition: Edition
+projectetapejalons.list: List of milestone step
+projectetapejalons.confirm_title: Confirmation
+
+# form
+etape.legend_info: Information
+etape.legend_project: Project
+projectetapejalons.idEtape: Stage
+projectetapejalons.idProjectversion: Project
+projectetapejalons.idAgenda: Agenda
+projectetapejalons.title: Title
+projectetapejalons.object: Object
+projectetapejalons.idTypeJalon: Milestone type
+projectetapejalons.description: Description
+projectetapejalons.dateprevue: Planned date
+projectetapejalons.datereelle: Actual date
+projectetapejalons.journeesHommesprevues: Day man scheduled
+projectetapejalons.journeesHommesreelles: Real Day Men
+projectetapejalons.idResultat: Result
+projectetapejalons.actions: Action
+projectetapejalons.confirm_delete: Are you want to remove this ?
+projectetape.no_data: No data
+projectetapejalons.etape_none: --- No Stage ---
+projectetapejalons.version_none: --- Project ---
+projectetapejalons.agenda_none: --- Agenda ---
+projectetapejalons.no_data: No data
+
+# button
+projectetapejalons.add_button: New
+projectetapejalons.edit_button: Edit
+projectetapejalons.del_button: Remove
+projectetapejalons.submit_button: Save
+projectetapejalons.confirm_button: Yes, I do
+projectetapejalons.close_button: No
+projectetapejalons.new_button: New milestone stage

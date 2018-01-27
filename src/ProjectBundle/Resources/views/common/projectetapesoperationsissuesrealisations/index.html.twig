@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'IssuesRealisations.list'|trans({}, 'IssuesRealisations') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('Issuesrealisations_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'IssuesRealisations.add_button'|trans({}, 'IssuesRealisations') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('Issuesrealisations_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if IssuesRealisations %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'IssuesRealisations.idProjetVersion'|trans({}, 'IssuesRealisations') }}</th>
+                                <th>{{ 'IssuesRealisations.idEtape'|trans({}, 'IssuesRealisations') }}</th>
+                                <th>{{ 'IssuesRealisations.idIssue'|trans({}, 'IssuesRealisations') }}</th>
+                                <th>{{ 'IssuesRealisations.observations'|trans({}, 'IssuesRealisations') }}</th>
+                                <th>{{ 'IssuesRealisations.dateafectation'|trans({}, 'IssuesRealisations') }}</th>
+                                <th>{{ 'IssuesRealisations.daterealisation'|trans({}, 'IssuesRealisations') }}</th>
+                                <th class="text-center">{{ 'IssuesRealisations.actions'|trans({}, 'IssuesRealisations') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for IssuesRealisation in IssuesRealisations %}
+                            <tr>
+                                <td style="cursor:pointer">{{ IssuesRealisation.id }}</td>
+                                <td>
+                                    {% if IssuesRealisation.projet %}
+                                    {{ IssuesRealisation.projet.label }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if IssuesRealisation.etape %}
+                                    {{ IssuesRealisation.etape.object }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if IssuesRealisation.issue %}
+                                    {{ IssuesRealisation.issue.label }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ IssuesRealisation.observations }}</td>
+                                <td>{{ IssuesRealisation.dateafectation|date(date_format) }}</td>
+                                <td>{{ IssuesRealisation.daterealisation|date(date_format) }}</td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('Issuesrealisations_edit', { 'id': IssuesRealisation.id }) }}"><i class="icon-pen"></i> {{ 'IssuesRealisations.edit_button'|trans({}, 'IssuesRealisations') }}</a></li>
+                                                <li><a href="{{ path('Issuesrealisations_delete', { 'id': IssuesRealisation.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'IssuesRealisations.del_button'|trans({}, 'IssuesRealisations') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'IssuesRealisations.no_data'|trans({}, 'IssuesRealisations') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>            
+{% endblock %}

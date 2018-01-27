@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Userdoc</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ userDoc.id }}</td>
+            </tr>
+            <tr>
+                <th>Iduser</th>
+                <td>{{ userDoc.iDUser }}</td>
+            </tr>
+            <tr>
+                <th>Idtype</th>
+                <td>{{ userDoc.iDType }}</td>
+            </tr>
+            <tr>
+                <th>Origine</th>
+                <td>{{ userDoc.origine }}</td>
+            </tr>
+            <tr>
+                <th>Iduser4origine</th>
+                <td>{{ userDoc.idUser4origine }}</td>
+            </tr>
+            <tr>
+                <th>Datecreation</th>
+                <td>{% if userDoc.dateCreation %}{{ userDoc.dateCreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Designation</th>
+                <td>{{ userDoc.designation }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ userDoc.code }}</td>
+            </tr>
+            <tr>
+                <th>Nomdoc</th>
+                <td>{{ userDoc.nomdoc }}</td>
+            </tr>
+            <tr>
+                <th>Idbiblio</th>
+                <td>{{ userDoc.idBiblio }}</td>
+            </tr>
+            <tr>
+                <th>Version</th>
+                <td>{{ userDoc.version }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('userdocs_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('userdocs_edit', { 'id': userDoc.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

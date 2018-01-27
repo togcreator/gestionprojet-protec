@@ -1,0 +1,185 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-lg-12 col-xs-12">
+                            <div class="panel panel-flat">
+                                <div class="panel-heading">
+                                    <h2>{{ 'crmetapes.creation'|trans({}, 'crmetapes') }}</h2>
+                                </div>
+                                <div class="panel-body">
+                                {{ form_start(form, {'attr': {'class':'form-horizontal'}}) }}
+                                    <fieldset class="content-group">
+                                        <legend class="text-bold">{{ 'crmetapes.crm'|trans({}, 'crmetapes') }}</legend>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                {% set name = 'crmetapes.idCRM'|trans({}, 'crmetapes') %}
+                                                {{ form_label(form.idCRM, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.idCRM, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'crmetapes.idCycle'|trans({}, 'crmetapes') %}
+                                                {{ form_label(form.idCycle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.idCycle, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <legend class="text-bold">{{ 'crmetapes.info'|trans({}, 'crmetapes') }}</legend>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                {% set name = 'crmetapes.objet'|trans({}, 'crmetapes') %}
+                                                {{ form_label(form.objet, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.objet, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'crmetapes.description'|trans({}, 'crmetapes') %}
+                                                {{ form_label(form.description, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'projectetapesoperations.user4affectation'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(form.user4affectation, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.user4affectation, {'attr': {'class': 'form-control listbox-dynamic-options'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <legend class="text-bold">{{ 'crmetapes.date'|trans({}, 'crmetapes') }}</legend>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'crmetapes.datedebutprevue'|trans({}, 'crmetapes') %}
+                                                {{ form_label(form.datedebutprevue, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.datedebutprevue, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'crmetapes.datefinprevue'|trans({}, 'crmetapes') %}
+                                                {{ form_label(form.datefinprevue, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.datefinprevue, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'crmetapes.datedebutreelle'|trans({}, 'crmetapes') %}
+                                                {{ form_label(form.datedebutreelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.datedebutreelle, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'crmetapes.datefinreelle'|trans({}, 'crmetapes') %}
+                                                {{ form_label(form.datefinreelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.datefinreelle, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <legend class="text-bold">{{ 'crmetapes.other'|trans({}, 'crmetapes') }}</legend>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                {% set name = 'crmetapes.idStatut'|trans({}, 'crmetapes') %}
+                                                {{ form_label(form.idStatut, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.idStatut, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'crmetapes.idResultat'|trans({}, 'crmetapes') %}
+                                                {{ form_label(form.idResultat, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.idResultat, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="form-group">
+                                                {% set name = 'crmetapes.reference'|trans({}, 'crmetapes') %}
+                                                {{ form_label(form.reference, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.reference, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'crmetapes.descriptionResultat'|trans({}, 'crmetapes') %}
+                                                {{ form_label(form.descriptionResultat, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.descriptionResultat, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'crmetapes.flagAction'|trans({}, 'crmetapes') %}
+                                                {{ form_label(form.flagAction, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.flagAction, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'crmetapes.flagIdee'|trans({}, 'crmetapes') %}
+                                                {{ form_label(form.flagIdee, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.flagIdee, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'crmetapes.flagInformation'|trans({}, 'crmetapes') %}
+                                                {{ form_label(form.flagInformation, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(form.flagInformation, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                    <button type="submit" class="btn btn-primary" value="Create">
+                                        {{ 'crmetapes.save_button'|trans({}, 'crmetapes') }}
+                                        <i class="icon-arrow-right14 position-right"></i>
+                                    </button>
+                                {{ form_end(form, {'render_rest': true}) }}
+                                <script type="text/javascript">
+                                    (function($){
+                                        $('[name*="[idCRM]"]').on('change', function(){
+                                            var _location = document.location.href.toString().split('?');
+                                            _location = _location[0];
+
+                                            /** redirect url**/
+                                            redirectTo(_location + '?idCRM=' + this.value);
+                                        }); 
+                                    }(jQuery))
+                                </script>
+                                <script type="text/javascript" src="{{ asset('assets/backoffice/js/plugins/forms/inputs/duallistbox.min.js') }}"></script>
+                                <script type="text/javascript">
+                                    (function($){
+                                        $('.listbox-dynamic-options').bootstrapDualListbox({
+                                            moveOnSelect: false,
+                                            infoText: '{{'roles.infotext'|trans({}, 'roles')}}',
+                                            infoTextFiltered: '',
+                                            infoTextEmpty: '',
+                                            filterPlaceHolder: '{{'roles.filterplaceholder'|trans({}, 'roles')}}',
+                                            filterTextClear: '{{'roles.filtertextclear'|trans({}, 'roles')}}'
+                                        });
+                                    }(jQuery))
+                                </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+{% endblock %}

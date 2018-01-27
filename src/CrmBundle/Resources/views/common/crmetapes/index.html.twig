@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-lg-12 col-xs-12">
+                            <!-- Marketing campaigns -->
+                            <div class="panel panel-white">
+                                <div class="panel-heading">
+                                    <h6 class="panel-title">{{ 'crmetapes.title'|trans({}, 'crmetapes') }}</h6>
+                                    <div class="heading-elements">
+                                        <button type="button" class="btn btn-primary pull-left" onclick="document.location.href = '{{ path('crmetapes_new') }}'"><i class="icon-add position-left"></i>{{ 'crmetapes.add_button'|trans({}, 'crmetapes') }}</button>
+                                        <span class="label bg-success heading-text">{{ crmEtapes|length }} {{ 'global.active'|trans }}</span>
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i> <span class="caret"></span></a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="#"><i class="icon-sync"></i> {{ 'global.update_data'|trans }}</a></li>
+                                                    <li><a href="#"><i class="icon-list-unordered"></i> {{ 'global.detail_log'|trans }}</a></li>
+                                                    <li><a href="#"><i class="icon-pie5"></i> {{ 'global.statistics'|trans }}</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#"><i class="icon-cross3"></i> {{ 'global.clear_list'|trans }}</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <table class="table text-nowrap datatable-basic">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>{{ 'crmetapes.idCRM'|trans({}, 'crmetapes') }}</th>
+                                                <th>{{ 'crmetapes.objet'|trans({}, 'crmetapes') }}</th>
+                                                <th>{{ 'crmetapes.datedebutreelle'|trans({}, 'crmetapes') }}</th>
+                                                <th>{{ 'crmetapes.datefinreelle'|trans({}, 'crmetapes') }}</th>
+                                                <th>{{ 'global.actions'|trans }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for crmetapes in crmEtapes %}
+                                            <tr>
+                                                <td>{{ crmetapes.id }}</td>
+                                                <td>{{ crmetapes.crm.label }}</td>
+                                                <td>{{ crmetapes.objet }}</td>
+                                                <td>{{ crmetapes.datedebutreelle|date(date_format) }}</td>
+                                                <td>{{ crmetapes.datefinreelle|date(date_format) }}</td>
+                                                <td class="text-center">
+                                                    <ul class="icons-list">
+                                                        <li class="dropdown">
+                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                                <i class="icon-menu9"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                                <li><a href="{{ path('crmetapes_edit', { 'id': crmetapes.id }) }}"><i class="icon-pen"></i> {{ 'crmetapes.edit_button'|trans({}, 'crmetapes') }}</a></li>
+                                                                <li><a href="{{ path('crmetapes_delete', { 'id': crmetapes.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'crmetapes.del_button'|trans({}, 'crmetapes') }}</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">(function($){ $(document.body).addClass('sidebar-xs')}(jQuery))</script>
+
+    
+{% endblock %}

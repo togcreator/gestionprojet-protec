@@ -1,0 +1,27 @@
+# projectversionuser.fr.yml
+
+# general
+projectversionusers.list: Liste des intervenants du projet
+projectversionusers.no_data: Aucun resultat
+projectversionusers.creation: Nouveau
+projectversionusers.creation: Modification
+projectversionusers.confirm_title: Confirmation
+
+# form
+projectversionusers.idProjetVersion: Projet
+projectversionusers.user: Intervenant
+projectversionusers.mission: Mission
+projectversionusers.datedebut: Date Debut
+projectversionusers.datefin: Date Fin
+projectversionusers.actions: Action
+projectversionusers.confirm_delete: Êtes vous sûr de vouloir supprimer ?
+projectversionusers.idRole: Rôle
+
+# button
+projectversionusers.new_button: Nouvel intervenant
+projectversionusers.add_button: Nouvel intervenant
+projectversionusers.submit_button: Enregistrer
+projectversionusers.edit_button: Modifier
+projectversionusers.del_button: Supprimer
+projectversionusers.close_button: Non
+projectversionusers.confirm_button: Oui, je confirme

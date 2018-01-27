@@ -1,0 +1,28 @@
+# statut.fr.yml
+
+# general
+statut.list: List of status
+statut.creation: New
+statut.edition: Edition
+statut.confirm_title: Confirmation
+statut.no_data: No data
+
+# form
+statut.open: Open
+statut.wording: Label
+statut.version: Version
+statut.actions: Action
+statut.confirm_delete: Are you want to remove this ?
+statut.couleur: Color
+statut.obs: Observation
+statut.nomcouleur: Name of color
+statut.imgcouleur: Image of color
+statut.logo: Logo
+
+# button
+statut.add_button: New
+statut.save_button: Save
+statut.edit_button: Edit
+statut.del_button: Remove
+statut.confirm_button: yes, I do
+statut.close_button: No

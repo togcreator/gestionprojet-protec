@@ -1,0 +1,102 @@
+
+global:
+    listeclient: Entité juridique
+    srih: Srih
+
+# Fiche client
+client:
+    fiche:
+        add: Ajout
+        edit: Modification
+        customer: client
+        id_group: Identifiant du Groupe
+        code: Code
+        raisonSociale: Raison Sociale
+        adresse: Adresse 1
+        adresse2: Adresse 2
+        cp: CP
+        city: Ville
+        country: Pays
+        phone: Téléphone
+        gsm: GSM
+        fax: Fax
+        email: Email
+        date_creation: Date creation
+        deadline: Échéance
+        website: Site web
+        version: Version
+        latitude: Latitude
+        longitude: Longitude
+        siret: Siret
+        intra_community_vat: TVA Intra-Communautaire
+        epa: APE
+        staff_bracket: Tranche Effectif
+        code_cegid: Code Cegid
+        code_exact: Code Exact
+        code_sage: Code Sage
+        origin: Origine
+        origin_id: Identifiant Origine
+        id_user_creation: Identifiant Utilisateur Creation
+        id_type_payement: Identifiant Type Paiement
+        id_type_facturation: Identifiant Type Facturation
+        id_legal_form: Identifiant de la Forme Juridique
+        submit: Enregistrer
+        reset: Actualiser
+        info_customer: Informations sur le client
+        contact_customer: Contacts
+        more_info: Informations Complémentaire
+    breadcrumb:
+        home: Accueil
+        customer: Liste clients
+        add_customer: Ajout client
+        edit_customer: Modification client
+        customer_card: Fiche client
+    contact:
+        id: '#'
+        title: Contact
+        firstname: Prénom
+        lastname: Nom
+        typeprofession: Relation
+    srih:
+        id: '#'
+        title: Liste des Salariés
+        first_last_name: Nom / Prénom
+        lastname: Nom
+        bu: Business Unit
+        fonction: Fonction
+        typeprofession: Relation
+    pipeline:
+        title: Pipeline / Activité
+        document: Document
+        doc:
+            envoye: Document envoyé
+            recus: Document Reçus
+        designation: Désignation
+        typedoc: Type de document
+        download: Téléchargement
+        button:
+            close: Fermer
+    filter:
+        title: Information
+        idEntiteJ: Entité juridique
+        cp: Code postal
+        idOwner: Commerciale
+        idWatcher: Responsable Commerciale
+        idStatut: Statut
+        tri: Regroupé par
+        save_button: Sauver et Filtrer
+    title:
+        add_customer: Ajouter un client
+        edit_client: Modifier un fiche client
+        edit: Modification / consultation
+    info:
+        title: Information client
+        activity: Activité(s)
+    menu:
+        customer: Entité juridique
+        contact: Contacts
+        entiteJ: Entité juridique
+        pipeline: Activités
+        srih: Sirh
+    button:
+        edit: Modifier/Consulter

@@ -1,0 +1,22 @@
+# jalon.fr.yml
+# general
+jalon.list: Liste des Jalons
+jalon.edition: Modification
+jalon.creation: Nouveau Jalon
+jalon.confirm_title: Confirmation
+
+# form
+jalon.open: Ouvert
+jalon.label: Libellé
+jalon.version: Version
+jalon.actions: Action
+jalon.confirm_delete: Êtes vous sûr de vouloir supprimer ce jalon ?
+
+# button
+jalon.add_button: Nouveau
+jalon.edit_button: Modifier
+jalon.del_button: Supprimer
+jalon.save_button: Enregistrer
+jalon.submit_button: Enregistrer
+jalon.confirm_button: Oui, je confirme
+jalon.close_button: Non

@@ -1,0 +1,103 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h5 class="modal-title">{{ 'project.filter'|trans([], 'project') }}</h5>
+</div>
+<div class="modal-body">
+	{{ form_start(form, {'attr': {'id': 'form', 'action': path('client_filter_index') }}) }}
+		<fieldset>
+            {# <div class="form-group col-lg-12">
+                <div class="alert alert-styled-left alert-danger alert-bordered" style="margin: 10px; display: none" type="danger"></div>
+                <div class="form-group col-md-6">
+                    {# {% set title = form.vars.value.iDEntiteJ %} 
+                    {% set name = 'client.filter.idEntiteJ'|trans({}, 'project') %}
+                    {{ form_label(form.idEntiteJ, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                    <div class="col-lg-8">
+                        {{ form_widget(form.idEntiteJ, {'attr': {'class': 'form-control select2-search position-left pull-left', 'style': 'width: 80%'}}) }}
+                    </div>
+                </div>
+            </div> #}
+			<div class="tabbable">
+				<ul class="nav nav-tabs nav-tabs-highlight">
+					<li class="active"><a href="#info" data-toggle="tab">{{ 'client.filter.title'|trans}}</a></li>
+					<li><a href="#save" data-toggle="tab">{{ 'project.filter_save'|trans({}, 'project')}}</a></li>
+				</ul>
+				<div class="tab-content">
+					<div id="info" class="tab-pane active col-md-12">
+                        <div class="row">
+    						<div class="form-group col-md-6">
+                                {% set name = 'client.filter.cp'|trans %}
+                                {{ form_label(form.cP, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.cP, {'attr': {'class': 'form-control select2-search'}}) }}
+                                </div>
+    						</div>
+                            <div class="form-group col-md-6">
+                                {% set name = 'client.filter.idStatut'|trans %}
+                                {{ form_label(form.idStatut, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.idStatut, {'attr': {'class': 'form-control select2-search'}}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                {% set name = 'client.filter.idWatcher'|trans %}
+                                {{ form_label(form.idWatcher, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.idWatcher, {'attr': {'class': 'form-control select2-search'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                {% set name = 'client.filter.idOwner'|trans %}
+                                {{ form_label(form.idOwner, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                <div class="col-lg-8">
+                                    {{ form_widget(form.idOwner, {'attr': {'class': 'form-control select2-search'}}) }}
+                                </div>
+                            </div>
+                        </div>
+					</div>
+
+                    <div id="tri" class="tab-pane col-md-12">
+                        <div class="form-group col-md-6">
+                            {% set name = 'client.filter.tri'|trans %}
+                            {{ form_label(form.tri, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                            <div class="col-lg-8">
+                                {{ form_widget(form.tri, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                    </div> 
+					
+					<div id="save" class="tab-pane col-md-12">
+						<div class="form-group col-md-6">
+                            {% set name = 'project.flagprive'|trans({}, 'project') %}
+                            {{ form_label(form.flagprive, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                            <div class="col-lg-8">
+                                {{ form_widget(form.flagprive, {'attr': {'class': 'form-control switchery'}}) }}
+                            </div>
+                        </div>
+					</div> 
+				</div>
+			</div>
+		</fieldset>
+        <div>
+            {{ form_widget(form.idUser, {'value': app.session.get('log') }) }}
+        </div>
+	{{ form_end(form, {'render_rest': true}) }}
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary btn btn-danger" data-dismiss="modal">
+        <i class="icon-close2"></i>
+        {{ 'project.closesearch_button'|trans([], 'project') }}</button>
+    <button type="button" class="btn btn-primary" onclick="jQuery('#form').submit()">
+    	<i class="icon-search4"></i>
+    	{{ 'project.search_button'|trans([], 'project') }}
+    </button>
+</div>
+<script type="text/javascript">
+	(function($){
+		// datepicker
+        $(function() {
+            $('.select2-search').select2();
+        });
+	}(jQuery))
+</script>

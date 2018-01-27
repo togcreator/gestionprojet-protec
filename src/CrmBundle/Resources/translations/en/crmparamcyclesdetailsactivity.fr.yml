@@ -1,0 +1,29 @@
+# genenral
+crmparamcyclesdetailsactivity.list: Liste des type de cycles CRM
+crmparamcyclesdetailsactivity.confirm_title: Confirmation
+crmparamcyclesdetailsactivity.edition: Modification
+crmparamcyclesdetailsactivity.creation: Nouveau
+
+# form
+crmparamcyclesdetailsactivity.legend_info: Information
+crmparamcyclesdetailsactivity.open: Ouvert
+crmparamcyclesdetailsactivity.label: Libellé
+crmparamcyclesdetailsactivity.idCycle: Cycle
+crmparamcyclesdetailsactivity.idCycledetail: Details de cycle CRM
+crmparamcyclesdetailsactivity.idActivite: Acivité CRM
+crmparamcyclesdetailsactivity.idPriorite: Priorité
+crmparamcyclesdetailsactivity.delaiRealisation: Delai de réalisation
+crmparamcyclesdetailsactivity.reminderNBJJ: Reminder NB JJ
+crmparamcyclesdetailsactivity.reminderHH: reminder HH
+crmparamcyclesdetailsactivity.reminderMM: reminder MM
+crmparamcyclesdetailsactivity.version: Version
+crmparamcyclesdetailsactivity.confirm_delete: Voulez vous supprimer cette detail activité?
+crmparamcyclesdetailsactivity.actions: Action
+
+# button
+crmparamcyclesdetailsactivity.add_button: Nouveau
+crmparamcyclesdetailsactivity.save_button: Enregistrer
+crmparamcyclesdetailsactivity.edit_button: Modification
+crmparamcyclesdetailsactivity.del_button: Supprimer
+crmparamcyclesdetailsactivity.confirm_button: Oui, je confirme
+crmparamcyclesdetailsactivity.close_button: Non

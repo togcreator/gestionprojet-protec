@@ -1,0 +1,23 @@
+services:
+#    users.example:
+#        class: PROTEC\UsersBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    user.form.registration:
+        class: UsersBundle\Form\RegistrationUserType
+        tags:
+            - { name: form.type }
+
+    user.form.profile:
+        class: UsersBundle\Form\ProfileUserType
+        tags:
+            - { name: form.type }
+
+    authentication_handler:
+        class: UsersBundle\Handler\AuthenticationHandler
+        arguments: ['@doctrine.orm.entity_manager', '@service_container',]
+
+    authentication_success_handler:
+        class: UsersBundle\Handler\AuthenticationSuccessHandler
+        arguments: ['@doctrine.orm.entity_manager']
+        tags:
+            - { name: kernel.event_listener, event: security.interactive_login, method: onSecurityInteractiveLogin }

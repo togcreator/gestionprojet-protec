@@ -1,0 +1,449 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {% set dir = 'backoffice/' %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{asset('assets/js/plugins/forms/styling.min.js')}}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {% set dir = 'backoffice/' %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'ProjectBundle:back:head.html.twig' %}
+
+        <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'agenda.modification'|trans({}, 'agenda') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('agenda_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+
+                        {{ form_start(edit_form, {'attr': {'class':'steps-form'}}) }}
+                            <fieldset class="content-group">
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idTypeAgenda'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idTypeAgenda, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idTypeAgenda, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idBU'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idBU, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idBU, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.reference'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.reference, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.reference, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idLieu'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idLieu, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idLieu, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idEntityJ'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idEntityJ, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idEntityJ, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idChantier'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idChantier, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idChantier, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idZonage'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idZonage, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idZonage, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idStrategie'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idStrategie, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idStrategie, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idAgendaMaster'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idAgendaMaster, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idAgendaMaster, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idProjetOperation'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idProjetOperation, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idProjetOperation, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idProjetEtape'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idProjetEtape, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idProjetEtape, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idProjetJalon'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idProjetJalon, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idProjetJalon, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idProjetIssue'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idProjetIssue, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idProjetIssue, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idCRMOperation'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idCRMOperation, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idCRMOperation, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idCRMEtape'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idCRMEtape, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idCRMEtape, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idTypeuser'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idTypeuser, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idTypeuser, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idWork'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idWork, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idWork, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idTypeWork'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idTypeWork, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idTypeWork, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idPriorite'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idPriorite, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idPriorite, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idAlerte'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idAlerte, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idAlerte, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idEvenement'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idEvenement, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idEvenement, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.titre'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.titre, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.titre, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.operateurSaisie'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.operateurSaisie, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.operateurSaisie, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.dureeCloture'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.dureeCloture, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.dureeCloture, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.dureePrepa'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.dureePrepa, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.dureePrepa, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.dateDebPrevue'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.dateDebPrevue, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.dateDebPrevue, {'attr': {'class': 'form-control datepicker'}}) }}
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.dateFinPrevue'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.dateFinPrevue, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.dateFinPrevue, {'attr': {'class': 'form-control datepicker'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.dateDebReelle'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.dateDebReelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.dateDebReelle, {'attr': {'class': 'form-control datepicker'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.dateFinReelle'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.dateFinReelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.dateFinReelle, {'attr': {'class': 'form-control datepicker'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.heureDebPrevue'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.heureDebPrevue, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.heureDebPrevue, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.heureFinPrevue'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.heureFinPrevue, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.heureFinPrevue, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.heureDebReelle'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.heureDebReelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.heureDebReelle, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.heureFinReelle'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.heureFinReelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.heureFinReelle, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.cloture'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.cloture, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.cloture, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.dateCloture'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.dateCloture, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.dateCloture, {'attr': {'class': 'form-control datepicker'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.operateurCloture'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.operateurCloture, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.operateurCloture, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.quoi'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.quoi, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.quoi, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.lieu'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.lieu, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.lieu, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.observations'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.observations, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.observations, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.image1'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.image1, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.image1, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.image2'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.image2, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.image2, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.image3'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.image3, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.image3, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.image4'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.image4, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.image4, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.longitude'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.longitude, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.longitude, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.latitude'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.latitude, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.latitude, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.idWriter'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.idWriter, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.idWriter, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.valide'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.valide, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.valide, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'agenda.version'|trans({}, 'agenda') %}
+                                    {{ form_label(edit_form.version, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.version, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    {{ form_widget(edit_form.idUser, {'value': getCurrentUsers('id') }) }}
+                                </div>
+                            </fieldset>
+
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'agenda.submit_button'|trans({}, 'agenda') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                    </div>
+                </div>
+                <!-- /form horizontal -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    {% include 'ProjectBundle:back:foot.html.twig' %}
+{% endblock %}
+

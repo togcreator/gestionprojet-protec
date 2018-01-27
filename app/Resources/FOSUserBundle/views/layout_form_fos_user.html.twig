@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {% if app.request.hasPreviousSession %}
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}" xmlns="http://www.w3.org/1999/html">
+                    <h3 style="text-align: center; color: #9d1e15;">{{ message|trans({}, 'FOSUserBundle') }}</h3>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    {% block fos_user_content %}
+    {% endblock fos_user_content %}
+{% endblock %}

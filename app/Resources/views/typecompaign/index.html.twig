@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Typecompaigns list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Datecreated</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for typeCompaign in typeCompaigns %}
+            <tr>
+                <td><a href="{{ path('typecompaign_show', { 'id': typeCompaign.id }) }}">{{ typeCompaign.id }}</a></td>
+                <td>{{ typeCompaign.name }}</td>
+                <td>{% if typeCompaign.dateCreated %}{{ typeCompaign.dateCreated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('typecompaign_show', { 'id': typeCompaign.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('typecompaign_edit', { 'id': typeCompaign.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('typecompaign_new') }}">Create a new typeCompaign</a>
+        </li>
+    </ul>
+{% endblock %}

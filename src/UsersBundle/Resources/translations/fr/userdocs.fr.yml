@@ -1,0 +1,26 @@
+# userdocs.fr.yml
+
+# general
+userdocs.list: Liste des documents d'utilisateurs
+userdocs.creation: Nouveau
+userdocs.edition: Modification
+userdocs.confirm_title: Confirmation
+userdocs.no_data: Aucun resultat
+
+# form
+userdocs.information: Information
+userdocs.designation: Désignation
+userdocs.nomdoc: Document
+userdocs.origine: Origine
+userdocs.idUser4origine: Utilisateur origine
+userdocs.download: Téléchargement
+userdocs.confirm_delete: Voulez vous vraiment supprimer cette note ?
+
+# button
+userdocs.add_button: Nouveau
+userdocs.save_button: Enregistrer
+userdocs.submit_button: Enregistrer
+userdocs.edit_button: Modifier / Consulter
+userdocs.del_button: Supprimer
+userdocs.confirm_button: Oui, je confirme
+userdocs.close_button: Non

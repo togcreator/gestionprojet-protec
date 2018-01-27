@@ -1,0 +1,61 @@
+<div class="panel-heading">
+    <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('projectdocs_new', {'idOperation': operation.id})}}'">
+        <b><i class="icon-add"></i></b> {{ 'projectnotes.add_button'|trans({}, 'projectnotes') }}
+    </button>
+</div>
+{% if projectDocs %}
+    <table class="table datatable-basic">
+        <thead>
+            <tr>
+                <th>{{ 'projectdocs.date'|trans({}, 'projectdocs') }}</th>
+                <th>{{ 'projectdocs.idEtape'|trans({}, 'projectdocs') }}</th>
+                <th>{{ 'projectdocs.idOperation'|trans({}, 'projectdocs') }}</th>
+                <th>{{ 'projectdocs.titre'|trans({}, 'projectdocs') }}</th>
+                <th>{{ 'projectdocs.idUser'|trans({}, 'projectdocs') }}</th>
+                <th class="text-center">{{ 'projectdocs.actions'|trans({}, 'projectdocs') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for projectdocs in projectDocs %}
+            <tr href="{{ path('projectdocs_ajax_get', {'id': projectdocs.id}) }}">
+                <td data-order="{{ projectdocs.dateReception|date('Y-m-d') }}">{{ projectdocs.dateReception|date(date_format) }}</td>
+                <td>{{ projectdocs.operation.object|default('') }}</td>
+                <td>{{ projectdocs.etape.object|default('') }}</td>
+                <td>{{ projectdocs.designation }}</td>
+                <td>{{ projectdocs.user.firstname }} {{ projectdocs.user.lastname }}</td>
+                <td class="text-center">
+                    <ul class="icons-list">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-menu9"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="{{ path('projectdocs_edit', {'id': projectdocs.id, 'idOperation': operation.id }) }}"><i class="icon-pen"></i> {{ 'projectdocs.edit_button'|trans({}, 'projectdocs') }}</a></li>
+                                <li><a href="{{ path('projectdocs_delete', {'id': projectdocs.id, 'idOperation': operation.id}) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'projectdocs.del_button'|trans({}, 'projectdocs') }}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <table class="table datatable-show-all">
+        <thead>
+            <tr>
+                <th>{{ 'projectdocs.date'|trans({}, 'projectdocs') }}</th>
+                <th>{{ 'projectdocs.idEtape'|trans({}, 'projectdocs') }}</th>
+                <th>{{ 'projectdocs.idOperation'|trans({}, 'projectdocs') }}</th>
+                <th>{{ 'projectdocs.titre'|trans({}, 'projectdocs') }}</th>
+                <th>{{ 'projectdocs.idUser'|trans({}, 'projectdocs') }}</th>
+                <th class="text-center">{{ 'projectdocs.actions'|trans({}, 'projectdocs') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ 'projectdocs.no_data'|trans({}, 'projectdocs') }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endif %}

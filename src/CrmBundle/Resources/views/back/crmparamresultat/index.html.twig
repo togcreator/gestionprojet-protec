@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - crmparamresultat{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'crmparamresultat.list'|trans({}, 'crmparamresultat') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('crmparamresultat_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'crmparamresultat.add_button'|trans({}, 'crmparamresultat') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('crmparamresultat_index')}}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if crmParamResultat %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'crmparamresultat.open'|trans({}, 'crmparamresultat') }}</th>
+                                <th>{{ 'crmparamresultat.label'|trans({}, 'crmparamresultat') }}</th>
+                                <th class="col-md-2 text-center">{{ 'crmparamresultat.couleur'|trans({},'crmparamresultat') }}</th>
+                                <th class="col-md-1 text-center">{{ 'crmparamresultat.logo'|trans({},'crmparamresultat') }}</th>
+                                <th class="text-center">{{ 'crmparamresultat.actions'|trans({},'crmparamresultat') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for crmparamresultat in crmParamResultat %}
+                            <tr>
+                                <td style="cursor:pointer" onclick="document.location = '{{ path('crmparamresultat_show', { 'id': crmparamresultat.id }) }}';">{{ crmparamresultat.id }}</td>
+                                <td>{% if crmparamresultat.ouvert %}
+                                    <span class="label label-info">{{ 'global.yes'|trans }}</span> {% else %}
+                                    <span class="label label-default">{{ 'global.no'|trans }}</span>
+                                    {% endif %}</td>
+                                <td>{{ crmparamresultat.label }}</td>
+                                <td class="col-md-2 text-center" style="background: {{ crmparamresultat.couleur }};">{{ crmparamresultat.couleur }}</td>
+                                <td class="col-md-1 text-center">
+                                    {% if crmparamresultat.logo|length > 1 %}
+                                        <img src="{{ asset('uploads/' ~ crmparamresultat.logo ) }}" alt="logo" style="max-width: 50%" />
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('crmparamresultat_edit', { 'id': crmparamresultat.id }) }}"><i class="icon-pen"></i> {{ 'crmparamresultat.edit_button'|trans({}, 'crmparamresultat') }}</a></li>
+                                                <li><a href="{{ path('crmparamresultat_delete', { 'id': crmparamresultat.id }) }}"
+                                                    data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'crmparamresultat.del_button'|trans({}, 'crmparamresultat') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'crmparamresultat.no_data'|trans({}, 'crmparamresultat') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>  
+    {# footer #}          
+    {% include 'foot.html.twig' %}
+
+{% endblock %}

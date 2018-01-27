@@ -1,0 +1,27 @@
+# genenral
+crmparammodeaccess.list: Liste de mode d'accès CRM
+crmparammodeaccess.confirm_title: Confirmation
+crmparammodeaccess.edition: Modification
+crmparammodeaccess.creation: Nouveau
+
+# form
+crmparammodeaccess.legend_info: Information
+crmparammodeaccess.open: Ouvert
+crmparammodeaccess.label: Label
+crmparammodeaccess.couleur: Couleur
+crmparammodeaccess.obs: Observation
+crmparammodeaccess.nomcouleur: Nom de la couleur
+crmparammodeaccess.imgcouleur: Image de la couleur
+crmparammodeaccess.logo: Logo
+crmparammodeaccess.version: Version
+crmparammodeaccess.idTyperesultat: Type de resultat
+crmparammodeaccess.confirm_delete: Voulez vous supprimer ce mode?
+crmparammodeaccess.actions: Action
+crmparammodeaccess.note: Note
+# button
+crmparammodeaccess.add_button: Nouveau
+crmparammodeaccess.save_button: Enregistrer
+crmparammodeaccess.edit_button: Modification
+crmparammodeaccess.del_button: Supprimer
+crmparammodeaccess.confirm_button: Oui, je confirme
+crmparammodeaccess.close_button: Non

@@ -1,0 +1,22 @@
+# langage.en.yml
+
+# general
+langage.title: Langage
+langage.new_title: New
+langage.edit_title: Edition
+langage.confirm_title: Confirmation
+
+# form
+langage.label: Label
+langage.iso: Iso
+langage.abr: Abbreviation
+langage.actions: Action
+langage.confirm_delete: Do you want to remove this?
+
+# langage button
+langage.add_button: New
+langage.edit_button: Edit
+langage.del_button: Remove
+langage.submit_button: Save
+langage.confirm_button: Yes, I do
+langage.close_button: No

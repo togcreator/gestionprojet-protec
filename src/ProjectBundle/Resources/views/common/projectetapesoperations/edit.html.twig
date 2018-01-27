@@ -1,0 +1,368 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{asset('assets/js/plugins/forms/styling/switchery.min.js')}}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+        <div id="modal_index" class="modal">
+            <div class="modal-dialog modal-full">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+
+        <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'projectetapesoperations.edition'|trans({}, 'projectetapesoperations') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('projectetapesoperations_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="nav nav-tabs nav-tabs-highlight">
+                            <li class="active"><a href="#project" data-toggle="tab">{{ 'project._title'|trans({}, 'project')}}</a></li>
+                            <li><a href="#note" data-toggle="tab">{{ 'projectnotes._title'|trans({}, 'projectnotes')}}</a></li>
+                            <li><a href="#docs" data-toggle="tab">{{ 'projectdocs._title'|trans({}, 'projectdocs')}}</a></li>
+                            <li><a href="#user" data-toggle="tab">{{ 'project._user'|trans({}, 'project')}}</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="user" class="tab-pane col-md-12">
+                               {% include 'ProjectBundle:common\\projectetapesoperations:tab_users.html.twig' with {'ProjectEtapesOperationsUsers' : projectEtapesOperationsUsers, 'operation': projectEtapesOperation} %}
+                            </div>
+                            <div id="note" class="tab-pane col-md-12">
+                               {% include 'ProjectBundle:common\\projectetapesoperations:tab_notes.html.twig' with {'projectNotes': projectNotes, 'operation': projectEtapesOperation} %}
+                            </div>
+                            <div id="docs" class="tab-pane col-md-12">
+                                {% include 'ProjectBundle:common\\projectetapesoperations:tab_docs.html.twig' with {'projectDocs': projectDocs, 'operation': projectEtapesOperation} %}
+                            </div>
+                            <div id="project" class="tab-pane active col-md-12">
+                                {{ form_start(edit_form, {'attr': {"id": 'form'}}) }}
+                                    <fieldset class="content-group">
+
+                                        <legend class="text-bold">{{ 'etape.legend_project'|trans({}, 'projectetapesoperations') }}</legend>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                {% set name = 'projectetapesoperations.idProjectVersion'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.idProjectVersion, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.idProjectVersion, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'projectetapesoperations.idEtape'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.idEtape, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.idEtape, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'projectetapesoperations.idJalonActuel'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.idJalonActuel, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.idJalonActuel, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'projectetapesoperations.idJalonPrevu'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.idJalonPrevu, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.idJalonPrevu, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <legend class="text-bold">{{ 'etape.legend_info'|trans({}, 'projectetapesoperations') }}</legend>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                {% set name = 'projectetapesoperations.object'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.object, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.object, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                {% set name = 'projectetapesoperations.description'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.description, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.description, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <legend class="text-bold" id="user">{{ 'projectetapesoperations.legend_user'|trans({}, 'projectetapesoperations') }}</legend>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                {% set name = 'projectetapesoperations.user4affectation'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.user4affectation, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.user4affectation, {'attr': {'class': 'form-control listbox-dynamic-options'}}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'projectetapesoperations.userDate'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.userDate, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.userDate, {'attr': {'class': 'form-control anytime-both'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <legend class="text-bold">{{ 'etape.legend_date'|trans({}, 'projectetapesoperations') }}</legend>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'projectetapesoperations.datedebutprevue'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.datedebutprevue, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.datedebutprevue, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'projectetapesoperations.datefinprevue'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.datedebutprevue, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.datefinprevue, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'projectetapesoperations.datedebutreelle'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.datedebutreelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.datedebutreelle, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'projectetapesoperations.datefinreelle'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.datefinreelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.datefinreelle, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <legend class="text-bold">{{ 'etape.legend_other'|trans({}, 'projectetapesoperations') }}</legend>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                {% set name = 'projectetapesoperations.idResultat'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.idResultat, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.idResultat, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'projectetapesoperations.idStatut'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.idStatut, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    <span class="input-group-addon switchery-xs">
+                                                    {{ form_widget(edit_form.idStatut, {'attr': {'class': 'form-control'}}) }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'projectetapesoperations.idPriorite'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.idPriorite, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    <span class="input-group-addon switchery-xs">
+                                                    {{ form_widget(edit_form.idPriorite, {'attr': {'class': 'form-control'}}) }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'projectetapesoperations.idAlerte'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.idAlerte, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    <span class="input-group-addon switchery-xs">
+                                                    {{ form_widget(edit_form.idAlerte, {'attr': {'class': 'form-control'}}) }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'projectetapesoperations.journeesHommesprevues'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.journeesHommesprevues, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    <span class="input-group-addon switchery-xs">
+                                                    {{ form_widget(edit_form.journeesHommesprevues, {'attr': {'class': 'form-control'}}) }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {% set name = 'projectetapesoperations.journeesHommesreelles'|trans({}, 'projectetapesoperations') %}
+                                                {{ form_label(edit_form.journeesHommesreelles, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    <span class="input-group-addon switchery-xs">
+                                                    {{ form_widget(edit_form.journeesHommesreelles, {'attr': {'class': 'form-control'}}) }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                    <div class="text-right">
+                                        <button type="submit" class="btn btn-primary">{{ 'projectetapesoperations.submit_button'|trans({}, 'projectetapesoperations') }} <i class="icon-arrow-right14 position-right"></i></button>
+                                    </div>
+                                {{ form_end(edit_form, {'render_rest': true}) }}
+
+                                <script type="text/javascript">
+                                    (function($){
+                                        // notification
+                                        var notify = {
+                                            success: function(message) {
+                                                $.jGrowl(message, {
+                                                    header: '{{ 'global.notify_header_success'|trans }}',
+                                                    theme: 'bg-success'
+                                                })
+                                            },
+                                            error: function(message) {
+                                                $.jGrowl(message, {
+                                                    header: '{{ 'global.notify_header_error'|trans }}',
+                                                    theme: 'bg-danger'
+                                                });
+                                            }
+                                        };
+
+                                        // for user
+                                        var userDate = {
+
+                                            // checking date and time and user
+                                            check: function(userDate, user) {
+                                                $.ajax({
+                                                    url: '{{ path('projectetapesoperations_ajax_user_date') }}',
+                                                    data: { userDate: userDate, user: user, idOperation: {{app.request.get('id')}} },
+                                                    success: this.onSuccess,
+                                                    error: this.onError
+                                                });
+                                            },
+
+                                            // init these to dom and element
+                                            init: function(){
+                                                var userDate = $('[name*="userDate"]').val();
+                                                var user = $('[name*="user4affectation"]').val();
+
+                                                // return if not 
+                                                if( !userDate ) return;
+                                                if( !user || user == 0 ) return;
+
+                                                // disabled false and wait
+                                                $('[name*="user4affectation"]').attr('disabled', false);
+                                                // checkDate
+                                                this.check(userDate, user);
+                                            },
+
+                                            // on succesdata 200 and 4
+                                            onSuccess: function(response) {
+                                                // disabled
+                                                $('[name*="user4affectation"]').attr('disabled', false);
+                                                // return if false
+                                                if( !response.return ) return;
+                                                // has it and disabled it
+                                                $('html, body').scrollTop($('#user').offset().top);
+                                                $('[name*="user4affectation"]').attr('disabled', true);
+                                            },
+
+                                            // on error
+                                            onError: function(xhr) {
+                                                console.warn(xhr);
+                                            },
+
+                                            // onSubmit
+                                            onSubmit: function (e) {
+                                                if( $('[name*="user4affectation"]').attr('disabled') == 'disabled' ) {
+                                                    e.preventDefault();
+                                                    $('html, body').scrollTop($('#user').offset().top);
+                                                }
+                                            }
+                                        };
+
+                                        // checking element
+                                        $('[name*="user4affectation"]').on('change', userDate.init.bind(userDate));
+                                        $('[name*="userDate"]').on('change', userDate.init.bind(userDate));
+                                        $('form#form').on('submit', userDate.onSubmit);
+
+                                    }(jQuery))
+                                </script>
+                                <script type="text/javascript">
+                                    (function($){
+
+                                        /* pour projet redirection */
+                                        $('[name*="[idProjectVersion]"]').on('change', function(){
+                                            var _location = document.location.href.toString().split('?');
+                                            _location = _location[0];
+                                            redirectTo(_location + '?idProject=' + this.value);
+                                        });
+
+                                        // pour les tab
+                                        $(document).on('dblclick', '.datatable-basic td', function(){
+                                            // le modal en question
+                                            var modal = $('#modal_index');
+                                            // on l'affiche
+                                            modal.modal('show');
+                                            // on supprime tous ses elements
+                                            modal.find('.modal-content *').remove();
+                                            /* charge après */
+                                            if( (href = $(this).parent().attr('href')) )
+                                            modal.find('.modal-content').load(href, function() {});
+                                        });
+
+                                        $(function(){
+                                            var url = document.location.toString();
+                                            if (url.match('#')) {
+                                                $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
+                                            }
+                                            // pour le hashage
+                                            $('.nav-tabs a').on('shown.bs.tab', function (e) {
+                                                window.location.hash = e.target.hash;
+                                            })
+                                        });
+
+                                    }(jQuery));
+                                </script>
+                                <script type="text/javascript" src="{{ asset('assets/backoffice/js/plugins/forms/inputs/duallistbox.min.js') }}"></script>
+                                <script type="text/javascript">
+                                    (function($){
+                                        $('.listbox-dynamic-options').bootstrapDualListbox({
+                                            moveOnSelect: false,
+                                            infoText: '{{'roles.infotext'|trans({}, 'roles')}}',
+                                            infoTextFiltered: '',
+                                            infoTextEmpty: '',
+                                            filterPlaceHolder: '{{'roles.filterplaceholder'|trans({}, 'roles')}}',
+                                            filterTextClear: '{{'roles.filtertextclear'|trans({}, 'roles')}}'
+                                        });
+                                    }(jQuery))
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /form horizontal -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+{% endblock %}

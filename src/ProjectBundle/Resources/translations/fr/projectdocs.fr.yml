@@ -1,0 +1,54 @@
+
+# general
+projectdocs.title: Document du projet
+projectdocs._title: Les documents
+projectdocs.list: Document du projet
+projectdocs.edition: Modification
+projectdocs.creation: Nouveau
+projectdocs.confirm_title: Confirmation
+projectdocs.project: Projet
+projectdocs.info: Information
+projectdocs.other: Autre detail
+projectdocs.Project: Projet
+
+# form
+projectdocs.idProjet: Projet
+projectdocs.idEtape: Etape
+projectdocs.idOperation: Opération
+projectdocs.idIssue: Opération issue
+projectdocs.titre: Titre
+projectdocs.code: Code
+projectdocs.date: Date
+projectdocs.idUser: Rédacteur
+projectdocs.origine: Origine
+projectdocs.idBiblio: Biblio
+projectdocs.idMail: Adresse mail
+projectdocs.referenceExterne: Réference Externe
+projectdocs.reference: Réference
+projectdocs.nomRedacteurExterne: Nom du redacteur externe
+projectdocs.designation: Désignation
+projectdocs.nomdoc: Document
+projectdocs.idTypedoc: Type du document
+projectdocs.dateReception: Date de réception
+projectdocs.version: Version
+projectdocs.download: Téléchargement
+projectdocs.prevision: Prévision
+projectdocs.realisation: Réalisation
+projectdocs.confirm_delete: Voulez vous vraiment supprimer ce document ?
+projectdocs.actions: Action
+projectdocs.no_data: Aucun resultat
+
+# onglet
+projectdocs.not_started: A traiter
+projectdocs.in_progress: En cours
+projectdocs.review: A revoir
+projectdocs.done: Traité
+
+# button
+projectdocs.new_button: Nouveau document
+projectdocs.add_button: Nouveau
+projectdocs.edit_button: Modifier
+projectdocs.del_button: Supprimer
+projectdocs.save_button: Enregistrer
+projectdocs.close_button: Fermer
+projectdocs.confirm_button: Oui, je confirme

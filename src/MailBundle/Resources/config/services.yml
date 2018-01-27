@@ -1,0 +1,44 @@
+services:
+    replymail_handler:
+            class:  MailBundle\Form\Handler\replyMailHandler
+            arguments: ['@recipient_handler', '@request_stack', '@doctrine.orm.entity_manager', '@security.token_storage']
+            scope: request_stack
+
+    codemail:
+        class:  MailBundle\Services\GenerateCodeMail
+
+    envoimail_handler:
+        class:  MailBundle\Form\Handler\envoiMailHandler
+        arguments: ['@recipient_handler', '@recip_draft_handler', '@request_stack', '@doctrine.orm.entity_manager', '@security.token_storage']
+        scope: request_stack
+
+    recipient_handler:
+        class:  MailBundle\Form\Handler\recipientsHandler
+        arguments: ['@recip_pj_handler']
+
+    recip_pj_handler:
+        class:  MailBundle\Form\Handler\recipientPJHandler
+        arguments: ['@service_container']
+
+    recip_draft_handler:
+        class:  MailBundle\Form\Handler\recipientDraftHandler
+
+    stringcut:
+        class: MailBundle\Twig\Extension\StringCutExtension
+        tags:
+           - { name: twig.extension }
+
+    stringurl:
+            class: MailBundle\Twig\Extension\GenerateUrlExtension
+            tags:
+               - { name: twig.extension }
+
+    icone:
+        class: MailBundle\Twig\Extension\IconeExtension
+        tags:
+           - { name: twig.extension }
+
+    priorite:
+        class: MailBundle\Twig\Extension\PrioriteExtension
+        tags:
+           - { name: twig.extension }

@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} {{ 'title.list.cp'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.15/r-2.1.1/datatables.min.css"/>
+{% endblock %}
+
+{% block body %}
+    <!-- Page header -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{{ 'table.cp.title'|trans }}</span></h4>
+
+                <ul class="breadcrumb breadcrumb-caret position-right">
+                    <li><a href="{{ path('homepage') }}">{{ 'client.breadcrumb.home'|trans }}</a></li>
+                    <li class="active">{{ 'table.cp.title'|trans }}</li>
+                </ul>
+            </div>
+
+            <div class="heading-elements">
+                <div class="heading-btn-group">
+                    <a href="#" class="btn btn-link btn-float has-text text-size-small"><i class="icon-bars-alt text-indigo-400"></i><span>{{ 'admin.statistics'|trans }}</span></a>
+                    <a href="#" class="btn btn-link btn-float has-text text-size-small"><i class="icon-calculator text-indigo-400"></i> <span>{{ 'admin.invoices'|trans }}</span></a>
+                    <a href="#" class="btn btn-link btn-float has-text text-size-small"><i class="icon-calendar5 text-indigo-400"></i> <span>{{ 'admin.schedule'|trans }}</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page header -->
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Default ordering -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'table.cp.title'|trans }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="collapse"></a></li>
+                                <li><a data-action="reload"></a></li>
+                                <li><a data-action="close"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <span class="hidden datatable_filter" data-filter="{{ 'table_mail.datatable.filter'|trans }}" data-textfilter="{{ 'table_mail.datatable.text_filter'|trans }}" data-show="{{ 'table_mail.datatable.show'|trans }}"></span>
+                    <table class="table datatable-sorting">
+                        <thead>
+                        <tr>
+                            <th>{{ 'table.clients.column.id'|trans }}</th>
+                            <th>{{ 'table.clients.column.code'|trans }}</th>
+                            <th>{{ 'table.clients.column.city'|trans }}</th>
+                            <th>{{ 'table.clients.column.insee'|trans }}</th>
+                            <th>{{ 'table.clients.column.secteur_geo'|trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /default ordering -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/pages/datatable_sorting.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/forms/selects/select2.min.js') }}"></script>
+
+    <script>
+        $(function() {
+            $('.datatable-sorting').DataTable({
+                ajax: "{{ path('client_paginate_cp') }}",
+                sAjaxDataProp: "data",
+                pageLength: 10,
+                bAutoWidth: false,
+                columns:[
+                    {"data": "id", "sWidth": "50px"},
+                    {"data": "code", "sWidth": "50px"},
+                    {"data": "ville", "sWidth": "100px"},
+                    {"data": "insee", "sWidth": "100px"},
+                    {"data": "secteurGeo", "sWidth": "100px"}
+                ]
+            });
+        });
+    </script>
+{% endblock %}

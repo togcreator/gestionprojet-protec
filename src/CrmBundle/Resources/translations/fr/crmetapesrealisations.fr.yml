@@ -1,0 +1,32 @@
+
+# general
+crmetapesrealisations.title: CRM Etapes Réalisations
+crmetapesrealisations.edition: Modification
+crmetapesrealisations.creation: Nouveau
+crmetapesrealisations.confirm_title: Confirmation
+crmetapesrealisations.crm: CRM
+crmetapesrealisations.info: Information
+crmetapesrealisations.other: Autre detail
+crmetapesrealisations.date: Date
+
+# form
+crmetapesrealisations.idCRM: CRM
+crmetapesrealisations.idEtape: Etape
+crmetapesrealisations.observations: Observation
+crmetapesrealisations.dateaffectation: Date affectation
+crmetapesrealisations.daterealisation: Date réalisation
+crmetapesrealisations.idUser4affectation: Utilisateur affectation
+crmetapesrealisations.idUser4realisation: Utilisateur réalisation
+crmetapesrealisations.dureerealisation: Durée réalisation
+crmetapesrealisations.idStatut: Statut
+crmetapesrealisations.idResultat: Resultat
+crmetapesrealisations.descriptionResultat: Description résultat
+crmetapesrealisations.confirm_delete: Voulez vous supprimer cette réalisation?
+
+# button
+crmetapesrealisations.add_button: Nouveau
+crmetapesrealisations.edit_button: Modifier
+crmetapesrealisations.del_button: Supprimer
+crmetapesrealisations.save_button: Enregistrer
+crmetapesrealisations.close_button: Non
+crmetapesrealisations.confirm_button: Oui, je confirme

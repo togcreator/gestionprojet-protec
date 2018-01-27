@@ -1,0 +1,22 @@
+# usersparamnature.fr.yml
+
+# general
+usersparamnature.list: Liste de Nature utilisateur
+usersparamnature.creation: Nouveau
+usersparamnature.edition: Modification
+usersparamnature.confirm_title: Confirmation
+usersparamnature.no_data: Aucun resultat
+
+# form
+usersparamnature.label: Libellé
+usersparamnature.version: Version
+usersparamnature.confirm_delete: Êtes vous sûr vouloir supprimer ce nature ?
+
+# button
+usersparamnature.add_button: Nouveau
+usersparamnature.save_button: Enregistrer
+usersparamnature.submit_button: Enregistrer
+usersparamnature.edit_button: Modifier
+usersparamnature.del_button: Supprimer
+usersparamnature.confirm_button: Oui, je confirme
+usersparamnature.close_button: Non

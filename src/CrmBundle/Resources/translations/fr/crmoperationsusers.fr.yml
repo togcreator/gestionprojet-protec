@@ -1,0 +1,33 @@
+
+# general
+crmoperationsusers.title: CRM Opération utilisateur
+crmoperationsusers.edition: Modification
+crmoperationsusers.creation: Nouveau
+crmoperationsusers.confirm_title: Confirmation
+crmoperationsusers.crm: CRM
+crmoperationsusers.info: Information
+crmoperationsusers.other: Autre detail
+crmoperationsusers.date: Date
+
+# form
+crmoperationsusers.idCRM: CRM
+crmoperationsusers.idCycle: Cycle
+crmoperationsusers.idCycledetail: Detail du Cycle
+crmoperationsusers.idEtape: Etape
+crmoperationsusers.idOperation: Opération
+crmoperationsusers.mission: Mission
+crmoperationsusers.datedebut: Date debut
+crmoperationsusers.datefin: Date fin
+crmoperationsusers.idRole: Rôle utilisateur
+crmoperationsusers.flagActeur: Flag acteur
+crmoperationsusers.flagInvite: Flag invité
+crmoperationsusers.idUser: Utilisateur
+crmoperationsusers.confirm_delete: Voulez vous supprimer cette opération d'utilisateur ?
+
+# button
+crmoperationsusers.add_button: Nouveau
+crmoperationsusers.edit_button: Modifier
+crmoperationsusers.del_button: Supprimer
+crmoperationsusers.save_button: Enregistrer
+crmoperationsusers.close_button: Non
+crmoperationsusers.confirm_button: Oui, je confirme

@@ -1,0 +1,22 @@
+# usersparamrelationsfonctions.fr.yml
+
+# general
+usersparamrelationsfonctions.list: Liste de relation de fonction utilisateur
+usersparamrelationsfonctions.creation: Nouveau
+usersparamrelationsfonctions.edition: Modification
+usersparamrelationsfonctions.confirm_title: Confirmation
+usersparamrelationsfonctions.no_data: Aucun resultat
+
+# form
+usersparamrelationsfonctions.label: Libellé
+usersparamrelationsfonctions.version: Version
+usersparamrelationsfonctions.confirm_delete: Êtes vous sûr vouloir supprimer cette fonction ?
+
+# button
+usersparamrelationsfonctions.add_button: Nouveau
+usersparamrelationsfonctions.save_button: Enregistrer
+usersparamrelationsfonctions.submit_button: Enregistrer
+usersparamrelationsfonctions.edit_button: Modifier
+usersparamrelationsfonctions.del_button: Supprimer
+usersparamrelationsfonctions.confirm_button: Oui, je confirme
+usersparamrelationsfonctions.close_button: Non

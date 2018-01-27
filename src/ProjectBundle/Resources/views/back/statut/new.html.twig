@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+        <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'statut.creation'|trans({}, 'statut') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('back_statut_get', {'idType': app.request.get('idType') }) }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+
+                        {{ form_start(form) }}
+                            <fieldset class="content-group">
+                                {# <legend class="text-bold">Basic inputs</legend> #}
+
+                                <div class="form-group col-xs-12">
+                                    {% set name = 'statut.open'|trans({}, 'statut') %}
+                                    {{ form_label(form.ouvert, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(form.ouvert, {'attr': {'class': 'form-control switchery'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'statut.wording'|trans({}, 'statut') %}
+                                    {{ form_label(form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(form.label, {'attr': {'class': 'form-control'}, 'row': 5}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'statut.couleur'|trans({}, 'statut') %}
+                                    {{ form_label(form.couleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(form.couleur, {'attr': {'class': 'form-control colorpicker-show-input', 'data-preferred-format':'hex'}}) }}
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    {% set name = 'statut.obs'|trans({}, 'statut') %}
+                                    {{ form_label(form.obs, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(form.obs, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {% set name = 'statut.nomcouleur'|trans({}, 'statut') %}
+                                    {{ form_label(form.nomcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(form.nomcouleur, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'statut.imgcouleur'|trans({}, 'statut') %}
+                                    {{ form_label(form.imgcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(form.imgcouleur, {'attr': {'class': 'form-control upload-file', 'data-preview': ''}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'statut.logo'|trans({}, 'statut') %}
+                                    {{ form_label(form.logo, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(form.logo, {'attr': {'class': 'form-control upload-file', 'data-preview': ''}}) }}
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'statut.save_button'|trans([], 'statut') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                            {{ form_widget(form.idType, {'value': app.request.get('idType')}) }}
+                        {{ form_end(form, {'render_rest': true}) }}
+                        <script type="text/javascript">
+                            var preview = [];
+                        </script>
+                    </div>
+                </div>
+                <!-- /form horizontal -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    {% include 'foot.html.twig' %}
+{% endblock %}

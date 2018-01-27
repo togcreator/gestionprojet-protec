@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h5 class="modal-title">{{ 'crmparamcyclesdetails.confirm_title'|trans([], 'crmparamcyclesdetails') }}</h5>
+</div>
+
+<div class="modal-body">
+    <h2>{{ 'crmparamcyclesdetails.confirm_delete'|trans([], 'crmparamcyclesdetails')}}</h2>
+    {{ form_start(delete_form, {'attr': {'id': 'crmparamcyclesdetails_form'}}) }}
+    {{ form_end(delete_form) }}
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-danger" data-dismiss="modal">{{ 'crmparamcyclesdetails.close_button'|trans([], 'crmparamcyclesdetails') }}</button>
+    <button type="button" class="btn btn-primary" onclick="jQuery('#crmparamcyclesdetails_form').submit()">{{ 'crmparamcyclesdetails.confirm_button'|trans([], 'crmparamcyclesdetails') }}</button>
+</div>

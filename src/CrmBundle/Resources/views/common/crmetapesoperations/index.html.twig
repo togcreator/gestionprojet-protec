@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-lg-12 col-xs-12">
+                            <!-- Marketing campaigns -->
+                            <div class="panel panel-white">
+                                <div class="panel-heading">
+                                    <h6 class="panel-title">{{ 'crmetapesoperations.title'|trans({}, 'crmetapesoperations') }}</h6>
+                                    <div class="heading-elements">
+                                        <button type="button" class="btn btn-primary pull-left" onclick="document.location.href = '{{ path('crmetapesoperations_new') }}'"><i class="icon-add position-left"></i>{{ 'crmetapesoperations.add_button'|trans({}, 'crmetapesoperations') }}</button>
+                                        <span class="label bg-success heading-text">{{ crmEtapesOperations|length }} {{ 'global.active'|trans }}</span>
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i> <span class="caret"></span></a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="#"><i class="icon-sync"></i> {{ 'global.update_data'|trans }}</a></li>
+                                                    <li><a href="#"><i class="icon-list-unordered"></i> {{ 'global.detail_log'|trans }}</a></li>
+                                                    <li><a href="#"><i class="icon-pie5"></i> {{ 'global.statistics'|trans }}</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#"><i class="icon-cross3"></i> {{ 'global.clear_list'|trans }}</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div style="display: none" class="datatable-toolbar">
+                                        {# par tri #}
+                                        <div>
+                                            {% set selected = app.request.get('orderby')|default('idCRM') %}
+                                            <select name="search_operations[tri]" class="form-control col-md-4">
+                                                <option value="idCRM"{% if selected and selected == 'idCRM' %} selected="select" {% endif %}>{{ 'global.sorting'|trans }} - {{ 'crmetapesoperations.idCRM'|trans({}, 'crmetapesoperations') }}</option>
+                                                <option value="datefinprevue"{% if selected and selected == 'datefinprevue' %} selected="select" {% endif %}>{{ 'global.sorting'|trans }} - {{ 'project.datefinPrevue'|trans({}, 'project') }}</option>
+                                                <option value="idStatut"{% if selected and selected == 'idStatut' %} selected="select" {% endif %}>{{ 'global.sorting'|trans }} - {{ 'crmetapesoperations.idStatut'|trans({}, 'crmetapesoperations') }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <table class="table text-nowrap datatable-basic">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>{{ 'crmetapesoperations.objet'|trans({}, 'crmetapesoperations') }}</th>
+                                                <th>{{ 'crmetapesoperations.idCRM'|trans({}, 'crmetapesoperations') }}</th>
+                                                <th>{{ 'crmetapesoperations.idCycle'|trans({}, 'crmetapesoperations') }}</th>
+                                                <th>{{ 'crmetapesoperations.idCycledetail'|trans({}, 'crmetapesoperations') }}</th>
+                                                <th>{{ 'crmetapesoperations.datedebut'|trans({}, 'crmetapesoperations') }}</th>
+                                                <th>{{ 'crmetapesoperations.datefin'|trans({}, 'crmetapesoperations') }}</th>
+                                                <th class="text-center no-sort">{{ 'global.actions'|trans }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for key, crmetapesoperations in crmEtapesOperations %}
+                                            <tr class="active border-double clickable project_users animated" data-toggle="collapse" data-target=".accordion_users_{{ key }}">
+                                                <td class="bg-primary primary-300" style="background-color: #64B5F6; text-transform: uppercase"><i class="icon-arrow-down22"></i>{{ ET(key) }}</td>
+                                                <td style="background-color: #64B5F6;"></td>
+                                                <td style="background-color: #64B5F6;"></td>
+                                                <td style="background-color: #64B5F6;"></td>
+                                                <td style="background-color: #64B5F6;"></td>
+                                                <td style="background-color: #64B5F6;"></td>
+                                                <td style="background-color: #64B5F6;"></td>
+                                                <td style="background-color: #64B5F6;"></td>
+                                            </tr>
+
+                                            {% for operation in crmetapesoperations %}
+                                                <tr>
+                                                    <td>{{ operation.id }}</td>
+                                                    <td>{{ operation.objet|capitalize }}</td>
+                                                    <td>{{ operation.crm.label|capitalize }}</td>
+                                                    <td>{{ operation.crm.cycle.label|capitalize }}</td>
+                                                    <td>{{ operation.cycledetail.label|capitalize }}</td>
+                                                    <td>
+                                                        {% if operation.datedebutreelle|date(date_format) %}
+                                                            {{ operation.datedebutreelle|date(date_format) }}
+                                                        {% else %}
+                                                            {{ operation.datedebutprevue|date(date_format) }}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {% if operation.datefinreelle|date(date_format) %}
+                                                            {{ operation.datefinreelle|date(date_format) }}
+                                                        {% else %}
+                                                            {{ operation.datefinprevue|date(date_format) }}
+                                                        {% endif %}
+                                                    </td>
+                                                        
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <ul class="icons-list">
+                                                            <li class="dropdown">
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                                    <i class="icon-menu9"></i>
+                                                                </a>
+                                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                                    <li><a href="{{ path('crmetapesoperations_edit', { 'id': operation.id }) }}"><i class="icon-pen"></i> {{ 'crmetapesoperations.edit_button'|trans({}, 'crmetapesoperations') }}</a></li>
+                                                                    <li><a href="{{ path('crmetapesoperations_delete', { 'id': operation.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'crmetapesoperations.del_button'|trans({}, 'crmetapesoperations') }}</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <script type="text/javascript">
+
+                                        /* not sorting */
+                                        var bSort = false;
+
+                                        /* pour datatable */
+                                        function initComplete () {
+                                            var $ = jQuery;
+
+                                            // api
+                                            var head = $('.datatable-header'),
+                                            select = $('.datatable-toolbar').find('div select[name*="tri"]')
+                                                .on('change', function() {
+                                                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                                                    // val
+                                                    if( val != 0 )
+                                                        redirectTo("{{ path('crmetapesoperations_index') }}?orderby="+val);
+                                                });
+
+                                            // for tri/sorting
+                                            $('<div class="dataTables_filter form-group"></div>')
+                                                .insertAfter( head.find('.dataTables_filter') )
+                                                .append(select);
+                                        }
+
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

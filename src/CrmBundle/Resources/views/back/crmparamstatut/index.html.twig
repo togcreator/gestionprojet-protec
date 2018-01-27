@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - crmparamstatut{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'crmparamstatut.list'|trans({}, 'crmparamstatut') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('crmparamstatut_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'crmparamstatut.add_button'|trans({}, 'crmparamstatut') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('crmparamstatut_index')}}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if crmParamStatuts %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'crmparamstatut.open'|trans({}, 'crmparamstatut') }}</th>
+                                <th>{{ 'crmparamstatut.label'|trans({}, 'crmparamstatut') }}</th>
+                                <th class="col-md-2 text-center">{{ 'crmparamstatut.couleur'|trans({},'crmparamstatut') }}</th>
+                                <th class="col-md-1 text-center">{{ 'crmparamstatut.logo'|trans({},'crmparamstatut') }}</th>
+                                <th class="col-md-1 text-center">{{ 'crmparamstatut.note'|trans({},'crmparamstatut') }}</th>
+                                <th class="text-center">{{ 'crmparamstatut.actions'|trans({},'crmparamstatut') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for crmparamstatut in crmParamStatuts %}
+                            <tr>
+                                <td style="cursor:pointer" onclick="document.location = '{{ path('crmparamstatut_show', { 'id': crmparamstatut.id }) }}';">{{ crmparamstatut.id }}</td>
+                                <td>{% if crmparamstatut.ouvert %}
+                                    <span class="label label-info">{{ 'global.yes'|trans }}</span> {% else %}
+                                    <span class="label label-default">{{ 'global.no'|trans }}</span>
+                                    {% endif %}</td>
+                                <td>{{ crmparamstatut.label }}</td>
+                                <td class="col-md-2 text-center" style="background: {{ crmparamstatut.couleur }};">{{ crmparamstatut.couleur }}</td>
+                                <td class="col-md-1 text-center">
+                                    {% if crmparamstatut.logo %}
+                                        <img src="{{ asset('uploads/' ~ crmparamstatut.logo ) }}" alt="logo" style="max-width: 50%" />
+                                    {% endif %}
+                                </td>
+                                <td class="col-md-1 text-center">{% if crmparamstatut.obs %}<i class="icon-file-text"></i>{% else %}<i class="icon-file-minus2" style="color: #ccc"></i>{% endif %}</td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('crmparamstatut_edit', { 'id': crmparamstatut.id }) }}"><i class="icon-pen"></i> {{ 'crmparamstatut.edit_button'|trans({}, 'crmparamstatut') }}</a></li>
+                                                <li><a href="{{ path('crmparamstatut_delete', { 'id': crmparamstatut.id }) }}"
+                                                    data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'crmparamstatut.del_button'|trans({}, 'crmparamstatut') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'crmparamstatut.no_data'|trans({}, 'crmparamstatut') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>  
+    {# footer #}          
+    {% include 'foot.html.twig' %}
+
+{% endblock %}

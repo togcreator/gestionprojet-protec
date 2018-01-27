@@ -1,0 +1,44 @@
+# project.fr.yml
+
+# general
+project.creation: Nouveau projet
+project.edition: Modifier le projet
+project.confirm_title: Confirmation
+
+# form
+project.label: Libellé
+project.idTypeProjet: Type de projet
+project.idCreateur: Créateur
+project.idLeader: Leader
+project.idWorkshop: Workshop
+project.idEntiteJ: Entité
+project.idVersionCours: Version du projet en cours
+project.code: Code
+project.reference: Reférence
+project.descriptionPerimetre0: Description paramètre
+project.descriptionPerimetre1: Description paramètre 1
+project.descriptionPerimetre2: Description paramètre 2
+project.descriptionPerimetre3: Description paramètre 3
+project.datedebutPrevue: Date de debut prevue
+project.datefinPrevue: Date de fin prevue
+project.statut: Statut
+project.datedebutReelle: Date de debut réelle
+project.datefinReelle: Date de fin réelle
+project.joursHommesPrevus: Jour homme prevus
+project.joursHommesReels: Jour homme réels
+project.modeAcces: Mode d'accès
+project.duration: Durée
+project.datedebut: Date debut
+project.datefin: Date fin
+project.statut: Statut
+project.complete: Complète
+project.notes: Notes
+project.confirm_delete: Voulez vous supprimer ce projet ?
+
+# button
+project.add_button: Ajouter un projet
+project.submit_button: Enregistrer
+project.edit_button: Modifier
+project.del_button: Supprimer
+project.close_button: Non
+project.confirm_button: Oui, je confirme

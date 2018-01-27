@@ -1,0 +1,25 @@
+# whorkshop
+
+# general
+workshop.creation: Nouveau
+workshop.edition: Modification
+workshop.label: Libellé
+workshop.confirm_title: Confirmation
+workshop.confirm_delete: Êtes vous sûr de vouloir supprimer ce workshop ?
+
+# form
+workshop.open: Ouvert
+workshop.wording: Libellé
+workshop.couleur: Couleur
+workshop.obs: Observation
+workshop.nomcouleur: Nom de couleur
+workshop.imgcouleur: Image du coleur
+workshop.logo: Logo
+workshop.note: Note
+workshop.actions: Action
+
+# button
+workshop.submit_button: Enregistrer
+workshop.save_button: Enregistrer
+workshop.confirm_button: Oui, je confirme
+workshop.close_button: Non

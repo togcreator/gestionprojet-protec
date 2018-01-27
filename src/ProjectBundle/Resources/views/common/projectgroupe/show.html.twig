@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Projectgroupe</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ projectGroupe.id }}</td>
+            </tr>
+            <tr>
+                <th>Idprojet</th>
+                <td>{{ projectGroupe.idProjet }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ projectGroupe.code }}</td>
+            </tr>
+            <tr>
+                <th>Lib0</th>
+                <td>{{ projectGroupe.lib0 }}</td>
+            </tr>
+            <tr>
+                <th>Lib1</th>
+                <td>{{ projectGroupe.lib1 }}</td>
+            </tr>
+            <tr>
+                <th>Lib2</th>
+                <td>{{ projectGroupe.lib2 }}</td>
+            </tr>
+            <tr>
+                <th>Lib3</th>
+                <td>{{ projectGroupe.lib3 }}</td>
+            </tr>
+            <tr>
+                <th>Lib4</th>
+                <td>{{ projectGroupe.lib4 }}</td>
+            </tr>
+            <tr>
+                <th>Lib5</th>
+                <td>{{ projectGroupe.lib5 }}</td>
+            </tr>
+            <tr>
+                <th>Lib6</th>
+                <td>{{ projectGroupe.lib6 }}</td>
+            </tr>
+            <tr>
+                <th>Lib7</th>
+                <td>{{ projectGroupe.lib7 }}</td>
+            </tr>
+            <tr>
+                <th>Lib8</th>
+                <td>{{ projectGroupe.lib8 }}</td>
+            </tr>
+            <tr>
+                <th>Lib9</th>
+                <td>{{ projectGroupe.lib9 }}</td>
+            </tr>
+            <tr>
+                <th>Datedebut</th>
+                <td>{% if projectGroupe.datedebut %}{{ projectGroupe.datedebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datefin</th>
+                <td>{% if projectGroupe.datefin %}{{ projectGroupe.datefin|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datecreation</th>
+                <td>{% if projectGroupe.dateCreation %}{{ projectGroupe.dateCreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Idcreateur</th>
+                <td>{{ projectGroupe.idCreateur }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('common_projectgroupe_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('common_projectgroupe_edit', { 'id': projectGroupe.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

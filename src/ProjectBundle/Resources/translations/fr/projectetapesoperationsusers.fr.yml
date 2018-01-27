@@ -1,0 +1,36 @@
+
+# general
+projectetapesoperationsusers.list: Liste de opération des utilisateurs
+projectetapesoperationsusers.title: Opération utilisateur
+projectetapesoperationsusers.edition: Modification
+projectetapesoperationsusers.creation: Nouveau
+projectetapesoperationsusers.confirm_title: Confirmation
+projectetapesoperationsusers.project: Projet
+projectetapesoperationsusers.info: Information
+projectetapesoperationsusers.other: Autre detail
+projectetapesoperationsusers.date: Date
+
+# form
+projectetapesoperationsusers.idProjetversion: Projet
+projectetapesoperationsusers.idEtape: Etape
+projectetapesoperationsusers.idOperation: Opération
+projectetapesoperationsusers.mission: Mission
+projectetapesoperationsusers.datedebut: Date debut
+projectetapesoperationsusers.datefin: Date fin
+projectetapesoperationsusers.datedebutPrevue: Date de debut prevue
+projectetapesoperationsusers.datefinPrevue: Date de fin prevue
+projectetapesoperationsusers.datedebutReelle: Date de debut réelle
+projectetapesoperationsusers.datefinReelle: Date de fin réelle
+projectetapesoperationsusers.idRole: Rôle utilisateur
+projectetapesoperationsusers.flagActeur: Flag acteur
+projectetapesoperationsusers.flagInvite: Flag invité
+projectetapesoperationsusers.idUser: Utilisateur
+projectetapesoperationsusers.confirm_delete: Voulez vous supprimer cette opération d'utilisateur?
+
+# button
+projectetapesoperationsusers.add_button: Nouveau
+projectetapesoperationsusers.edit_button: Modifier
+projectetapesoperationsusers.del_button: Supprimer
+projectetapesoperationsusers.save_button: Enregistrer
+projectetapesoperationsusers.close_button: Non
+projectetapesoperationsusers.confirm_button: Oui, je confirme

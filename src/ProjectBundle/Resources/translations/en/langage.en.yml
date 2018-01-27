@@ -1,0 +1,18 @@
+# langage.fr.yml
+
+# general
+langage.title: Langage
+langage.new_title: New
+langage.edit_title: Edition
+
+# form
+langage.label: Label
+langage.iso: Iso
+langage.abr: Abbreviation
+langage.actions: Action
+
+# langage button
+langage.add_button: New
+langage.edit_button: Edit
+langage.del_button: Remove
+langage.submit_button: Save

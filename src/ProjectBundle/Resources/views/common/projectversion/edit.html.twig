@@ -1,0 +1,203 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+        <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'projectversion.edition'|trans({}, 'projectversion') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('projectversion_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+
+                        {{ form_start(edit_form) }}
+                            <fieldset class="content-group">
+
+                                <legend class="text-bold">{{ 'projectversion.legend_info'|trans({}, 'projectversion') }}</legend>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'projectversion.idProjet'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.idProjet, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idProjet, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'projectversion.label'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.label, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'projectversion.description'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.description, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.description, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <legend class="text-bold">{{ 'projectversion.legend_date'|trans({}, 'projectversion') }}</legend>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'projectversion.datedebut'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.datedebut, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.datedebut, {'attr': {'class': 'form-control datepicker'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'projectversion.datefin'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.datefin, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.datefin, {'attr': {'class': 'form-control datepicker'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <legend class="text-bold">{{ 'projectversion.legend_other'|trans({}, 'projectversion') }}</legend>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'projectversion.code'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.code, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.code, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'projectversion.reference'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.reference, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.reference, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'projectversion.idLeader'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.idLeader, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idLeader, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'projectversion.idArchitecte'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.idArchitecte, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idArchitecte, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'projectversion.idSupportFonctionnel'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.idSupportFonctionnel, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idSupportFonctionnel, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'projectversion.idReferentDirection'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.idReferentDirection, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idReferentDirection, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'projectversion.idSupportTechnique'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.idSupportTechnique, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idSupportTechnique, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'projectversion.idReferentUtilisateurs'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.idReferentUtilisateurs, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idReferentUtilisateurs, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'projectversion.idSupportTests'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.idSupportTests, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idSupportTests, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'projectversion.idSupportDeploiement'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.idSupportDeploiement, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idSupportDeploiement, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'projectversion.joursHommesPrevus'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.joursHommesPrevus, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.joursHommesPrevus, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {% set name = 'projectversion.joursHommesReels'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.joursHommesReels, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.joursHommesReels, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'projectversion.statut'|trans({}, 'projectversion') %}
+                                        {{ form_label(edit_form.statut, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            <span class="input-group-addon">
+                                            {{ form_widget(edit_form.statut, {'attr': {'class': 'form-control'}}) }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>{{ form_widget(edit_form.idCreateur, {'value': getCurrentUsers('id')}) }}</div>
+                            </fieldset>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'projectversion.submit_button'|trans({}, 'projectversion') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                    </div>
+                </div>
+                <!-- /form horizontal -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    {% include 'foot.html.twig' %}
+{% endblock %}

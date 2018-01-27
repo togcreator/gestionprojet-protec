@@ -1,0 +1,31 @@
+# genenral
+crmparampriorites.list: List of priority
+crmparampriorites.confirm_title: Confirmation
+crmparampriorites.edition: Edition
+crmparampriorites.creation: New
+
+# form
+crmparampriorites.legend_info: Information
+crmparampriorites.open: Open
+crmparampriorites.label: Label
+crmparampriorites.delai: Delay
+crmparampriorites.typedelai: Delay type
+crmparampriorites.valide: Valid
+crmparampriorites.couleur: Color
+crmparampriorites.obs: Observation
+crmparampriorites.nomcouleur: Color name
+crmparampriorites.imgcouleur: Color image
+crmparampriorites.logo: Logo
+crmparampriorites.version: Version
+crmparampriorites.note: Note
+crmparampriorites.idType: Type
+crmparampriorites.confirm_delete: Do you want to remove this ?
+crmparampriorites.actions: Action
+
+# button
+crmparampriorites.add_button: New
+crmparampriorites.save_button: Save
+crmparampriorites.edit_button: Save
+crmparampriorites.del_button: Remove
+crmparampriorites.confirm_button: yes, i do
+crmparampriorites.close_button: No

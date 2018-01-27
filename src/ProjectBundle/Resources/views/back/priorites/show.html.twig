@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h5 class="modal-title">{{ 'priorite.confirm_title'|trans([], 'priorite') }}</h5>
+</div>
+
+<div class="modal-body">
+    <h2>{{ 'priorite.confirm_delete'|trans([], 'priorite')}}</h2>
+    {{ form_start(delete_form, {'attr': {'id': 'priorite_form'}}) }}
+    {{ form_end(delete_form) }}
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-danger" data-dismiss="modal">{{ 'priorite.close_button'|trans([], 'priorite') }}</button>
+    <button type="button" class="btn btn-primary" onclick="jQuery('#priorite_form').submit()">{{ 'priorite.confirm_button'|trans([], 'priorite') }}</button>
+</div>

@@ -1,0 +1,323 @@
+{# only head of header #}
+{% block head %}
+	{% set controller = app.request.attributes.get('_controller') %}
+
+	<!-- Main navbar -->
+	<div class="navbar navbar-inverse bg-indigo">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="{{path('back_param_index')}}"><img src="{{ asset('assets/images/logo.png') }}" alt="" style="margin-top: 0px;height: 21px;"></a>
+
+			<ul class="nav navbar-nav pull-right visible-xs-block">
+				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5 position-left"></i></a></li>
+			</ul>
+		</div>
+
+		<div class="navbar-collapse collapse" id="navbar-mobile">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown user-switch">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						{{ 'users.connect_as'|trans ~ ' ' ~ userConnect(path('user_log'), true) }}
+						<i class="caret position-left"></i>
+					</a>
+					{{ userConnect(path('user_log'))|raw }}
+				</li>
+
+				<li class="dropdown language-switch">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						{% set lang = ''|lang(app.request.locale) %}
+						{% if lang == 'En' %}{% set img = 'gb' %}{% else %}{% set img = lang %}{% endif %}
+						<img src="{{ asset('assets/images/flags/' ~ img ~ '.png') }}" class="position-left" alt="">{{ lang }}
+						<i class="caret position-left"></i>
+					</a>
+					{{ getLang(asset('assets/'), path('langage_index'))|raw }}
+				</li>
+
+				{# <li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="icon-bubbles4 position-left"></i>
+						<span class="visible-xs-inline-block position-right">Messages</span>
+						<span class="badge bg-warning-400">2</span>
+					</a>
+				</li> #}
+
+				<li class="dropdown dropdown-user">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						<img src="{{ asset('assets/images/placeholder.jpg') }}" alt="">
+						<span style="text-transform: capitalize">{{ app.user.username }}</span>
+						<i class="caret position-left"></i>
+					</a>
+					{% set id = app.session.get('log') %}
+					{% if id != '' %}
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li><a href="{{ path('user_edit', {'id': id}) }}"><i class="icon-user-plus position-left"></i> {{ 'users.my_profile'|trans }}</a></li>
+						<li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-switch2 position-left"></i> {{ 'users.logout'|trans }}</a></li>
+					</ul>
+					{% endif %}
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /main navbar -->
+
+
+	<!-- Second navbar -->
+	<div class="navbar navbar-default" id="navbar-second">
+		<ul class="nav navbar-nav no-border visible-xs-block">
+			<li><a class="text-center collapsed" data-toggle="collapse" data-target="#navbar-second-toggle"><i class="icon-menu7 position-left"></i></a></li>
+		</ul>
+
+		<div class="navbar-collapse collapse" id="navbar-second-toggle">
+			<ul class="nav navbar-nav navbar-nav-material">
+				<!-- Main -->
+				<li class="{{ setMenuActive(controller, 'default')|raw }}"><a href="{{ path('homepage')}}"><i class="icon-home4 position-left"></i> <span>{{ 'menu.dashboard'|trans  }}</span></a></li>
+
+				{# <li class="dropdown {{ setMenuActive(controller, 'project')|raw }}">
+					<a href="{{ path('project_index') }}" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-stack3 position-left"></i> <span>{{ 'menu.project'|trans }}</span><span class="caret"></span></a>
+					<ul class="dropdown-menu width-200">
+						<li class="{{ setMenuActive(controller, 'project')|raw }}"><a href="{{ path('project_index') }}">{{ 'menu.project'|trans }}</a></li>
+						<li class="{{ setMenuActive(controller, 'projectetape')|raw }}"><a href="{{ path('projectetape_index') }}">{{ 'menu.etape'|trans }}</a></li>
+						<li class="{{ setMenuActive(controller, 'projectetapesjalons')|raw }}"><a href="{{ path('projectetapesjalons_index') }}">{{ 'menu.etape_jalon'|trans }}</a></li>
+						<li class="dropdown-submenu {{ setMenuActive(controller, 'projectetapesoperations')|raw }}">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ 'menu.projectetapesoperations'|trans }}</a>
+							<ul class="dropdown-menu">
+								<li class="{{ setMenuActive(controller, 'projectetapesoperations')|raw }}"><a href="{{ path('projectetapesoperations_index') }}">{{ 'menu.projectetapesoperations'|trans }}</a></li>
+								<li class="{{ setMenuActive(controller, 'operationsissues')|raw }}"><a href="{{ path('operationsissues_index') }}">{{ 'menu.operationsissues'|trans }}</a></li>
+								<li class="{{ setMenuActive(controller, 'Issuesrealisations')|raw }}"><a href="{{ path('Issuesrealisations_index') }}">{{ 'menu.issuesrealisations'|trans }}</a></li>
+								<li class="{{ setMenuActive(controller, 'issuesorganisation')|raw }}"><a href="{{ path('issuesorganisation_index') }}">{{ 'menu.issuesorganisation'|trans }}</a></li>
+								<li class="{{ setMenuActive(controller, 'operationsusers')|raw }}"><a href="{{ path('operationsusers_index') }}">{{ 'menu.operationsusers'|trans }}</a></li>
+							</ul>
+										
+						</li>
+						<li class="dropdown-submenu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ 'menu.project_docs'|trans }}</a>
+							<ul class="dropdown-menu">
+								<li><a href="{{ path('projectdocs_list') }}">{{ 'menu.project_docs'|trans }}</a></li>
+								<li><a href="{{ path('projectdocs_new') }}">{{ 'menu.project_docs_new'|trans }}</a></li>
+							</ul>
+						</li>
+						<li><a href="{{ path('projectnotes_index') }}">{{ 'menu.notes'|trans }}</a></li>
+					</ul>
+				</li> #}
+
+				<li class="dropdown {{ setMenuActive(controller, 'crm')|raw }}">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user position-left"></i> <span>{{ 'menu.crm'|trans }}</span><span class="caret"></span></a>
+					<ul class="dropdown-menu width-200">
+						<li class="{{ setMenuActive(controller, 'client')|raw }}"><a href="{{ path('client_liste_clients') }}">{{ 'client.menu.customer'|trans }}</a></li>
+						<li class="{{ setMenuActive(controller, 'pipeline')|raw }}"><a href="{{ path('pipeline_index')}}">{{ 'client.menu.pipeline'|trans }}</a></li>
+						<li class="{{ setMenuActive(controller, 'crmdossier')|raw }}"><a href="{{ path('crmdossier_index') }}">{{ 'menu.crm'|trans }}</a></li>
+						<li class="{{ setMenuActive(controller, 'crmetapesoperations')|raw }}"><a href="{{ path('crmetapesoperations_index') }}">{{ 'menu.crm_etapesoperations'|trans }}</a></li>
+						{# <li class="{{ setMenuActive(controller, 'crmetapesrealisations')|raw }}"><a href="{{ path('crmetapesrealisations_index') }}">{{ 'menu.crm_etapesrealisation'|trans }}</a></li> #}
+						<li class="{{ setMenuActive(controller, 'crmdocsenvoyes')|raw }}"><a href="{{ path('crmdocsenvoyes_index') }}">{{ 'menu.crm_docsenvoyes'|trans }}</a></li>
+						<li class="{{ setMenuActive(controller, 'crmdocsrecus')|raw }}"><a href="{{ path('crmdocsrecus_index') }}">{{ 'menu.crm_docsrecus'|trans }}</a></li>
+						<li class="{{ setMenuActive(controller, 'crmoperationsusers')|raw }}"><a href="{{ path('crmoperationsusers_index') }}">{{ 'menu.crm_operationsusers'|trans }}</a></li>
+					</ul>
+				</li>
+				<li class="{{ setMenuActive(controller, 'srih')|raw }}"><a href="{{ path('srih_index')}}"><i class="icon-man-woman  position-left"></i> 
+					{{ 'client.menu.srih'|trans }}</a></li>
+
+				<li>
+					<a href="{{ path('mail_index') }}"><i class="icon-mail5 position-left"></i> <span>{{ 'menu.messenger'|trans }}</span></a></li>
+
+				<li class="{{ setMenuActive(controller, 'agenda')|raw }}">
+					<a href="{{ path('agenda_index') }}"><i class="icon-calendar position-left"></i> <span>{{ 'menu.agenda'|trans }}</span></a></li>
+
+				{# <li class="{{ setMenuActive(controller, 'users')|raw }}">
+					<a href="{{ path('users_index') }}"><i class="icon-user position-left"></i> <span>{{ 'menu.member'|trans }}</span></a></li> #}
+				{% if is_granted('ROLE_ADMIN') %}
+				<li class="dropdown mega-menu mega-menu-wide {{ setMenuActive(controller, 'param')|raw }}">
+					<a href="{{ path('back_param_index') }}" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog4 position-left"></i>{{ 'back.menu_settings'|trans }}
+					<span class="caret"></span></a>
+
+					<div class="dropdown-menu dropdown-content">
+						<div class="dropdown-content-body">
+							<div class="row">
+
+								<div class="col-md-3">
+									<span class="menu-heading underlined">{{ 'back.menu_users'|trans }}</span>
+
+									<ul class="menu-list">
+										<li class="{{ setMenuActive(controller, 'user')|raw }}">
+											<a href="{{ path('user_index') }}"><i class="icon-users"></i>{{ 'back.menu_user_client'|trans }}</a>
+										</li>
+										<li class="{{ setMenuActive(controller, 'users')|raw }}">
+											<a href="{{ path('users_list') }}"><i class="icon-user"></i>{{ 'back.menu_users'|trans }}</a>
+										</li>
+										<li class="{{ setMenuActive(controller, 'roles')|raw }}">
+											<a href="{{ path('back_roles_index') }}"><i class="icon-user-block"></i>{{ 'back.menu_roles'|trans }}</a>
+										</li>
+										{# <li class="">
+											<a href="#"><i class="icon-key"></i>{{ 'back.menu_droit'|trans }}</a>
+										</li> #}
+										<li>
+											<a href="#"> <i class="icon-collaboration"></i> {{ 'back.menu_relation'|trans }}</a>
+												<ul>
+													<li class="{{ setMenuActive(controller, 'relationbusinessuser')|raw }}">
+														<a href="{{ path('relationbusinessuser_index') }}"><i class="icon-collaboration"></i>{{ 'back.menu_relationbusinessuser'|trans }}</a>
+													</li>
+													<li class="{{ setMenuActive(controller, 'relationbusinessentite')|raw }}">
+														<a href="{{ path('relationbusinessentite_index') }}"><i class="icon-collaboration"></i>{{ 'back.menu_relationbusinessentite'|trans }}</a>
+													</li>
+													<li class="{{ setMenuActive(controller, 'relationuserentite')|raw }}">
+														<a href="{{ path('relationuserentite_index') }}"><i class="icon-collaboration"></i>{{ 'back.menu_relationuserentite'|trans }}</a>
+													</li>
+												</ul>
+											</a>
+										</li>
+										<li>
+											<a href="#"> <i class="icon-cog4"></i> {{ 'back.menu_param_user'|trans }}</a>
+												<ul>
+													<li class="{{ setMenuActive(controller, 'usersparamnature')|raw }}">
+														<a href="{{ path('usersparamnature_index') }}"><i class="icon-users2"></i>{{ 'back.menu_usersparamnature'|trans }}</a>
+													</li>
+													<li class="{{ setMenuActive(controller, 'usersparamrelationsfonctions')|raw }}">
+														<a href="{{ path('usersparamrelationsfonctions_index') }}"><i class="icon-user-tie"></i>{{ 'back.menu_usersparamrelationsfonctions'|trans }}</a>
+													</li>
+													<li class="{{ setMenuActive(controller, 'usersparamrelationsprofessionnelles')|raw }}">
+														<a href="{{ path('usersparamrelationsprofessionnelles_index') }}"><i class="icon-collaboration"></i>{{ 'back.menu_usersparamrelationsprofessionnelles'|trans }}</a>
+													</li>
+												</ul>
+											</a>
+										</li>
+									</ul>
+
+								</div>
+
+								{# <div class="col-md-3">
+									<span class="menu-heading underlined">{{ 'back.menu_project'|trans }}</span>
+
+									<ul class="menu-list">
+										<li class="{{ setMenuActive(controller, 'workshop')|raw }}">
+											<a href="{{ path('back_workshop_index') }}"> <i class="icon-pencil7"></i> {{ 'back.menu_workshop'|trans }}</a></li>
+										<li class="{{ setMenuActive(controller, 'statutType')|raw }}">
+											<a href="{{ path('back_statutType_index') }}"> <i class="icon-theater"></i> {{ 'back.menu_statutType'|trans }}</a></li>
+										<li class="{{ setMenuActive(controller, 'entityj')|raw }}">
+											<a href="{{ path('back_entity_index') }}"> <i class="icon-folder"></i> {{ 'back.menu_entityj'|trans }}</a></li>
+										<li class="{{ setMenuActive(controller, 'projectversion')|raw }}">
+											<a href="{{ path('projectversion_index') }}"> <i class="icon-versions"></i> {{ 'back.menu_project_version'|trans }}</a></li>
+										<li class="{{ setMenuActive(controller, 'projectversionuser')|raw }}">
+											<a href="{{ path('projectversionuser_index') }}"><i class="icon-versions"></i>{{ 'back.menu_project_versionuser'|trans }}</a></li>
+										<li class="{{ setMenuActive(controller, 'jalon')|raw }}">
+											<a href="{{ path('back_jalon_index') }}"> <i class="icon-stars"></i> {{ 'back.menu_jalon'|trans }}</a></li>
+										<li class="{{ setMenuActive(controller, 'priorites')|raw }}">
+											<a href="{{ path('back_priorites_index') }}"> <i class="icon-arrow-up7"></i> {{ 'back.menu_priorite'|trans }}</a></li>
+										<li class="{{ setMenuActive(controller, 'projectalert')|raw }}">
+											<a href="{{ path('back_projectalert_index') }}"><i class="icon-alert"></i>{{ 'back.menu_projectalert'|trans }}</a></li>
+										<li class="{{ setMenuActive(controller, 'resultat')|raw }}">
+											<a href="{{ path('back_resultat_index') }}"><i class="icon-crown"></i>{{ 'back.menu_resultat'|trans }}</a></li>
+										<li class="{{ setMenuActive(controller, 'natureop')|raw }}">
+											<a href="{{ path('back_natureop_index') }}"><i class="icon-folder"></i>{{ 'back.menu_natureop'|trans }}</a></li>
+									</ul>
+								</div> #}
+
+								<div class="col-md-3">
+									<span class="menu-heading underlined">{{ 'back.menu_crm'|trans }}</span>
+									<ul class="menu-list">
+										<li class="">
+											<a href="#"> <i class="icon-theater"></i> {{ 'back.menu_crmstatut'|trans }}</a>
+											<ul>
+												<li class="{{ setMenuActive(controller, 'crmparamstatuttype')|raw }}"><a href="{{ path('crmparamstatuttype_index')}}">{{ 'back.menu_crmstatuttype'|trans }}</a></li>
+												<li class="{{ setMenuActive(controller, 'crmparamstatut')|raw }}"><a href="{{ path('crmparamstatut_index')}}">{{ 'back.menu_crmstatut'|trans }}</a></li>
+											</ul>
+										</li>
+										<li class="{{ setMenuActive(controller, 'crmparamalert')|raw }}">
+											<a href="{{ path('crmparamalert_index')}}"> <i class="icon-alert"></i> {{ 'back.menu_crmalert'|trans }}</a>
+										</li>
+										<li class="{{ setMenuActive(controller, 'crmparampriorites')|raw }}">
+											<a href="{{ path('crmparampriorites_index')}}"> <i class="icon-arrow-up7"></i> {{ 'back.menu_crmpriorites'|trans }}</a>
+										</li>
+										<li class="">
+											<a href="#"> <i class="icon-rotate-cw3"></i> {{ 'back.menu_cycles'|trans }}</a>
+											<ul>
+												<li class="{{ setMenuActive(controller, 'crmparamcyclestype')|raw }}"><a href="{{ path('crmparamcyclestype_index')}}">{{ 'back.menu_typecycles'|trans }}</a></li>
+												<li class="{{ setMenuActive(controller, 'crmparamcycles')|raw }}"><a href="{{ path('crmparamcycles_index')}}">{{ 'back.menu_cycles'|trans }}</a></li>
+												<li class="{{ setMenuActive(controller, 'crmparamcyclesdetails')|raw }}"><a href="{{ path('crmparamcyclesdetails_index')}}">{{ 'back.menu_cyclesdetails'|trans }}</a></li>
+												<li class="{{ setMenuActive(controller, 'crmparamcyclesdetailsactivity')|raw }}"><a href="{{ path('crmparamcyclesdetailsactivity_index')}}">{{ 'back.menu_cyclesdetailsactivity'|trans }}</a></li>
+											</ul>
+										</li>
+										<li class="{{ setMenuActive(controller, 'crmparamactivities')|raw }}">
+											<a href="{{ path('crmparamactivities_index')}}"> <i class="icon-tree6"></i> {{ 'back.menu_activite'|trans }}</a>
+										</li>
+										<li class="">
+											<a href="#"> <i class="icon-crown"></i> {{ 'back.menu_resultat'|trans }}</a>
+											<ul>
+												<li class="{{ setMenuActive(controller, 'crmparamtyperesultat')|raw }}"><a href="{{ path('crmparamtyperesultat_index')}}">{{ 'back.menu_typeresultat'|trans }}</a></li>
+												<li class="{{ setMenuActive(controller, 'crmparamresultat')|raw }}"><a href="{{ path('crmparamresultat_index')}}">{{ 'back.menu_resultat'|trans }}</a></li>
+											</ul>
+										</li>
+										<li class="{{ setMenuActive(controller, 'crmparammodeaccess')|raw }}">
+											<a href="{{ path('crmparammodeaccess_index')}}"> <i class="icon-key"></i> {{ 'back.menu_access'|trans }}</a>
+										</li>
+									</ul>
+								</div>
+
+								<div class="col-md-3">
+									<span class="menu-heading underlined">{{ 'back.menu_evironment'|trans }}</span>
+
+									<ul class="menu-list">
+										<li class="{{ setMenuActive(controller, 'langage')|raw }}">
+											<a href="{{ path('back_param_index') }}"> <i class="icon-comment-discussion"></i> {{ 'back.menu_langage'|trans }}</a>
+										</li>
+										
+									</ul>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</li>
+				{% endif %}
+			</ul>
+
+		</div>
+	</div>
+	<!-- /second navbar -->
+
+
+	<!-- Page header -->
+	<div class="page-header">
+		<div class="page-header-content">
+			<div class="page-title">
+				<h4>
+					<i class="icon-arrow-left52 position-left position-left"></i>
+					<span class="text-semibold">
+						{% set title = controller|breadcrumb|trans %}
+						{{ title }}
+					</span>
+					{% if controller == 'param' %}
+					<small class="display-block">{{ 'global.salutation'|trans }}, {{ app.user.username|capitalize }}</small>
+					{% endif %}
+				</h4>
+				{% if controller != 'param' %}
+				<ul class="breadcrumb breadcrumb-caret position-right">
+					{# <li>
+						<a href="#"> 
+							{{ 'back.menu_project_management'|trans }}
+						</a>
+					</li> #}
+					{{ getBreadCrumb(controller, app.request.get('_route'))|raw }}
+				</ul>
+				{% endif %}
+			</div>
+
+			<div class="heading-elements">
+				<div class="heading-btn-group">
+					<a href="#" class="btn btn-link btn-float has-text text-size-small"><i class="icon-bars-alt text-indigo-400 position-left"></i><span>{{ 'global.statistics'|trans }}</span></a>
+					<a href="#" class="btn btn-link btn-float has-text text-size-small"><i class="icon-calculator text-indigo-400 position-left"></i> <span>{{ 'global.invoices'|trans }}</span></a>
+					<a href="#" class="btn btn-link btn-float has-text text-size-small"><i class="icon-calendar5 text-indigo-400 position-left"></i> <span>{{ 'global.schedule'|trans }}</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /page header -->
+
+	<!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+{% endblock %}

@@ -1,0 +1,26 @@
+# statutType.fr.yml
+
+# general
+statutType.creation: Nouveau
+statutType.list: Liste du type de statut des projets
+statutType.edition: Modification du type de statut
+statutType.confirm_title: Confirmation
+
+# form
+statutType.open: Ouvert
+statutType.wording: Libellé
+statutType.version: Version
+statutType.actions: Action
+statutType.appoitment: Sur Rendez-vous
+statutType.all: Tout
+statutType.confirm_delete: Êtes vous sûr de vouloir supprimer ce type de statut ?
+
+# button
+statutType.add_button: Nouveau type de statut
+statutType.save_button: Enregistrer
+statutType.submit_button: Enregistrer
+statutType.see_button: Voir
+statutType.edit_button: Modifier
+statutType.del_button: Supprimer
+statutType.close_button: Non
+statutType.confirm_button: Oui, je confirme

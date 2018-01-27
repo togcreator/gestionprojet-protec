@@ -1,0 +1,36 @@
+# message.fr.yml
+
+# general
+global.crmdossier: CRM
+global.crmetapes: CRM Etapes
+global.crmetapesoperations: CRM Opérations
+global.crmetapesrealisations: CRM réalisations
+global.crmdocsenvoyes: CRM document envoyés
+global.crmdocsrecus: CRM document réçus
+global.crmoperationsusers: CRM Opération utilisteur
+global.alerte: Alerte
+global.rappel: Rappel
+global.updateclient: Modification client
+
+# menu
+menu.crm: CRM
+menu.crm_etapesoperations: CRM Opérations
+menu.crm_docsenvoyes: CRM Document envoyé
+menu.crm_docsrecus: CRM Document reçu
+menu.crm_dossier: CRM Dossier
+menu.crm_etapesrealisation: CRM Réalisations
+menu.crm_operationsusers: Opérations utilisateur
+
+back.menu_crm: GRC / CRM
+back.menu_cycles: Cycles
+back.menu_typecycles: Type du cycle
+back.menu_cyclesdetails: Detail du cycle
+back.menu_cyclesdetailsactivity: Detail des activités
+back.menu_activite: Activités
+back.menu_typeresultat: Type de résultat
+back.menu_resultat: Résultat
+back.menu_access: Accès
+back.menu_crmstatut: Status
+back.menu_crmstatuttype: Type
+back.menu_crmalert: Alert / Rappel
+back.menu_crmpriorites: Priorité

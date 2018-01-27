@@ -1,0 +1,31 @@
+# project.fr.yml
+
+# general
+projectalert.list: Liste des Alertes
+projectalert.creation: Nouveau
+projectalert.edition: Modification
+projectalert.confirm_title: Confirmation
+
+# form
+projectalert.open: Ouvert
+projectalert.label: Label
+projectalert.couleur: Couleur
+projectalert.nomcouleur: Nom de la couleur
+projectalert.typeAlerte: Type d'alerte
+projectalert.declenchementdelai: Déclenchement de delai
+projectalert.typedelai: Type de delai
+projectalert.valide: Valide
+projectalert.version: Version
+projectalert.obligatoire: Obligatoire
+projectalert.actions: Action
+projectalert.logo: Logo
+projectalert.confirm_delete: Êtes vous sûr de vouloir supprimer cette alerte ?
+
+
+# button
+projectalert.add_button: Nouveau
+projectalert.save_button: Enregistrer
+projectalert.edit_button: Modifier
+projectalert.del_button: Supprimer
+projectalert.close_button: Non
+projectalert.confirm_button: Oui, je confirme

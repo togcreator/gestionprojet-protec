@@ -1,0 +1,49 @@
+<div class="panel-heading">
+    <h5 class="panel-title">{{ 'projectetapesoperations.list'|trans({}, 'projectetapesoperations') }}</h5><br/>
+    <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('projectetapesoperations_new', {'idProjet': project.id, 'flag': 'freeze'})}}'">
+        <b><i class="icon-add"></i></b> {{ 'projectetapesoperations.add_button'|trans({}, 'projectetapesoperations') }}
+    </button>
+</div>
+
+<table class="table datatable-basic">
+    <thead>
+        <tr>
+            <th>{{ 'projectetapesoperations.title'|trans({}, 'projectetapesoperations') }}</th>
+            <th>{{ 'projectetapesoperations.datedebutprevue'|trans({}, 'projectetapesoperations') }}</th>
+            <th>{{ 'projectetapesoperations.datefinprevue'|trans({}, 'projectetapesoperations') }}</th>
+            <th>{{ 'projectetapesoperations.datedebutreelle'|trans({}, 'projectetapesoperations') }}</th>
+            <th>{{ 'projectetapesoperations.datefinreelle'|trans({}, 'projectetapesoperations') }}</th>
+            <th class="text-center">{{ 'projectetapesoperations.actions'|trans({}, 'projectetapesoperations') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if projectEtapesOperations %}
+            {% for projectetapesoperations in projectEtapesOperations %}
+        <tr href="{{ path('projectetapesoperations_ajax_get', {'id': projectetapesoperations.id}) }}">
+            <td>{{ projectetapesoperations.object }}</td>
+            <td>{{ projectetapesoperations.datedebutprevue|date(date_format) }}</td>
+            <td>{{ projectetapesoperations.datefinprevue|date(date_format) }}</td>
+            <td>{{ projectetapesoperations.datedebutreelle|date(date_format) }}</td>
+            <td>{{ projectetapesoperations.datefinreelle|date(date_format) }}</td>
+            <td class="text-center">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu9"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="{{ path('projectetapesoperations_edit', {'id': projectetapesoperations.id, 'idProjet': project.id }) }}"><i class="icon-pen"></i> {{ 'projectetapesoperations.edit_button'|trans({}, 'projectetapesoperations') }}</a></li>
+                            <li><a href="{{ path('projectetapesoperations_delete', { 'id': projectetapesoperations.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'projectetapesoperations.del_button'|trans({}, 'projectetapesoperations') }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+            {% endfor %}
+        {% else %}
+        <tr>
+            <td>{{ 'projectetapesoperations.no_data'|trans({}, 'projectetapesoperations') }}</td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>

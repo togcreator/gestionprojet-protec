@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'OperationsIssues.list'|trans({}, 'operationsissues') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('operationsissues_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'OperationsIssues.add_button'|trans({}, 'operationsissues') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('operationsissues_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if OperationsIssues %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'OperationsIssues.idProjectVersion'|trans({}, 'operationsissues') }}</th>
+                                <th>{{ 'OperationsIssues.idEtape'|trans({}, 'operationsissues') }}</th>
+                                <th>{{ 'OperationsIssues.idOperation'|trans({}, 'operationsissues') }}</th>
+                                <th>{{ 'OperationsIssues.libelle'|trans({}, 'operationsissues') }}</th>
+                                <th>{{ 'OperationsIssues.descriptionProbleme'|trans({}, 'operationsissues') }}</th>
+                                <th>{{ 'OperationsIssues.descriptionCorrection'|trans({}, 'operationsissues') }}</th>
+                                <th>{{ 'OperationsIssues.datedebut'|trans({}, 'operationsissues') }}</th>
+                                <th>{{ 'OperationsIssues.datefin'|trans({}, 'operationsissues') }}</th>
+                                <th class="text-center">{{ 'OperationsIssues.actions'|trans({}, 'operationsissues') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for OperationsIssues in OperationsIssues %}
+                            <tr>
+                                <td style="cursor:pointer">{{ OperationsIssues.id }}</td>
+                                <td>
+                                    {% if OperationsIssues.projet %}
+                                    {{ OperationsIssues.projet.label }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if OperationsIssues.etape %}
+                                    {{ OperationsIssues.etape.label }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if OperationsIssues.operation %}
+                                    {{ OperationsIssues.operation.label }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ OperationsIssues.libelle }}</td>
+                                <td>{{ OperationsIssues.descriptionProbleme }}</td>
+                                <td>{{ OperationsIssues.descriptionCorrection }}</td>
+                                <td>{{ OperationsIssues.datedebut|date(date_format) }}</td>
+                                <td>{{ OperationsIssues.datefin|date(date_format) }}</td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('operationsissues_edit', { 'id': OperationsIssues.id }) }}"><i class="icon-pen"></i> {{ 'OperationsIssues.edit_button'|trans({}, 'operationsissues') }}</a></li>
+                                                <li><a href="{{ path('operationsissues_delete', { 'id': OperationsIssues.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'OperationsIssues.del_button'|trans({}, 'operationsissues') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'OperationsIssues.no_data'|trans({}, 'operationsissues') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>            
+{% endblock %}

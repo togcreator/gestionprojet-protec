@@ -1,0 +1,41 @@
+# projectetapejalons.fr.yml
+
+# general
+projectetapejalons.title: Etapes jalons
+projectetapejalons._title: Les étapes jalons
+projectetapejalons.creation: Nouveau
+projectetapejalons.edition: Modifier
+projectetapejalons.list: Liste de étapes jalons
+projectetapejalons.confirm_title: Confirmation
+
+# form
+etape.legend_info: Information
+etape.legend_project: Projet
+projectetapejalons.idEtape: Etape
+projectetapejalons.idProjectversion: Projet
+projectetapejalons.idAgenda: Agenda
+projectetapejalons.title: Titre
+projectetapejalons.object: Objet
+projectetapejalons.idTypeJalon: Type Jalon
+projectetapejalons.description: Description
+projectetapejalons.dateprevue: Date prévue
+projectetapejalons.datereelle: Date réelle
+projectetapejalons.journeesHommesprevues: Journées hommes prévues
+projectetapejalons.journeesHommesreelles: Journées hommes réelles
+projectetapejalons.idResultat: Résultat
+projectetapejalons.actions: Action
+projectetapejalons.confirm_delete: Vous voulez supprimer cet étape jalon ?
+projectetape.no_data: Aucune donnée
+projectetapejalons.etape_none: --- Aucune etape ---
+projectetapejalons.version_none: --- Projet ---
+projectetapejalons.agenda_none: --- Agenda ---
+projectetapejalons.no_data: Aucun resultat
+
+# button
+projectetapejalons.new_button: Nouvel étape jalon
+projectetapejalons.add_button: Nouveau
+projectetapejalons.edit_button: Modifier
+projectetapejalons.del_button: Supprimer
+projectetapejalons.submit_button: Enregistrer
+projectetapejalons.confirm_button: Oui, je confirme
+projectetapejalons.close_button: Non

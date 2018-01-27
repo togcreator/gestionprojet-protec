@@ -1,0 +1,260 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() ~ 'title.list.mail'|trans }}{% endblock %}
+
+{% block body %}
+
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main sidebar -->
+            <div class="sidebar sidebar-main sidebar-default sidebar-separate">
+                <div class="sidebar-content">
+                    {% include "MailBundle:Default:modulesUsed/menus_mail.html.twig" %}
+                </div>
+            </div>
+            <!-- /main sidebar -->
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Multiple lines -->
+                {#<form name="form" method="post">#}
+                    <div class="panel panel-white">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">{{ 'list_mail.draft'|trans }}</h6>
+                        </div>
+                        <div id="mails_panel">
+                        <div class="panel-toolbar panel-toolbar-inbox">
+                            <div class="navbar navbar-default">
+                                <ul class="nav navbar-nav visible-xs-block no-border">
+                                    <li>
+                                        <a class="text-center collapsed" data-toggle="collapse" data-target="#inbox-toolbar-toggle-multiple">
+                                            <i class="icon-circle-down2"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="navbar-collapse collapse" id="inbox-toolbar-toggle-multiple">
+                                    <div class="btn-group navbar-btn">
+                                        <button type="button" class="btn btn-default btn-icon btn-checkbox-all">
+                                            <input type="checkbox" class="styled checkList">
+                                        </button>
+
+                                        <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+
+                                        <ul class="dropdown-menu">
+                                            <li><a href="javascript:void(0)" class="checkAllList">Select all</a></li>
+                                            <li><a href="javascript:void(0)" class="unCheckList">Clear selection</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="btn-group navbar-btn">
+                                        <a href="{{ path('mail_envoi') }}" class="btn btn-default"><i class="icon-pencil7"></i> <span class="hidden-xs position-right">Compose</span></a>
+                                        <button type="button" class="btn btn-default" id="deleteDraft"><i class="icon-bin"></i> <span class="hidden-xs position-right" data-urldraft="{{ path('draft_delete') }}">Delete</span></button>
+                                        <button type="button" class="btn btn-default"><i class="icon-spam"></i> <span class="hidden-xs position-right">Spam</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <div class="position_login" style="display:none;"><img src="{{ asset('assets/images/loading/please-wait.gif') }}"></div>
+                            <table class="table datatable-draft">
+                                <thead>
+                                <th>Check</th>                                
+                                <th>Message</th>
+                                <th>Détail</th>
+                                <th>-</th>
+                                <th>-</th>
+                                <th>-</th>
+                                </thead>
+                                <tbody data-link="row" id="bdtrash" class="rowlink allmailist">
+                                    {% for d in draft %}
+                                        <tr class="unread" id="check-{{ d.id }}">
+                                            <td class="table-inbox-checkbox rowlink-skip">
+                                                <input type="checkbox" name="draftlist[]" id="draftlist_{{ d.id }}" value="{{d.id }}" class="styled draftlist">
+                                            </td>                                            
+                                            <td class="table-inbox-time" style="text-align: left;">
+                                                <span class="table-inbox-preview">{{ d.texte|stringcut(150)|raw }}</span>
+                                            </td>
+                                            <td class="table-inbox-star rowlink-skip">
+                                                <a href="{{ path('mail_read') ~ "/" ~ d.mail }}">
+                                                    Voir {{d.mail.id}}
+                                                </a>
+                                            </td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                    </div>
+                {#</form>#}
+                <!-- /multiple lines -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/js/core/libraries/jasny_bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/protecmail/datatables_draft.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/plugins/notifications/bootbox.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/pages/mail_list.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/protecmail/liste_mails.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/protecmail/mail_list_action.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/plugins/notifications/jgrowl.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/plugins/ui/moment/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/plugins/pickers/daterangepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/pages/picker_date.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/pages/form_inputs.js') }}"></script>
+
+    <script type="text/javascript">
+        $("#date_filter").click(function(){
+            $(".filtre").removeClass('used');
+            $(this).addClass("used");
+            var valeurIntervalles = $('.daterange-left').val();
+            var debut = valeurIntervalles.split('-')[0].trim();
+            var fin   = valeurIntervalles.split('-')[1].trim();
+            var type ='filtre_date';
+            var nb = $(".mail-per-page").val();
+            var load  = "<div class='text-center'><img src='{{ asset('assets/images/loading_icon.gif') }}'></div>";
+            $('#mails_panel').html(load);
+            $.ajax({
+                url: "{{ path('mail_filter_dates') }}",
+                data: {'debut': debut, 'fin': fin, 'type':type, 'nombre':nb},
+                type: "POST",
+                dataType: "html",
+                success: function (data) {
+                    $('#mails_panel').html(data);
+                    refreshCSSTable();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert('Erreur : ' + textStatus + ' - ' + errorThrown);
+                }
+            });
+        });
+        /*function filterByDates() {
+         } */
+
+        $('#mots-cles').keyup(function (touche) {
+            var appui = touche.which || touche.keyCode;
+            // après appui sur Entrée
+            if(appui == 13) {
+                $(".filtre").removeClass("used");
+                $(this).addClass("used");
+                var motsCles = $('#mots-cles').val();
+                var type = 'filtre_motcle';
+                var nb = $(".mail-per-page").val();
+                var load  = "<div class='text-center'><img src='{{ asset('assets/images/loading_icon.gif') }}'></div>";
+                $('#mails_panel').html(load);
+                $.ajax({
+                    url: "{{ path('mail_filter_mots_cles') }}",
+                    data: { 'motscles': motsCles, 'type':type, 'nombre':nb},
+                    type: "POST",
+                    dataType: "html",
+                    success: function (data) {
+                        $('#mails_panel').html(data);
+                        refreshCSSTable();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert('Erreur : ' + textStatus + ' - ' + errorThrown);
+                    }
+                });
+                $('#mots-cles').blur();
+            }
+        });
+
+        function filterByPriorite(li) {
+            var selector = "#" + li;
+            $(selector).siblings().removeClass("active");
+            $(selector).addClass("active");
+            $(".filtre").removeClass("used");
+            $(selector).addClass("used");
+            var id = li.split('-')[1];
+            var type = 'filtre_priorite';
+            var nb = $(".mail-per-page").val();
+            var load  = "<div class='text-center'><img src='{{ asset('assets/images/loading_icon.gif') }}'></div>";
+            $('#mails_panel').html(load);
+            $.ajax({
+                url: "{{ path('mail_filter_priorite') }}",
+                data: {'id': id, 'type':type, 'nombre':nb},
+                dataType: "html",
+                type: "POST",
+                success: function (data) {
+                    $('#mails_panel').html(data);
+                    refreshCSSTable();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert('Erreur : '+errorThrown);
+                }
+            });
+        }
+
+        function filterByTbox(li) {
+            var selector = "#" + li;
+            $(selector).siblings().removeClass("active");
+            $(selector).addClass("active");
+            $(".filtre").removeClass("used");
+            $(selector).addClass("used");
+            var id = li.split('-')[1];
+            var type = 'filtre_tbox';
+            var nb = $(".mail-per-page").val();
+            var load  = "<div class='text-center'><img src='{{ asset('assets/images/loading_icon.gif') }}'></div>";
+            $('#mails_panel').html(load);
+            $.ajax({
+                url: "{{ path('mail_filter_tbox') }}",
+                data: {'id': id, 'type':type, 'nombre':nb },
+                dataType: "html",
+                type: "POST",
+                success: function (data) {
+                    $('#mails_panel').html(data);
+                    refreshCSSTable();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert('Erreur : '+errorThrown);
+                }
+            });
+        }
+
+        $(".mail-per-page").on("change", function(){
+            var id = $(this).attr("id");
+            var path = "{{path('mail_list')}}";
+            if (id == 'inbox'){
+                path = "{{path('mail_inbox')}}";
+            }
+            else if (id == 'outbox') {
+                path = "{{path('mail_outbox')}}";
+            }
+            var load = "<div class='text-center'><img src='{{ asset('assets/images/loading_icon.gif') }}'></div>";
+            $("#mails_panel").html(load);
+            jQuery.ajax({
+                type :  "POST",
+                url : path,
+                dataType: 'json',
+                data : {'nombre' : this.value},
+                success : function(data){
+                    $('#mails_panel').html(data);
+                    refreshCSSTable();
+                }
+            });
+        });
+
+    </script>
+{% endblock %}

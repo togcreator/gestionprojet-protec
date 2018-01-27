@@ -1,0 +1,31 @@
+# resultat.fr.yml
+
+# general
+resultat.title: Result
+resultat.list: List of result
+resultat.creation: New
+resultat.edition: Edit
+resultat.confirm_title: Confirmation
+
+# form
+resultat.open: Open
+resultat.label: Label
+resultat.couleur: Color
+resultat.obs: Observation
+resultat.actions: Action
+resultat.no_data: No data
+resultat.nomcouleur: Name of color
+resultat.imgcouleur: Image of color
+resultat.logo: Logo
+resultat.version: Version
+resultat.note: Note
+resultat.confirm_delete: Do you want to remove this?
+
+# button
+resultat.add_button: New
+resultat.edit_button: Edit
+resultat.del_button: Remove
+resultat.save_button: Save
+resultat.submit_button: Save
+resultat.confirm_button: Yes, I do
+resultat.close_button: No

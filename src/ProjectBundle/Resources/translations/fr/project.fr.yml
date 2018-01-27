@@ -1,0 +1,72 @@
+# project.fr.yml
+
+# general
+project.title: Projet
+project._title: Les infos Projet
+project.creation: Nouveau projet
+project.edition: Consultation/Modification du projet
+project.confirm_title: Confirmation
+project.step: Projet
+project.filter_title: Filtre
+project.project: Projet
+project.date: Date
+
+# form
+# legend
+project.filter: Filtre
+project.legend_project: Information
+project.legend_description: Description
+project.legend_date: Date
+project.legend_other: Autre details
+project.label: Libellé
+project.idTypeProjet: Type de projet
+project.idCreateur: Créateur
+project.idLeader: Leader
+project.idWorkshop: Workshop
+project.idEntiteJ: Entité
+project.idVersionCours: Version du projet en cours
+project.code: Code
+project.reference: Reférence
+project.descriptionPerimetres: Description paramètre
+project.datedebutPrevue: Date de debut prevue
+project.datefinPrevue: Date de fin prevue
+project.statut: Statut
+project.datedebutReelle: Date de debut réelle
+project.datefinReelle: Date de fin réelle
+project.joursHommesPrevus: Jour homme prevus
+project.joursHommesReels: Jour homme réels
+project.modeAcces: Mode d'accès
+project.duration: Durée
+project.datedebut: Date debut
+project.datefin: Date fin
+project.statut: Statut
+project.contact: Contact
+project.complete: Complète
+project.notes: Notes
+project.confirm_delete: Voulez vous supprimer ce projet ?
+project.confirmfilter_delete: Voulez vous supprimer ce filtre ?
+project.cant_delete: Vous ne pouvez pas supprimer ce projet.
+project.entityj: Entité
+project.flagprive: Filtre pour moi seul
+project.filter_save: Sauvegarde
+project.sort_by: 'Tri par'
+project.legend_user: Groupe d'utilisateur
+project.user: utilisateur
+project._user: Les intervenants
+project.idUser: Responsable
+project.filter_label_error: Le champ libellé est unique, changer le avant de sauvegarder
+project.form_null: 'Le champ suivant est vide ou contenant une valeur érroné :'
+
+# button
+project._add_button: Ajout
+project.add_button: Ajouter un projet
+project.addfilter_button: Sauvegarder
+project.submit_button: Enregistrer
+project.edit_button: Modifier
+project.del_button: Supprimer
+project.close_button: Non
+project.confirm_button: Oui, je confirme
+project.filter_button: Filtre
+project.search_button: Filtrer
+project.closesearch_button: Fermer
+project.docs_button: Voir le document

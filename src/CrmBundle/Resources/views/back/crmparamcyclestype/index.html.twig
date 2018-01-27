@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - crmparamcyclestype{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'crmparamcyclestype.list'|trans({}, 'crmparamcyclestype') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('crmparamcyclestype_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'crmparamcyclestype.add_button'|trans({}, 'crmparamcyclestype') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('crmparamcyclestype_index')}}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if crmParamCyclesType %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'crmparamcyclestype.open'|trans({}, 'crmparamcyclestype') }}</th>
+                                <th>{{ 'crmparamcyclestype.label'|trans({}, 'crmparamcyclestype') }}</th>
+                                <th class="text-center">{{ 'crmparamcyclestype.actions'|trans({}, 'crmparamcyclestype') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for crmparamcyclestype in crmParamCyclesType %}
+                            <tr>
+                                <td style="cursor:pointer" onclick="document.location = '{{ path('crmparamcyclestype_show', { 'id': crmparamcyclestype.id }) }}';">{{ crmparamcyclestype.id }}</td>
+                                <td>{% if crmparamcyclestype.ouvert %}
+                                    <span class="label label-info">{{ 'global.yes'|trans }}</span> {% else %}
+                                    <span class="label label-default">{{ 'global.no'|trans }}</span>
+                                    {% endif %}</td>
+                                <td>{{ crmparamcyclestype.label }}</td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('crmparamcyclestype_edit', { 'id': crmparamcyclestype.id }) }}"><i class="icon-pen"></i> {{ 'crmparamcyclestype.edit_button'|trans({}, 'crmparamcyclestype') }}</a></li>
+                                                <li><a href="{{ path('crmparamcyclestype_delete', { 'id': crmparamcyclestype.id }) }}"
+                                                    data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'crmparamcyclestype.del_button'|trans({}, 'crmparamcyclestype') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'crmparamcyclestype.no_data'|trans({}, 'crmparamcyclestype') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>  
+    {# footer #}          
+    {% include 'foot.html.twig' %}
+
+{% endblock %}

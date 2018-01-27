@@ -1,0 +1,163 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <!-- /page header -->
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-12 col-xs-12">
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h2>{{ 'users.edit_title'|trans({}, 'users') }}</h2>
+                    </div>
+                    <div class="panel-body">
+                        {{ form_start(edit_form, {'attr': {'class':'form-horizontal'}}) }}
+                            <fieldset class="content-group">
+                                <legend class="text-bold">{{ 'userclient.info_login'|trans({}, 'userclient') }}</legend>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'form.username'|trans %}
+                                        {{ form_label(edit_form.username, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.username, {'attr': {'class': 'form-control upload-file', 'data-preview': ''}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-3">
+                                            <button type="button" class="btn btn-primary form-control password">
+                                                <i class="icon-pen position-left"></i>{{ 'users.edit_password'|trans({}, 'users')}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row modif hidden">
+                                    <div class="form-group">
+                                        {% set name = 'form.password'|trans %}
+                                        {{ form_label(edit_form.plainPassword.first, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.plainPassword.first, {'attr': {'class': 'form-control' }}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row modif hidden">
+                                    <div class="form-group">
+                                        {% set name = 'form.password_confirmation'|trans %}
+                                        {{ form_label(edit_form.plainPassword.second, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.plainPassword.second, {'attr': {'class': 'form-control' }}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'form.email'|trans %}
+                                        {{ form_label(edit_form.email, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.email, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary" value="Edit">
+                                    {{ 'users.edit_button'|trans({}, 'users') }}
+                                    <i class="icon-arrow-right14 position-right"></i>
+                                </button>
+                            </fieldset>
+                            <script type="text/javascript">
+                                (function($){
+                                    $(function(){
+                                        $('input[type="password"]').removeAttr('form-required');
+
+                                        $('button.password').on('click', function(){
+                                            $(this).hide();
+                                            $('.modif').removeClass('hidden');
+                                        });
+
+                                        $('.form-horizontal').on('submit', function() {
+                                            e.preventDefault();
+
+                                            var email = $('[name*="[email]"]')
+                                            var label = email.parents('.form-group').find('label').html();
+                                            if( email.val().toString().length ) {
+                                                if( !validateEmail(email.val().toString()))
+                                                    alert("{{ 'project.form_null'|trans({}, 'project') }} " + label);
+                                            }else
+                                                this.submit();
+                                        });
+                                        
+                                        function validateEmail(email) {
+                                            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                                            return re.test(email.toLowerCase());
+                                        }
+                                    });
+                                }(jQuery))
+                            </script>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                        <br/>
+                        <fieldset>
+                            <legend class="text-bold">{{ 'users.title'|trans({}, 'users')}}</legend>
+                            {% if userClients %}
+                            <table class="table datatable-basic">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        {# <th>{{ 'userclient.name'|trans({}, 'userclient') }}</th> #}
+                                        <th>{{ 'userclient.business'|trans({}, 'userclient') }}</th>
+                                        <th>{{ 'userclient.natureuser'|trans({}, 'userclient') }}</th>
+                                        <th>{{ 'userclient.fonction'|trans({}, 'userclient') }}</th>
+                                        <th>{{ 'userclient.service'|trans({}, 'userclient') }}</th>
+                                        <th>{{ 'userclient.entreprise'|trans({}, 'userclient') }}</th>
+                                        {# <th>{{ 'userclient.status'|trans({}, 'userclient') }}</th> #}
+                                        <th class="no-sort">{{ 'global.actions'|trans }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for user in userClients %}
+                                    <tr>
+                                        <td>{{ user[0].id }}</td>
+                                        {# <td>{{ user[0].firstname }} {{ user[0].lastname }}</td> #}
+                                        <td>{% if user.nomBusinessUnit %}{{ user.nomBusinessUnit }}{% endif %}</td>
+                                        <td>{% if user['nature'] %}{{ user.nature.label }}{% endif %}</td>
+                                        <td>{% if user['fonction'] %}{{ user.fonction.label }}{% endif %}</td>
+                                        <td>{% if user['service'] %}{{ user.service.label }}{% endif %}</td>
+                                        <td>{% if user.raisonSociale %}{{ user.raisonSociale }}{% endif %}</td>
+                                        
+                                        <td class="text-center">
+                                            <ul class="icons-list">
+                                                <li class="dropdown">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                        <i class="icon-menu9"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                        <li><a href="{{ path('user_edit', { 'id': user[0].id }) }}"><i class="icon-pen"></i> {{ 'userclient.edit_button'|trans({}, 'userclient') }}</a></li>
+                                                        <li><a href="{{ path('user_delete', { 'id': user[0].id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'userclient.del_button'|trans({}, 'userclient') }}</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            {% else %}
+                            <table class="table datatable-show-all">
+                                <tbody>
+                                    <tr>
+                                        <td>{{ 'userclient.no_data'|trans({}, 'userclient') }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            {% endif %}
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

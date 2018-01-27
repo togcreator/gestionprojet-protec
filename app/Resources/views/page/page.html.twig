@@ -1,0 +1,288 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{% include 'header.html.twig' %}
+				<!-- Content area -->
+				<div class="content">
+
+					<!-- Dashboard content -->
+					<div class="row">
+						<div class="col-lg-12 col-xs-12">
+
+							<!-- Marketing campaigns -->
+							<div class="panel panel-flat">
+								<div class="panel-heading">
+									<h6 class="panel-title">{{ 'compaign.marketing_title'|trans }}</h6>
+									<div class="heading-elements">
+										<span class="label bg-success heading-text">{% if compaigns['active_compaign'] %} {{ compaigns['active_compaign'] }} active {% else %}0{% endif %}</span>
+										<ul class="icons-list">
+					                		<li class="dropdown">
+					                			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i> <span class="caret"></span></a>
+												<ul class="dropdown-menu dropdown-menu-right">
+													<li><a href="#"><i class="icon-sync"></i>{{ 'global.update_data'|trans }}</a></li>
+													<li><a href="#"><i class="icon-list-unordered"></i> {{ 'global.detail_log'|trans }}</a></li>
+													<li><a href="#"><i class="icon-pie5"></i> {{ 'global.statistics'|trans }}</a></li>
+													<li class="divider"></li>
+													<li><a href="#"><i class="icon-cross3"></i> {{ 'global.clear_list'|trans }}</a></li>
+												</ul>
+					                		</li>
+					                	</ul>
+				                	</div>
+								</div>
+
+								<div class="table-responsive">
+									<table class="table table-lg text-nowrap">
+										<tbody>
+											<tr>
+												<td class="col-md-5">
+													<div class="media-left">
+														<div id="campaigns-donut"></div>
+													</div>
+
+													<div class="media-left">
+														<h5 class="text-semibold no-margin">
+															{% if compaigns['marketing'] %}
+															{{ compaigns['marketing'][0].budget }} 
+															{% endif %}
+															
+															{% if compaigns['marketing'][0].inflation < compaigns['marketing'][1].inflation %}
+															<small class="text-danger text-size-base">
+															<i class="icon-arrow-down12"></i>
+															(-
+															{% else %}
+															<small class="text-success text-size-base">
+															<i class="icon-arrow-up12"></i> 
+															(+
+															{% endif %}
+															{{ compaigns['marketing'][0].inflation }}%)
+															</small>
+														</h5>
+														<ul class="list-inline list-inline-condensed no-margin">
+															<li>
+																<span class="status-mark border-success"></span>
+															</li>
+															<li>
+																<span class="text-muted">
+																<!-- May 12, 12:30 am -->
+																{{ compaigns['marketing'][0].date }} 
+																</span>
+															</li>
+														</ul>
+													</div>
+												</td>
+
+												<td class="col-md-5">
+													<div class="media-left">
+														<div id="campaign-status-pie"></div>
+													</div>
+
+													<div class="media-left">
+														<h5 class="text-semibold no-margin">
+															{% if compaigns['marketing'] %}
+															{{ compaigns['marketing'][1].budget }} 
+															{% endif %}
+															
+															{% if compaigns['marketing'][1].inflation < compaigns['marketing'][0].inflation %}
+															<small class="text-danger text-size-base">
+															<i class="icon-arrow-down12"></i>
+															(-
+															{% else %}
+															<small class="text-success text-size-base">
+															<i class="icon-arrow-up12"></i> 
+															(+
+															{% endif %}
+															{{ compaigns['marketing'][1].inflation }}%)
+														</h5>
+														<ul class="list-inline list-inline-condensed no-margin">
+															<li>
+																<span class="status-mark border-danger"></span>
+															</li>
+															<li>
+																<span class="text-muted">
+																<!-- Jun 4, 4:00 am -->
+																{{ compaigns['marketing'][1].date }} 
+																</span>
+															</li>
+														</ul>
+													</div>
+												</td>
+
+												<td class="text-right col-md-2">
+													<a href="#" class="btn bg-indigo-300"><i class="icon-statistics position-left"></i> {{ 'global.view_report'|trans }}</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>	
+								</div>
+
+								<div class="table-responsive">
+									<table class="table text-nowrap">
+										<thead>
+											<tr>
+												<th>{{ 'compaign.title'|trans }}</th>
+												<th class="col-md-2">{{ 'compaign.users'|trans }}</th>
+												<th class="col-md-2">{{ 'compaign.changes'|trans }}</th>
+												<th class="col-md-2">{{ 'compaign.budget'|trans }}</th>
+												<th class="col-md-2">{{ 'compaign.status'|trans }}</th>
+												<th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="active border-double">
+												<td colspan="5">{{ 'global.today'|trans }}</td>
+												<td class="text-right">
+													<span class="progress-meter" id="today-progress" data-progress="30"></span>
+												</td>
+											</tr>
+											{% if compaigns['compaign'] %}
+											{% for type in compaigns['typecompaign'] %}
+											<tr>
+												{% for comp in compaigns['compaign'] if type.id == comp.idType %}
+													{% for user in compaigns['users'] if user.id == comp.idUser %}
+												<td>
+													<div class="media-left media-middle">
+														<a href="#"><img src="{{ asset('assets/images/brands/' ~ type.image) }}" class="img-circle img-xs" alt=""></a>
+													</div>
+													<div class="media-left">
+														<div class=""><a href="#" class="text-default text-semibold">{{ type.name }}</a></div>
+														<div class="text-muted text-size-small">
+															<span class="status-mark border-blue position-left"></span>
+															{{ comp.dateDebut|date('H:i') }} - {{ comp.dateFin|date('H:i') }}
+														</div>
+													</div>
+												</td>
+												<td>
+													<span class="text-muted">
+														{{ user.firstname }}
+													</span>
+												</td>
+												<td>
+													<span class="text-success-600">
+														<i class="icon-stats-growth2 position-left"></i> <!-- 2.43% -->
+														{{ comp.inflation }}%
+													</span>
+												</td>
+												<td><h6 class="text-semibold">${{ comp.budget }}</h6></td>
+												<td>
+													<span class="label 
+														{% if comp.status == 'active' %}
+															bg-blue
+														{% elseif comp.status == 'closed' %}
+															bg-danger
+														{% else %}
+															bg-grey-400
+														{% endif %}">
+													{{ comp.status }}</span>
+													</td>
+												<td class="text-center">
+													<ul class="icons-list">
+														<li class="dropdown">
+															<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+															<ul class="dropdown-menu dropdown-menu-right">
+																<li><a href="#"><i class="icon-file-stats"></i> {{ 'global.view_statement'|trans }}</a></li>
+																<li><a href="#"><i class="icon-file-text2"></i> {{ 'compaign.edit_button'|trans }}</a></li>
+																<li><a href="#"><i class="icon-file-locked"></i> {{ 'compaign.disable_button'|trans }}</a></li>
+																<li class="divider"></li>
+																<li><a href="#"><i class="icon-gear"></i> {{ 'global.settings'|trans }}</a></li>
+															</ul>
+														</li>
+													</ul>
+												</td>
+												
+													{% endfor %}	
+												{% endfor %}
+											</tr>
+											{% endfor %}
+												{% else %}
+											<tr>
+												<td colspan="6"><span style="text-align:center">{{ 'compaign.no_data'|trans }}</span></td>
+											</tr>
+											{% endif %}
+
+											{% if old_compaigns and old_compaigns['compaign'] %}
+											<tr class="active border-double">
+												<td colspan="5">Yesterday</td>
+												<td class="text-right">
+													<span class="progress-meter" id="yesterday-progress" data-progress="65"></span>
+												</td>
+											</tr>
+											{% for type in old_compaigns['typecompaign'] %}
+											<tr>
+												{% for comp in old_compaigns['compaign'] if type.id == comp.idType %}
+													{% for user in old_compaigns['users'] if user.id == comp.idUser %}
+												<td>
+													<div class="media-left media-middle">
+														<a href="#"><img src="{{ asset('assets/images/brands/' ~ type.image) }}" class="img-circle img-xs" alt=""></a>
+													</div>
+													<div class="media-left">
+														<div class=""><a href="#" class="text-default text-semibold">{{ type.name }}</a></div>
+														<div class="text-muted text-size-small">
+															<span class="status-mark border-success position-left"></span>
+															{{ comp.dateDebut|date('H:i') }} - {{ comp.dateFin|date('H:i') }}
+														</div>
+													</div>
+												</td>
+												<td><span class="text-muted">{{ user.firstname }}</span></td>
+												<td>
+													<span class="text-danger">
+														<i class="icon-stats-decline2 position-left"></i> <!-- - 5.78% -->
+														{{ comp.inflation }}%
+													</span>
+												</td>
+												<td><h6 class="text-semibold">${{ comp.budget }}</h6></td>
+												<td><span class="label 
+														{% if comp.status == 'active' %}
+															bg-blue
+														{% elseif comp.status == 'closed' %}
+															bg-danger
+														{% else %}
+															bg-grey-400
+														{% endif %}">{{ comp.status }}</span></td>
+												<td class="text-center">
+													<ul class="icons-list">
+														<li class="dropup">
+															<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+															<ul class="dropdown-menu dropdown-menu-right">
+																<li><a href="#"><i class="icon-file-stats"></i> {{ 'global.view_statement'|trans }}</a></li>
+																<li><a href="#"><i class="icon-file-text2"></i> {{ 'compaign.edit_button'|trans }}</a></li>
+																<li><a href="#"><i class="icon-file-locked"></i> {{ 'compaign.disable_button'|trans }}</a></li>
+																<li class="divider"></li>
+																<li><a href="#"><i class="icon-gear"></i> {{ 'global.settings'|trans }}</a></li>
+															</ul>
+														</li>
+													</ul>
+												</td>
+													{% endfor %}	
+												{% endfor %}
+											</tr>
+											{% endfor %}
+											{% endif %}
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- /marketing campaigns -->
+						</div>
+					</div>
+					<!-- /dashboard content -->
+
+
+					<!-- Footer -->
+					{# <div class="footer text-muted">
+						&copy; 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+					</div> #}
+					<!-- /footer -->
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /main content -->
+
+		</div>
+		<!-- /page content -->
+
+	</div>
+	<!-- /page container -->
+
+{% endblock %}

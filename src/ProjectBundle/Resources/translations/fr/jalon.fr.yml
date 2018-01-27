@@ -1,0 +1,29 @@
+# jalon.fr.yml
+# general
+jalon.list: Liste des Jalons
+jalon.edition: Modification
+jalon.creation: Nouveau Jalon
+jalon.confirm_title: Confirmation
+
+# form
+jalon.open: Ouvert
+jalon.label: Libellé
+jalon.version: Version
+jalon.couleur: Couleur
+jalon.obs: Observation
+jalon.nomcouleur: Nom de la couleur
+jalon.imgcouleur: Image de la couleur
+jalon.logo: Logo
+jalon.note: Note
+jalon.actions: Action
+jalon.confirm_delete: Êtes vous sûr de vouloir supprimer ce jalon ?
+projectetapejalons.no_data: Aucun resultat
+
+# button
+jalon.add_button: Nouveau
+jalon.edit_button: Modifier
+jalon.del_button: Supprimer
+jalon.save_button: Enregistrer
+jalon.submit_button: Enregistrer
+jalon.confirm_button: Oui, je confirme
+jalon.close_button: Non

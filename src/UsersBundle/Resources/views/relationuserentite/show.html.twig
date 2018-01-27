@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h5 class="modal-title">{{ 'relationuserentite.confirm_title'|trans([], 'relationuserentite') }}</h5>
+</div>
+
+<div class="modal-body">
+    <h2>{{ 'relationuserentite.confirm_delete'|trans([], 'relationuserentite')}}</h2>
+    {{ form_start(delete_form, {'attr': {'id': 'relationuserentite_form'}}) }}
+    {{ form_end(delete_form) }}
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-danger" data-dismiss="modal">{{ 'relationuserentite.close_button'|trans([], 'relationuserentite') }}</button>
+    <button type="button" class="btn btn-primary" onclick="jQuery('#relationuserentite_form').submit()">{{ 'relationuserentite.confirm_button'|trans([], 'relationuserentite') }}</button>
+</div>

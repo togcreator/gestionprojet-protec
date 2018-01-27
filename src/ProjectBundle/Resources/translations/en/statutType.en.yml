@@ -1,0 +1,22 @@
+# statutType.fr.yml
+
+# general
+statutType.list: List of type status
+statutType.edition: Edition type status
+statutType.confirm_title: Confirmation
+
+# form
+statutType.open: Open
+statutType.wording: Label
+statutType.version: Version
+statutType.actions: Action
+statutType.confirm_delete: Are you want to remove this?
+
+# button
+statutType.add_button: New
+statutType.save_button: Save
+statutType.see_button: See
+statutType.edit_button: Edit
+statutType.del_button: Remove
+statutType.close_button: No
+statutType.confirm_button: Yes, I do

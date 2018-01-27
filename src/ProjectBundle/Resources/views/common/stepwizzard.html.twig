@@ -1,0 +1,33 @@
+{# stepwizzard #}
+
+{% if menu == 'project' %}
+	<h6 id="project">{{ 'project.step'|trans({}, 'project') }}</h6>
+{% endif %}
+
+	{% if menu == 'agenda' %}
+		<h6>{{ 'project.step'|trans({}, 'project') }}</h6>
+		<fieldset></fieldset>
+		<h6 id="agenda">{{ 'agenda.step'|trans({}, 'agenda') }}</h6>
+	{% endif %}
+
+		{% if menu == 'etape' %}
+			<h6>{{ 'project.step'|trans({}, 'project') }}</h6>
+			<fieldset></fieldset>
+			<h6>{{ 'agenda.step'|trans({}, 'project') }}</h6>
+			<fieldset></fieldset>
+			<h6 id="etape">{{ 'etape.step'|trans({}, 'etape') }}</h6>
+		{% endif %}
+
+{% block fieldset %}{% endblock %}
+
+	{% if menu == 'project' %}
+		<h6>{{ 'agenda.step'|trans({}, 'project') }}</h6>
+		<fieldset></fieldset>
+		<h6>{{ 'etape.step'|trans({}, 'project') }}</h6>
+		<fieldset></fieldset>
+	{% endif %}
+
+{% if menu == 'agenda' %}
+	<h6>{{ 'etape.step'|trans({}, 'projectetape') }}</h6>
+	<fieldset></fieldset>
+{% endif %}

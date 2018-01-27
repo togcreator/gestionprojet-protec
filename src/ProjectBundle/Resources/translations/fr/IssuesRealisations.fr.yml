@@ -1,0 +1,34 @@
+# general
+IssuesRealisations.creation: Nouveau
+IssuesRealisations.edition: Modification
+IssuesRealisations.confirm_title: Confirmation
+
+# form
+IssuesRealisations.list: Liste de issue de realisation
+IssuesRealisations.legend_project: Projet
+IssuesRealisations.legend_info: Information
+IssuesRealisations.legend_date: Date
+IssuesRealisations.idProjetVersion: Projet
+IssuesRealisations.idEtape: Etape
+IssuesRealisations.idIssue: Issue d'operation
+IssuesRealisations.observations: Observation
+IssuesRealisations.dateafectation: Date affectation
+IssuesRealisations.daterealisation: Date de realisation
+IssuesRealisations.dureerealisation: Duree realisation
+IssuesRealisations.legend_other: Autre detail
+IssuesRealisations.idUser4realisation: Realisateur
+IssuesRealisations.idUser4affectation: Affectation
+IssuesRealisations.idStatut: Statut
+IssuesRealisations.idResultat: Resultat
+IssuesRealisations.actions: Action
+IssuesRealisations.confirm_delete: Voulez vous supprimer cette issue de realisation?
+IssuesRealisations.no_data: Aucun resultat
+
+# button
+IssuesRealisations.add_button: Nouveau
+IssuesRealisations.submit_button: Enregistrer
+IssuesRealisations.save_button: Enregistrer
+IssuesRealisations.edit_button: Modifier
+IssuesRealisations.del_button: Supprimer
+IssuesRealisations.confirm_button: Oui, je confirme
+IssuesRealisations.close_button: Non

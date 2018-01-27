@@ -1,0 +1,52 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+    <div><h3 style="color: #9d1e15; text-align: center;">{{ error.messageKey|trans(error.messageData, 'security') }}</h3></div>
+{% endif %}
+
+<!-- Form with validation -->
+<form action="{{ path("fos_user_security_check") }}" method="post" class="form-validate">
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endif %}
+
+    <div class="panel panel-body login-form">
+        <div class="text-center">
+            <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+            <h5 class="content-group">{{ 'security.login.login_toaccount'|trans }}</h5>
+        </div>
+
+        <div class="form-group has-feedback has-feedback-left">
+            <input type="text" class="form-control" placeholder="{{ 'security.login.username'|trans }}" id="username" name="_username" value="{{ last_username }}" required="required">
+            <div class="form-control-feedback">
+                <i class="icon-user text-muted"></i>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback has-feedback-left">
+            <input type="password" class="form-control" placeholder="{{ 'security.login.password'|trans }}" id="password" name="_password" required="required">
+            <div class="form-control-feedback">
+                <i class="icon-lock2 text-muted"></i>
+            </div>
+        </div>
+
+        <div class="form-group login-options">
+            <div class="row">
+                <div class="col-sm-6">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="remember_me" name="_remember_me" value="on" class="styled" checked="checked">
+                        {{ 'security.login.remember_me'|trans }}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" id="_submit" name="_submit" class="btn bg-indigo btn-block">{{ 'security.login.submit'|trans }} <i class="icon-arrow-right14 position-right"></i></button>
+        </div>
+
+        {# <div class="content-divider text-muted form-group"><span>{{ 'security.login.no_account'|trans }}</span></div>
+        <a href="{{ path('fos_user_registration_register') }}" class="btn btn-default btn-block content-group">{{ 'security.login.sign_up'|trans }}</a> #}
+    </div>
+</form>
+<!-- /form with validation -->

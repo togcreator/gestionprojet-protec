@@ -1,0 +1,22 @@
+# langage.fr.yml
+
+# general
+langage.title: Langage
+langage.new_title: Ajouter une nouvel langue
+langage.edit_title: Modification
+langage.confirm_title: Confirmation
+
+# form
+langage.label: Libellé
+langage.iso: Iso
+langage.abr: Abréviation
+langage.actions: Action
+langage.confirm_delete: Voulez vous supprimer ce langage?
+
+# langage button
+langage.add_button: Nouveau
+langage.edit_button: Modifier
+langage.del_button: Supprimer
+langage.submit_button: Enregistrer
+langage.confirm_button: Oui, je confirme
+langage.close_button: Non

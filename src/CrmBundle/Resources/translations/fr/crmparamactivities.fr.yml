@@ -1,0 +1,26 @@
+# genenral
+crmparamactivities.list: Liste des activités CRM
+crmparamactivities.confirm_title: Confirmation
+crmparamactivities.edition: Modification
+crmparamactivities.creation: Nouveau
+
+# form
+crmparamactivities.legend_info: Information
+crmparamactivities.open: Ouvert
+crmparamactivities.label: Label
+crmparamactivities.couleur: Couleur
+crmparamactivities.obs: Observation
+crmparamactivities.nomcouleur: Nom de la couleur
+crmparamactivities.imgcouleur: Image de la couleur
+crmparamactivities.logo: Logo
+crmparamactivities.version: Version
+crmparamactivities.confirm_delete: Voulez vous supprimer cette activité?
+crmparamactivities.actions: Action
+
+# button
+crmparamactivities.add_button: Nouveau
+crmparamactivities.save_button: Enregistrer
+crmparamactivities.edit_button: Modification
+crmparamactivities.del_button: Supprimer
+crmparamactivities.confirm_button: Oui, je confirme
+crmparamactivities.close_button: Non

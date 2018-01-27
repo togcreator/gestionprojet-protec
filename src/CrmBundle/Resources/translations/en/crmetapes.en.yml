@@ -1,0 +1,37 @@
+
+# general
+crmetapes.title: CRM Stage
+crmetapes.edition: Edition
+crmetapes.creation: New
+crmetapes.confirm_title: Confirmation
+crmetapes.crm: CRM
+crmetapes.info: Information
+crmetapes.other: Other detail
+crmetapes.date: Date
+
+# form
+crmetapes.idCRM: CRM
+crmetapes.idCycle: Cycle
+crmetapes.code: Code
+crmetapes.objet: Object
+crmetapes.reference: Reference
+crmetapes.description: Description
+crmetapes.datedebutprevue: Planned start date
+crmetapes.datefinprevue: Planned end date
+crmetapes.datedebutreelle: Actual start date
+crmetapes.datefinreelle: Actual end date
+crmetapes.idStatut: Status
+crmetapes.idResultat: Result
+crmetapes.descriptionResultat: Resulta description
+crmetapes.flagAction: Flag action
+crmetapes.flagIdee: Flag idea
+crmetapes.flagInformation: Flag information
+crmetapes.confirm_delete: Do you want to remove this stage ?
+
+# button
+crmetapes.add_button: New
+crmetapes.edit_button: Edit
+crmetapes.del_button: Remove
+crmetapes.save_button: Save
+crmetapes.close_button: No
+crmetapes.confirm_button: Yes, i do

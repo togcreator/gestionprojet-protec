@@ -1,0 +1,48 @@
+# crmdossier.fr.yml
+
+# general
+crmdossier.title: CRM Dossier
+crmdossier.creation: New
+crmdossier.edition: Edition
+crmdossier.confirm_title: Confirmation
+crmdossier.crm: CRM
+
+# form
+# legend
+crmdossier.icone: Icone
+crmdossier.idEntiteJ: Entité
+crmdossier.info: Information
+crmdossier.date: Date
+crmdossier.other: Autre details
+crmdossier.label: Label
+crmdossier.idTypeProjet: Type de projet
+crmdossier.idCreateur: Creator
+crmdossier.code: Code
+crmdossier.reference: Reférence
+crmdossier.descriptionPerimetres: Description parameter
+crmdossier.datedebutPrevue: Date de debut prevue
+crmdossier.datefinPrevue: Date de fin prevue
+crmdossier.statut: Statut
+crmdossier.datedebutReelle: Date de debut réelle
+crmdossier.datefinReelle: Date de fin réelle
+crmdossier.modeAcces: Mode d'accès
+crmdossier.idMarketSegment: Market segment
+crmdossier.idWatcher: Watcher
+crmdossier.Rakingprevu: Ranking prévue
+crmdossier.Rakingactuel: Ranking actuel
+crmdossier.idResultat: Résultat
+crmdossier.idOwner: Appartenant
+crmdossier.descriptionResultat: Description résultat
+crmdossier.confirm_delete: Do you want to remove this ?
+
+# button
+crmdossier.add_button: New
+crmdossier.submit_button: Save
+crmdossier.save_button: Save
+crmdossier.edit_button: Edit
+crmdossier.del_button: Remove
+crmdossier.close_button: No
+crmdossier.confirm_button: Yes, i do
+crmdossier.filter_button: Filtre
+crmdossier.search_button: Filtrer
+crmdossier.closesearch_button: Fermer

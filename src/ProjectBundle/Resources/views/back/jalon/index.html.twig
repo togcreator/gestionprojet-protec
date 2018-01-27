@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - jalon{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'jalon.list'|trans({}, 'jalon') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('back_jalon_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'jalon.add_button'|trans({}, 'jalon') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('back_jalon_index')}}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if jalons %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'jalon.open'|trans({}, 'jalon') }}</th>
+                                <th>{{ 'jalon.label'|trans({}, 'jalon') }}</th>
+                                <th class="col-md-2 text-center">{{ 'jalon.couleur'|trans({},'jalon') }}</th>
+                                <th class="col-md-1 text-center">{{ 'jalon.logo'|trans({},'jalon') }}</th>
+                                <th class="col-md-1 text-center">{{ 'jalon.note'|trans({},'jalon') }}</th>
+                                <th class="text-center">{{ 'jalon.actions'|trans({}, 'jalon') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for jalon in jalons %}
+                            <tr>
+                                <td style="cursor:pointer" onclick="document.location = '{{ path('back_jalon_show', { 'id': jalon.id }) }}';">{{ jalon.id }}</td>
+                                <td>
+                                    {% if jalon.ouvert %}
+                                    <span class="label label-info">{{ 'global.yes'|trans }}</span> {% else %}
+                                    <span class="label label-default">{{ 'global.no'|trans }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ jalon.label }}</td>
+                                <td class="col-md-2 text-center" style="background: {{ jalon.couleur }};">{{ jalon.couleur }}</td>
+                                <td class="col-md-1 text-center">
+                                    {% if jalon.logo %}
+                                        <img src="{{ asset('uploads/' ~ jalon.logo ) }}" alt="logo" style="max-width: 50%" />
+                                    {% endif %}
+                                </td>
+                                <td class="col-md-1 text-center">{% if jalon.obs %}<i class="icon-file-text"></i>{% else %}<i class="icon-file-minus2" style="color: #ccc"></i>{% endif %}</td>
+
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('back_jalon_edit', { 'id': jalon.id }) }}"><i class="icon-pen"></i> {{ 'jalon.edit_button'|trans({}, 'jalon') }}</a></li>
+                                                <li><a href="{{ path('back_jalon_delete', { 'id': jalon.id }) }}"
+                                                    data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'jalon.del_button'|trans({}, 'jalon') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'jalon.no_data'|trans({}, 'jalon') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>  
+    {# footer #}          
+    {% include 'foot.html.twig' %}
+
+{% endblock %}

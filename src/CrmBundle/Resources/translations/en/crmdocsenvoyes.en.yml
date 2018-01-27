@@ -1,0 +1,34 @@
+
+# general
+crmdocsenvoyes.title: CRM document sent
+crmdocsenvoyes.edition: Edition
+crmdocsenvoyes.creation: New
+crmdocsenvoyes.confirm_title: Confirmation
+crmdocsenvoyes.crm: CRM
+crmdocsenvoyes.info: Information
+crmdocsenvoyes.other: Other detail
+
+# form
+crmdocsenvoyes.idCrm: CRM
+crmdocsenvoyes.idEtape: Stage
+crmdocsenvoyes.idOperation: Operation
+crmdocsenvoyes.code: Code
+crmdocsenvoyes.origine: Origin
+crmdocsenvoyes.idBiblio: Biblio
+crmdocsenvoyes.idMail: Mail address
+crmdocsenvoyes.referenceInterne: Internal reference
+crmdocsenvoyes.reference: Reference
+crmdocsenvoyes.designation: Label
+crmdocsenvoyes.nomdoc: Document name
+crmdocsenvoyes.idTypedoc: Document type
+crmdocsenvoyes.dateEnvoi: Date sent
+crmdocsenvoyes.version: Version
+crmdocsenvoyes.confirm_delete: Do you want to remove this ?
+
+# button
+crmdocsenvoyes.add_button: New
+crmdocsenvoyes.edit_button: Edit
+crmdocsenvoyes.del_button: remove
+crmdocsenvoyes.save_button: Save
+crmdocsenvoyes.close_button: No
+crmdocsenvoyes.confirm_button: Yes, i do

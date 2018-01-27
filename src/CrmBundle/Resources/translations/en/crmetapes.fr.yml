@@ -1,0 +1,37 @@
+
+# general
+crmetapes.title: CRM Etapes
+crmetapes.edition: Modification
+crmetapes.creation: Nouveau
+crmetapes.confirm_title: Confirmation
+crmetapes.crm: CRM
+crmetapes.info: Information
+crmetapes.other: Autre detail
+crmetapes.date: Date
+
+# form
+crmetapes.idCRM: CRM
+crmetapes.idCycle: Cycle
+crmetapes.code: Code
+crmetapes.objet: Objet
+crmetapes.reference: Réference
+crmetapes.description: Description
+crmetapes.datedebutprevue: Date debut prevue
+crmetapes.datefinprevue: Date fin prevue
+crmetapes.datedebutreelle: Date debut réel
+crmetapes.datefinreelle: Date fin réel
+crmetapes.idStatut: Statut
+crmetapes.idResultat: Resultat
+crmetapes.descriptionResultat: Description de la resultat
+crmetapes.flagAction: Flag action
+crmetapes.flagIdee: Flag idée
+crmetapes.flagInformation: Flag information
+crmetapes.confirm_delete: Voulez vous supprimer ce étape?
+
+# button
+crmetapes.add_button: Nouveau
+crmetapes.edit_button: Modifier
+crmetapes.del_button: Supprimer
+crmetapes.save_button: Enregistrer
+crmetapes.close_button: Non
+crmetapes.confirm_button: Oui, je confirme

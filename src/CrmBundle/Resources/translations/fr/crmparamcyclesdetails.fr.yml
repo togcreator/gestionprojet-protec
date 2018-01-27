@@ -1,0 +1,24 @@
+# genenral
+crmparamcyclesdetails.list: Liste des details cycles CRM
+crmparamcyclesdetails.confirm_title: Confirmation
+crmparamcyclesdetails.edition: Modification
+crmparamcyclesdetails.creation: Nouveau
+
+# form
+crmparamcyclesdetails.legend_info: Information
+crmparamcyclesdetails.open: Ouvert
+crmparamcyclesdetails.label: Label
+crmparamcyclesdetails.idCycle: Cycle
+crmparamcyclesdetails.idTypecycle: Type de cycle CRM
+crmparamcyclesdetails.ordre: Ordre
+crmparamcyclesdetails.version: Version
+crmparamcyclesdetails.confirm_delete: Voulez vous supprimer ce detail ?
+crmparamcyclesdetails.actions: Action
+
+# button
+crmparamcyclesdetails.add_button: Nouveau
+crmparamcyclesdetails.save_button: Enregistrer
+crmparamcyclesdetails.edit_button: Modification
+crmparamcyclesdetails.del_button: Supprimer
+crmparamcyclesdetails.confirm_button: Oui, je confirme
+crmparamcyclesdetails.close_button: Non

@@ -1,0 +1,3 @@
+users:
+    resource: '@UsersBundle/Controller/'
+    type: annotation

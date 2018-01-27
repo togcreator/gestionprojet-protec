@@ -1,0 +1,65 @@
+
+<div class="panel-heading">
+    <h5 class="panel-title">{{ 'client.info.activity'|trans }}</h5></br>
+
+    <div class="form-group col-md-4">
+        <label class="control-label col-lg-4">{{ 'crmdossier.idCycle'|trans({}, 'crmdossier') }}</label>
+        <div class="col-lg-8">
+            <select class="form-control select2-search" name="select_cycle">
+                <option value="0">{{ 'global.none'|trans }}</option>
+                {% for cycle in cycles %}
+                <option value="{{ cycle.id }}">{{ cycle.label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    
+        
+    <div class="form-group col-md-4">
+        <label class="control-label col-lg-4">{{ 'crmdossier.idTypeCycle'|trans({}, 'crmdossier') }}</label>
+        <div class="col-lg-8">
+            <select class="form-control select2-search" name="select_cycle_type">
+                <option value="0">{{ 'global.none'|trans }}</option>
+                {% for type in cycle_types %}
+                <option value="{{ type.id }}">{{ type.label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="heading-elements"></div>
+</div>
+
+<div class="column">
+<!--   ajouter ici les données -->
+</div>
+
+<script type="text/javascript">
+    (function($){
+
+        function Select (data) {
+            $.ajax({
+                url: "{{ path('clients_ajax_cycle') }}",
+                data: data,
+                success: function(response) {
+                    $('.column').html(response);
+                }
+            });
+        }
+
+        $('[name="select_cycle"]').on('change', function() {
+            if( $(this).val() == 0 ) return;
+
+            Select({id_cycle: $(this).val(), id: "{{ id }}" });
+            $('[name="select_cycle_type"]').val(0).trigger('change');
+        });
+
+        $('[name="select_cycle_type"]').on('change', function() {
+            if( $(this).val() == 0 ) return;
+
+            Select({id_cycle_type: $(this).val(), id: "{{ id }}" });
+            $('[name="select_cycle"]').val(0).trigger('change');
+        });
+
+    }(jQuery))
+</script>

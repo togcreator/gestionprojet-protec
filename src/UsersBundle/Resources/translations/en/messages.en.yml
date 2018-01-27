@@ -1,0 +1,23 @@
+# general
+
+# global
+global.relationbusinessentite: Business entity relationship
+global.userclient: User
+global.users: User account
+global.relationuserentite: Entity user relationship
+global.relationbusinessuser: Fonctionnal user relationship
+
+# back
+back.menu_users:  User account
+back.menu_user_client: User
+back.menu_param_user: User setting
+back.menu_usersparamnature: Nature user
+back.menu_usersparamrelationsfonctions: Fonctional user relationship
+back.menu_relation: Relation
+back.menu_relationbusinessentite: Professionnelle user relationship
+back.menu_usersparamrelationsprofessionnelles: Professionnelle user relationship
+back.menu_relationbusinessuser: Fonctional user relationship
+back.menu_relationuserentite: Entity user relationship
+
+# users
+users.connect_as: "User as:"

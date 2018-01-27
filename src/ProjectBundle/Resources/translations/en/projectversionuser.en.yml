@@ -1,0 +1,25 @@
+# projectversionuser.fr.yml
+
+# general
+projectversionusers.list: List of project contributor
+projectversionusers.no_data: No data
+projectversionusers.creation: New
+projectversionusers.confirm_title: Confirmation
+
+# form
+projectversionusers.idProjetVersion: Project
+projectversionusers.mission: Mission
+projectversionusers.datedebut: Start date
+projectversionusers.datefin: End date
+projectversionusers.actions: Action
+projectversionusers.confirm_delete: Are you want to remove this ?
+projectversionusers.idRole: Role
+
+# button
+projectversionusers.new_button: New user
+projectversionusers.add_button: New contributor
+projectversionusers.submit_button: Save
+projectversionusers.edit_button: Edit
+projectversionusers.del_button: Remove
+projectversionusers.close_button: No
+projectversionusers.confirm_button: Yes, I do

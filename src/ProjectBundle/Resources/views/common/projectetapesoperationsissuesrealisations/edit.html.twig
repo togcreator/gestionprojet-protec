@@ -1,0 +1,175 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{asset('assets/js/plugins/forms/styling/switchery.min.js')}}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+        <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'IssuesRealisations.edition'|trans({}, 'IssuesRealisations') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('Issuesrealisations_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+
+                        {{ form_start(edit_form) }}
+                            <fieldset class="content-group">
+
+                                <legend class="text-bold">{{ 'IssuesRealisations.legend_project'|trans({}, 'IssuesRealisations') }}</legend>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'IssuesRealisations.idProjetVersion'|trans({}, 'IssuesRealisations') %}
+                                        {{ form_label(edit_form.idProjetVersion, name, {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idProjetVersion, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'IssuesRealisations.idEtape'|trans({}, 'IssuesRealisations') %}
+                                        {{ form_label(edit_form.idEtape, name, {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idEtape, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'IssuesRealisations.idIssue'|trans({}, 'IssuesRealisations') %}
+                                        {{ form_label(edit_form.idIssue, name, {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idIssue, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <legend class="text-bold">{{ 'IssuesRealisations.legend_info'|trans({}, 'IssuesRealisations') }}</legend>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'IssuesRealisations.observations'|trans({}, 'IssuesRealisations') %}
+                                        {{ form_label(edit_form.observations, name, {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.observations, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <legend class="text-bold">{{ 'IssuesRealisations.legend_date'|trans({}, 'IssuesRealisations') }}</legend>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        {% set name = 'IssuesRealisations.dateafectation'|trans({}, 'IssuesRealisations') %}
+                                        {{ form_label(edit_form.dateafectation, name, {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.dateafectation, {'attr': {'class': 'form-control datepicker'}}) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        {% set name = 'IssuesRealisations.daterealisation'|trans({}, 'IssuesRealisations') %}
+                                        {{ form_label(edit_form.daterealisation, name, {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.daterealisation, {'attr': {'class': 'form-control datepicker'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        {% set name = 'IssuesRealisations.dureerealisation'|trans({}, 'IssuesRealisations') %}
+                                        {{ form_label(edit_form.dureerealisation, name, {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.dureerealisation, {'attr': {'class': 'form-control', 'min': 1}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <legend class="text-bold">{{ 'IssuesRealisations.legend_other'|trans({}, 'IssuesRealisations') }}</legend>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'IssuesRealisations.idUser4affectation'|trans({}, 'IssuesRealisations') %}
+                                        {{ form_label(edit_form.idUser4affectation, name, {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idUser4affectation, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'IssuesRealisations.idUser4realisation'|trans({}, 'IssuesRealisations') %}
+                                        {{ form_label(edit_form.idUser4realisation, name, {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idUser4realisation, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'IssuesRealisations.idStatut'|trans({}, 'IssuesRealisations') %}
+                                        {{ form_label(edit_form.idStatut, name, {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+                                        <div class="col-lg-10">
+                                            <span class="input-group-addon switchery-xs">
+                                            {{ form_widget(edit_form.idStatut, {'attr': {'class': 'form-control'}}) }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'IssuesRealisations.idResultat'|trans({}, 'IssuesRealisations') %}
+                                        {{ form_label(edit_form.idResultat, name, {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+                                        <div class="col-lg-10">
+                                            <span class="input-group-addon switchery-xs">
+                                            {{ form_widget(edit_form.idResultat, {'attr': {'class': 'form-control'}}) }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'IssuesRealisations.submit_button'|trans({}, 'IssuesRealisations') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                        <script type="text/javascript">
+                            (function($){
+                                // notification
+                                var notify = {
+                                    success: function(message) {
+                                        $.jGrowl(message, {
+                                            header: '{{ 'global.notify_header_success'|trans }}',
+                                            theme: 'bg-success'
+                                        })
+                                    },
+                                    error: function(message) {
+                                        $.jGrowl(message, {
+                                            header: '{{ 'global.notify_header_error'|trans }}',
+                                            theme: 'bg-danger'
+                                        });
+                                    }
+                                };
+
+                            }(jQuery))
+                        </script>
+                    </div>
+                </div>
+                <!-- /form horizontal -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+{% endblock %}

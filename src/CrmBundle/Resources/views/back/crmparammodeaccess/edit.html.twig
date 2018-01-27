@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'crmparammodeaccess.edition'|trans({}, 'crmparammodeaccess') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('crmparammodeaccess_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        {{ form_start(edit_form) }}
+                            <fieldset class="content-group">
+                                <label class="text-bold">{{ 'crmparammodeaccess.legend_info'|trans({}, 'crmparammodeaccess') }}</label>
+                                <div class="form-group col-md-12">
+                                    {% set name = 'crmparammodeaccess.open'|trans({}, 'crmparammodeaccess') %}
+                                    {{ form_label(edit_form.ouvert, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.ouvert, {'attr': {'class': 'form-control switchery'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparammodeaccess.label'|trans({}, 'crmparammodeaccess') %}
+                                    {{ form_label(edit_form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.label, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparammodeaccess.obs'|trans({}, 'crmparammodeaccess') %}
+                                    {{ form_label(edit_form.obs, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.obs, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparammodeaccess.couleur'|trans({}, 'crmparammodeaccess') %}
+                                    {{ form_label(edit_form.couleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10" style="padding: 25px 0">
+                                        {{ form_widget(edit_form.couleur, {'attr': {'class': 'form-control colorpicker-show-input'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparammodeaccess.nomcouleur'|trans({}, 'crmparammodeaccess') %}
+                                    {{ form_label(edit_form.nomcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.nomcouleur, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparammodeaccess.imgcouleur'|trans({}, 'crmparammodeaccess') %}
+                                    {{ form_label(edit_form.imgcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10" style="padding: 15px 0">
+                                        {% if edit_form.vars.value.imgcouleur %}
+                                        {% set preview = '<img class="file-preview-image" src="' ~ asset('uploads/' ~ edit_form.vars.value.imgcouleur) ~ '"/>' %}
+                                        {% else %}
+                                            {% set preview = '' %}
+                                        {% endif %}
+                                        {{ form_widget(edit_form.imgcouleur, {'attr': {'class': 'form-control upload-file',  'data-preview': preview}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {% set name = 'crmparammodeaccess.logo'|trans({}, 'crmparammodeaccess') %}
+                                    {{ form_label(edit_form.logo, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10" style="padding: 15px 0">
+                                        {% if edit_form.vars.value.logo %}
+                                        {% set preview = '<img class="file-preview-image" src="' ~ asset('uploads/' ~ edit_form.vars.value.logo) ~ '"/>' %}
+                                        {% else %}
+                                            {% set preview = '' %}
+                                        {% endif %}
+                                        {{ form_widget(edit_form.logo, {'attr': {'class': 'form-control upload-file', 'data-preview': preview}}) }}
+                                    </div>
+                                </div>
+                                
+                            </fieldset>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'crmparammodeaccess.save_button'|trans({}, 'crmparammodeaccess') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'foot.html.twig' %}
+{% endblock %}

@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h5 class="modal-title">{{ 'crmparammodeaccess.confirm_title'|trans([], 'crmparammodeaccess') }}</h5>
+</div>
+
+<div class="modal-body">
+    <h2>{{ 'crmparammodeaccess.confirm_delete'|trans([], 'crmparammodeaccess')}}</h2>
+    {{ form_start(delete_form, {'attr': {'id': 'crmparammodeaccess_form'}}) }}
+    {{ form_end(delete_form) }}
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-danger" data-dismiss="modal">{{ 'crmparammodeaccess.close_button'|trans([], 'crmparammodeaccess') }}</button>
+    <button type="button" class="btn btn-primary" onclick="jQuery('#crmparammodeaccess_form').submit()">{{ 'crmparammodeaccess.confirm_button'|trans([], 'crmparammodeaccess') }}</button>
+</div>

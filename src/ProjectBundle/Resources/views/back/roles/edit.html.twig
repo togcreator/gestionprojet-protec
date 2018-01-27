@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'roles.edition'|trans([], 'roles') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('back_roles_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        {{ form_start(edit_form) }}
+                            <fieldset class="content-group">
+                                <legend class="text-bold">{{ 'roles.legend_info'|trans({}, 'roles') }}</legend>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'roles.open'|trans([], 'roles') %}
+                                        {{ form_label(edit_form.ouvert, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.ouvert, {'attr': {'class': 'form-control switchery'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'roles.wording'|trans([], 'roles') %}
+                                        {{ form_label(edit_form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.label, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'roles.obs'|trans({}, 'roles') %}
+                                        {{ form_label(edit_form.obs, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.obs, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'roles.couleur'|trans({}, 'roles') %}
+                                        {{ form_label(edit_form.couleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+
+                                            {{ form_widget(edit_form.couleur, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'roles.nomcouleur'|trans({}, 'roles') %}
+                                        {{ form_label(edit_form.nomcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10" style="padding: 15px 0">
+                                            {{ form_widget(edit_form.nomcouleur, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'roles.imgcouleur'|trans({}, 'roles') %}
+                                        {{ form_label(edit_form.imgcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10" style="margin: 15px 0">
+                                            {% set preview = asset('uploads/' ~ edit_form.vars.value.imgcouleur)|default('') %}
+                                            {{ form_widget(edit_form.imgcouleur, {'attr': {'class': 'form-control upload-file', 'preview': preview, 'filetype': preview|default('')}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'roles.logo'|trans({}, 'roles') %}
+                                        {{ form_label(edit_form.logo, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {% set preview = asset('uploads/' ~ edit_form.vars.value.logo)|default('') %}
+                                            {{ form_widget(edit_form.logo, {'attr': {'class': 'form-control upload-file', 'preview': preview, 'filetype': preview|default('')}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                {# <legend class="text-bold">{{ 'roles.legend_user'|trans({}, 'roles') }}</legend>
+                                <div class="form-group">
+                                    {% set name = 'roles.user'|trans([], 'roles') %}
+                                    {{ form_label(edit_form.user, name, {'label_attr': {'class': 'control-label col-lg-2', 'style':'margin-top: 25px'}})|raw }}
+                                    <div class="col-lg-10" style="margin-top: 25px">
+                                        {{ form_widget(edit_form.user, {'attr': {'class': 'form-control listbox-dynamic-options'}, 'row': 5}) }}
+                                    </div>
+                                </div> #}
+
+                            </fieldset>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'roles.save_button'|trans([], 'roles') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                        <script type="text/javascript" src="{{ asset('assets/backoffice/js/plugins/forms/inputs/duallistbox.min.js') }}"></script>
+                        <script type="text/javascript">
+                            (function($){
+                                $('.listbox-dynamic-options').bootstrapDualListbox({
+                                    moveOnSelect: false,
+                                    infoText: '{{'roles.infotext'|trans({}, 'roles')}}',
+                                    infoTextFiltered: '',
+                                    infoTextEmpty: '',
+                                    filterPlaceHolder: '{{'roles.filterplaceholder'|trans({}, 'roles')}}',
+                                    filterTextClear: '{{'roles.filtertextclear'|trans({}, 'roles')}}'
+                                });
+                            }(jQuery))
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'foot.html.twig' %}
+{% endblock %}

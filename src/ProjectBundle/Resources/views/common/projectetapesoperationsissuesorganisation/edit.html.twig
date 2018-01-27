@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{asset('assets/js/plugins/forms/styling/switchery.min.js')}}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+        <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'IssuesOrganisation.Edition'|trans({}, 'IssuesOrganisation') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('issuesorganisation_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+
+                        {{ form_start(edit_form) }}
+                            <fieldset class="content-group">
+
+                                <legend class="text-bold">{{ 'IssuesOrganisation.legend_project'|trans({}, 'IssuesOrganisation') }}</legend>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'IssuesOrganisation.idIssue'|trans({}, 'IssuesOrganisation') %}
+                                        {{ form_label(edit_form.idIssue, name, {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.idIssue, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <legend class="text-bold">{{ 'IssuesOrganisation.legend_info'|trans({}, 'IssuesOrganisation') }}</legend>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'IssuesOrganisation.commentaires'|trans({}, 'IssuesOrganisation') %}
+                                        {{ form_label(edit_form.commentaires, name, {'label_attr': {'class': 'control-label col-lg-2'}}) }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.commentaires, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'IssuesOrganisation.submit_button'|trans({}, 'IssuesOrganisation') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                    </div>
+                </div>
+                <!-- /form horizontal -->
+            </div>
+            <!-- /main content -->
+        </div>
+        <!-- /page content -->
+    </div>
+{% endblock %}

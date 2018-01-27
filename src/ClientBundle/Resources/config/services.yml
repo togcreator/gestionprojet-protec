@@ -1,0 +1,4 @@
+services:
+#    client.example:
+#        class: Protec\ClientBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

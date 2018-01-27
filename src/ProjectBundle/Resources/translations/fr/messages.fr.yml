@@ -1,0 +1,54 @@
+# message.fr.yml
+
+# this is for project translator only
+
+# global
+global.project: Projet
+global.projectdocs: Document du projet
+global.workshop: Atelier
+global.projectnotes: Notes
+global.projectetape: Etape
+global.projectetapesjalons: Etape jalon
+global.projectetapesoperations: Opération
+global.filters: Filtre
+global.projectetapesoperationsissues: Opération issue
+global.projectetapesoperationsissuesrealisations: Issue de réaliation des opérations
+global.projectetapesoperationsissuesorganisation: Issue d'organisation des opérations
+global.projectetapesoperationsusers: Operation de l'utilisateur
+global.projectversionuser: Intervenant du projet
+global.agendaworker: Agenda
+
+global.title: Titre
+global.type_doc: Type du document
+global.download: Téléchargement
+global.link: Lien
+
+# title or action
+global.new: Ajout
+global.edit: Paramètrage
+global.sorting: Regroupé par
+global.idWorkshop: Atelier
+global.projectsfilters: Filtre
+global.idStatut: Statut
+global.idLeader: Leader
+global.datefinprevue: Date de fin prevue
+global.sort_by: ---- regroupé par ----
+
+# menu
+menu.project: Projet
+menu.project_docs: Document du projet
+menu.project_docs_new: Nouveau Document 
+menu.operationsusers: Operation de l'utilisateur
+
+# menu back
+back.menu_project_management: Gestion
+back.menu_workshop: Workshop
+back.menu_project: Projet
+back.menu_statutType: Type de statut
+back.menu_entityj: Entité
+back.menu_roles: Rôle des utilisateurs
+back.menu_project_versionuser: Version de projet de l'utilisateur
+back.menu_project_version: Version de projet
+back.menu_jalon: Jalon
+back.menu_priorite: Priorité
+back.menu_projectalert: Alerte de(s) Projet(s)

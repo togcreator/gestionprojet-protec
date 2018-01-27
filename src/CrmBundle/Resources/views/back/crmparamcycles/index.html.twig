@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - crmparamcycles{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'crmparamcycles.list'|trans({}, 'crmparamcycles') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('crmparamcycles_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'crmparamcycles.add_button'|trans({}, 'crmparamcycles') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('crmparamcycles_index')}}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if crmParamCycles %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'crmparamcycles.open'|trans({}, 'crmparamcycles') }}</th>
+                                <th>{{ 'crmparamcycles.label'|trans({}, 'crmparamcycles') }}</th>
+                                <th class="col-md-2 text-center">{{ 'crmparamcycles.couleur'|trans({},'crmparamcycles') }}</th>
+                                <th class="col-md-1 text-center">{{ 'crmparamcycles.logo'|trans({},'crmparamcycles') }}</th>
+                                <th class="text-center">{{ 'crmparamcycles.actions'|trans({},'crmparamcycles') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for crmparamcycles in crmParamCycles %}
+                            <tr>
+                                <td style="cursor:pointer" onclick="document.location = '{{ path('crmparamcycles_show', { 'id': crmparamcycles.id }) }}';">{{ crmparamcycles.id }}</td>
+                                <td>{% if crmparamcycles.ouvert %}
+                                    <span class="label label-info">{{ 'global.yes'|trans }}</span> {% else %}
+                                    <span class="label label-default">{{ 'global.no'|trans }}</span>
+                                    {% endif %}</td>
+                                <td>{{ crmparamcycles.label }}</td>
+                                <td class="col-md-2 text-center" style="background: {{ crmparamcycles.couleur }};">{{ crmparamcycles.couleur }}</td>
+                                <td class="col-md-1 text-center">
+                                    {% if crmparamcycles.logo %}
+                                        <img src="{{ asset('uploads/' ~ crmparamcycles.logo ) }}" alt="logo" style="max-width: 50%" />
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('crmparamcycles_edit', { 'id': crmparamcycles.id }) }}"><i class="icon-pen"></i> {{ 'crmparamcycles.edit_button'|trans({}, 'crmparamcycles') }}</a></li>
+                                                <li><a href="{{ path('crmparamcycles_delete', { 'id': crmparamcycles.id }) }}"
+                                                    data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'crmparamcycles.del_button'|trans({}, 'crmparamcycles') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'crmparamcycles.no_data'|trans({}, 'crmparamcycles') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>  
+    {# footer #}          
+    {% include 'foot.html.twig' %}
+
+{% endblock %}

@@ -1,0 +1,34 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+parameters:
+    #parameter_name: value
+
+services:
+    # twig    
+    AppBundle.Twig.twigExtension:
+        class: AppBundle\Twig\twigExtension
+        arguments: ['@service_container','@security.token_storage']
+        tags: [ name: twig.extension ]
+
+    # locale
+    AppBundle.Locale_listener:
+        class: AppBundle\EventListener\LocaleListener
+        arguments: ["%kernel.default_locale%", '@doctrine.orm.entity_manager', '@security.token_storage']
+        tags: [ name: kernel.event_subscriber ]
+
+    # notify
+    AppBundle.Notify_listener:
+        class: AppBundle\EventListener\NotifyListener
+        arguments: ['@service_container']
+        tags: [ name: doctrine.event_subscriber ]
+
+    # AppBundle.Label_listener:
+    #     class: AppBundle\EventListener\EntityListener
+    #     # arguments: ['@service_container']
+    #     tags:
+    #         - { name: doctrine.orm.entity_listener }
+    #         - { name: doctrine.orm.entity_listener, entity_manager: custom }
+
+    print_html2pdf:
+        class: PrintPDFBundle\Services\Html2Pdf
+

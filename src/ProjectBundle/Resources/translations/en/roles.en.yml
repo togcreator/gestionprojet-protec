@@ -1,0 +1,27 @@
+# roles.fr.yml
+
+# general
+roles.list: List of roles
+roles.edition: Edition
+roles.creation: New
+roles.confirm_title: Confirmation
+
+# form
+roles.open: Open
+roles.wording: Label
+roles.version: Version
+roles.actions: Action
+roles.confirm_delete: Are you want to remove this ?
+roles.couleur: Color
+roles.nomcouleur: Color name
+roles.imgcouleur: Color image
+roles.logo: Logo
+roles.obs: Observation
+
+# button
+roles.add_button: New
+roles.save_button: Save
+roles.edit_button: Edit
+roles.del_button: Remove
+roles.confirm_button: yes, I do
+roles.close_button: No

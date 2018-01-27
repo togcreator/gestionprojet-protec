@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - crmparamtyperesultat{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'crmparamtyperesultat.list'|trans({}, 'crmparamtyperesultat') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('crmparamtyperesultat_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'crmparamtyperesultat.add_button'|trans({}, 'crmparamtyperesultat') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('crmparamtyperesultat_index')}}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if crmParamTypeResultat %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'crmparamtyperesultat.open'|trans({}, 'crmparamtyperesultat') }}</th>
+                                <th>{{ 'crmparamtyperesultat.label'|trans({}, 'crmparamtyperesultat') }}</th>
+                                <th class="col-md-2 text-center">{{ 'crmparamtyperesultat.couleur'|trans({},'crmparamtyperesultat') }}</th>
+                                <th class="col-md-1 text-center">{{ 'crmparamtyperesultat.logo'|trans({},'crmparamtyperesultat') }}</th>
+                                <th class="col-md-1 text-center">{{ 'crmparamtyperesultat.note'|trans({},'crmparamtyperesultat') }}</th>
+                                <th class="text-center">{{ 'crmparamtyperesultat.actions'|trans({},'crmparamtyperesultat') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for crmparamtyperesultat in crmParamTypeResultat %}
+                            <tr>
+                                <td style="cursor:pointer" onclick="document.location = '{{ path('crmparamtyperesultat_show', { 'id': crmparamtyperesultat.id }) }}';">{{ crmparamtyperesultat.id }}</td>
+                                <td>{% if crmparamtyperesultat.ouvert %}
+                                    <span class="label label-info">{{ 'global.yes'|trans }}</span> {% else %}
+                                    <span class="label label-default">{{ 'global.no'|trans }}</span>
+                                    {% endif %}</td>
+                                <td>{{ crmparamtyperesultat.label }}</td>
+                                <td class="col-md-2 text-center" style="background: {{ crmparamtyperesultat.couleur }};">{{ crmparamtyperesultat.couleur }}</td>
+                                <td class="col-md-1 text-center">
+                                    {% if crmparamtyperesultat.logo %}
+                                        <img src="{{ asset('uploads/' ~ crmparamtyperesultat.logo ) }}" alt="logo" style="max-width: 50%" />
+                                    {% endif %}
+                                </td>
+                                <td class="col-md-1 text-center">{% if crmparamtyperesultat.obs %}<i class="icon-file-text"></i>{% else %}<i class="icon-file-minus2" style="color: #ccc"></i>{% endif %}</td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('crmparamtyperesultat_edit', { 'id': crmparamtyperesultat.id }) }}"><i class="icon-pen"></i> {{ 'crmparamtyperesultat.edit_button'|trans({}, 'crmparamtyperesultat') }}</a></li>
+                                                <li><a href="{{ path('crmparamtyperesultat_delete', { 'id': crmparamtyperesultat.id }) }}"
+                                                    data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'crmparamtyperesultat.del_button'|trans({}, 'crmparamtyperesultat') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'crmparamtyperesultat.no_data'|trans({}, 'crmparamtyperesultat') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>  
+    {# footer #}          
+    {% include 'foot.html.twig' %}
+
+{% endblock %}

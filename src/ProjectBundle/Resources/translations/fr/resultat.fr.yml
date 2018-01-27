@@ -1,0 +1,31 @@
+# resultat.fr.yml
+
+# general
+resultat.title: Résultat
+resultat.list: Liste des résultats
+resultat.creation: Nouveau
+resultat.edition: Modification
+resultat.confirm_title: Confirmation
+
+# form
+resultat.open: Ouvert
+resultat.label: Libellé
+resultat.couleur: Couleur
+resultat.obs: Observation
+resultat.actions: Action
+resultat.no_data: Aucun resultat
+resultat.nomcouleur: Nom de la couleur
+resultat.imgcouleur: Image de la couleur
+resultat.logo: Logo
+resultat.version: Version
+resultat.note: Note
+resultat.confirm_delete: Voulez vous supprimer ce resultat?
+
+# button
+resultat.add_button: Nouveau
+resultat.edit_button: Modifier
+resultat.del_button: Supprimer
+resultat.save_button: Enregistrer
+resultat.submit_button: Enregistrer
+resultat.confirm_button: Oui, je confirme
+resultat.close_button: Non

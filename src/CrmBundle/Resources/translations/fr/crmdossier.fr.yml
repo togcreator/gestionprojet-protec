@@ -1,0 +1,55 @@
+# crmdossier.fr.yml
+
+# general
+crmdossier.title: CRM
+crmdossier.creation: Nouveau 
+crmdossier.edition: Modifier
+crmdossier.confirm_title: Confirmation
+crmdossier.crm: CRM
+
+# form
+# legend
+crmdossier.users: Utilisateurs
+crmdossier.user: Utilisateur
+crmdossier.icone: Icône
+crmdossier.idEntiteJ: Entité Juridique
+crmdossier.idCycle: Cycle
+crmdossier.idTypeCycle: Type de Cycle
+crmdossier.info: Information
+crmdossier.date: Date
+crmdossier.other: Autre details
+crmdossier.label: Libellé
+crmdossier.idTypeProjet: Type de projet
+crmdossier.idCreateur: Créateur
+crmdossier.code: Code
+crmdossier.contact: Contact
+crmdossier.reference: Reférence
+crmdossier.descriptionPerimetres: Description paramètre
+crmdossier.datedebutPrevue: Date de debut prevue
+crmdossier.datefinPrevue: Date de fin prevue
+crmdossier.statut: Statut
+crmdossier.datedebut: Date de debut
+crmdossier.datefin: Date de fin
+crmdossier.datedebutReelle: Date de debut réelle
+crmdossier.datefinReelle: Date de fin réelle
+crmdossier.modeAcces: Mode d'accès
+crmdossier.idMarketSegment: Market segment
+crmdossier.idWatcher: Watcher
+crmdossier.Rakingprevu: Ranking prévue
+crmdossier.Rakingactuel: Ranking actuel
+crmdossier.idResultat: Résultat
+crmdossier.idOwner: Appartenant
+crmdossier.descriptionResultat: Description résultat
+crmdossier.confirm_delete: Voulez vous supprimer ce dossier ?
+
+# button
+crmdossier.add_button: Nouveau
+crmdossier.submit_button: Enregistrer
+crmdossier.save_button: Enregistrer
+crmdossier.edit_button: Modifier
+crmdossier.del_button: Supprimer
+crmdossier.close_button: Non
+crmdossier.confirm_button: Oui, je confirme
+crmdossier.filter_button: Filtre
+crmdossier.search_button: Filtrer
+crmdossier.closesearch_button: Fermer

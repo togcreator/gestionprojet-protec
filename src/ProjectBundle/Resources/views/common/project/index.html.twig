@@ -1,0 +1,306 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-lg-12 col-xs-12">
+                            <!-- Marketing campaigns -->
+                            <div class="panel panel-white">
+                                <div class="panel-heading">
+                                    <h6 class="panel-title">{{ 'project.title'|trans({}, 'project') }}</h6>
+                                    <div class="heading-elements">
+                                        <span style="display: none">
+                                            <a id="combobox" href="{{ path('projectsfilters_index', {id: 0}) }}" data-target="#modal_remote" data-toggle="modal"></a>
+                                            <a id="filter_trash" href="{{ path('projectsfilters_index', {id: 0, action: 'trash'}) }}" data-target="#modal_remote" data-toggle="modal"></a>
+                                        </span>
+                                        <button type="button" style="margin-right: 10px" class="btn btn-primary filter pull-left" href="{{path('projectsfilters_index')}}" data-target="#modal_remote" data-toggle="modal"><i class="icon-filter3 position-left"></i>{{ 'project.filter_button'|trans({}, 'project') }}</button>
+                                        <button type="button" class="btn btn-primary pull-left" onclick="document.location.href = '{{ path('project_new') }}'"><i class="icon-add position-left"></i>{{ 'project.add_button'|trans({}, 'project') }}</button>
+                                        <span class="label bg-success heading-text">{{ projects|length }} {{ 'global.active'|trans }}</span>
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i> <span class="caret"></span></a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="#"><i class="icon-sync"></i> {{ 'global.update_data'|trans }}</a></li>
+                                                    <li><a href="#"><i class="icon-list-unordered"></i> {{ 'global.detail_log'|trans({}, 'project') }}</a></li>
+                                                    <li><a href="#"><i class="icon-pie5"></i> {{ 'global.statistics'|trans }}</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#"><i class="icon-cross3"></i> {{ 'global.clear_list'|trans }}</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="table">
+                                    <div style="display: none" class="datatable-toolbar">
+                                        {# par tri #}
+                                        <div>
+                                            {% set selected = app.request.get('orderby')|default('idLeader') %}
+                                            <select name="search_operations[tri]" class="form-control col-md-4">
+                                                <option value="0"{% if not selected %} selected="select" {% endif %}>{{ 'project.sort_by'|trans({}, 'project') }}</option>
+                                                <option value="idLeader"{% if selected and selected == 'idLeader' %} selected="select" {% endif %}>{{ 'project.sort_by'|trans({}, 'project') }} - {{ 'project.idLeader'|trans({}, 'project') }}</option>
+                                                <option value="idContact"{% if selected and selected == 'idContact' %} selected="select" {% endif %}>{{ 'project.sort_by'|trans({}, 'project') }} - {{ 'project.contact'|trans({}, 'project') }}</option>
+                                                <option value="datefinprevue"{% if selected and selected == 'datefinprevue' %} selected="select" {% endif %}>{{ 'project.sort_by'|trans({}, 'project') }} - {{ 'project.datefinPrevue'|trans({}, 'project') }}</option>
+                                                <option value="idWorkshop"{% if selected and selected == 'idWorkshop' %} selected="select" {% endif %}>{{ 'project.sort_by'|trans({}, 'project') }} - {{ 'project.idWorkshop'|trans({}, 'project') }}</option>
+                                                <option value="idStatut"{% if selected and selected == 'idStatut' %} selected="select" {% endif %}>{{ 'project.sort_by'|trans({}, 'project') }} - {{ 'projectetapesoperations.idStatut'|trans({}, 'projectetapesoperations') }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <table class="table text-nowrap datatable-basic">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-3">{{ 'project.label'|trans({}, 'project') }}</th>
+                                                <th class="col-md-4">{{ 'project.idWorkshop'|trans({}, 'project') }}</th>
+                                                <th class="col-md-2">{{ 'project.idCreateur'|trans({}, 'project') }}</th>
+                                                <th class="col-md-1">{{ 'project.duration'|trans({}, 'project') }}</th>
+                                                <th class="col-md-2">{{ 'project.datedebut'|trans({}, 'project') }}</th>
+                                                <th class="col-md-2">{{ 'project.datefin'|trans({}, 'project') }}</th>
+                                                <th class="col-md-1">{{ 'project.statut'|trans({}, 'project') }}</th>
+                                                <th class="col-md-3">{{ 'project.complete'|trans({}, 'project') }}</th>
+                                                <th class="col-md-3">{{ 'project.notes'|trans({}, 'project') }}</th>
+                                                <th class="col-md-1"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for key, project in projects %}
+
+                                            <tr class="active border-double clickable project_users animated" data-toggle="collapse" data-target=".accordion_users_{{ key }}">
+                                                <td class="bg-primary primary-300" style="background-color: #64B5F6; text-transform: uppercase"><i class="icon-arrow-down22"></i>{{ ET(key) }}</td>
+                                                <td style="background-color: #64B5F6;"></td>
+                                                <td style="background-color: #64B5F6;"></td>
+                                                <td style="background-color: #64B5F6;"></td>
+                                                <td style="background-color: #64B5F6;"></td>
+                                                <td style="background-color: #64B5F6;"></td>
+                                                <td style="background-color: #64B5F6;"></td>
+                                                <td style="background-color: #64B5F6;"></td>
+                                                <td style="background-color: #64B5F6;"></td>
+                                                <td style="background-color: #64B5F6;"></td>
+                                            </tr>
+                                           
+                                            {% for projets in project %}
+                                            <tr data-toggle="collapse" data-target=".accordion_project_{{ projets.id }}" class="accordion_users_{{ key }} clickable collapse in project animated">
+                                                <td class="col-md-3">{{ projets.label }}</td>
+                                                <td class="col-md-4">{{ projets.workshop.label }}</td>
+                                                <td class="col-md-2">{{ projets.createur.firstname }}</td>
+                                                <td class="col-md-1"> </td>
+                                                <td class="col-md-2">{{ projets.datedebutReelle|date(date_format) }}</td>
+                                                <td class="col-md-2">{{ projets.datefinReelle|date(date_format) }}</td>
+                                                <td class="col-md-1" style="text-align: center" data="{{ projets.statuts.id }}">
+                                                    <img src="{{ asset('uploads/' ~ projets.statuts.logo )}}" style="background-color: {{ projets.statuts.couleur }}; max-width: 50%; text-align: center" alt="{{ projets.statuts.couleur }}"  title="{{ projets.statuts.label }}"/>
+                                                </td>
+                                                <td class="col-md-3">
+                                                    {% set complete = 5 %}
+                                                    <div class="progress progress-lg">
+                                                        <div class="progress-bar bg-primary progress-bar-striped active" style="width: {{ complete }}%">
+                                                            <span>{{ complete }}% Complete</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="col-md-3">
+                                                    {% if projets.notes is not empty %}
+                                                    <a href="{{ path('projectnotes_index', {'idProject': projets.id}) }}"><i class="icon-file-text"></i></a>{% else %}
+                                                    <i class="icon-file-minus2" style="color: #ccc"></i>
+                                                    {% endif %}
+                                                    
+                                                </td>
+                                                <td class="text-center col-md-1">
+                                                    <ul class="icons-list">
+                                                        <li class="dropdown">
+                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                                <i class="icon-menu9"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                                <li><a href="{{ path('projectdocs_index', { 'idProject': projets.id }) }}"><i class="icon-files-empty"></i> {{ 'project.docs_button'|trans({}, 'project') }}</a></li>
+                                                                <li><a href="{{ path('project_edit', { 'id': projets.id }) }}"><i class="icon-pen"></i> {{ 'project.edit_button'|trans({}, 'project') }}</a></li>
+                                                                <li><a href="{{ path('project_delete', { 'id': projets.id, 'no': (projets.etape is not empty)?1:0 }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'project.del_button'|trans({}, 'project') }}</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            {# loop etape for projet  #}
+                                            
+                                              {#   {{ dump(projets.etape) }} #}
+                                                {% for etape in projets.etape %}
+                                                <tr style="background-color: #AED581" data-toggle="collapse" data-target=".accordion_etape_{{ etape.id }}" class="collapse accordion_project_{{ projets.id }} clickable animated">
+                                                    <td class="col-md-3" style="text-align:right"><i class="icon-arrow-right22"></i>{{ etape.object }}</td>
+                                                    <td class="col-md-4">{{ projets.idTypeProjet }}</td>
+                                                    <td class="col-md-2">{{ projets.createur.firstname }}</td>
+                                                    <td class="col-md-1">{{ etape.dureereelle|number_format }}</td>
+                                                    <td class="col-md-2">{{ etape.datedebutreelle|date(date_format) }}</td>
+                                                    <td class="col-md-2">{{ etape.datefinreelle|date(date_format) }}</td>
+                                                    <td class="col-md-1">{% if etape.statuts.logo is defined %}
+                                                        <img src="{{ asset('uploads/' ~ etape.statuts.logo )}}" style="background-color: {{ etape.statuts.couleur }}; max-width: 50%" alt="{{ etape.statuts.couleur }}" title="{{ etape.statuts.label }}" />
+                                                        {% else %}
+                                                        <i class="icon-alert" style="background-color: {{ etape.statuts.couleur }}"></i>
+                                                        {% endif %}
+                                                    </td>
+                                                    <td class="col-md-3">
+                                                        {% set complete = 50 %}
+                                                        <div class="progress progress-lg">
+                                                            <div class="progress-bar bg-primary progress-bar-striped active" style="width: {{ complete }}%">
+                                                                <span>{{ complete }}% Complete</span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="col-md-3">{# notes #}</td>
+                                                    <td class="text-center col-md-1">
+                                                        <ul class="icons-list">
+                                                            <li class="dropdown">
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                                    <i class="icon-menu9"></i>
+                                                                </a>
+                                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                                    <li><a href="{{ path('projectetape_edit', { 'id': etape.id }) }}"><i class="icon-pen"></i> {{ 'project.edit_button'|trans({}, 'project') }}</a></li>
+                                                                    <li><a href="{{ path('projectetape_delete', { 'id': etape.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'project.del_button'|trans({}, 'project') }}</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                
+                                                {% for operation in etape.operations %}
+                                                    <tr class="accordion_etape_{{ etape.id }} collapse  animated">
+                                                        <td class="col-md-3" style="text-align:right">{{ operation.object }}</td>
+                                                        <td class="col-md-4">{{ projets.idTypeProjet }}</td>
+                                                        <td class="col-md-2">{{ projets.createur.username }}</td>
+                                                        <td class="col-md-1">{{ operation.dureereelle|number_format }}</td>
+                                                        <td class="col-md-2">{{ operation.datedebutreelle|date(date_format) }}</td>
+                                                        <td class="col-md-2">{{ operation.datefinreelle|date(date_format) }}</td>
+                                                        <td class="col-md-1">{% if operation.idStatut is defined %}
+                                                            <img src="{{ asset('uploads/' ~ operation.statuts.logo )}}" style="background-color: {{ operation.statuts.couleur }}; max-width: 50%" alt="{{ operation.statuts.couleur }}" title="{{ operation.statuts.label }}" />
+                                                            {% else %}
+                                                            <i class="icon-alert alert-danger" style="background-color: #AED581"></i>
+                                                            {% endif %}
+                                                        </td>
+                                                        <td class="col-md-3">
+                                                            {% set complete = 25 %}
+                                                            <div class="progress progress-lg">
+                                                                <div class="progress-bar bg-primary progress-bar-striped active" style="width: {{ complete }}%">
+                                                                    <span>{{ complete }}% Complete</span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="col-md-3">{# notes #}</td>
+                                                        <td class="text-center col-md-1">
+                                                            <ul class="icons-list">
+                                                                <li class="dropdown">
+                                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                                        <i class="icon-menu9"></i>
+                                                                    </a>
+                                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                                        <li><a href="{{ path('projectetapesoperations_edit', { 'id': operation.id }) }}"><i class="icon-pen"></i> {{ 'project.edit_button'|trans({}, 'project') }}</a></li>
+                                                                        <li><a href="{{ path('projectetapesoperations_delete', { 'id': operation.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'project.del_button'|trans({}, 'project') }}</a></li>
+                                                                    </ul>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                {% endfor %}
+                                            {% endfor %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        (function($){ 
+
+            $('tr').on('hidden.bs.collapse', function () {
+               $($(this).attr('data-target')).collapse('hide');
+            });
+
+            $(document.body).addClass('sidebar-xs')
+        }(jQuery));
+    </script>
+    <script type="text/javascript">
+
+        /* not sorting */
+        var bSort = false;
+
+        /* pour datatable */
+        function initComplete () {
+            var $ = jQuery;
+
+            // api
+            var head = $('.datatable-header'),
+            select = $('.datatable-toolbar').find('div select[name*="tri"]')
+                .on('change', function() {
+                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                    // val
+                    if( val != 0 )
+                        redirectTo("{{ path('project_index') }}?orderby="+val);
+                });
+
+            // for tri/sorting
+            $('<div class="dataTables_filter form-group"></div>')
+                .insertAfter( head.find('.dataTables_filter') )
+                .append(select);
+        }
+
+        /* pour filtre */
+        (function($){
+
+            /* pour combobox */
+            $(document).on('change', '[name*="[title]"]', function(){
+                $('#modal_remote').modal('hide');
+                var a = $('#combobox');
+                if( this.value )
+                    a.attr('href', a.attr('href').toString().replace(/=\d+/g, '='+this.value));
+                else
+                    /* pour this.value == 0 */
+                    a.attr('href', a.attr('href').toString().replace(/\?\w+=\d+/g, ''));
+                a.click();
+            });
+
+            /* pour supprimer trash */
+            $(document).on('click', '#trash', function() {
+                /* title */
+                var select = $(this).parent().find('[name*="[title]"]');
+                if( select.val() == 0 ) return;
+
+                // if( window.confirm('{{ 'project.confirmfilter_delete'|trans({}, 'project') }}') ) {
+                    $('#modal_remote').modal('hide');
+                    var a = $('#filter_trash')
+                        a.attr('href', a.attr('href').toString().replace(/=\d+/g, '='+select.val()));
+                        a.click();
+                // }
+            });
+
+            /* pour ajout */
+            $(document).on('click', '#add', function() {
+                var label = $('[name*="[label]"]');
+                if( !label.val() ) return;
+                /* rendre 0 pour ajout */
+                label.parents('form').find('[name*="[mode]"]').val(0);
+
+                /* ajax */
+                $.ajax({
+                    url: '{{ path('projectsfilters_index', {'action': 'validate'}) }}',
+                    data: {label: label.val()},
+                    success: function(response) {
+                        if( !response.return ) return $('#projectsearch_form').submit();
+                        label.parents('form').find('.alert').html('{{ 'project.filter_label_error'|trans({}, 'project') }}').show();
+                        /* rendre 1 pour l'edition */
+                        label.parents('form').find('[name*="[mode]"]').val(1);
+                    }
+                });
+            });
+
+            {% if mode is defined and mode == 0 %}
+            $('button.filter').click();
+            {% endif %}
+
+        }(jQuery))
+    </script>
+{% endblock %}

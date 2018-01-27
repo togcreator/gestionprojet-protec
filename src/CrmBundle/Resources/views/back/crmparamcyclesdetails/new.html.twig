@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'crmparamcyclesdetails.creation'|trans({}, 'crmparamcyclesdetails') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('crmparamcyclesdetails_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        {{ form_start(form) }}
+                            <fieldset class="content-group">
+                                <label class="text-bold">{{ 'crmparamcyclesdetails.legend_info'|trans({}, 'crmparamcyclesdetails') }}</label>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'crmparamcyclesdetails.open'|trans({}, 'crmparamcyclesdetails') %}
+                                        {{ form_label(form.ouvert, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(form.ouvert, {'attr': {'class': 'form-control switchery'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'crmparamcyclesdetails.idTypecycle'|trans({}, 'crmparamcyclesdetails') %}
+                                        {{ form_label(form.idTypecycle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(form.idTypecycle, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'crmparamcyclesdetails.idCycle'|trans({}, 'crmparamcyclesdetails') %}
+                                        {{ form_label(form.idCycle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(form.idCycle, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'crmparamcyclesdetails.label'|trans({}, 'crmparamcyclesdetails') %}
+                                        {{ form_label(form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(form.label, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'crmparamcyclesdetails.ordre'|trans({}, 'crmparamcyclesdetails') %}
+                                        {{ form_label(form.ordre, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(form.ordre, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'crmparamcyclesdetails.save_button'|trans({}, 'crmparamcyclesdetails') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(form, {'render_rest': true}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'foot.html.twig' %}
+{% endblock %}

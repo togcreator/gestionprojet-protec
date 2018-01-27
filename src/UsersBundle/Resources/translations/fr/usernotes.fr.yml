@@ -1,0 +1,23 @@
+# usernotes.fr.yml
+
+# general
+usernotes.list: Liste des notes d'utilisateurs
+usernotes.creation: Nouveau
+usernotes.edition: Modification
+usernotes.confirm_title: Confirmation
+usernotes.no_data: Aucun resultat
+
+# form
+usernotes.information: Information
+usernotes.titre: Titre
+usernotes.objet: objet
+usernotes.confirm_delete: Voulez vous vraiment supprimer cette note ?
+
+# button
+usernotes.add_button: Nouveau
+usernotes.save_button: Enregistrer
+usernotes.submit_button: Enregistrer
+usernotes.edit_button: Modifier / Consulter
+usernotes.del_button: Supprimer
+usernotes.confirm_button: Oui, je confirme
+usernotes.close_button: Non

@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{# titre de la page #}
+{% block title %}Back Office - crmparampriorites{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page length options -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'crmparampriorites.list'|trans({}, 'crmparampriorites') }}</h5><br/>
+                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('crmparampriorites_new')}}'">
+                            <b><i class="icon-add"></i></b> {{ 'crmparampriorites.add_button'|trans({}, 'crmparampriorites') }}
+                        </button>
+
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('crmparampriorites_index')}}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% if crmParamPriorites %}
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>{{ '#' }}</th>
+                                <th>{{ 'crmparampriorites.open'|trans({}, 'crmparampriorites') }}</th>
+                                <th>{{ 'crmparampriorites.label'|trans({}, 'crmparampriorites') }}</th>
+                                <th class="col-md-2 text-center">{{ 'crmparampriorites.couleur'|trans({},'crmparampriorites') }}</th>
+                                <th class="col-md-1 text-center">{{ 'crmparampriorites.logo'|trans({},'crmparampriorites') }}</th>
+                                <th class="text-center">{{ 'crmparampriorites.actions'|trans({},'crmparampriorites') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for crmparampriorites in crmParamPriorites %}
+                            <tr>
+                                <td style="cursor:pointer">{{ crmparampriorites.id }}</td>
+                                <td>{% if crmparampriorites.ouvert %}
+                                    <span class="label label-info">{{ 'global.yes'|trans }}</span> {% else %}
+                                    <span class="label label-default">{{ 'global.no'|trans }}</span>
+                                    {% endif %}</td>
+                                <td>{{ crmparampriorites.label }}</td>
+                                <td class="col-md-2 text-center" style="background: {{ crmparampriorites.couleur }};">{{ crmparampriorites.couleur }}</td>
+                                <td class="col-md-1 text-center">
+                                    {% if crmparampriorites.logo %}
+                                        <img src="{{ asset('uploads/' ~ crmparampriorites.logo ) }}" alt="logo" style="max-width: 50%" />
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    <ul class="icons-list">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{{ path('crmparampriorites_edit', { 'id': crmparampriorites.id }) }}"><i class="icon-pen"></i> {{ 'crmparampriorites.edit_button'|trans({}, 'crmparampriorites') }}</a></li>
+                                                <li><a href="{{ path('crmparampriorites_delete', { 'id': crmparampriorites.id }) }}"
+                                                    data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'crmparampriorites.del_button'|trans({}, 'crmparampriorites') }}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <table class="table datatable-show-all">
+                        <tbody>
+                            <tr>
+                                <td>{{ 'crmparampriorites.no_data'|trans({}, 'crmparampriorites') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>  
+    {# footer #}          
+    {% include 'foot.html.twig' %}
+
+{% endblock %}

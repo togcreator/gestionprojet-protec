@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+
+                         <!-- Page length options -->
+                        <div class="panel panel-flat">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">{{ 'usersparamrelationsprofessionnelles.list'|trans({}, 'usersparamrelationsprofessionnelles') }}</h5><br/>
+                                <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('usersparamrelationsprofessionnelles_new', {'idType': app.request.get('idType')})}}'">
+                                    <b><i class="icon-add"></i></b> {{ 'usersparamrelationsprofessionnelles.add_button'|trans({}, 'usersparamrelationsprofessionnelles') }}
+                                </button>
+
+                                <div class="heading-elements">
+                                    <ul class="icons-list">
+                                        <li><a data-action="close" href="{{ path('usersparamrelationsprofessionnelles_index')}}"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <table class="table datatable-basic">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>{{ 'usersparamrelationsprofessionnelles.label'|trans({}, 'usersparamrelationsprofessionnelles') }}</th>
+                                        <th>{{ 'global.actions'|trans }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% if usersParams %}
+                                    {% for param in usersParams %}
+                                    <tr>
+                                        <td><a href="{{ path('usersparamrelationsprofessionnelles_show', { 'id': param.id }) }}">{{ param.id }}</a></td>
+                                        <td>{{ param.label }}</td>
+                                        <td class="text-center">
+                                            <ul class="icons-list">
+                                                <li class="dropdown">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                        <i class="icon-menu9"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                        <li><a href="{{ path('usersparamrelationsprofessionnelles_edit', { 'id': param.id }) }}"><i class="icon-pen"></i> {{ 'usersparamrelationsprofessionnelles.edit_button'|trans({}, 'usersparamrelationsprofessionnelles') }}</a></li>
+                                                        <li><a href="{{ path('usersparamrelationsprofessionnelles_delete', { 'id': param.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'usersparamrelationsprofessionnelles.del_button'|trans({}, 'usersparamrelationsprofessionnelles') }}</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td>{{ 'usersparamrelationsprofessionnelles.no_data'|trans({}, 'usersparamrelationsprofessionnelles') }}</td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+{% endblock %}

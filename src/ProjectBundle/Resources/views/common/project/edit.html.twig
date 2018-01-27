@@ -1,0 +1,347 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}   
+    {{ parent() }}
+    <script type="text/javascript" src="{{asset('assets/js/plugins/forms/styling.min.js')}}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+        <div id="modal_index" class="modal">
+            <div class="modal-dialog modal-full">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+
+        <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'project.edition'|trans({}, 'project') }}</h5>
+                        <div class="heading-elements">
+                            <div class="btn-group">
+                                <button type="button" class="btn bg-teal-400 dropdown-toggle" data-toggle="dropdown">{{ 'project._add_button'|trans({}, 'project') }} <span class="caret"></span></button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="{{path('projectversionuser_new', {'idProjet':project.id})}}"></i> {{ 'projectversionusers.new_button'|trans({}, 'projectversionuser') }} </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{path('projectnotes_new', {'idProjet':project.id})}}"></i> {{ 'projectnotes.new_button'|trans({}, 'projectnotes') }} </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{path('projectdocs_new', {'idProjet':project.id})}}"></i> {{ 'projectdocs.new_button'|trans({}, 'projectdocs') }} </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{path('projectetapesoperations_new', {'idProjet':project.id})}}"></i> {{ 'projectetapesoperations.new_button'|trans({}, 'projectetapesoperations') }} </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{path('projectetape_new', {'idProjet':project.id})}}"></i> {{ 'projectetape.new_button'|trans({}, 'projectetape') }} </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{path('projectetapesjalons_new', {'idProjet':project.id})}}"> {{ 'projectetapejalons.new_button'|trans({}, 'projectetapejalons') }} </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('project_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="nav nav-tabs nav-tabs-highlight">
+                            <li class="active"><a href="#project" data-toggle="tab">{{ 'project._title'|trans({}, 'project')}}</a></li>
+                            <li><a href="#note" data-toggle="tab">{{ 'projectnotes._title'|trans({}, 'projectnotes')}}</a></li>
+                            <li><a href="#docs" data-toggle="tab">{{ 'projectdocs._title'|trans({}, 'projectdocs')}}</a></li>
+                            <li><a href="#operation" data-toggle="tab">{{ 'projectetapesoperations._title'|trans({}, 'projectetapesoperations')}}</a></li>
+                            <li><a href="#jalon" data-toggle="tab">{{ 'projectetapejalons._title'|trans({}, 'projectetapejalons')}}</a></li>
+                            <li><a href="#user" data-toggle="tab">{{ 'project._user'|trans({}, 'project')}}</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="user" class="tab-pane col-md-12">
+                               {% include 'ProjectBundle:common\\project:tab_index.html.twig' with {'projectVersionUsers': projectVersionUsers, 'ProjectEtapesOperationsUsers' : ProjectEtapesOperationsUsers, 'project': project} %}
+                            </div>
+                            <div id="note" class="tab-pane col-md-12">
+                               {% include 'ProjectBundle:common\\projectnotes:tab_index.html.twig' with {'projectNotes': projectNotes, 'project': project} %}
+                            </div>
+                            <div id="docs" class="tab-pane col-md-12">
+                                {% include 'ProjectBundle:common\\projectdocs:tab_list.html.twig' with {'projectDocs': projectDocs} %}
+                            </div>
+                            <div id="operation" class="tab-pane col-md-12">
+                               {% include 'ProjectBundle:common\\projectetapesoperations:tab_index.html.twig' with {'projectEtapesOperations': projectEtapesOperations, 'project': project} %}
+                            </div>
+                            <div id="jalon" class="tab-pane col-md-12">
+                                {% include 'ProjectBundle:common\\projectetapesjalons:tab_index.html.twig' with {'projectEtapesJalons': projectEtapesJalons} %}
+                            </div>
+                            <div id="project" class="tab-pane active col-md-12">
+                                {{ form_start(edit_form, {'attr': {'class':'steps-form'}}) }}
+
+                                    <fieldset class="content-group">
+                                        <legend class="text-bold">{{ 'project.legend_project'|trans({}, 'project') }}</legend>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'project.label'|trans({}, 'project') %}
+                                                {{ form_label(edit_form.label, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.label, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'project.idLeader'|trans({}, 'project') %}
+                                                {{ form_label(edit_form.idLeader, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.idLeader, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'project.idWorkshop'|trans({}, 'project') %}
+                                                {{ form_label(edit_form.idWorkshop, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.idWorkshop, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'project.idEntiteJ'|trans({}, 'project') %}
+                                                {{ form_label(edit_form.idEntiteJ, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.idEntiteJ, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'project.reference'|trans({}, 'project') %}
+                                                {{ form_label(edit_form.reference, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.reference, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br/>
+                                        <legend class="text-bold">{{ 'project.legend_description'|trans({}, 'project') }}</legend>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                {% set lg = ''|lang(app.request.locale) %}
+                                                {% set default = '' %}
+                                                {% if lg == 'Fr' %} {% set default = loadContent(project.descriptionPerimetre0) %}
+                                                {% elseif lg == 'En' %} {% set default = loadContent(project.descriptionPerimetre1, project.descriptionPerimetre0) %}
+                                                {% elseif lg == 'Nl' %} {% set default = loadContent(project.descriptionPerimetre2, project.descriptionPerimetre0) %}
+                                                {% elseif lg == 'De' %} {% set default = loadContent(project.descriptionPerimetre3, project.descriptionPerimetre0) %}
+                                                {% elseif lg == 'Es' %} {% set default = loadContent(project.descriptionPerimetre4, project.descriptionPerimetre0) %}
+                                                {% elseif lg == 'It' %} {% set default = loadContent(project.descriptionPerimetre5, project.descriptionPerimetre0) %}
+                                                {% endif %}
+                                                {% set name = 'project.descriptionPerimetres'|trans({}, 'project') %}
+                                                {{ form_label(edit_form.descriptionPerimetres, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.descriptionPerimetres, {'attr': {'class': 'form-control'}, 'value': default}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <legend class="text-bold">{{ 'project.legend_date'|trans({}, 'project') }}</legend>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'project.datedebutPrevue'|trans({}, 'project') %}
+                                                {{ form_label(edit_form.datedebutPrevue, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.datedebutPrevue, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'project.datefinPrevue'|trans({}, 'project') %}
+                                                {{ form_label(edit_form.datefinPrevue, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.datefinPrevue, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'project.datedebutReelle'|trans({}, 'project') %}
+                                                {{ form_label(edit_form.datedebutReelle, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    
+                                                    {{ form_widget(edit_form.datedebutReelle, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'project.datefinReelle'|trans({}, 'project') %}
+                                                {{ form_label(edit_form.datefinReelle, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    
+                                                    {{ form_widget(edit_form.datefinReelle, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br/>
+                                        <legend class="text-bold">{{ 'project.legend_other'|trans({}, 'project') }}</legend>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'project.joursHommesPrevus'|trans({}, 'project') %}
+                                                {{ form_label(edit_form.joursHommesPrevus, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    
+                                                    {{ form_widget(edit_form.joursHommesPrevus, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'project.joursHommesReels'|trans({}, 'project') %}
+                                                {{ form_label(edit_form.joursHommesReels, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    
+                                                    {{ form_widget(edit_form.joursHommesReels, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'project.statut'|trans({}, 'project') %}
+                                                {{ form_label(edit_form.statut, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    {{ form_widget(edit_form.statut, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                {% set name = 'project.modeAcces'|trans({}, 'project') %}
+                                                {{ form_label(edit_form.modeAcces, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                                <div class="col-lg-8">
+                                                    
+                                                    {{ form_widget(edit_form.modeAcces, {'attr': {'class': 'form-control'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <legend class="text-bold">{{ 'project.legend_user'|trans({}, 'project') }}</legend>
+                                        <div class="form-group">
+                                            {% set name = 'project.contact'|trans({}, 'project') %}
+                                            {{ form_label(edit_form.contact, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
+                                            <div class="col-lg-8">
+                                                {{ form_widget(edit_form.contact, {'attr': {'class': 'form-control select-remote-data'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            {% set name = 'project.user'|trans([], 'project') %}
+                                            {{ form_label(edit_form.user, name, {'label_attr': {'class': 'control-label col-lg-2', 'style':'margin-top: 25px'}})|raw }}
+                                            <div class="col-lg-10" style="margin-top: 25px">
+                                                {{ form_widget(edit_form.user, {'attr': {'class': 'form-control listbox-dynamic-options'}, 'row': 5}) }}
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <div class="text-right">
+                                        <button type="submit" class="btn btn-primary">{{ 'project.submit_button'|trans({}, 'project') }} <i class="icon-arrow-right14 position-right"></i></button>
+                                    </div>
+                                {{ form_end(edit_form, {'render_rest': true}) }}
+                                <script type="text/javascript">
+                                    var lang = '{{ ''|lang(app.request.locale) }}'.toString().toLowerCase();
+                                    var desc_tab = {'fr': 'lib0', 'en':'lib1', 'nl': 'lib2', 'de': 'lib3', 'es': 'lib4', 'it': 'lib5'};
+                                </script>
+                                <script type="text/javascript" src="{{ asset('assets/backoffice/js/plugins/forms/inputs/duallistbox.min.js') }}"></script>
+                                <script type="text/javascript">
+                                    // pour les tries
+                                    var bSort = true;
+
+                                    //=============== select auto-completition ===================
+                                    $(".select-remote-data").select2({
+                                        ajax: {
+                                            url: '{{ path('project_contact')}}',
+                                            dataType: 'json',
+                                            delay: 250,
+                                            data: function (params) {
+                                                return {
+                                                    q: params.term, // search term
+                                                    page: params.page
+                                                };
+                                            },
+                                            processResults: function (data, params) {
+                                                // scrolling can be used
+                                                params.page = params.page || 1;
+
+                                                return {
+                                                    results: data.items,
+                                                    pagination: {
+                                                        more: (params.page * 30) < data.total_count
+                                                    }
+                                                };
+                                            },
+                                            cache: true
+                                        },
+                                    });
+                                    //============================================================
+
+                                    (function($){
+                                        $('.listbox-dynamic-options').bootstrapDualListbox({
+                                            moveOnSelect: false,
+                                            infoText: '{{'roles.infotext'|trans({}, 'roles')}}',
+                                            infoTextFiltered: '',
+                                            infoTextEmpty: '',
+                                            filterPlaceHolder: '{{'roles.filterplaceholder'|trans({}, 'roles')}}',
+                                            filterTextClear: '{{'roles.filtertextclear'|trans({}, 'roles')}}'
+                                        });
+                                    
+                                        // pour les tab
+                                        $(document).on('dblclick', '.datatable-basic td', function(){
+                                            // le modal en question
+                                            var modal = $('#modal_index');
+                                            // on l'affiche
+                                            modal.modal('show');
+                                            // on supprime tous ses elements
+                                            modal.find('.modal-content *').remove();
+                                            /* charge après */
+                                            if( (href = $(this).parent().attr('href')) )
+                                            modal.find('.modal-content').load(href, function() {});
+                                        });
+
+                                        $(function(){
+                                            var url = document.location.toString();
+                                            if (url.match('#')) {
+                                                $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
+                                            }
+                                            // pour le hashage
+                                            $('.nav-tabs a').on('shown.bs.tab', function (e) {
+                                                window.location.hash = e.target.hash;
+                                            })
+                                        });
+
+                                    }(jQuery));
+                                    
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                <!-- /form horizontal -->
+                </div>
+            <!-- /main content -->
+            </div>
+        <!-- /page content -->
+        </div>
+{% endblock %}

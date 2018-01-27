@@ -1,0 +1,95 @@
+
+<div class="panel-heading">
+    <h5 class="panel-title">{{ 'projectversionusers.list'|trans({}, 'projectversionuser') }}</h5><br/>
+    <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('projectversionuser_new', {'idProject': project.id, 'flag': 'freeze'})}}'">
+        <b><i class="icon-add"></i></b> {{ 'projectversionusers.add_button'|trans({}, 'projectversionuser') }}
+    </button>
+
+    <div class="heading-elements">
+        <ul class="icons-list">
+            <li><a data-action="close" href="{{ path('projectversionuser_index') }}"></a></li>
+        </ul>
+    </div>
+</div>
+
+<table class="table datatable-basic">
+    <thead>
+        <tr>
+            <th>{{ 'projectversionusers.idRole'|trans({}, 'projectversionuser') }}</th>
+            <th>{{ 'projectversionusers.user'|trans({}, 'projectversionuser') }}</th>
+            <th>{{ 'project.datedebutPrevue'|trans({}, 'project') }}</th>
+            <th>{{ 'project.datefinPrevue'|trans({}, 'project') }}</th>
+            <th>{{ 'project.datedebutReelle'|trans({}, 'project') }}</th>
+            <th>{{ 'project.datefinReelle'|trans({}, 'project') }}</th>
+            <th class="text-center">{{ 'projectversionusers.actions'|trans({}, 'projectversionuser') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if projectVersionUsers %}
+            {% for projectVersionUser in projectVersionUsers %}
+        <tr>
+            <td>{% if projectVersionUser.role %}{{ projectVersionUser.role.label|capitalize }}{% endif %}</td>
+            <td>{% if projectVersionUser.user %}{{ projectVersionUser.user.firstname }} {{ projectVersionUser.user.lastname }}{% endif %}</td>
+            <td>{{ projectVersionUser.datedebut|date(date_format) }}</td>
+            <td>{{ projectVersionUser.datefin|date(date_format) }}</td>
+            <td>{{ projectVersionUser.datedebut|date(date_format) }}</td>
+            <td>{{ projectVersionUser.datefin|date(date_format) }}</td>
+            <td class="text-center">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu9"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="{{ path('projectversionuser_edit', { 'id': projectVersionUser.id, 'idProjet': project.id  }) }}"><i class="icon-pen"></i> {{ 'projectversionusers.edit_button'|trans({}, 'projectversionuser') }}</a></li>
+                            <li><a href="{{ path('projectversionuser_delete', { 'id': projectVersionUser.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'projectversionusers.del_button'|trans({}, 'projectversionuser') }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+            {% endfor %}
+        {% endif %}
+        
+        {% if ProjectEtapesOperationsUsers %}
+            {% for projectetapesoperationsusers in ProjectEtapesOperationsUsers %}
+            <tr href="{{ path('operationsusers_ajax_get', {'id': projectetapesoperationsusers.idUser}) }}">
+                <td>{% if projectetapesoperationsusers.role %}{{ projectetapesoperationsusers.role.label|capitalize }}{% endif %}</td>
+                <td>{% if projectetapesoperationsusers.user %}{{ projectetapesoperationsusers.user.firstname }} {{ projectetapesoperationsusers.user.lastname }}{% endif %}</td>
+                <td>
+                    {% if projectetapesoperationsusers.agenda %}
+                    {{ projectetapesoperationsusers.agenda.dateDebPrevue|date(date_format) }}
+                    {% endif %}
+                </td>
+                <td>{% if projectetapesoperationsusers.agenda %}
+                    {{ projectetapesoperationsusers.agenda.dateFinPrevue|date(date_format) }}
+                    {% endif %}
+                </td>
+                <td>{% if projectetapesoperationsusers.agenda %}
+                    {{ projectetapesoperationsusers.agenda.dateDebReelle|date(date_format) }}
+                    {% endif %}
+                </td>
+                <td>{% if projectetapesoperationsusers.agenda %}
+                    {{ projectetapesoperationsusers.agenda.dateFinReelle|date(date_format) }}
+                    {% endif %}
+                </td>
+                <td class="text-center">
+                    <ul class="icons-list">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-menu9"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="{{ path('operationsusers_edit', { 'id': projectetapesoperationsusers.id, 'idProjet': project.id }) }}"><i class="icon-pen"></i> {{ 'projectetapesoperationsusers.edit_button'|trans({}, 'projectetapesoperationsusers') }}</a></li>
+                                <li><a href="{{ path('operationsusers_delete', { 'id': projectetapesoperationsusers.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'projectetapesoperationsusers.del_button'|trans({}, 'projectetapesoperationsusers') }}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+
+    </tbody>
+</table>
+

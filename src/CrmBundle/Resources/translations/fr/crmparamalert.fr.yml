@@ -1,0 +1,34 @@
+# genenral
+crmparamalert.list: Liste Alerte / Rappel
+crmparamalert.confirm_title: Confirmation
+crmparamalert.edition: Modification
+crmparamalert.creation: Nouveau
+
+# form
+crmparamalert.legend_info: Information
+crmparamalert.open: Ouvert
+crmparamalert.label: Label
+crmparamalert.alerte: Alerte
+crmparamalert.rappel: Rappel
+crmparamalert.typeAlerte: Type
+crmparamalert.declenchementdelai: Delai de déclenchement
+crmparamalert.typedelai: Type delai
+crmparamalert.obligatoire: Obligatoire
+crmparamalert.valide: Valide
+crmparamalert.couleur: Couleur
+crmparamalert.obs: Observation
+crmparamalert.nomcouleur: Nom de la couleur
+crmparamalert.imgcouleur: Image de la couleur
+crmparamalert.logo: Logo
+crmparamalert.version: Version
+crmparamalert.idType: Type
+crmparamalert.confirm_delete: Voulez vous vraiment supprimer cet alerte ?
+crmparamalert.actions: Action
+
+# button
+crmparamalert.add_button: Nouveau
+crmparamalert.save_button: Enregistrer
+crmparamalert.edit_button: Modification
+crmparamalert.del_button: Supprimer
+crmparamalert.confirm_button: Oui, je confirme
+crmparamalert.close_button: Non

@@ -1,0 +1,80 @@
+<style type="text/css">
+<!--
+.icon{
+    width:10mm;
+    height:6mm;
+}
+
+-->
+</style>
+<page id="html" backtop="10mm" backleft="10mm" backright="10mm" backbottom="10mm">
+
+    <!-- page header -->
+     <page_header id="header">
+        <img class="icon" src="{{ app.request.getSchemeAndHttpHost() ~ asset('assets/images/protecmail.png') }}" />
+        <span style="font-size: 14pt;" id="title"><b> PROTEC MAIL</b></span><br/>
+        <span style="margin-left:45px; font-size: 10pt;"><i>GROUPE PROTEC</i></span>
+        <hr>
+     </page_header>
+
+     <div style="margin-top:15px;">
+        <span style="font-weight: bold; font-size: 20pt; color: #1E90FF;"><u>Sujet</u>&nbsp;:&nbsp;{{ read.sujet|capitalize }}</span>
+     </div>
+     <div>
+        <ol>
+            <li>
+                <div>
+                    {{ read.mp.userFrom.lastname }}&nbsp;{{ read.mp.userFrom.firstname }}
+                    &nbsp;<span>&lt;{{ read.mp.userFrom.email }}&gt;</span>
+                </div>
+                <div>
+                    {% if read.mailto !=null %}
+                        <span>{{ 'mail_read.to'|trans }}&nbsp;:&nbsp;&lt;{{ read.mailto }}&gt;</span>
+                    {% endif %}
+                    {% if read.mailCopy !=null %}
+                        <span>CC:&nbsp;&lt;{{ read.mailCopy }}&gt;</span>
+                    {% endif %}
+                    {% if read.mailHidden !=null %}
+                        <span>CCI:&nbsp;&lt;{{ read.mailHidden }}&gt;</span>
+                    {% endif %}                                        
+                </div>
+                <div>
+                    {{ read.mailMessage.texte|raw }}
+                </div>
+                {% if is_children >0 %}<hr>{% endif %}                
+            </li>
+            {% for child in read.children %}
+            <li>
+                <div>
+                    {{ child.mlp.userFrom.lastname }}&nbsp;{{ child.mlp.userFrom.firstname }}
+                    &nbsp;<span>&lt;{{ child.mlp.userFrom.email }}&gt;</span>
+                </div>
+                <div>
+                    {% if child.mailto !=null %}
+                        <span>{{ 'mail_read.to'|trans }}:&nbsp;&lt;{{ child.mailto }}&gt;</span>
+                    {% endif %}
+                    {% if child.mailCopy !=null %}
+                        <span>CC:&nbsp;&lt;{{ child.mailCopy }}&gt;</span>
+                    {% endif %}
+                    {% if child.mailHidden !=null %}
+                        <span>CCI:&nbsp;&lt;{{ child.mailHidden }}&gt;</span>
+                    {% endif %}                                         
+                </div>
+                <div>
+                    {{ read.mailMessage.texte|raw }}
+                </div>
+                {% if is_children >0 %}<hr>{% endif %}
+            </li>
+            {% endfor %}
+        </ol>
+     </div>
+
+     <!-- page footer -->
+<page_footer>
+    <hr>
+    {{ "now"|date("d M Y") }} {{ 'admin.at'|trans }} 
+    {{ "now"|date("h:i") }}
+</page_footer>
+<!-- / page footer -->
+
+</page>

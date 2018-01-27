@@ -1,0 +1,66 @@
+# project.fr.yml
+
+# general
+project.title: Project
+project.creation: New
+project._title: Infos
+project.edition: Edition
+project.confirm_title: Confirmation
+project.step: Project
+project.filter_title: Filter
+
+# form
+# legend
+project.filter: Filter
+project.legend_project: Information
+project.legend_description: Description
+project.legend_date: Date
+project.legend_other: Other detail
+project.label: Label
+project.idTypeProjet: Type of project
+project.idCreateur: Creator
+project.idLeader: Leader
+project.idWorkshop: Workshop
+project.idEntiteJ: Entity
+project.idVersionCours: Project version
+project.code: Code
+project.reference: Reference
+project.descriptionPerimetres: Parameter Description
+project.datedebutPrevue: Planned start date
+project.datefinPrevue: Planned end date
+project.datedebutReelle: Actual start date
+project.datefinReelle: Actual end date
+project.joursHommesPrevus: Day man scheduled
+project.joursHommesReels: Real Day Men
+project.modeAcces: Access mode
+project.duration: Duration
+project.datedebut: Start date
+project.datefin: End Date
+project.statut: Status
+project.complete: Complete
+project.notes: Notes
+project.confirm_delete: Do you want to remove this project ?
+project.confirmfilter_delete: Do you want to remove this filter ?
+project.cant_delete: You can't remove this project, that not empty.
+project.entityj: Entity
+project.filter_save: Save
+project.sort_by: 'Sort by'
+project.legend_user: User group
+project.user: user
+project._user: Contributors
+project.filter_label_error: Label field is single, change it before to save
+project.form_null: 'This field is mandatory :'
+
+# button
+project._add_button: Add
+project.add_button: Add new project
+project.addfilter_button: Save
+project.submit_button: Save
+project.edit_button: Edit
+project.del_button: Remove
+project.close_button: No
+project.confirm_button: yes, I do
+project.filter_button: Filter
+project.search_button: Filter
+project.closesearch_button: Close
+project.docs_button: See document

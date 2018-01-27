@@ -1,0 +1,46 @@
+
+# general
+crmetapesoperations.title: CRM stage operation
+crmetapesoperations.edition: Edition
+crmetapesoperations.creation: New
+crmetapesoperations.confirm_title: Confirmation
+crmetapesoperations.crm: CRM
+crmetapesoperations.info: Information
+crmetapesoperations.other: Other detail
+crmetapesoperations.legend_user: User
+crmetapesoperations.date: Date
+
+# form
+crmetapesoperations.idCRM: CRM
+crmetapesoperations.idCycle: Cycle
+crmetapesoperations.idCycledetail: Cycle detail
+crmetapesoperations.idDetailActivity: Activity detail
+crmetapesoperations.idEtape: Stage
+crmetapesoperations.code: Code
+crmetapesoperations.objet: Object
+crmetapesoperations.reference: Reference
+crmetapesoperations.description: Description
+crmetapesoperations.user4affectation: Affected user
+crmetapesoperations.userDate: Affected date
+crmetapesoperations.datedebut: Start date
+crmetapesoperations.datefin: End date
+crmetapesoperations.datedebutprevue: Planned start date
+crmetapesoperations.datefinprevue: Planned end date
+crmetapesoperations.datedebutreelle: Actual start date
+crmetapesoperations.datefinreelle: Actual end date
+crmetapesoperations.journeesHommesprevues: Planned day men
+crmetapesoperations.journeesHommesreelle: Actual day men
+crmetapesoperations.idStatut: Status
+crmetapesoperations.idResultat: Result
+crmetapesoperations.idAlerte: Alert
+crmetapesoperations.idRappel: Rappel
+crmetapesoperations.idCommande: Command
+crmetapesoperations.confirm_delete: Do you want to remove this operation ?
+
+# button
+crmetapesoperations.add_button: New
+crmetapesoperations.edit_button: Edit
+crmetapesoperations.del_button: Remove
+crmetapesoperations.save_button: Save
+crmetapesoperations.close_button: No
+crmetapesoperations.confirm_button: Yes, i do

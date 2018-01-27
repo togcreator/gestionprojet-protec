@@ -1,0 +1,282 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() ~ 'title.fiche.mail'|trans }}{% endblock %}
+
+{% block body %}
+
+    {% include 'header.html.twig' %}
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main sidebar -->
+        <div class="sidebar sidebar-main sidebar-default sidebar-separate">
+            <div class="sidebar-content">
+                {% include "MailBundle:Default:modulesUsed/menus_mail.html.twig" %}
+            </div>
+        </div>
+        <!-- /main sidebar -->
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+
+            <!-- Single mail -->
+            <div class="panel panel-white">
+
+                <!-- Mail toolbar -->
+                <div class="panel-toolbar panel-toolbar-inbox">
+                    <div class="navbar navbar-default">
+                        <ul class="nav navbar-nav visible-xs-block no-border">
+                            <li>
+                                <a class="text-center collapsed" data-toggle="collapse" data-target="#inbox-toolbar-toggle-single">
+                                    <i class="icon-circle-down2"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="navbar-collapse collapse" id="inbox-toolbar-toggle-single">
+                            <div class="btn-group navbar-btn">
+                                <a href="#reply" class="btn btn-default" id="mail_reply"><i class="icon-reply"></i> <span class="hidden-xs position-right">{{ 'mail_read.action.reply'|trans }}</span></a>
+                                <a href="#reply" class="btn btn-default" id="mail_reply_all"><i class="icon-reply-all"></i> <span class="hidden-xs position-right">{{ 'mail_read.action.reply_all'|trans }}</span></a>
+                                <a href="#" class="btn btn-default" id="mail_forward"><i class="icon-forward"></i> <span class="hidden-xs position-right" data-mforward="{{ path('mail_forward') }}">{{ 'mail_read.action.forward'|trans }}</span></a>
+                                {# <a href="{{ path('mailread_delete', {'id': read.id}) }}" class="btn btn-default"><i class="icon-bin"></i> <span class="hidden-xs position-right">{{ 'list_mail.trash'|trans }}</span></a> #}
+
+                            </div>
+
+                            <div class="pull-right-lg">
+                                <p class="navbar-text">{{ read.daty|date('d-m-Y H:i') }}</p>
+                                <div class="btn-group navbar-btn">
+                                    <a href="{{ path('mail_print') ~ "/" ~ read.id }}" target="_blank" class="btn btn-default print_mail" id="print-{{ read.id }}"><i class="icon-printer"></i> <span class="hidden-xs position-right">{{ 'mail_read.action.print'|trans }}</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /mail toolbar -->
+                <!-- /single mail -->
+            </div>
+
+            <!-- Title with left icon -->
+            <div class="panel panel-white">
+                <div class="panel-heading">
+                    <h6 class="panel-title"><i class="icon-envelop3 position-left"></i> <strong>{{ read.sujet|capitalize }}</strong></h6>
+                </div>
+
+                <div class="panel-body">
+                    <ul class="media-list chat-stacked content-group">
+                        <li class="media">
+                            <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}" class="img-circle img-md" alt=""></div>
+                            <div class="media-body">
+                                <div class="media-heading curseur in">
+                                    <div class="text-semibold">
+                                        {{ read.mp.userFrom.lastname }}&nbsp;{{ read.mp.userFrom.firstname }}
+                                        &nbsp;<span class="text-muted">&lt;{{ read.mp.userFrom.email }}&gt;</span>
+                                    </div>
+                                    <span class="media-annotation pull-right">
+                                        {% if read.daty|date('d-m-Y') == jour|date('d-m-Y') %}
+                                            {{ read.daty|date('H:i') }}
+                                        {% else %}
+                                            {{ read.daty|date('d/m/Y') }}
+                                        {% endif %}
+                                        {% if read.mp.userto.id == app.user.id %}
+                                            <i class="icon-drawer-in position-right"></i>
+                                        {% elseif read.mp.userfrom.id == app.user.id %}
+                                            <i class="icon-drawer-out position-right"></i>
+                                        {% endif %}
+                                    </span>
+                                    <span class="text-muted in_str">{{ read.message|stringcut(150)|raw }}</span>
+                                    <div class="div_in" style="display: none;">
+                                        {% if read.mailto !=null %}
+                                            <div class="text-semibold text-muted">{{ 'mail_read.to'|trans }}:&nbsp;&lt;{{ read.mailto }}&gt;</div>
+                                        {% endif %}
+                                        {% if read.mailCopy !=null %}
+                                            <div class="text-semibold text-muted">CC:&nbsp;&lt;{{ read.mailCopy }}&gt;</div>
+                                        {% endif %}
+                                        {% if read.mailHidden !=null %}
+                                            <div class="text-semibold text-muted">CCI:&nbsp;&lt;{{ read.mailHidden }}&gt;</div>
+                                        {% endif %}
+                                        <div class="well">
+                                            {{ read.mailMessage.texte|raw }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        {% for child in read.children %}
+                            <li class="media">
+                                <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}" class="img-circle img-md" alt=""></div>
+                                <div class="media-body">
+                                    <div class="media-heading curseur out">
+                                        <div class="text-semibold">
+                                            {{ child.mlp.userFrom.lastname }}&nbsp;{{ child.mlp.userFrom.firstname }}
+                                            &nbsp;<span class="text-muted">&lt;{{ child.mlp.userFrom.email }}&gt;</span>
+                                        </div>
+                                    <span class="media-annotation pull-right">
+                                        {% if child.ml.daty|date('d-m-Y') == jour|date('d-m-Y') %}
+                                            {{ child.ml.daty|date('H:i') }}
+                                        {% else %}
+                                            {{ child.ml.daty|date('d/m/Y') }}
+                                        {% endif %}
+                                        <i class="icon-drawer-out position-right"></i>
+                                    </span>
+                                        <span class="text-muted out_str">{{ child.ml.message|stringcut(150)|raw }}</span>
+                                        <div class="div_out" style="display: none;">
+                                            {% if child.mailto !=null %}
+                                                <div class="text-semibold text-muted">{{ 'mail_read.to'|trans }}:&nbsp;&lt;{{ child.mailto }}&gt;</div>
+                                            {% endif %}
+                                            {% if child.mailCopy !=null %}
+                                                <div class="text-semibold text-muted">CC:&nbsp;&lt;{{ child.mailCopy }}&gt;</div>
+                                            {% endif %}
+                                            {% if child.mailHidden !=null %}
+                                                <div class="text-semibold text-muted">CCI:&nbsp;&lt;{{ child.mailHidden }}&gt;</div>
+                                            {% endif %}
+                                            <div class="well">
+                                                {{ child.ml.mailMessage.texte|raw }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <form id="replyform" name="form" method="post" action="{{ path('mail_reply') }}" enctype="multipart/form-data">
+                        <div class="panel panel-flat border-left-xlg border-left-info" id="reply" style="display: none;">
+                            <div class="panel-heading">
+                                <h6 class="panel-title" id="head_reply" style="display: none;"><span class="text-semibold">Repondre à :</span>&nbsp;&lt;{{ read.mp.userFrom.email }}&gt;</h6>
+                                <h6 class="panel-title" id="head_replyall" style="display: none;"><span class="text-semibold">Repondre aux messages :</span>&nbsp;&lt;All recipients&gt;</h6>
+                                <br/>
+                                <div>
+                                    <button type="submit" class="btn bg-blue" onclick="$('#replayform').submit();"><i class="icon-checkmark3 position-left"></i> {{ 'mail_write.action.send'|trans }}</button>
+                                    {{ form_widget(form_pj.file) }}
+                                    <a href="#attach" onclick="getFile();" class="btn border-slate text-slate-800 btn-flat legitRipple"><i class="icon-attachment position-left"></i> Attach files</a>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <input type="hidden" value="{{ read.id }}" id="reply_origin" name="reply_origin">
+                                <input type="hidden" value="{{ read.mp.userFrom.id }}" name="reply_userto">
+                                <input type="hidden" value="{{ read.tbox.id }}" name="reply_tbox">
+                                <input type="hidden" value="{{ read.priorite.id }}" name="priorite">
+                                <input type="hidden" id="reply_status" name="reply_status">
+                                <div class="form-group" id="mailto" style="display:none;">
+                                    <select name="fwdto[]" class="selectRcp" multiple="multiple">
+                                        {{ recipients|raw }}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.sujet) }}
+                                </div>
+                                <div class="summernote-height">
+                                    {{ form_widget(form.message) }}
+                                </div>
+                                {# <div class="summernote-height">
+                                    <textarea class="form-control" id="form_message"><p>azrazr</p></textarea>
+                                </div> #}
+                                <!-- Attachments -->
+                                <div class="mail-attachments-container" id="attach">
+                                    <h6 class="mail-attachments-heading">Pièces jointes</h6>
+
+                                    <ul class="mail-attachments">
+
+                                        <li>
+                                        <span style="display:inline-block">
+                                            <div><i class="icon-attachment position-left"></i></div>
+                                            <span class="mail-attachments-preview">
+
+                                            </span>
+                                        </span>
+                                            <div class="mail-attachments-content" id="fileAttach">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- /attachments -->
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <!-- /title with left icon -->
+
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+        <!-- popup :: to -->
+        <div class="modal fade" id="read_view" style="width:100%;">
+            <div class="page-container">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- Main content -->
+                <div class="content-wrapper modal-content">
+                    <!-- Basic example -->
+                    <div class="panel panel-flat">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Aperçu</h5>
+                            </button>
+                        </div>
+                        <div class="panel-heading">
+                            <div class="heading-elements">
+                                <ul class="icons-list">
+                                    <li><a data-action="collapse"></a></li>
+                                    <li><a data-action="reload"></a></li>
+                                    <li><a data-dismiss="modal"><i class="icon-cross2"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="panel-body" id="apercu_modal"></div>
+                    </div>
+                    <!-- /basic example -->
+
+                </div>
+                <!-- /main content -->
+            </div>
+        </div>
+        <!-- /popup :: to -->
+
+    </div>
+    <!-- /page container -->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/plugins/forms/editable/editable.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+    {#<script type="text/javascript" src="{{ asset('assets/js/pages/mail_list_write.js') }}"></script>#}
+    <script type="text/javascript" src="{{ asset('assets/js/protecmail/mail_replay.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/pages/mail_list_read.js') }}"></script>
+    <script>
+        function getFile() {
+            $('.upfile').click();
+        }
+
+        function getFileValue() {
+            var nom = $('.upfile').val().split("\\");
+            $('#fileAttach').html('<span class="text-semibold"><i class="icon-image2"></i>&nbsp;'+nom[2]+'</span>');
+        }
+
+        $('.in').click(function(){
+            //$(this).find('.in_str').css('display','none');
+            $(this).find('.div_in').slideToggle();
+        });
+
+        $('.out').click(function(){
+            //$(this).find('.out_str').fadeToggle();
+            $(this).find('.div_out').slideToggle();
+        });
+
+        $( ".selectRcp" ).select2({
+            placeholder: "{{ 'mail_write.form.to_placeholder'|trans }}",
+            width: "100%"
+        });
+    </script>
+{% endblock %}

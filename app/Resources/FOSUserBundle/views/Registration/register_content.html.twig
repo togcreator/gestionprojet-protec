@@ -1,0 +1,58 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<!-- Registration form -->
+<form action="{{ path('fos_user_registration_register') }}" method="post">
+    <div class="row">
+        <div class="col-xs-8 col-lg-offset-2">
+            <div class="panel registration-form">
+                <div class="panel-body">
+                    <div class="text-center">
+                        <div class="icon-object border-success text-success"><i class="icon-plus3"></i></div>
+                        <h5 class="content-group-lg">{{ 'registration.submit'|trans }} <small class="display-block">{{ 'form.required_field'|trans }}</small></h5>
+                    </div>
+
+                    <fieldset>
+                        <legend class="text-bold">{{ 'userclient.info_login'|trans({}, 'userclient') }}</legend>
+                        <div class="row">
+                            <div class="form-group">
+                                {% set name = 'form.username'|trans %}
+                                {{ form_label(form.username, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.username, {'attr': {'class': 'form-control upload-file', 'data-preview': ''}}) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                {% set name = 'form.password'|trans %}
+                                {{ form_label(form.plainPassword.first, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control upload-file', 'data-preview': ''}}) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                {% set name = 'form.password_confirmation'|trans %}
+                                {{ form_label(form.plainPassword.second, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control upload-file', 'data-preview': ''}}) }}
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    {{ form_rest(form) }}
+
+                    <div class="text-right">
+                        <button onclick="window.location.href='{{ path('fos_user_security_login') }}'" class="btn btn-link"><i class="icon-arrow-left13 position-left"></i> {{ 'registration.back_login'|trans }}</button>
+                        <button type="submit" class="btn bg-teal-400 btn-labeled btn-labeled-right ml-10"><b><i class="icon-plus3"></i></b> {{ 'registration.submit'|trans }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- /registration form -->

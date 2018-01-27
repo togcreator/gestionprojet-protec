@@ -1,0 +1,104 @@
+# messages.fr.yml
+
+# general
+default: Index
+global.project_crm: Gestion de projet
+project.title: Projet
+global.welcome: Bienvenue, vous êtes connecté
+global.salutation: Bonjour
+global.update_data: Mise à jour des données
+global.detail_log: Detail de log
+global.clear_list: Effacer la liste
+global.view_report: Voir le rapport
+global.today: Aujourd'hui
+global.home: Front office
+global.statistics: Statistique
+global.invoices: Facture
+global.schedule: Planning
+global.settings: Paramètre
+global.account_security: Sécurité du compte
+global.analytics: Gestion Analytique
+global.accessibility: Accessibilité
+global.all_settings: Paramètre
+global.support: Support
+global.actions: Actions
+global.active: Active
+global.unactive: Inactive
+global.setting_global: Paramètres
+global.appoitment: Sur rendez-vous
+global.all: Tout
+global.none: ---- Choississez ou Laissez vide ----
+global.browse: Parcourir
+global.no_file: Aucun fichier
+global.active: Actif(s)
+global.yes: Oui
+global.no: Non
+global.default: Default
+global.actions: Action
+global.male: Homme
+global.female: Femme
+global.gother: Autre
+global.filter_button: Filtrer
+
+# notify
+global.notify_header_success: Succès
+global.notify_header_error: Error
+global.notify_success: Requête éffectué
+global.notify_success_login: Vous êtes connecté
+global.notify_error: Une erreur est survenu ou la table ne contient pas de données
+global.notify_success_update: Mise à jour effectué
+global.notify_success_insert: Insertion / Mise à jour effectué
+global.notify_success_delete: Suppression effectué
+
+#for search
+global.search: Recherche
+global.show: Vue par page
+global._START_of_END_/_TOTAL_entries: _START_ de _END_/_TOTAL_ resultat(s)
+global.pagination_first: Premier
+global.pagination_previous: Précédent
+global.pagination_next: Suivant
+global.pagination_last: Dernier
+global.no_data: Aucune donnée trouvée
+
+# menu
+menu.param: Paramètres
+menu.agenda: Agenda
+menu.etape: Etape
+menu.etape_jalon: Etape jalon
+menu.projectetapesoperations: Opération étape
+menu.operationsissues: Opération issue
+menu.issuesrealisations: Issue de réalisation
+menu.issuesorganisation: Issue d'organisation
+menu.notes: Notes
+menu.messenger: Messagerie
+
+# back
+back.menu: Tableau de bord
+back.menu_dashboard: Tableau de bord
+back.menu_settings: Paramètre
+
+back.menu_evironment: Environnement
+back.menu_langage: Langage
+back.menu_droit: Droit d'accès
+back.menu_natureop: Nature Op
+
+# message alert
+global.timeout: Votre session est fini, vous devez vous connecter
+
+# lang
+lang.fr: Fr
+lang.en: En
+lang.nl: Nl
+lang.de: De
+lang.es: Es
+lang.it: It
+
+# button
+global.close_button: Fermer
+
+#param
+param.users: Gestions des utilisateurs
+param.userclient: Fiche utilisateur
+param.roles: Gestion des rôles
+param.usersparamrelationsfonctions: Paramètre des fonctions d'utilisateur
+param.usersparamrelationsprofessionnelles: Paramètre des professions d'utilisateur

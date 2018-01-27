@@ -1,0 +1,74 @@
+<div class="panel-heading">
+    <h5 class="panel-title">{{ 'projectetapejalons.list'|trans({}, 'projectetapejalons') }}</h5><br/>
+    <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('projectetapesjalons_new', {'idProjet': project.id, 'flag': 'freeze'})}}'">
+        <b><i class="icon-add"></i></b> {{ 'projectetapejalons.add_button'|trans({}, 'projectetapejalons') }}
+    </button>
+</div>
+{% if projectEtapesJalons %}
+    <table class="table datatable-basic">
+        <thead>
+            <tr>
+                <th>{{ '#' }}</th>
+                <th>{{ 'projectetapejalons.datereelle'|trans({}, 'projectetapejalons') }}</th>
+                <th>{{ 'projectetapejalons.idProjectversion'|trans({}, 'projectetapejalons') }}/{{ 'projectetapejalons.idEtape'|trans({}, 'projectetapejalons') }}</th>
+                <th>{{ 'projectetapejalons.idTypeJalon'|trans({}, 'projectetapejalons') }}</th>
+                <th>{{ 'projectetapejalons.title'|trans({}, 'projectetapejalons') }}</th>
+                <th>{{ 'projectetapejalons.idResultat'|trans({}, 'projectetapejalons') }}</th>
+                <th class="text-center">{{ 'projectetapejalons.actions'|trans({}, 'projectetapejalons') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for projectetapejalons in projectEtapesJalons %}
+            <tr href="{{ path('projectetapesjalons_ajax_get', {'id': projectetapejalons.id}) }}">
+                <td style="cursor:pointer">{{ projectetapejalons.id }}</td>
+                <td>{{ projectetapejalons.datereelle|date(date_format) }}</td>
+                <td>
+                    {% if projectetapejalons.etape %}
+                        {{ projectetapejalons.etape.object }}
+                    {% endif %}
+                </td>
+                <td>{{ projectetapejalons.typejalon.label|default('') }}</td>
+                <td>{{ projectetapejalons.object }}</td>
+                <td>
+                    {% if projectetapejalons.resultat %}
+                        {{ projectetapejalons.resultat.label }}
+                    {% endif %}
+                </td>
+                <td class="text-center">
+                    <ul class="icons-list">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-menu9"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="{{ path('projectetapesjalons_edit', {'id': projectetapejalons.id, 'idProjet': project.id }) }}"><i class="icon-pen"></i> {{ 'projectetapejalons.edit_button'|trans({}, 'projectetapejalons') }}</a></li>
+                                <li><a href="{{ path('projectetapesjalons_delete', { 'id': projectetapejalons.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'projectetapejalons.del_button'|trans({}, 'projectetapejalons') }}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <table class="table datatable-show-all">
+        <thead>
+            <tr>
+                <th>{{ '#' }}</th>
+                <th>{{ 'projectetapejalons.datereelle'|trans({}, 'projectetapejalons') }}</th>
+                <th>{{ 'projectetapejalons.idProjectversion'|trans({}, 'projectetapejalons') }}/{{ 'projectetapejalons.idEtape'|trans({}, 'projectetapejalons') }}</th>
+                <th>{{ 'projectetapejalons.idTypeJalon'|trans({}, 'projectetapejalons') }}</th>
+                <th>{{ 'projectetapejalons.title'|trans({}, 'projectetapejalons') }}</th>
+                <th>{{ 'projectetapejalons.idResultat'|trans({}, 'projectetapejalons') }}</th>
+                <th class="text-center">{{ 'projectetapejalons.actions'|trans({}, 'projectetapejalons') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ 'projectetapejalons.no_data'|trans({}, 'projectetapejalons') }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endif %}
+    

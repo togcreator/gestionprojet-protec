@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-lg-12 col-xs-12">
+                            <!-- Marketing campaigns -->
+                            <div class="panel panel-white">
+                                <div class="panel-heading">
+                                    <h6 class="panel-title">{{ 'crmoperationsusers.title'|trans({}, 'crmoperationsusers') }}</h6>
+                                    <div class="heading-elements">
+                                        <span class="label bg-success heading-text">{{ crmOperationsUsers|length }} {{ 'global.active'|trans }}</span>
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i> <span class="caret"></span></a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="#"><i class="icon-sync"></i> {{ 'global.update_data'|trans }}</a></li>
+                                                    <li><a href="#"><i class="icon-list-unordered"></i> {{ 'global.detail_log'|trans }}</a></li>
+                                                    <li><a href="#"><i class="icon-pie5"></i> {{ 'global.statistics'|trans }}</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#"><i class="icon-cross3"></i> {{ 'global.clear_list'|trans }}</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <table class="table text-nowrap datatable-basic">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>{{ 'crmoperationsusers.idOperation'|trans({}, 'crmoperationsusers') }}</th>
+                                                <th>{{ 'crmoperationsusers.idCRM'|trans({}, 'crmoperationsusers') }}</th>
+                                                <th>{{ 'crmoperationsusers.idCycle'|trans({}, 'crmoperationsusers') }}</th>
+                                                <th>{{ 'crmoperationsusers.datedebut'|trans({}, 'crmoperationsusers') }}</th>
+                                                <th>{{ 'crmoperationsusers.datefin'|trans({}, 'crmoperationsusers') }}</th>
+                                                <th>{{ 'crmoperationsusers.idUser'|trans({}, 'crmoperationsusers') }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for crmoperationsusers in crmOperationsUsers %}
+                                            <tr>
+                                                <td>{{ crmoperationsusers.id }}</td>
+                                                <td>{{ crmoperationsusers.operation.objet }}</td>
+                                                <td>{{ crmoperationsusers.crm.label }}</td>
+                                                <td>{{ crmoperationsusers.cycle.label }}</td>
+                                                <td>{{ crmoperationsusers.datedebut|date(date_format) }}</td>
+                                                <td>{{ crmoperationsusers.datefin|date(date_format) }}</td>
+                                                <td>{{ crmoperationsusers.user.firstname }} {{ crmoperationsusers.user.lastname }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">(function($){ $(document.body).addClass('sidebar-xs')}(jQuery))</script>
+
+    
+{% endblock %}

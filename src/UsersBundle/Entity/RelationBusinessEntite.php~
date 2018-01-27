@@ -1,0 +1,175 @@
+<?php
+
+namespace UsersBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * RelationBusinessEntite
+ *
+ * @ORM\Table(name="r_bu_entitej")
+ * @ORM\Entity(repositoryClass="UsersBundle\Repository\RelationBusinessEntiteRepository")
+ */
+class RelationBusinessEntite
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="IDentite", type="integer")
+     */
+    private $iDentite;
+
+    /**
+    * @var object
+    *
+    * @ORM\ManyToOne(targetEntity="ClientBundle\Entity\Client", fetch="EAGER")
+    * @ORM\JoinColumn(name="id", referencedColumnName="iDentite", nullable=true)
+    */
+    private $entite;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="IDBusinessUnit", type="integer")
+     */
+    private $iDBusinessUnit;
+
+    /**
+    * @var object
+    *
+    * @ORM\ManyToOne(targetEntity="UsersBundle\Entity\BusinessUnit", fetch="EAGER")
+    * @ORM\JoinColumn(name="id", referencedColumnName="iDBusinessUnit", nullable=true)
+    */
+    private $businessunit;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="IDRelations_Professionnelles", type="integer")
+     */
+    private $iDRelationsProfessionnelles;
+
+    /**
+    * @var object
+    *
+    * @ORM\ManyToOne(targetEntity="UsersBundle\Entity\Back\UsersParamRelationsProfessionnelles", fetch="EAGER")
+    * @ORM\JoinColumn(name="IDRelations_Professionnelles", referencedColumnName="id", nullable=true)
+    */
+    private $relationsProfessionnelles;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set iDentite
+     *
+     * @param integer $iDentite
+     *
+     * @return RelationBusinessEntite
+     */
+    public function setIDentite($iDentite)
+    {
+        $this->iDentite = $iDentite;
+
+        return $this;
+    }
+
+    /**
+     * Get iDentite
+     *
+     * @return int
+     */
+    public function getIDentite()
+    {
+        return $this->iDentite;
+    }
+
+    /**
+     * Set iDBusinessUnit
+     *
+     * @param integer $iDBusinessUnit
+     *
+     * @return RelationBusinessEntite
+     */
+    public function setIDBusinessUnit($iDBusinessUnit)
+    {
+        $this->iDBusinessUnit = $iDBusinessUnit;
+
+        return $this;
+    }
+
+    /**
+     * Get iDBusinessUnit
+     *
+     * @return int
+     */
+    public function getIDBusinessUnit()
+    {
+        return $this->iDBusinessUnit;
+    }
+
+    /**
+     * Set iDRelationsProfessionnelles
+     *
+     * @param integer $iDRelationsProfessionnelles
+     *
+     * @return RelationBusinessEntite
+     */
+    public function setIDRelationsProfessionnelles($iDRelationsProfessionnelles)
+    {
+        $this->iDRelationsProfessionnelles = $iDRelationsProfessionnelles;
+
+        return $this;
+    }
+
+    /**
+     * Get iDRelationsProfessionnelles
+     *
+     * @return int
+     */
+    public function getIDRelationsProfessionnelles()
+    {
+        return $this->iDRelationsProfessionnelles;
+    }
+
+    /**
+     * Set relationsProfessionnelles
+     *
+     * @param \UsersBundle\Entity\Back\UsersParamRelationsProfessionnelles $relationsProfessionnelles
+     *
+     * @return RelationBusinessEntite
+     */
+    public function setRelationsProfessionnelles(\UsersBundle\Entity\Back\UsersParamRelationsProfessionnelles $relationsProfessionnelles = null)
+    {
+        $this->relationsProfessionnelles = $relationsProfessionnelles;
+
+        return $this;
+    }
+
+    /**
+     * Get relationsProfessionnelles
+     *
+     * @return \UsersBundle\Entity\Back\UsersParamRelationsProfessionnelles
+     */
+    public function getRelationsProfessionnelles()
+    {
+        return $this->relationsProfessionnelles;
+    }
+}

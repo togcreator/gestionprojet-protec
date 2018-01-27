@@ -1,0 +1,64 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h5 class="modal-title">{{ 'client.pipeline.document'|trans }}</h5>
+</div>
+
+<div class="modal-body">
+	
+	<table class="table datatable-basic">
+		<thead>
+            <tr>
+                <th>{{ '#' }}</th>
+                <th>{{ 'client.pipeline.designation'|trans }}</th>
+                <th>{{ 'client.pipeline.typedoc'|trans }}</th>
+                <th>{{ 'client.pipeline.download'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% if envoyes %}
+            	{% for doc in envoyes %}
+            	<tr>
+            		<td>{{ doc.id }}</td>
+            		<td>{{ doc.designation|capitalize }}</td>
+                    <td>{{ 'client.pipeline.doc.envoye'|trans }}</td>
+            		<td>
+            			{% if doc.nomdoc %}
+                            {% set docs = app.request.schemeAndHttpHost ~ asset('uploads/document/') ~ doc.nomdoc %}
+                        <a href="{{ docs }}" target="_blank">
+                            {# ({{ docs|mime }}) #}
+                        {% endif %}
+                            <i class="icon-attachment position-left"></i>
+                        {% if doc.nomdoc %}</a>{% endif %}
+            		</td>
+            	</tr>
+                {% endfor %}
+            {% endif %}
+
+            {% if recus %}
+                {% for doc in recus %}
+                <tr>
+                    <td>{{ doc.id }}</td>
+                    <td>{{ doc.designation|capitalize }}</td>
+                    <td>{{ 'client.pipeline.doc.recus'|trans }}</td>
+                    <td>
+                        {% if doc.nomdoc %}
+                            {% set docs = asset('uploads/document/') ~ doc.nomdoc %}
+                        <a href="{{ docs }}" target="_blank">
+                            {# ({{ doc|mime }}) #}
+                        {% endif %}
+                            <i class="icon-attachment position-left"></i>
+                        {% if doc.nomdoc %}</a>{% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+
+        </tbody>
+        <tbody>
+	</table>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" data-dismiss="modal">{{ 'client.pipeline.button.close'|trans }}</button>
+</div>

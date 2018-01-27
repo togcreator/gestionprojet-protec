@@ -1,0 +1,21 @@
+# genenral
+crmparamcyclestype.list: CRM type of cycle list
+crmparamcyclestype.confirm_title: Confirmation
+crmparamcyclestype.edition: Edition
+crmparamcyclestype.creation: New
+
+# form
+crmparamcyclestype.legend_info: Information
+crmparamcyclestype.open: Open
+crmparamcyclestype.label: Label
+crmparamcyclestype.version: Version
+crmparamcyclestype.confirm_delete: Do you want to remove this ?
+crmparamcyclestype.actions: Action
+
+# button
+crmparamcyclestype.add_button: New
+crmparamcyclestype.save_button: Save
+crmparamcyclestype.edit_button: Edition
+crmparamcyclestype.del_button: Remove
+crmparamcyclestype.confirm_button: Yes, I do
+crmparamcyclestype.close_button: No

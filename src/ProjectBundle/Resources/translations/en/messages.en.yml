@@ -1,0 +1,43 @@
+# message.fr.yml
+
+# this is for project translator only
+
+# global
+global.project: Project
+global.projectdocs: Project document
+global.workshop: Workshop
+global.projectnotes: Notes
+global.projectetape: Stage
+global.projectetapesjalons: Milestone
+global.projectetapesoperations: Operation
+global.projectetapesoperationsissues: Issue operation
+global.projectetapesoperationsissuesrealisations: Issue operation production
+global.projectetapesoperationsissuesorganisation: Issue operation oganization
+global.projectetapesoperationsusers: Operation user
+global.projectversionuser: Project contributor
+global.agendaworker: Agenda
+
+global.title: Title
+global.type_doc: Document type
+global.download: Download
+global.link: Link
+
+# title or action
+global.new: New
+global.edit: Settings
+global.sorting: Sort by
+global.idWorkshop: Workshop
+global.projectsfilters: Filter
+global.idStatut: Status
+global.idLeader: Leader
+global.datefinprevue: Planned end date
+global.sort_by: ---- Sort by ----
+
+# menu
+menu.project_docs: Project document
+menu.project_docs_new: New Document 
+menu.operationsusers: Operation User
+
+
+# menu back
+back.menu_project_management: Dashboard

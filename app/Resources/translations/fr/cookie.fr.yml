@@ -1,0 +1,7 @@
+# cookie.fr.yml
+
+cookie.title: Cookie/Session
+cookie.cookie_lifetime: Durée de vie avant interruption
+cookie.second: sec
+cookie.cookie_life: Durée de vie d'un cookie 
+cookie.day: jour

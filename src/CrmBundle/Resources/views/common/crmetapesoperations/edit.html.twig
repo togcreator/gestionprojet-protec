@@ -1,0 +1,220 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-lg-12 col-xs-12">
+                            <div class="panel panel-flat">
+                                <div class="panel-heading">
+                                    <h2>{{ 'crmetapesoperations.edition'|trans({}, 'crmetapesoperations') }}</h2>
+                                </div>
+                                <div class="panel-body">
+                                {{ form_start(edit_form, {'attr': {'class':'form-horizontal', 'id': 'form'}}) }}
+                                        <fieldset class="content-group">
+                                            <legend class="text-bold">{{ 'crmetapesoperations.crm'|trans({}, 'crmetapesoperations') }}</legend>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    {% set name = 'crmetapesoperations.idCRM'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.idCRM, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idCRM, {'attr': {'class': 'form-control select2-search'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'crmetapesoperations.idCycledetail'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.idCycledetail, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idCycledetail, {'attr': {'class': 'form-control select2-search'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'crmetapesoperations.idDetailActivity'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.idDetailActivity, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idDetailActivity, {'attr': {'class': 'form-control select2-search'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <legend class="text-bold">{{ 'crmetapesoperations.info'|trans({}, 'crmetapesoperations') }}</legend>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    {% set name = 'crmetapesoperations.objet'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.objet, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.objet, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'crmetapesoperations.description'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.description, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.description, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
+
+                                            <legend class="text-bold">{{ 'crmetapesoperations.date'|trans({}, 'crmetapesoperations') }}</legend>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmetapesoperations.datedebutprevue'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.datedebutprevue, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.datedebutprevue, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmetapesoperations.datefinprevue'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.datefinprevue, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.datefinprevue, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmetapesoperations.datedebutreelle'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.datedebutreelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.datedebutreelle, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    {% set name = 'crmetapesoperations.datefinreelle'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.datefinreelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.datefinreelle, {'attr': {'class': 'form-control datepicker'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <legend class="text-bold">{{ 'crmetapesoperations.other'|trans({}, 'crmetapesoperations') }}</legend>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    {% set name = 'crmetapesoperations.journeesHommesprevues'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.journeesHommesprevues, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.journeesHommesprevues, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'crmetapesoperations.journeesHommesreelle'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.journeesHommesreelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.journeesHommesreelle, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'crmetapesoperations.idStatut'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.idStatut, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idStatut, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'crmetapesoperations.idResultat'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.idResultat, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idResultat, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'crmetapesoperations.idPriorite'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.idPriorite, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idPriorite, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    {% set name = 'crmetapesoperations.idAlerte'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.idAlerte, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idAlerte, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'crmetapesoperations.idRappel'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.idRappel, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idRappel, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {% set name = 'crmetapesoperations.idCommande'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.idCommande, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.idCommande, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <legend class="text-bold" id="user">{{ 'crmetapesoperations.legend_user'|trans({}, 'crmetapesoperations') }}</legend>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    {% set name = 'crmetapesoperations.user4affectation'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.user4affectation, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.user4affectation, {'attr': {'class': 'form-control listbox-dynamic-options'}}) }}
+                                                    </div>
+                                                </div>
+                                                {# <div class="form-group">
+                                                    {% set name = 'crmetapesoperations.userDate'|trans({}, 'crmetapesoperations') %}
+                                                    {{ form_label(edit_form.userDate, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                    <div class="col-lg-10">
+                                                        {{ form_widget(edit_form.userDate, {'attr': {'class': 'form-control anytime-both'}}) }}
+                                                    </div>
+                                                </div> #}
+                                            </div>
+
+
+                                        </fieldset>
+                                        <button type="submit" class="btn btn-primary" value="Create">
+                                            {{ 'crmetapesoperations.save_button'|trans({}, 'crmetapesoperations') }}
+                                            <i class="icon-arrow-right14 position-right"></i>
+                                        </button>
+                                    {{ form_end(edit_form, {'render_rest': true}) }}
+                                    <script type="text/javascript">
+                                        (function($){
+                                            /* pour projet redirection */
+                                            $('[name*="[idCRM]"]').on('change', function(){
+                                                var _location = document.location.href.toString().split('?');
+                                                _location = _location[0];
+                                                redirectTo(_location + '?idCRM=' + this.value);
+                                            });
+
+                                            /* pour projet redirection */
+                                            $('[name*="[idCycledetail]"]').on('change', function(){
+                                                var _location = document.location.href.toString().split('?');
+                                                _location = _location[0];
+                                                var idCRM = $('[name*="[idCRM]"]').val();
+                                                redirectTo(_location + '?idCycleDetail=' + this.value + '&idCRM=' + idCRM);
+                                            });
+                                        }(jQuery));
+                                    </script>
+                                    <script type="text/javascript" src="{{ asset('assets/backoffice/js/plugins/forms/inputs/duallistbox.min.js') }}"></script>
+                                    <script type="text/javascript">
+                                        (function($){
+                                            $('.listbox-dynamic-options').bootstrapDualListbox({
+                                                moveOnSelect: false,
+                                                infoText: '{{'roles.infotext'|trans({}, 'roles')}}',
+                                                infoTextFiltered: '',
+                                                infoTextEmpty: '',
+                                                filterPlaceHolder: '{{'roles.filterplaceholder'|trans({}, 'roles')}}',
+                                                filterTextClear: '{{'roles.filtertextclear'|trans({}, 'roles')}}'
+                                            });
+                                        }(jQuery))
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+{% endblock %}

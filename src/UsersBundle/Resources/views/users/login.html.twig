@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} - {{ 'users.login_title'|trans({}, 'users') }} {% endblock %}
+
+{% block body %}
+    <div class="content">
+        <div class="row">
+            <div class="col-md-5" style="margin: 15% auto 0; float: none;">
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h2>{{ 'users.login_form'|trans({}, 'users') }}</h2>
+                    </div>
+                    <div class="panel-body">
+                        <form action="{{ path('fos_user_security_check') }}" method="post">
+                            <div class="form-group">
+                                <label for="username">{{ 'users.username'|trans({}, 'users') }}</label>
+                                <input type="text" name="_username" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="username">{{ 'users.password'|trans({}, 'users') }}</label>
+                                <input type="password" name="_password" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" name="submit" value="login" class="btn btn-primary"> 
+                                    <span>{{ 'users.login_button'|trans({}, 'users') }}</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

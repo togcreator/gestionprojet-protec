@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Mails list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Daty</th>
+                <th>Codemail</th>
+                <th>Dateprevue</th>
+                <th>Heureprevue</th>
+                <th>Flagar</th>
+                <th>Flagnotifemail</th>
+                <th>Flagnotifsms</th>
+                <th>Iduseragenda</th>
+                <th>Idprojettask</th>
+                <th>Idcrmtask</th>
+                <th>Idstrategie</th>
+                <th>Idchantier</th>
+                <th>Idaffaire</th>
+                <th>Date4trash</th>
+                <th>Datesaisie</th>
+                <th>Langue</th>
+                <th>Version</th>
+                <th>Sujet</th>
+                <th>Message</th>
+                <th>Keywords</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mail in mails %}
+            <tr>
+                <td><a href="{{ path('mail_show', { 'id': mail.id }) }}">{{ mail.id }}</a></td>
+                <td>{% if mail.daty %}{{ mail.daty|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ mail.codemail }}</td>
+                <td>{{ mail.datePrevue }}</td>
+                <td>{{ mail.heurePrevue }}</td>
+                <td>{{ mail.flagAR }}</td>
+                <td>{{ mail.flagNotifEMAIL }}</td>
+                <td>{{ mail.flagNotifSMS }}</td>
+                <td>{{ mail.idUserAgenda }}</td>
+                <td>{{ mail.idProjetTask }}</td>
+                <td>{{ mail.idCRMTask }}</td>
+                <td>{{ mail.idStrategie }}</td>
+                <td>{{ mail.idChantier }}</td>
+                <td>{{ mail.idAffaire }}</td>
+                <td>{% if mail.date4trash %}{{ mail.date4trash|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if mail.datesaisie %}{{ mail.datesaisie|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ mail.langue }}</td>
+                <td>{{ mail.version }}</td>
+                <td>{{ mail.sujet }}</td>
+                <td>{{ mail.message }}</td>
+                <td>{{ mail.keywords }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('mail_show', { 'id': mail.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('mail_edit', { 'id': mail.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mail_new') }}">Create a new mail</a>
+        </li>
+    </ul>
+{% endblock %}

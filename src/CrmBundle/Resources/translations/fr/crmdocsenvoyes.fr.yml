@@ -1,0 +1,34 @@
+
+# general
+crmdocsenvoyes.title: CRM documents envoyés
+crmdocsenvoyes.edition: Modification
+crmdocsenvoyes.creation: Nouveau
+crmdocsenvoyes.confirm_title: Confirmation
+crmdocsenvoyes.crm: CRM
+crmdocsenvoyes.info: Information
+crmdocsenvoyes.other: Autre detail
+
+# form
+crmdocsenvoyes.idCrm: CRM
+crmdocsenvoyes.idEtape: Etape
+crmdocsenvoyes.idOperation: Opération
+crmdocsenvoyes.code: Code
+crmdocsenvoyes.origine: Origine
+crmdocsenvoyes.idBiblio: Biblio
+crmdocsenvoyes.idMail: Adresse mail
+crmdocsenvoyes.referenceInterne: Réference Interne
+crmdocsenvoyes.reference: Réference
+crmdocsenvoyes.designation: Désignation
+crmdocsenvoyes.nomdoc: Document
+crmdocsenvoyes.idTypedoc: Type du document
+crmdocsenvoyes.dateEnvoi: Date d'envoie
+crmdocsenvoyes.version: Version
+crmdocsenvoyes.confirm_delete: Voulez vous supprimer ce document ?
+
+# button
+crmdocsenvoyes.add_button: Nouveau
+crmdocsenvoyes.edit_button: Modifier
+crmdocsenvoyes.del_button: Supprimer
+crmdocsenvoyes.save_button: Enregistrer
+crmdocsenvoyes.close_button: Non
+crmdocsenvoyes.confirm_button: Oui, je confirme

@@ -1,0 +1,28 @@
+# priorite.en.yml
+
+# general
+priorite.list: List of priority
+priorite.creation: New
+priorite.confirm_title: Confirmation
+
+# form
+priorite.open: Open
+priorite.label: Label
+priorite.couleur: Color
+priorite.obs: Observation
+priorite.actions: Action
+priorite.code: Code
+priorite.delai: Delay
+priorite.nomcouleur: Color name
+priorite.imgcouleur: Color image
+priorite.logo: Logo
+priorite.note: Note
+priorite.confirm_delete: Are you want to remove this ?
+
+# button
+priorite.add_button: New
+priorite.edit_button: Edit
+priorite.del_button: Remove
+priorite.save_button: Save
+priorite.confirm_button: Yes, I do
+priorite.close_button: No

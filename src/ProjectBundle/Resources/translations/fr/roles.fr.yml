@@ -1,0 +1,32 @@
+# roles.fr.yml
+
+# general
+roles.list: Listes des rôles
+roles.edition: Fiche rôle pour utilisateur
+roles.creation: Nouveau rôle
+roles.confirm_title: Confirmation
+
+# form
+roles.open: Ouvert
+roles.wording: Libellé
+roles.version: Version
+roles.actions: Action
+roles.confirm_delete: Êtes vous sûr vouloir supprimer ce rôle ?
+roles.obs: Observation
+roles.couleur: Couleur
+roles.nomcouleur: Nom de la couleur
+roles.imgcouleur: image de la couleur
+roles.logo: Logo
+roles.legend_info: Information
+roles.legend_user: Utilisateur
+roles.user: Utilisateur appartenant
+roles.infotext: Liste selectionner ou restant
+roles.filterplaceholder: Recherche rapide
+
+# button
+roles.add_button: Nouveau roles
+roles.save_button: Enregistrer
+roles.edit_button: Modifier
+roles.del_button: Supprimer
+roles.confirm_button: Oui, je confirme
+roles.close_button: Non
