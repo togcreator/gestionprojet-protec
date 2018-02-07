@@ -65,6 +65,11 @@ class RelationBusinessUser
     private $relationsFonctionnelles;
 
     /**
+    * @var object
+    */
+    private $service;
+
+    /**
      * Get id
      *
      * @return int
@@ -216,5 +221,27 @@ class RelationBusinessUser
     public function getRelationsFonctionnelles()
     {
         return $this->relationsFonctionnelles;
+    }
+
+    /**
+     * Set service
+     *
+     * @return RelationBusinessUser
+     */
+    public function setService($service = null)
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * Get service
+     *
+     * @return \UsersBundle\Entity\Back\UsersParamRelationsFonctions
+     */
+    public function getService()
+    {
+        return $this->service;
     }
 }

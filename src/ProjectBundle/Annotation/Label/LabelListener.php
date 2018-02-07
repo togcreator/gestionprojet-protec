@@ -82,11 +82,7 @@ class LabelListener implements EventSubscriber {
         $locale = 'fr';
 
         if( $this->request !== null )
-            $locale = $this->request->getLocale(); // bug in constructor
-
-        // if( count($_SESSION) && array_key_exists('_sf2_attributes', $_SESSION) )
-        //     if( array_key_exists('_locale', $_SESSION['_sf2_attributes']) )
-        //         $locale = $_SESSION['_sf2_attributes']['_locale'];
+            $locale = $this->request->getLocale();
         return $locale;
     }
 
@@ -94,7 +90,8 @@ class LabelListener implements EventSubscriber {
     protected function isLabelClass ($entity) 
     {
         // test if annotation own LabelClass
-        $reflection = new \ReflectionClass(get_class($entity));
+        $realClass = \Doctrine\Common\Util\ClassUtils::getRealClass(get_class($entity));
+        $reflection = new \ReflectionClass($realClass);
         return $this->reader->getClassAnnotation($reflection, LabelClass::class);
     }
 

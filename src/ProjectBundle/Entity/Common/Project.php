@@ -251,7 +251,7 @@ class Project
 
     /**
      * @var int
-     * @ORM\OneToMany(targetEntity="ProjectNotes", mappedBy="project", fetch="LAZY")
+     * @ORM\OneToMany(targetEntity="ProjectNotes", mappedBy="project", fetch="EAGER")
      */
     private $notes;
 
@@ -414,7 +414,7 @@ class Project
      * @param integer $workshop
      * @return Project
      */
-    public function setWorkshop($workshop)
+    public function setWorkshop(\ProjectBundle\Entity\Back\Workshop $workshop)
     {
         $this->workshop = $workshop;
 

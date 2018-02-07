@@ -151,14 +151,14 @@ class ProjectAlert
      *
      * @ORM\Column(name="obligatoire", type="string", length=1)
      */
-    private $obligatoire = '';
+    private $obligatoire;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="valide", type="boolean", length=4)
      */
-    private $valide = true;
+    private $valide;
 
     /**
      * @var int
@@ -595,7 +595,7 @@ class ProjectAlert
      */
     public function setLogo($logo)
     {
-        $this->logo = $logo;
+        $this->logo = $logo ? $logo : $this->logo;
 
         return $this;
     }
@@ -619,7 +619,7 @@ class ProjectAlert
      */
     public function setObligatoire($obligatoire)
     {
-        $this->obligatoire = $obligatoire ? $obligatoire : $this->obligatoire;
+        $this->obligatoire = $obligatoire;
 
         return $this;
     }
@@ -643,7 +643,7 @@ class ProjectAlert
      */
     public function setValide($valide)
     {
-        $this->valide = $valide ? $valide : $this->valide;
+        $this->valide = $valide;
 
         return $this;
     }

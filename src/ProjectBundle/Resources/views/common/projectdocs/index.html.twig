@@ -120,7 +120,7 @@
                                                         </div>
                                                         <div class="media-right">
                                                             {% set etapeUser = etape.user4affectation %}
-                                                            {% if etapeUser|length > 0 %}
+                                                            {% if etapeUser != null and etapeUser|length > 0 %}
                                                                 {% if etapeUser.0.user.image|length > 0 %}
                                                                     <img src="{{ asset('uploads/image/') ~ etapeUser.0.user.image }}" class="img-circle img-sm" alt=""/>
                                                                 {% else %}
@@ -144,9 +144,9 @@
                                                         <span class="heading-text pull-left">
                                                             <ul class="list-inline list-inline-separate heading-text" style="margin-left: 0{% if img is defined %};margin-top: 0{% endif %}">
                                                                 <li style="padding-right: 15px">
-                                                                    {% if etape.user4affectation|length > 0  %}<a href="{{ path('projectdocs_attach', {'id': etape.id, 'type': 'etape', 'attach': 'image'}) }}" data-target="#modal_remote" data-toggle="modal">{% endif %}
+                                                                    {# {% if etape.user4affectation|length > 0  %}<a href="{{ path('projectdocs_attach', {'id': etape.id, 'type': 'etape', 'attach': 'image'}) }}" data-target="#modal_remote" data-toggle="modal">{% endif %}
                                                                     <i class="icon-users position-left" style="margin-right: 3px"></i> ({{ etape.user4affectation|length }})
-                                                                    {% if etape.user4affectation|length > 0  %}</a>{% endif %}
+                                                                    {% if etape.user4affectation|length > 0  %}</a>{% endif %} #}
                                                                 </li>
 
                                                                 <li style="padding-right: 15px"><i class="icon-calendar position-left" style="margin-right: 3px"></i> {{ etape.datefinprevue|date('M d') }}</li>

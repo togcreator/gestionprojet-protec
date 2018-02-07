@@ -11,6 +11,19 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class PipelineController extends Controller
 {
     /**
+     * Override method getUser parent
+     *
+     * @return UserClient
+     */
+    protected function getUser() {
+
+        $auth_checker = $this->get('security.authorization_checker');
+        if( $auth_checker->isGranted('ROLE_ADMIN') ) 
+            return true;
+        return $this->getDoctrine()->getRepository('UsersBundle:UserClient')->findOneBy(['id' => $this->container->get('session')->get('log')]);
+    }
+
+    /**
      * Pipeline Cycle detail
      */
     public function getCycleDetail ($com) {
@@ -21,8 +34,10 @@ class PipelineController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $selective = isset($com['id_owner']) && $com['id_owner'] ? ['idOwner' => $com['id_owner']] : ['idWatcher' => $com['id_watcher']];
+        $user_id = is_object($this->getUser()) ? $this->getUser()->getId() : null;
+        $bu_id = $this->container->get('session')->get('BU');
 
-        $crms = $em->getRepository('CrmBundle:Common\CrmDossier')->findBy($selective);
+        $crms = $em->getRepository('CrmBundle:Common\CrmDossier')->findAllBy($user_id, $bu_id, $selective);
         foreach( $crms as $crm ) {
 
             $operations = $em->getRepository('CrmBundle:Common\CrmEtapesOperations')->findBy(['idCRM' => $crm->getId()]);
@@ -47,10 +62,11 @@ class PipelineController extends Controller
                     $crm->setEntite($em->getRepository('ClientBundle:Client')->findOneBy(['id' => $crm->getIdEntiteJ()]));
                     $operation->setCrm($crm);
 
-                    $doc_envoye = $em->getRepository('CrmBundle:Common\CrmDocsEnvoyes')->findBy(['idOperation' => $operation->getId()]);
-                    $doc_recus = $em->getRepository('CrmBundle:Common\CrmDocsRecus')->findBy(['idOperation' => $operation->getId()]);
-                    $operation->setDocs(count($doc_envoye) + count($doc_recus));
-                    $ret['byDetails'][$crm->getId()][$id_tcycle][] = $operation;
+                    $crm->setDocEnvoyes($em->getRepository('CrmBundle:Common\CrmDocsEnvoyes')->findBy(['idCrm' => $crm->getId()]));
+                    $crm->setDocRecus($em->getRepository('CrmBundle:Common\CrmDocsRecus')->findBy(['idCrm' => $crm->getId()]));
+
+                    $ret['byDetails'][$crm->getId()][$id_tcycle][$crm->getId()] = $crm;
+
                 }
             }
         }
@@ -96,10 +112,21 @@ class PipelineController extends Controller
      */
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
+        $bu_id = $this->container->get('session')->get('BU');
 
-        $watchers = $em->getRepository('UsersBundle:UserClient')->findSalarierCom([13]);
-        $owners =  $em->getRepository('UsersBundle:UserClient')->findSalarierCom([10]);
+        $watchers = $em->getRepository('UsersBundle:UserClient')->findSalarierCom([13], $bu_id);
+        $owners =  $em->getRepository('UsersBundle:UserClient')->findSalarierCom([10], $bu_id);
 
         return $this->render('ClientBundle:Default:pipeline.html.twig', ['Owners' => $owners, 'Watchers' => $watchers]);
+    }
+
+    /**
+     * Pipeline contact
+     */
+    public function contactAction() {
+        $em = $this->getDoctrine()->getManager();
+
+        $clients = $em->getRepository('UsersBundle:UserClient')->findContactsClient();
+        return $this->render('ClientBundle:Default:contacts.html.twig', array('Contacts' => $clients));
     }
 }

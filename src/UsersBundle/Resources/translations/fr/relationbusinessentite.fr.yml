@@ -1,19 +1,21 @@
 # relationbusinessentite.fr.yml
 
 # general
-relationbusinessentite.list: Relation entité juridique et professionnelles
+relationbusinessentite.list: Liste de relation professionelle entreprise
 relationbusinessentite.creation: Nouveau
 relationbusinessentite.edition: Modification
 relationbusinessentite.confirm_title: Confirmation
 relationbusinessentite.no_data: Aucun resultat
 
 # form
-relationbusinessentite.iDentite: Entité juridique
+relationbusinessentite.iDentite: Entreprise
 relationbusinessentite.iDBusinessUnit: Business unité
-relationbusinessentite.iDRelationsProfessionnelles: Relation professionnelles
-relationbusinessentite.relation: Relation professionnelles
+relationbusinessentite.iDRelationsProfessionnelles: Relation professionelle
+relationbusinessentite.fonction: Fonction
+relationbusinessentite.service: Service
+relationbusinessentite.relation: Relation professionnelle
 relationbusinessentite.business: Business unit
-relationbusinessentite.entitej: Entité juridique
+relationbusinessentite.entitej: Entreprise
 relationbusinessentite.confirm_delete: Êtes vous sûr vouloir supprimer cette relation ?
 
 # button

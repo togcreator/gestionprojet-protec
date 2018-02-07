@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+                <!-- /page header -->
+                <div class="content">
+                    <div class="row">
+
+                         <!-- Page length options -->
+                        <div class="panel panel-flat">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">{{ 'paramservices.list'|trans({}, 'paramservices') }}</h5><br/>
+                                <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('paramservices_new', {'idType': app.request.get('idType')})}}'">
+                                    <b><i class="icon-add"></i></b> {{ 'paramservices.add_button'|trans({}, 'paramservices') }}
+                                </button>
+
+                                <div class="heading-elements">
+                                    <ul class="icons-list">
+                                        <li><a data-action="close" href="{{ path('paramservices_index')}}"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <table class="table datatable-basic">
+                                <thead>
+                                    <tr>
+                                        <th>{{ 'paramservices.label'|trans({}, 'paramservices') }}</th>
+                                        <th>{{ 'paramservices.img'|trans({}, 'paramservices') }}</th>
+                                        <th class="no-sort">{{ 'global.actions'|trans }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% if paramServices %}
+                                    {% for param in paramServices %}
+                                    <tr>
+                                        <td>{{ param.label }}</td>
+                                        <td>
+                                            {% set img = param.img %}
+                                            {% if param.img %}
+                                            <img src="{{ asset('/uploads/' ~ param.img ) }}" style="width: 15%"/>
+                                            {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                            <ul class="icons-list">
+                                                <li class="dropdown">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                        <i class="icon-menu9"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                        <li><a href="{{ path('paramservices_edit', { 'id': param.id }) }}"><i class="icon-pen"></i> {{ 'paramservices.edit_button'|trans({}, 'paramservices') }}</a></li>
+                                                        <li><a href="{{ path('paramservices_delete', { 'id': param.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'paramservices.del_button'|trans({}, 'paramservices') }}</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td>{{ 'paramservices.no_data'|trans({}, 'paramservices') }}</td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+{% endblock %}

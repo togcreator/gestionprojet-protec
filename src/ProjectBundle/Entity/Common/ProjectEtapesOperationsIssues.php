@@ -31,6 +31,8 @@ class ProjectEtapesOperationsIssues
 
     /**
      * @var int
+     * @ORM\ManyToOne(targetEntity="Project", fetch="EAGER")
+     * @ORM\JoinColumn(name="idProjetversion", referencedColumnName="id")
      */
     private $projet;
 
@@ -43,6 +45,8 @@ class ProjectEtapesOperationsIssues
 
     /**
      * @var object
+     * @ORM\ManyToOne(targetEntity="ProjectEtape", fetch="EAGER")
+     * @ORM\JoinColumn(name="idEtape", referencedColumnName="id", nullable=true)
      */
     private $etape;
 
@@ -55,6 +59,8 @@ class ProjectEtapesOperationsIssues
 
     /**
      * @var object
+     * @ORM\ManyToOne(targetEntity="ProjectEtapesOperations", fetch="EAGER")
+     * @ORM\JoinColumn(name="idOperation", referencedColumnName="id", nullable=true)
      */
     private $operation;
 

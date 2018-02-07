@@ -35,26 +35,21 @@
                     <table class="table datatable-basic">
                         <thead>
                             <tr>
-                                <th>{{ 'projectdocs.project'|trans({}, 'projectdocs') }}</th>
-                                <th>{{ 'projectdocs.idEtape'|trans({}, 'projectdocs') }}</th>
-                                <th>{{ 'projectdocs.idOperation'|trans({}, 'projectdocs') }}</th>
                                 <th>{{ 'projectdocs.titre'|trans({}, 'projectdocs') }}</th>
+                                <th>{{ 'projectdocs.project'|trans({}, 'projectdocs') }}</th>
+                                <th>{{ 'projectdocs.idOperation'|trans({}, 'projectdocs') }}</th>
                                 <th>{{ 'projectdocs.date'|trans({}, 'projectdocs') }}</th>
                                 <th>{{ 'projectdocs.idUser'|trans({}, 'projectdocs') }}</th>
-                                <th class="text-center">{{ 'projectdocs.actions'|trans({}, 'projectdocs') }}</th>
+                                <th class="text-center no-sort">{{ 'projectdocs.actions'|trans({}, 'projectdocs') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for projectdocs in projectDocs %}
-                            <tr href="{{ path('projectdocs_ajax_get', {'id': projectdocs.id}) }}">
+                            <tr>
+                                 <td>{{ projectdocs.designation }}</td>
                                 <td>
-                                    {% if projectdocs.projet %}
-                                    {{ projectdocs.projet.label }}
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    {% if projectdocs.etape %}
-                                    {{ projectdocs.etape.object }}
+                                    {% if projectdocs.project %}
+                                    {{ projectdocs.project.label }}
                                     {% endif %}
                                 </td>
                                 <td>
@@ -62,7 +57,7 @@
                                     {{ projectdocs.operation.object }}
                                     {% endif %}
                                 </td>
-                                <td>{{ projectdocs.designation }}</td>
+                               
                                 <td data-order="{{ projectdocs.dateReception|date('Y-m-d') }}">{{ projectdocs.dateReception|date(date_format) }}</td>
                                 <td>{{ projectdocs.user.firstname }} {{ projectdocs.user.lastname }}</td>
                                 <td class="text-center">

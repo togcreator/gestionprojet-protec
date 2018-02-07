@@ -218,8 +218,6 @@ class ProjectsFiltersController extends Controller
 
         $lib = ['fr' => 'lib0', 'en' => 'lib1', 'nl' => 'lib2', 'de' => 'lib3', 'es' => 'lib4', 'it' => 'lib5'];
 
-        dump($projet);
-
         // request
         $project = $this->getDoctrine()->getManager()
             ->getRepository('ProjectBundle:Common\Project')
@@ -234,7 +232,7 @@ class ProjectsFiltersController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         return [
-            'entityJs'  => $em->getRepository('ProjectBundle:Back\EntityJ')->findAll(),
+            'entityJs'  => $em->getRepository('ClientBundle:Client')->findAll(),
             'workshops' => $em->getRepository('ProjectBundle:Back\Workshop')->findAll(),
             'statuts'   => $em->getRepository('ProjectBundle:Back\Statut')->findAll(),
             'resultats' => $em->getRepository('ProjectBundle:Back\Resultat')->findAll(),

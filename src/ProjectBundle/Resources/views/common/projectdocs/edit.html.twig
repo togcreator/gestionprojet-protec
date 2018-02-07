@@ -35,7 +35,7 @@
                                                         {{ form_widget(edit_form.idProjet, {'attr': {'class': 'form-control'}}) }}
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group hidden">
                                                     {% set name = 'projectdocs.idEtape'|trans({}, 'projectdocs') %}
                                                     {{ form_label(edit_form.idEtape, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                                     <div class="col-lg-10">
@@ -71,7 +71,11 @@
                                                     {% set name = 'projectdocs.nomdoc'|trans({}, 'projectdocs') %}
                                                     {{ form_label(edit_form.nomdoc, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                                     <div class="col-lg-10" style="padding: 15px 0">
-                                                        {% set preview = asset('uploads/' ~ edit_form.vars.value.nomdoc)|default('') %}
+                                                        {% if isFile(edit_form.vars.value.nomdoc, 'document') %}
+                                                            {% set preview = asset('uploads/' ~ edit_form.vars.value.nomdoc)|default('') %}
+                                                        {% else %}
+                                                            {% set preview = '' %}
+                                                        {% endif %}
                                                         {{ form_widget(edit_form.nomdoc, {'attr': {'class': 'form-control upload-file', 'data-preview': preview}}) }}
                                                     </div>
                                                 </div>

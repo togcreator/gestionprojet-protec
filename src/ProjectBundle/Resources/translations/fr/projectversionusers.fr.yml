@@ -4,12 +4,13 @@
 projectversionusers.list: Liste des intervenants du projet
 projectversionusers.no_data: Aucun resultat
 projectversionusers.creation: Nouveau
-projectversionusers.creation: Modification
+projectversionusers.edition: Modification
 projectversionusers.confirm_title: Confirmation
 
 # form
 projectversionusers.idProjetVersion: Projet
 projectversionusers.user: Intervenant
+projectversionusers.idUser: Intervenant
 projectversionusers.mission: Mission
 projectversionusers.datedebut: Date Debut
 projectversionusers.datefin: Date Fin

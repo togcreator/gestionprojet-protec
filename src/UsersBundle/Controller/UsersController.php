@@ -140,15 +140,15 @@ class UsersController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) 
         {
             // check if not md5 then has it
-            if( $user->getPassword() && !\UsersBundle\Entity\Users::is_md5($user->getPassword()) )
+            // if( !\UsersBundle\Entity\Users::is_md5($user->getPassword()) )
+            if( $user->getPlainPassword() )
                 $user->setPassword(md5($user->getPassword()));
 
-            // pour image
-            //$this->setUserImage($user);
             // sauvegarde
-            $this->getDoctrine()->getManager()->flush();
-            // return $this->redirectToRoute('users_edit', array('id' => $user->getId()));
-            return $this->redirectToRoute('users_index');
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return $this->redirectToRoute('users_edit', ['id' => $user->getId()]);
         }
 
         $userClients = $this->getDoctrine()->getRepository('UsersBundle:UserClient')->findUsers($user->getId());

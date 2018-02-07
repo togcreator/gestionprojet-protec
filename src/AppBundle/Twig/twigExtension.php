@@ -25,7 +25,7 @@ class twigExtension extends \Twig_Extension
     /**
      * @var array
      */
-    private $params = ['user', 'users', 'userclient', 'roles', 'usersparamrelationsfonctions',  'usersparamrelationsprofessionnelles'];
+    private $params = ['user', 'users', 'userclient', 'roles', 'usersparamrelationsfonctions',  'usersparamrelationsprofessionnelles', 'listeclient', 'client'];
     
     public function __construct(ContainerInterface $container = null) {
         $this->container = $container;
@@ -65,6 +65,9 @@ class twigExtension extends \Twig_Extension
             new \Twig_SimpleFunction('notify', array($this, 'notify')),
             new \Twig_SimpleFunction('doc_file', array($this, 'type_file')),
             new \Twig_SimpleFunction('getIdUser', array($this, 'getIdUser')),
+            new \Twig_SimpleFunction('Array_push', array($this, 'Array_push')),
+            new \Twig_SimpleFunction('isFile', array($this, 'isFile')),
+            new \Twig_SimpleFunction('date_diff', array($this, 'date_diff')),
         );
     }
 
@@ -133,6 +136,38 @@ class twigExtension extends \Twig_Extension
     }
 
     /**
+     * array_push
+     */
+    public function Array_push($array, $key, $value) {
+        $array[$key] = $value;
+        return $array;
+    }
+
+    /**
+     * is_file
+     */
+    public function isFile($filename, $directory = '') {
+        $dir = $this->container->getParameter('upload_dir');
+        return is_file($dir . DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR . $filename);
+    }
+
+    /**
+     * date_diff
+     */
+    public function date_diff($date_debut, $date_fin) {
+
+        $date_d = null;
+        $date_f = null;
+        if( isset($date_debut[0]) ) $date_d = $date_debut[0];
+        else if( isset($date_debut[1]) ) $date_d = $date_debut[1];
+
+        if( isset($date_fin[0]) ) $date_f = $date_fin[0];
+        else if( isset($date_fin[1]) ) $date_f = $date_fin[1];
+
+        return ($date_d == null || $date_f == null ) ? 0 : date_diff($date_d, $date_f)->format('%a');
+    }
+
+    /**
     * Getting all users susceptible to connected
     *
     * @return null
@@ -151,7 +186,6 @@ class twigExtension extends \Twig_Extension
 
             $user = [$users];
             $bus = $this->em->getRepository('UsersBundle:UserClient')->findBU($user_id);
-
             //===================================
             if($sess) {
                 if (($bu = $session->get('BU'))) {
@@ -167,35 +201,38 @@ class twigExtension extends \Twig_Extension
                 }
                 else {
                     //==== session ====
-                    $id = $user[0]->getId();
-                    $session->set('log', $id);
-                    
-                    $idLang = !method_exists($user[0], 'getLangage') || !$user[0]->getLangage() ? 1 : $user[0]->getLangage();
-                    $lang = $this->em->getRepository('AppBundle:Common\Langage')->findOneBy(['id' => $idLang]);
-                    $session->set('_locale', $lang->getAbr());
+                    if( isset($user[0]) ) {
+                        $id = $user[0]->getId();
+                        $session->set('log', $id);
+                        
+                        $idLang = !method_exists($user[0], 'getLangage') || !$user[0]->getLangage() ? 1 : $user[0]->getLangage();
+                        $lang = $this->em->getRepository('AppBundle:Common\Langage')->findOneBy(['id' => $idLang]);
+                        $session->set('_locale', $lang->getAbr());
 
-                    $bu = $this->em->getRepository('UsersBundle:UserClient')->findBU($id);
-                    
-                    if(count($bu)) {
-                        $session->set('BU', $bu[0]->getId());
-                        return ucfirst($bu[0]->getNomBusinessUnit());
-                    }
+                        $bu = $this->em->getRepository('UsersBundle:UserClient')->findBU($user_id, $id);
+                        if( is_object($bu) ) {
+                            $session->set('BU', $bu->getId());
+                            return ucfirst($bu->getNomBusinessUnit());
+                        }
 
-                    return ucfirst($user[0]->getFirstname());
+                        return 'users.all';
+                    } else
+                        return 'users.no_user';
                 }
             }
 
-            if( !count($bus) && $user[0]->getLogin() == 'admins')
+            $auth_checker = $this->container->get('security.authorization_checker');
+            if( $auth_checker->isGranted('ROLE_ADMIN') ) 
                 $bus = $this->em->getRepository('UsersBundle:BusinessUnit')->findAll();
 
             if( count($bus) > 1 ):
             ob_start();
         ?>
             <ul class="dropdown-menu">
-                <?php if($user[0]->getLogin() == 'admins'): ?>
+                <?php if( $auth_checker->isGranted('ROLE_ADMIN') ): ?>
                 <li>
                     <a href="<?php echo $url ?>?bu=0">
-                        <?php echo ucfirst($user[0]->getFirstname()) ?>
+                        <?php echo $this->container->get('translator')->trans('users.all'); ?>
                     </a>
                 </li>
                 <?php endif ?>
@@ -351,14 +388,12 @@ class twigExtension extends \Twig_Extension
         $notify = $session->get('notify');
         $session->set('notify', ''); // unset
 
-       // dump($notify); // exit;
         return $notify;
     }
 
     // type of file
     public function type_file( $collection ) 
     {
-        // dump($collection);  exit;
         // for return
         $return = ['pop' => [], 'image' => []];
 

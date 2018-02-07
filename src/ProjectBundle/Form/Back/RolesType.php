@@ -18,7 +18,7 @@ class RolesType extends AbstractType
     public function setUser($users)
     {
         $ar = [];
-        if(count($users))
+        if($users && count($users))
             foreach( $users as $user )
                 $ar[] = $user->getId();
         return $ar;

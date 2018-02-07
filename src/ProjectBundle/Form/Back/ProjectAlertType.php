@@ -13,11 +13,19 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 class ProjectAlertType extends AbstractType
 {
     // ouvert
-    public function setOuvert ($options) 
+    public function setBoolean ($options) 
     {
         // setting ouvert
         $ouvert = $options->getOuvert();
         $options->setOuvert($ouvert ? true : false);
+
+        // setting valide
+        $valide = $options->getValide();
+        $options->setValide($valide ? true : false);
+
+        // setting obligatoire
+        $obligatoire = $options->getObligatoire();
+        $options->setObligatoire($obligatoire ? true : false);
     }
 
     /**
@@ -26,12 +34,12 @@ class ProjectAlertType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // ouvert
-        $this->setOuvert($options['data']);
+        $this->setBoolean($options['data']);
         $logo = $options['data']->getLogo() ? ['data_class' => null] : [];
 
         $builder
             ->add('ouvert', CheckboxType::class, ['required' => false])
-            ->add('label', null, ['attr'=>['maxlength'=>50], 'required' => true])
+            ->add('label', null, ['attr'=>['maxlength' => 50], 'required' => true])
             ->add('lib0', HiddenType::class)
             ->add('lib1', HiddenType::class)
             ->add('lib2', HiddenType::class)
@@ -42,14 +50,14 @@ class ProjectAlertType extends AbstractType
             ->add('lib7', HiddenType::class)
             ->add('lib8', HiddenType::class)
             ->add('lib9', HiddenType::class)
-            ->add('typeAlerte')
-            ->add('declenchementdelai')
-            ->add('typedelai')
-            ->add('couleur')
-            ->add('nomcouleur')
-            ->add('obligatoire')
+            ->add('typeAlerte', null, ['required' => false])
+            ->add('declenchementdelai', null, ['required' => false])
+            ->add('typedelai', null, ['required' => false])
+            ->add('couleur', null, ['required' => false])
+            ->add('nomcouleur', null, ['required' => false])
+            ->add('obligatoire', CheckboxType::class, ['required' => false])
             ->add('logo', FileType::class, array_merge(['required' => false], $logo))
-            ->add('valide')
+            ->add('valide', CheckboxType::class, ['required' => false])
             ->add('version', HiddenType::class, ['attr' => ['value' => 0]]);
     }
     

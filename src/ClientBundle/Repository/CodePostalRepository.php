@@ -16,7 +16,7 @@ class CodePostalRepository extends \Doctrine\ORM\EntityRepository
 			->distinct()
 			->where('1 = 1')
 			->groupBy('cp.code')
-			->setMaxResults(100)
+			// ->setMaxResults(100)
 			->getQuery()
 			->execute();
 	} 

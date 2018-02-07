@@ -75,9 +75,13 @@ class RelationUserEntite
 
     /**
     * @var object
-    *
     */
     private $relations_fonction;
+
+    /**
+    * @var object
+    */
+    private $service;
 
     /**
      * Get id
@@ -303,5 +307,29 @@ class RelationUserEntite
     public function getRelations_fonction()
     {
         return $this->relations_fonction;
+    }
+
+    /**
+     * Set service
+     *
+     * @param \UsersBundle\Entity\Back\UsersParamRelationsFonctions $relationsFonction
+     *
+     * @return RelationUserEntite
+     */
+    public function setService($service = null)
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * Get service
+     *
+     * @return 
+     */
+    public function getService()
+    {
+        return $this->service;
     }
 }

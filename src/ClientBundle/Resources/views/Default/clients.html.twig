@@ -4,90 +4,91 @@
 
 {% block body %}
     {% include 'header.html.twig' %}
-    <!-- Page container -->
-    <div class="page-container">
-
-        <!-- Page content -->
-        <div class="page-content">
-
-            <!-- Main content -->
-            <div class="content-wrapper">
-
-                <!-- Default ordering -->
-                <div class="panel panel-flat">
-                    <div class="panel-heading">
-                        <h5 class="panel-title">{{ 'table.clients.title'|trans }}</h5>
-                        <div class="heading-elements">
-                            <button type="button" style="margin-right: 10px" class="btn btn-primary filter pull-left" href="{{path('client_filter_index')}}" data-target="#modal_remote" data-toggle="modal"><i class="icon-filter3 position-left"></i>{{ 'global.filter_button'|trans }}</button>
-                            <button type="button" class="btn btn-primary pull-left" onclick="document.location.href = '{{ path('client_add_client') }}'"><i class="icon-add position-left"></i>{{ 'crmdocsrecus.add_button'|trans({}, 'crmdocsrecus') }}</button>
-                        </div>
+    
+    <!-- Main content -->
+    <div class="content">
+        <div class="row">
+            <!-- Default ordering -->
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">{{ 'table.clients.title'|trans }}</h5>
+                    <div class="heading-elements">
+                        {% if filtre is defined %}
+                        <button type="button" style="margin-right: 10px" class="btn btn-primary btn-danger filter pull-left" onclick="document.location.href = '{{path('client_liste_clients')}}';"><i class="icon-close2 {# position-left #}"></i>{# {{ 'client.filter.return'|trans }} #}</button>
+                        {% endif %}
+                        <button type="button" style="margin-right: 10px" class="btn btn-primary filter pull-left" href="{{path('client_filter_index')}}" data-target="#modal_remote" data-toggle="modal"><i class="icon-filter3 position-left"></i>{{ 'global.filter_button'|trans }}</button>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <button type="button" class="btn btn-primary pull-left" onclick="document.location.href = '{{ path('client_add_client') }}'"><i class="icon-add position-left"></i>{{ 'crmdocsrecus.add_button'|trans({}, 'crmdocsrecus') }}</button>
+                        {% endif %}
                     </div>
-
-                    <span class="hidden datatable_filter" data-filter="{{ 'table_mail.datatable.filter'|trans }}" data-textfilter="{{ 'table_mail.datatable.text_filter'|trans }}" data-show="{{ 'table_mail.datatable.show'|trans }}"></span>
-                    <table class="table datatable-basic" id="table_client">
-                        {# {% if app.request.query.get('add') is defined and app.request.query.get('add') == "ok"  %}
-                            <caption>
-                                <h3 style="color: green; text-align: center;">{{ 'message.client.ajout'|trans }}</h3>
-                            </caption>
-                        {% endif %}
-                        {% if app.request.query.get('delete') is defined and app.request.query.get('delete') == "ok"  %}
-                            <caption>
-                                <h3 style="color: green; text-align: center;">{{ 'message.client.suppression'|trans }}</h3>
-                            </caption>
-                        {% endif %} #}
-                        <thead>
-                        <tr>
-                            <th>{{ 'table.clients.column.id'|trans }}</th>
-                            <th>{{ 'table.clients.column.raisonSociale'|trans }}</th>
-                            <th>{{ 'table.clients.column.type'|trans }}</th>
-                            <th>{{ 'table.clients.column.bu'|trans }}</th>
-                            <th>{{ 'table.clients.column.ville_cp'|trans }}</th>
-                            <th>{{ 'table.clients.column.adresse'|trans }}</th>
-                            <th>{{ 'table.clients.column.phone'|trans }}</th>
-                            <th class="no-sort">{{ 'table.clients.column.action'|trans }}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% if clients %}
-                            {% for client in clients %}
-                            <tr>
-                                <td>{{ client[0].id }}</td>
-                                <td>{{ client[0].raisonSociale }}</td>
-                                <td>{% if client[0].type %}{{ client[0].type.label }}{% endif %}</td>
-                                <td>{% if client.nomBusinessUnit %}{{ client['nomBusinessUnit'] }}{% endif %}</td>
-                                <td>{{ client[0].ville }} - {{ client[0].cp }}</td>
-                                <td>{{ client[0].adr1 }}</td>
-                                <td>{{ client[0].tel }}</td>
-                                <td>
-                                    <ul class="icons-list">
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                '<i class="icon-menu9"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="{{ path('client_update_client', {id: client[0].id}) }}"><i class="glyphicon glyphicon-edit"></i> {{ "client.button.edit"|trans }}</a></li>
-                                                <li><a href="{{ path('client_delete_client', {id: client[0].id}) }}" onclick="return(confirm(\'Etes-vous sur ?\'))"><i class="glyphicon glyphicon-remove"></i> {{ "table.clients.column.remove"|trans }}</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        {% endif %}
-                        </tbody>
-                    </table>
                 </div>
-                <!-- /default ordering -->
 
+                <span class="hidden datatable_filter" data-filter="{{ 'table_mail.datatable.filter'|trans }}" data-textfilter="{{ 'table_mail.datatable.text_filter'|trans }}" data-show="{{ 'table_mail.datatable.show'|trans }}"></span>
+                <table class="table datatable-basic" id="table_client">
+                    {# {% if app.request.query.get('add') is defined and app.request.query.get('add') == "ok"  %}
+                        <caption>
+                            <h3 style="color: green; text-align: center;">{{ 'message.client.ajout'|trans }}</h3>
+                        </caption>
+                    {% endif %}
+                    {% if app.request.query.get('delete') is defined and app.request.query.get('delete') == "ok"  %}
+                        <caption>
+                            <h3 style="color: green; text-align: center;">{{ 'message.client.suppression'|trans }}</h3>
+                        </caption>
+                    {% endif %} #}
+                    <thead>
+                    <tr>
+                        {# <th>{{ 'table.clients.column.id'|trans }}</th> #}
+                        <th>{{ 'table.clients.column.raisonSociale'|trans }}</th>
+                        <th>{{ 'table.clients.column.type'|trans }}</th>
+                        <th>{{ 'table.clients.column.bu'|trans }}</th>
+                        <th>{{ 'table.clients.column.ville_cp'|trans }}</th>
+                        <th>{{ 'table.clients.column.adresse'|trans }}</th>
+                        <th>{{ 'table.clients.column.phone'|trans }}</th>
+                        <th class="no-sort">{{ 'table.clients.column.action'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if clients %}
+                        {% for client in clients %}
+                        <tr>
+                            <td>{{ client['relationBusinessEntite'].entite.raisonSociale }}</td>
+                            <td>
+                                {% if client['relationBusinessEntite'].relationsProfessionnelles %}{{ client['relationBusinessEntite'].relationsProfessionnelles.label }}{% endif %}</td>
+                            <td>{% if client['relationBusinessEntite'].businessUnit %}{{ client['relationBusinessEntite'].businessUnit.nomBusinessUnit }}{% endif %}</td>
+                            <td>{{ client['relationBusinessEntite'].entite.ville }} - {{ client['relationBusinessEntite'].entite.cp }}</td>
+                            <td>{{ client['relationBusinessEntite'].entite.adr1 }}</td>
+                            <td>{{ client['relationBusinessEntite'].entite.tel }}</td>
+                            <td>
+                                <ul class="icons-list">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-menu9"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="{{ path('client_update_client', {id: client['relationBusinessEntite'].entite.id}) }}"><i class="glyphicon glyphicon-edit"></i> {{ "client.button.edit"|trans }}</a></li>
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            <li><a href="{{ path('client_delete_client', {id: client['relationBusinessEntite'].entite.id}) }}" onclick="return(confirm(\'Etes-vous sur ?\'))"><i class="glyphicon glyphicon-remove"></i> {{ "table.clients.column.remove"|trans }}</a></li>
+                                            <li><a href="{{ path('client_delete_client', {id: client['relationBusinessEntite'].entite.id}) }}"><i class="icon-mail5"></i> {{ "client.add_button.mail"|trans }}</a></li>
+                                            <li><a href="#"><i class="icon-notebook"></i> {{ "client.add_button.note"|trans }}</a></li>
+                                            <li><a href="#"><i class="icon-attachment2"></i> {{ "client.add_button.document"|trans }}</a></li>
+                                            <li><a href="#"><i class="icon-calendar"></i> {{ "client.add_button.agenda"|trans }}</a></li>
+                                            <li><a href="#"><i class="icon-design"></i> {{ "client.add_button.activite"|trans }}</a></li>
+                                        {% endif %}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
+                    </tbody>
+                </table>
             </div>
-            <!-- /main content -->
-
+            <!-- /default ordering -->
         </div>
-        <!-- /page content -->
-
     </div>
-    <!-- /page container -->
-
+    <!-- /main content -->
+        
 {% endblock %}
 
 {% block javascripts %}

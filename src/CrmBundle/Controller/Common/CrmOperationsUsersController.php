@@ -16,6 +16,19 @@ use Symfony\Component\HttpFoundation\Request;
 class CrmOperationsUsersController extends Controller
 {
     /**
+     * Override method getUser parent
+     *
+     * @return UserClient
+     */
+    protected function getUser() {
+
+        $auth_checker = $this->get('security.authorization_checker');
+        if( $auth_checker->isGranted('ROLE_ADMIN') ) 
+            return true;
+        return $this->getDoctrine()->getRepository('UsersBundle:UserClient')->findOneBy(['id' => $this->container->get('session')->get('log')]);
+    }
+
+    /**
      * Lists all crmOperationsUser entities.
      *
      * @Route("/", name="crmoperationsusers_index")
@@ -24,8 +37,10 @@ class CrmOperationsUsersController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $user_id = is_object($this->getUser()) ? $this->getUser()->getId() : null;
+        $bu_id = $this->container->get('session')->get('BU');
 
-        $crmOperationsUsers = $em->getRepository('CrmBundle:Common\CrmOperationsUsers')->findAll();
+        $crmOperationsUsers = $em->getRepository('CrmBundle:Common\CrmOperationsUsers')->findAllBy($user_id, $bu_id);
         if( $crmOperationsUsers )
             foreach( $crmOperationsUsers as &$operationuser ) {
                 $crm = $em->getRepository('CrmBundle:Common\CrmDossier')->findOneBy(['id' => $operationuser->getIdCRM()]);

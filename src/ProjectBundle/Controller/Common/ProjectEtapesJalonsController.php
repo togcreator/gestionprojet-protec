@@ -31,8 +31,10 @@ class ProjectEtapesJalonsController extends Controller
         if( count($projectEtapesJalons) )
             foreach($projectEtapesJalons as &$jalons) {
                 $currentUser = \UsersBundle\Entity\Users::getCurrentUsers('id'); // current user 
-                $jalons->setProjet($em->getRepository('ProjectBundle:Common\Project')->findOneBy(['id' => $jalons->getIdProjectVersion()]));
-                if( $jalons->getProjet()->getIdCreateur() != $currentUser && $currentUser != 1 ) {
+                $projet = $em->getRepository('ProjectBundle:Common\Project')->findOneBy(['id' => $jalons->getIdProjectVersion()]);
+                $jalons->setProjet($projet);
+
+                if( $projet && $jalons->getProjet()->getIdCreateur() != $currentUser && $currentUser != 1 ) {
                     unset($jalons);
                     continue;
                 }
@@ -165,8 +167,27 @@ class ProjectEtapesJalonsController extends Controller
             // for idAgenda
             $projectEtapesJalon->setIdAgenda(0);
 
+            /**
+             * Pour project
+             */
+            $project = $em->getRepository('ProjectBundle:Common\Project')->findOneBy(['id' => $projectEtapesJalon->getIdProjectVersion()]);
+            $projectEtapesJalon->setProject($project);
+
+            /**
+             * Pour etape
+             */
+            $etape = $em->getRepository('ProjectBundle:Common\ProjectEtape')->findOneBy(['id' => $projectEtapesJalon->getIdEtape()]);
+            $projectEtapesJalon->setEtape($etape);
+
+            /**
+             * Pour resultat
+             */
+            $resultat = $em->getRepository('ProjectBundle:Back\Resultat')->findOneBy(['id' => $projectEtapesJalon->getIdResultat()]);
+            $projectEtapesJalon->setResultat($resultat);
+
+
             /* etape pour etape jalon */
-            $this->setEtape($projectEtapesJalon);
+            $this->setType($projectEtapesJalon);
 
             // flush etape jalon
             $em->persist($projectEtapesJalon);
@@ -212,14 +233,37 @@ class ProjectEtapesJalonsController extends Controller
      */
     public function editAction(Request $request, ProjectEtapesJalons $projectEtapesJalon)
     {
+        $em = $this->getDoctrine()->getmanager();
         $deleteForm = $this->createDeleteForm($projectEtapesJalon);
         $editForm = $this->createForm('ProjectBundle\Form\Common\ProjectEtapesJalonsType', $projectEtapesJalon, ['dataForm' => $this->dataForm()]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
 
-                        // redirect ot project
+            /**
+             * Pour project
+             */
+            $project = $em->getRepository('ProjectBundle:Common\Project')->findOneBy(['id' => $projectEtapesJalon->getIdProjectVersion()]);
+            $projectEtapesJalon->setProjet($project);
+
+            /**
+             * Pour etape
+             */
+            $etape = $em->getRepository('ProjectBundle:Common\ProjectEtape')->findOneBy(['id' => $projectEtapesJalon->getIdEtape()]);
+            $projectEtapesJalon->setEtape($etape);
+
+            /**
+             * Pour resultat
+             */
+            $resultat = $em->getRepository('ProjectBundle:Back\Resultat')->findOneBy(['id' => $projectEtapesJalon->getIdResultat()]);
+            $projectEtapesJalon->setResultat($resultat);
+
+            $em->persist($projectEtapesJalon);
+            $em->flush();
+
+            /**
+             * retour
+             */
             if( $request->get('idProjet') )
                 return $this->redirectToRoute('project_edit', ['id' => $projectEtapesJalon->getIdProjectVersion(), '_fragment' => 'jalon']);
 
@@ -288,8 +332,10 @@ class ProjectEtapesJalonsController extends Controller
     private function dataForm () 
     {
         $em = $this->getDoctrine()->getManager();
+        $bu_id = $this->container->get('session')->get('BU');
+
         return [
-            'projects'   => $em->getRepository('ProjectBundle:Common\Project')->findAll(),
+            'projects'   => $em->getRepository('ProjectBundle:Common\Project')->findByBU(null, $bu_id),
             'etapes'     => $em->getRepository('ProjectBundle:Common\ProjectEtape')->findAll(),
             'agendas'    => $em->getRepository('ProjectBundle:Agenda\AgendaWorker')->findAll(),
             'resultats'  => $em->getRepository('ProjectBundle:Back\Resultat')->findAll(),
@@ -313,16 +359,12 @@ class ProjectEtapesJalonsController extends Controller
     }
 
     // for project et etape
-    private function setEtape ($projectEtapesJalon) 
+    private function setType ($projectEtapesJalon) 
     {
         $em = $this->getDoctrine()->getManager();
         
         // popur type de jalon
         $typejapon = $em->getRepository('ProjectBundle:Back\Jalon')->findOneBy(['id' => $projectEtapesJalon->getIdTypeJalon()]);
         $projectEtapesJalon->setTypejalon($typejapon);
-
-        // pour resultat
-        $resultat = $em->getRepository('ProjectBundle:Back\Resultat')->findOneBy(['id' => $projectEtapesJalon->getIdResultat()]);
-        $projectEtapesJalon->setResultat($resultat);
     }
 }

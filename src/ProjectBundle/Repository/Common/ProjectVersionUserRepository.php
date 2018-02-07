@@ -36,17 +36,25 @@ class ProjectVersionUserRepository extends \Doctrine\ORM\EntityRepository
 	 * @param  array  $criteria [Critère de requête sql]
 	 * @return Array / null       
 	 */
-	public function findContact ($criteria = []) {
-		$user = $this->createQueryBuilder('p');
-		$user->innerJoin('UsersBundle:UserClient', 'u', Join::WITH, 'u.id = p.idUser');
-		$where = [];
-		foreach($criteria as $key => $value)
-			$where[] = "p.{$key} = :{$key}";
-		$implode = implode(' AND ', $where);
-		$user->where(($implode ? $implode : '1 = 1')  . ' AND u.iDNatureUser = :nature');
+	public function findContact ($project_id, $entite_id = null) {
+		$contact = $this->createQueryBuilder('p')
+			->select('u')
+			->innerJoin('UsersBundle:UserClient', 'u', Join::WITH, 'u.id = p.idUser');
 
-		$criteria['nature'] = 2;
-		$user->setParameters($criteria);
-		return $user->getQuery()->execute();
+		if( $entite_id ) {
+			$contact
+				->innerJoin('UsersBundle:RelationUserEntite', 'rue', Join::WITH, 'rue.iDUser = u.id')
+				->andWhere('rue.idEntiteJ = :entite_id')
+				->setParameter('entite_id', $entite_id);
+		}
+
+		$contact
+			->andWhere('u.iDNatureUser = 2 and p.idProjetVersion = :project_id')
+			->setParameter('project_id', $project_id);
+
+		return $contact
+			->orderBy('u.id', 'DESC')
+			->getQuery()
+			->execute();
 	}
 }

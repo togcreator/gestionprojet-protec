@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="pays")
  * @ORM\Entity(repositoryClass="ClientBundle\Repository\PaysRepository")
+ * @ProjectBundle\Annotation\Label\LabelClass
  */
 class Pays
 {
@@ -20,6 +21,11 @@ class Pays
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $codePays;
+
+    /**
+     * @var string
+     */
+    private $label;
 
     /**
      * @var string
@@ -187,6 +193,30 @@ class Pays
     public function getCodePays()
     {
         return $this->codePays;
+    }
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     *
+     * @return Pays
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
     }
 
     /**

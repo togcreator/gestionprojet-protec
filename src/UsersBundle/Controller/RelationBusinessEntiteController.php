@@ -24,7 +24,12 @@ class RelationBusinessEntiteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $relationBusinessEntites = $em->getRepository('UsersBundle:RelationBusinessEntite')->findAll();
+        $bu_id = $this->container->get('session')->get('BU');
+        $bu_id = $bu_id ? ['iDBusinessUnit' => $bu_id] : [];
+        $relationBusinessEntites = $em->getRepository('UsersBundle:RelationBusinessEntite')->findBy($bu_id);
+        if( $relationBusinessEntites ) 
+            foreach( $relationBusinessEntites as &$relation )
+                $relation->setRelationsProfessionnelles($em->getRepository('UsersBundle:Back\UsersParamRelationsProfessionnelles')->findOneBy(['id' => $relation->getIDRelationsProfessionnelles()]));
 
         return $this->render('UsersBundle:relationbusinessentite:index.html.twig', array(
             'relationBusinessEntites' => $relationBusinessEntites,
@@ -45,6 +50,18 @@ class RelationBusinessEntiteController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            /**
+             * est si existe
+             */
+            $bu_id = $relationBusinessEntite->getIDBusinessUnit();
+            $entite_id = $relationBusinessEntite->getIDentite();
+            $pro_id = $relationBusinessEntite->getIDRelationsProfessionnelles();
+            $rel = $em->getRepository('UsersBundle:RelationBusinessEntite')->findOneBy(['iDBusinessUnit' => $bu_id, 'iDentite' => $entite_id]);
+            if( $rel ) {
+                $relationBusinessEntite = $rel;
+                $relationBusinessEntite->setIDRelationsProfessionnelles($pro_id);
+            }
 
             //============================================
             $rp = $relationBusinessEntite->getIDRelationsProfessionnelles();
@@ -116,6 +133,9 @@ class RelationBusinessEntiteController extends Controller
             $em->persist($relationBusinessEntite);
             $em->flush();
 
+            if( ($iDEntite = $request->get('iDEntite')) )
+                return $this->redirectToRoute('client_update_client', ['id' => $iDEntite]);                
+
             return $this->redirectToRoute('relationbusinessentite_edit', array('id' => $relationBusinessEntite->getId()));
         }
 
@@ -142,6 +162,9 @@ class RelationBusinessEntiteController extends Controller
             $em->remove($relationBusinessEntite);
             $em->flush();
         }
+
+        if( ($iDEntite = $request->get('iDEntite')) )
+            return $this->redirectToRoute('client_update_client', ['id' => $iDEntite]);   
 
         return $this->redirectToRoute('relationbusinessentite_index');
     }
@@ -171,7 +194,7 @@ class RelationBusinessEntiteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         return [
-            'relationsProfessionnelles' => $em->getRepository('UsersBundle:Back\UsersParamRelationsProfessionnelles')->findAll(),
+            'relationsProfessionnelles' => $em->getRepository('UsersBundle:Back\UsersParamRelationsProfessionnelles')->findBy(['IDNatureUser' => 2]),
             'businessunits' => $em->getRepository('UsersBundle:BusinessUnit')->findAll(),
             'entites' => $em->getRepository('ClientBundle:Client')->findAll(),
         ];

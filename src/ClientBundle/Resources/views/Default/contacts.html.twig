@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} {{ 'title.list.clients'|trans }}{% endblock %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Default ordering -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'client.contacts.title'|trans }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                {# <li><a data-action="collapse"></a></li> #}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                    {% if Contacts %}
+                        <table class="table datatable-basic">
+                            <thead>
+                                <tr>
+                                    <th>{{ 'client.contacts.first_last_name'|trans }}</th>
+                                    <th>{{ 'client.contacts.fonction'|trans }}</th>
+                                    <th>{{ 'client.contacts.service'|trans }}</th>
+                                    <th>{{ 'client.contacts.entite'|trans }}</th>
+                                    <th>{{ 'client.contacts.nature'|trans }}</th>
+                                    <th>{{ 'client.contacts.bu'|trans }}</th>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <th  class="text-center no-sort">{{ 'projectdocs.actions'|trans({}, 'projectdocs') }}</th>
+                                {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for contacts in Contacts %}
+
+                                <tr>
+                                    <td>{{ contacts.firstname }} {{ contacts.lastname }}</td>
+                                    <td>{% if contacts['urf'] is defined and contacts['urf'] %}{{ contacts['urf'].label }}{% endif %}</td>
+                                    <td>{% if contacts['s'] is defined and contacts['s'] %}{{ contacts['s'].label }}{% endif %}</td>
+                                    <td>{{ contacts.raisonSociale }}</td>
+                                    <td>{% if contacts['upp'] is defined and contacts['upp'] %}{{ contacts['upp'].label }}{% endif %}</td>
+                                    <td>{{ contacts.nomBusinessUnit }}</td>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-menu9"></i>
+                                                </a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="{{ path('user_edit', { 'id': contacts.id}) }}"><i class="icon-pen"></i> {{ 'client.contacts.edit_button'|trans }}</a></li>
+                                                    <li><a href="{{ path('user_delete', {'id': contacts.id}) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'projectdocs.del_button'|trans({}, 'projectdocs') }}</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                {% endif %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <table class="table datatable-show-all">
+                            <thead>
+                                <tr>
+                                    <th>{{ 'client.contacts.first_last_name'|trans }}</th>
+                                    <th>{{ 'client.contacts.bu'|trans }}</th>
+                                    <th>{{ 'client.contacts.fonction'|trans }}</th>
+                                    <th>{{ 'client.contacts.service'|trans }}</th>
+                                    <th>{{ 'client.contacts.entite'|trans }}</th>
+                                    <th class="text-center no-sort">{{ 'projectdocs.actions'|trans({}, 'projectdocs') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6">{{ 'global.no_data'|trans }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

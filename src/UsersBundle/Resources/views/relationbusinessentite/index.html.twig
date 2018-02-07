@@ -18,20 +18,30 @@
                         <table class="table datatable-basic">
                             <thead>
                                 <tr>
-                                    <th>#</th>
                                     <th>{{ 'relationbusinessentite.entitej'|trans({}, 'relationbusinessentite') }}</th>
                                     <th>{{ 'relationbusinessentite.business'|trans({}, 'relationbusinessentite') }}</th>
                                     <th>{{ 'relationbusinessentite.relation'|trans({}, 'relationbusinessentite') }}</th>
-                                    <th>{{ 'global.actions'|trans }}</th>
+                                    <th class="no-sort">{{ 'global.actions'|trans }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                             {% for relation in relationBusinessEntites %}
                                 <tr>
-                                    <td>{{ relation.id }}</td>
-                                    <td>{{ relation.entite.raisonSociale }}</td>
-                                    <td>{{ relation.businessunit.nomBusinessUnit }}</td>
-                                    <td>{{ relation.relationsProfessionnelles.label }}</td>
+                                    <td>
+                                        {% if relation.entite %}
+                                            {{ relation.entite.raisonSociale }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if relation.businessunit %}
+                                            {{ relation.businessunit.nomBusinessUnit }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if relation.relationsProfessionnelles %}
+                                            {{ relation.relationsProfessionnelles.label }}
+                                        {% endif %}
+                                    </td>
                                     
                                     <td class="text-center">
                                         <ul class="icons-list">

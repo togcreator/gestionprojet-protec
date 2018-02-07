@@ -26,67 +26,64 @@
                     <div class="panel-body">
                         {{ form_start(form) }}
                             <fieldset class="content-group">
-                                <div class="form-group col-md-12">
-                                    {% set name = 'priorite.open'|trans({}, 'priorite') %}
-                                    {{ form_label(form.ouvert, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10">
-                                        {{ form_widget(form.ouvert, {'attr': {'class': 'form-control switchery'}}) }}
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'priorite.open'|trans({}, 'priorite') %}
+                                        {{ form_label(form.ouvert, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(form.ouvert, {'attr': {'class': 'form-control switchery'}}) }}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    {% set name = 'priorite.code'|trans({}, 'priorite') %}
-                                    {{ form_label(form.code, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10">
-                                        {{ form_widget(form.code, {'attr': {'class': 'form-control'}}) }}
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'priorite.label'|trans({}, 'priorite') %}
+                                        {{ form_label(form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(form.label, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    {% set name = 'priorite.label'|trans({}, 'priorite') %}
-                                    {{ form_label(form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10">
-                                        {{ form_widget(form.label, {'attr': {'class': 'form-control'}}) }}
+                                    <div class="form-group">
+                                        {% set name = 'priorite.couleur'|trans({}, 'priorite') %}
+                                        {{ form_label(form.couleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10" style="padding: 15px 0">
+                                            {{ form_widget(form.couleur, {'attr': {'class': 'form-control colorpicker-show-input'}}) }}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    {% set name = 'priorite.couleur'|trans({}, 'priorite') %}
-                                    {{ form_label(form.couleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10" style="padding: 15px 0">
-                                        {{ form_widget(form.couleur, {'attr': {'class': 'form-control colorpicker-show-input'}}) }}
+                                    <div class="form-group">
+                                        {% set name = 'priorite.obs'|trans({}, 'priorite') %}
+                                        {{ form_label(form.obs, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(form.obs, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    {% set name = 'priorite.obs'|trans({}, 'priorite') %}
-                                    {{ form_label(form.obs, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10">
-                                        {{ form_widget(form.obs, {'attr': {'class': 'form-control'}}) }}
+                                    <div class="form-group">
+                                        {% set name = 'priorite.delai'|trans({}, 'priorite') %}
+                                        {{ form_label(form.delai, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(form.delai, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    {% set name = 'priorite.delai'|trans({}, 'priorite') %}
-                                    {{ form_label(form.delai, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10">
-                                        {{ form_widget(form.delai, {'attr': {'class': 'form-control'}}) }}
+                                    <div class="form-group">
+                                        {% set name = 'priorite.nomcouleur'|trans({}, 'priorite') %}
+                                        {{ form_label(form.nomcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(form.nomcouleur, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    {% set name = 'priorite.nomcouleur'|trans({}, 'priorite') %}
-                                    {{ form_label(form.nomcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10">
-                                        {{ form_widget(form.nomcouleur, {'attr': {'class': 'form-control'}}) }}
+                                    <div class="form-group">
+                                        {% set name = 'priorite.imgcouleur'|trans({}, 'priorite') %}
+                                        {{ form_label(form.imgcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10"  style="padding: 15px 0">
+                                            {{ form_widget(form.imgcouleur, {'attr': {'class': 'form-control upload-file'}}) }}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    {% set name = 'priorite.imgcouleur'|trans({}, 'priorite') %}
-                                    {{ form_label(form.imgcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10"  style="padding: 15px 0">
-                                        {{ form_widget(form.imgcouleur, {'attr': {'class': 'form-control upload-file'}}) }}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    {% set name = 'priorite.logo'|trans({}, 'priorite') %}
-                                    {{ form_label(form.logo, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10" style="padding: 15px 0">
-                                        {{ form_widget(form.logo, {'attr': {'class': 'form-control upload-file'}}) }}
+                                    <div class="form-group">
+                                        {% set name = 'priorite.logo'|trans({}, 'priorite') %}
+                                        {{ form_label(form.logo, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10" style="padding: 15px 0">
+                                            {{ form_widget(form.logo, {'attr': {'class': 'form-control upload-file'}}) }}
+                                        </div>
                                     </div>
                                 </div>
                                 

@@ -1,108 +1,164 @@
 
 {% if Cycles %}
 
+	{# {% if Cycles.cycle_details|length > 4 %}
+		{% set col = '175px' %}
+	{% else if %}
+		{% set col = '33.3%' %}
+	{% endif %} #}
 	{% if Cycles.cycle_details|length > 4 %}
-		{% set col = 'col-lg-2' %}
+		{% set width = 20 * Cycles.cycle_details|length %}
+		{% set col = 14 %}
 	{% else %}
-		{% set col = 'col-lg-3' %}
+		{% set col = 100 / Cycles.cycle_details|length %}
+		{% set width = 100 %}
 	{% endif %}
+
 
 	{% set color = {0: 'bg-blue-400', 1: 'bg-pink-400', 2: 'bg-teal-400', 3: 'bg-orange-400'} %}
 	{% set color_index = 0 %}
 
-	<div class="col-xs-12">
-	    <div class="col-lg-12">
-		    {% for detail in Cycles.cycle_details %}
-		    <div class="col-sm-6 {{ col }}">
-		        <div class="panel-heading {{ color[color_index] }}" style="padding: 10px 15px">
-		            <i class="icon-cog4 icon-1x position-left"></i>
-		            <span class="heading-text text-size-large text-bold">{{ detail.label|capitalize }}</span>
-		        </div>
-		    </div>
-		    {% if color_index >= 3 %}{% set color_index = 0 %}
-		    {% else %}{% set color_index = color_index + 1 %}{% endif %}
-			{% endfor %}
-		</div>
-		
+	{% set detail_index = 0 %}
+	{% set details_index = [] %}
+
+	{% if Cycles.cycle_details|length > 6  %}
+		<div class="" style="clear: both; overflow: hidden; overflow-x: auto">
+		    <div class="">
+	{% else %}
 		<div class="col-lg-12">
-			{% for detail, crms in Cycles.byDetails %}
-	            <div class="col-lg-12">
-				{% for detail_key, operations in crms %}
-	                
-					{% set operation_length = operations|length %}
-					{% if operation_length >= 1 %}
-	                     
-						{% for key, operation in operations %}
+	    	<div class="col-lg-12">
+	{% endif %}
+		
+		<div class="" style="overflow: hidden; overflow-x: auto; width: {{ width }}%; ">
 
-								{% if o_i is defined and o_i != detail_key %}
-							    	</div>
-							    {% endif %}
+		{% for details in Cycles.cycle_details %}
+			<div style="width: {{ col }}%; float: left; padding: 5px" detail="{{ details.id }}">
+				<div class="" >
+			        <div class="panel-heading {{ color[color_index] }}" style="padding: 10px 15px">
+			            <i class="icon-cog4 icon-1x position-left"></i>
+			            <span class="heading-text text-size-large text-bold">{{ details.label|capitalize }}</span>
+			        </div>
+			    </div>	
 
-							    {% if o_i is not defined or o_i != detail_key %}
-								<div class="col-sm-6 {{ col }}" style="margin-top: 10px">
+			    {# <br/> #}
+
+			    {% if color_index >= 3 %}{% set color_index = 0 %}
+			    {% else %}{% set color_index = color_index + 1 %}{% endif %}
+
+				{% for detail, crms in Cycles.byDetails %}
+
+		            {# <div class="col-lg-12"> #}
+					{% for detail_key, operations in crms %}
+		                
+						{% set operation_length = operations|length %}
+						{% if operation_length >= 1 %}
+		                     
+							{% for key, operation in operations %}
+								{% if detail_key == details.id %}
+									{# {% if o_i is defined and o_i != detail_key %}
+								    	</div>
+								    {% endif %} #}
+
+								    {# {% if o_i is not defined or o_i != detail_key %} #}
+									<div class="" style="width: 100%; float: left; {# margin-top: 10px; #} padding: 5px">
+									{# {% endif %} #}
+
+								        <div class="thumbnail" style="margin: 0" {# detail="{{ operation.idCycledetail }}" #}>
+								            <div class="caption" style="padding: 0 17px">
+								                <div class="content-group-sm media">
+								                    <div class="media-body">
+								                        <h6 class="text-semibold no-margin">
+								                        	{% if operation.label is defined %}
+		                                                    <a href="{{ path('crmdossier_edit', {id: operation.id })}}" target="_blank">
+		                                                    {% else %}
+		                                                    <a href="{{ path('crmetapesoperations_edit', {id: operation.id })}}"  target="_blank">
+		                                                    {% endif %}
+
+		                                                    	{% set format = 'Y-m-d' %}
+		                                                    	{% if app.request.locale == 'fr' %}{% set format = 'd-m-Y' %}{% endif %}
+		                                                    	{% set datefin = operation.datefinreelle|date(format) %}
+
+		                                                    	{% if  datefin and (datefin != '-0001-11-30' or datefin != '30-11-0001') %}
+		                                                    		{{ operation.datefinreelle|date(format) }} :
+		                                                    	{% else %}
+		                                                    		{{ operation.datefinprevue|date(format) }} :
+		                                                    	{% endif %}
+		                                                    	{# <br/> #}
+
+		                                                    	{% if operation.label is defined %}
+		                                                    		{{ operation.label }} / 
+		                                                    		{% if operation.entite %}
+			                                                    		{{ operation.entite.raisonSociale }}
+			                                                    	{% endif %}
+		                                                    	{% endif %}
+
+		                                                    	{% if operation.objet is defined %}
+			                                                    	{{ operation.objet }}
+			                                                    {% endif %}
+
+		                                                    </a>
+								                        </h6>
+								                    </div>
+								                </div>
+								            </div>
+
+								            <div class="panel-footer panel-footer-transparent" style="padding-bottom: 0">
+								                <div class="heading-elements" style="margin-top: 0">
+
+								                    <span class="heading-text pull-left" style="margin-top: 0">
+								                        <ul class="list-inline list-inline-separate heading-text" style="margin: 0">
+								                            <li>
+								                            	{% if operation.docEnvoyes is defined %}
+									                                {% if operation.docEnvoyes|length and operation.label is defined %}
+									                                	<a href="{{ path('crmdocsenvoyes_index', {'idCRM': operation.id}) }}"  target="_blank">
+									                                {% elseif operation.docEnvoyes|length and operation.objet is defined %}
+									                                	<a href="{{ path('crmdocsenvoyes_index', {'idOperation': operation.id}) }}"  target="_blank">
+									                                {% endif %}
+									                             {% endif %}
+								                                <i class="icon-folder-upload position-left" style="margin-right: 10px" title="{{ 'crmdocsenvoyes.title'|trans({}, 'crmdocsenvoyes')}}"></i> 
+								                                {% if operation.docEnvoyes is defined %} </a> {% endif %}
+								                            </li>
+								                            <li>
+								                            	{% if operation.docRecus is defined %}
+									                                {% if operation.docRecus|length and operation.label is defined %}
+									                                	<a href="{{ path('crmdocsrecus_index', {'idCRM': operation.id}) }}" target="_blank">
+									                                {% elseif operation.docRecus|length and operation.objet is defined %}
+									                                	<a href="{{ path('crmdocsrecus_index', {'idOperation': operation.id}) }}"  target="_blank">
+									                                {% endif %}
+									                             {% endif %}
+								                                <i class="icon-folder-download position-left" style="margin-right: 10px" title="{{ 'crmdocsrecus.title'|trans({}, 'crmdocsrecus')}}"></i> 
+								                                {% if operation.docRecus is defined %} </a> {% endif %}
+								                            </li>
+
+								                            {% if operation.label is defined %}
+								                            <li>
+		                                                        <a href="{{ path('crmetapesoperations_index', {'idCRM': operation.id}) }}" title="{{ 'crmetapesoperations.title'|trans({}, 'crmetapesoperations') }}">
+		                                                        	<i class="icon-folder-open position-left" style="margin-right: 10px"></i> 
+		                                                        </a>
+		                                                    </li>
+		                                                	{% endif %}
+		                                                    
+								                        </ul>
+								                    </span>
+
+								                </div>
+								            </div>
+								        </div>
+										{% set o_i = detail_key %}
+									</div>
 								{% endif %}
+						    {% endfor %} 
+		                   {# </div> #}
+						{# {% else %}
+							<div class ="" style="width: {{ col }}; float: left; margin-top: 10px; padding: 5px; display: block"></div>#}
+						{% endif %}
+				    {% endfor %}
+		            {# </div> #}
 
-							        <div class="thumbnail">
-							            <div class="caption" style="padding: 10px 17px">
-							                <div class="content-group-sm media">
-							                    <div class="media-body">
-							                        <h6 class="text-semibold no-margin">
-	                                                    <a href="{{ path('crmetapesoperations_edit', {id: operation.id })}}">
-	                                                    	{% set format = 'Y-m-d' %}
-	                                                    	{% if app.request.locale == 'fr' %}{% set format = 'd-m-Y' %}{% endif %}
-	                                                    	{% set datefin = operation.datefinreelle|date(format) %}
 
-	                                                    	{% if  datefin and (datefin != '-0001-11-30' or datefin != '30-11-0001') %}
-	                                                    		{{ operation.datefinreelle|date(format) }} :
-	                                                    	{% else %}
-	                                                    		{{ operation.datefinprevue|date(format) }} :
-	                                                    	{% endif %}
-	                                                    	<br/>
-	                                                    	{{ operation.objet }} / 
-	                                                    	{% if operation.crm %}
-	                                                    		{{ operation.crm.entite.raisonSociale }}
-	                                                    	{% endif %}
-	                                                    </a>
-							                        </h6>
-							                    </div>
-							                </div>
-							            </div>
-
-							            <div class="panel-footer panel-footer-transparent" {# {% if img is defined %}style="margin-top: 0"{% endif %} #} >
-							                <div class="heading-elements">
-
-							                    <span class="heading-text pull-left">
-							                        <ul class="list-inline list-inline-separate heading-text" style="margin-left: 0{# {% if img is defined %};margin-top: 0{% endif %} #}">
-	                                                    <li>
-	                                                        {# {% if etape.notes|length > 0 %}<a href="{{ path('projectnotes_index', {'idEtape': etape.id}) }}">{% endif %} #}
-	                                                        <i class="icon-file-text position-left" style="margin-right: 10px"></i> {# ({{ etape.notes|length }}) #}
-	                                                        {# {% if etape.notes|length > 0 %}</a>{% endif %} #}
-	                                                    </li>
-
-							                            <li>
-							                                {% if operation.docs > 0 %}
-							                                	<a href="{{ path('pipeline_attach', {'id': operation.id}) }}" data-target="#modal_remote" data-toggle="modal">
-							                                {% endif %}
-							                                <i class="icon-attachment position-left" style="margin-right: 10px"></i> 
-							                                {% if operation.docs > 0 %}</a>{% endif %}
-							                            </li>
-	                                                    
-							                        </ul>
-							                    </span>
-
-							                </div>
-							            </div>
-							        </div>
-								{% set o_i = detail_key %}
-					    {% endfor %} 
-	                   </div>
-					{% else %}
-						<div class="col-sm-6 {{ col }}"></div>
-					{% endif %}
-	                
-			    {% endfor %}
-	            </div>
-			{% endfor %}
+				{% endfor %}
+			</div>
+		{% endfor %}
 		</div>
 	</div>
 {% endif %}

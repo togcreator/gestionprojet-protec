@@ -21,7 +21,7 @@
             <!-- Main content -->
             <div class="content-wrapper">
 
-                {{ form_start(edit_form) }}
+                {{ form_start(edit_form, {'attr': {'id': 'form_edit'}}) }}
 
                 <!-- Form horizontal -->
                 <div class="panel panel-white">
@@ -45,7 +45,7 @@
                                     {{ form_label(edit_form.idProjectVersion, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                     <div class="col-lg-10">
                                         <span class="input-group-addon">
-                                        {{ form_widget(edit_form.idProjectVersion, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_widget(edit_form.idProjectVersion, {'attr': {'class': 'form-control select2-search'}}) }}
                                         </span>
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                                     {{ form_label(edit_form.idEtape, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                     <div class="col-lg-10">
                                         <span class="input-group-addon">
-                                        {{ form_widget(edit_form.idEtape, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_widget(edit_form.idEtape, {'attr': {'class': 'form-control select2-search'}}) }}
                                         </span>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                     {{ form_label(edit_form.idTypeJalon, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                     <div class="col-lg-10">
                                         <span class="input-group-addon">
-                                        {{ form_widget(edit_form.idTypeJalon, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_widget(edit_form.idTypeJalon, {'attr': {'class': 'form-control select2-search'}}) }}
                                         </span>
                                     </div>
                                 </div>
@@ -134,7 +134,7 @@
                                         {{ form_label(edit_form.idResultat, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                         <div class="col-lg-10">
                                             <span class="input-group-addon">
-                                            {{ form_widget(edit_form.idResultat, {'attr': {'class': 'form-control'}}) }}
+                                            {{ form_widget(edit_form.idResultat, {'attr': {'class': 'form-control select2-search'}}) }}
                                             </span>
                                         </div>
                                     </div>
@@ -180,6 +180,13 @@
                                                     $('[name*="[idEtape]"]').append('<option value="'+i+'">'+response.data[i]+'</option>').focus();
                                             }
                                         });
+                                });
+
+                                $('#form_edit').on('submit', function(e){
+                                    e.preventDefault();
+
+                                    $('[name*="[idProjectVersion]"]').removeAttr('disabled');
+                                    this.submit();
                                 });
                             }(jQuery))
                         </script>

@@ -10,7 +10,9 @@
                         <h5 class="panel-title">{{ 'userclient.edition'|trans({}, 'userclient') }}</h5>
                         <div class="heading-elements">
                             <ul class="icons-list">
-                                <li><a data-action="close" href="{{ path('user_index') }}"></a></li>
+                                {% if is_granted('ROLE_ADMIN') %} {% set url = path('user_index') %}
+                                {% else %} {% set url = path('homepage') %} {% endif %}
+                                <li><a data-action="close" href="{{ url }}"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -123,7 +125,7 @@
                                                 {% set name = 'userclient.ville'|trans({}, 'userclient') %}
                                                 {{ form_label(edit_form.ville, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
                                                 <div class="col-lg-8">
-                                                    {{ form_widget(edit_form.cp, {'attr': {'class': 'form-control' }}) }}
+                                                    {{ form_widget(edit_form.cp, {'attr': {'class': 'form-control select2-search' }}) }}
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-6 col-xs-12">
@@ -178,7 +180,7 @@
                                                 {% set name = 'userclient.iDNatureUser'|trans({}, 'userclient') %}
                                                 {{ form_label(edit_form.iDNatureUser, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
                                                 <div class="col-lg-8">
-                                                    {{ form_widget(edit_form.iDNatureUser, {'attr': {'class': 'form-control' }}) }}
+                                                    {{ form_widget(edit_form.iDNatureUser, {'attr': {'class': 'form-control select2-search' }}) }}
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-6 col-xs-12">
@@ -216,13 +218,106 @@
                                         </div>
                                     </fieldset>
                                     <fieldset>
-                                        <legend class="text-bold">{{ 'userclient.relation_utilisateur'|trans({}, 'userclient')}}</legend>
+                                        <legend class="text-bold">{{ 'client.fiche.relation_fonction_list'|trans }}</legend>
+                                        <div class="row">
+
+                                            {% if r_users is defined and userClient.iDNatureuser == 2 %}
+                                            <table class="table datatable-basic" id="table_contact">
+                                                <thead>
+                                                    <tr>
+                                                        <th>{{ 'relationbusinessentite.entitej'|trans({}, 'relationbusinessentite') }}</th>
+                                                        <th>{{ 'relationbusinessentite.iDRelationsProfessionnelles'|trans({}, 'relationbusinessentite') }}</th>
+                                                        <th>{{ 'relationbusinessentite.fonction'|trans({}, 'relationbusinessentite') }}</th>
+                                                        <th>{{ 'relationbusinessentite.service'|trans({}, 'relationbusinessentite') }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% if r_users is defined %}
+                                                    {% for r_bu in r_users %}
+                                                    <tr>
+                                                        <td>{{ r_bu.businessEntite.entite.raisonSociale }}</td>
+                                                        <td>{{ r_bu.nomBusinessUnit }}
+                                                            {% if r_bu.businessEntite.relationsProfessionnelles %}
+                                                                - {{ r_bu.businessEntite.relationsProfessionnelles.label }}</td>
+                                                            {% endif %}
+                                                        <td>{% if r_bu.businessEntite.entite.relationsProfessionnelles is defined %}{{ r_bu.businessEntite.entite.relationsProfessionnelles.label }}{% endif %}</td>
+                                                        <td>{% if r_bu.businessEntite.entite.relationsProfessionnelles is defined and r_bu.businessEntite.entite.relationsProfessionnelles.service %}{{ r_bu.businessEntite.entite.relationsProfessionnelles.service.label }}{% endif %}</td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <tr>
+                                                        <td colspan="3">{{ 'global.no_data'|trans }}</td>
+                                                    </tr>
+                                                {% endif %}
+                                                </tbody>
+                                            </table>
+                                            {% endif %}
+
+                                            {% if r_users is defined and userClient.iDNatureuser == 1 %}
+                                            <table class="table datatable-basic" id="table_client">
+                                                <thead>
+                                                    <tr>
+                                                        <th>{{ 'relationbusinessentite.iDBusinessUnit'|trans({}, 'relationbusinessentite') }}</th>
+                                                        <th>{{ 'relationbusinessentite.fonction'|trans({}, 'relationbusinessentite') }}</th>
+                                                        <th>{{ 'relationbusinessentite.service'|trans({}, 'relationbusinessentite') }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% if r_users is defined %}
+                                                    {% for r_bu in r_users %}
+                                                    <tr>
+                                                        <td>{{ r_bu.nomBusinessUnit }}</td>
+                                                        <td>{% if r_bu.businessUser.relationsFonctionnelles %}
+                                                            {{ r_bu.businessUser.relationsFonctionnelles.label }}
+                                                            {% endif %}
+                                                        </td>
+                                                        <td>{% if r_bu.businessUser.relationsFonctionnelles and r_bu.businessUser.relationsFonctionnelles.service  %}
+                                                            {{ r_bu.businessUser.relationsFonctionnelles.service.label }}
+                                                            {% endif %}
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <tr>
+                                                        <td colspan="3">{{ 'global.no_data'|trans }}</td>
+                                                    </tr>
+                                                {% endif %}
+                                                </tbody>
+                                            </table>
+                                            {% endif %}
+
+                                            <script type="text/javascript"> 
+                                                var bSort = false, searching = false, paging = false;
+
+                                            </script>
+                                        </div>
+                                        <br/><br/>
+
+                                        <legend class="text-bold">{{ 'userclient.relation_fonction'|trans({}, 'userclient')}}</legend>
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                {% set name = 'relationuserentite.idEntiteJ'|trans({}, 'relationuserentite') %}
+                                                {{ form_label(edit_form.iDEntite, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.iDEntite, {'attr': {'class': 'form-control select2-search' }}) }}
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="form-group col-xs-12">
                                                 {% set name = 'relationbusinessuser.iDBusinessUnit'|trans({}, 'relationbusinessuser') %}
                                                 {{ form_label(edit_form.iDBusinessUnit, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                                 <div class="col-lg-10">
                                                     {{ form_widget(edit_form.iDBusinessUnit, {'attr': {'class': 'form-control select2-search' }}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                {% set name = 'userclient.r_bu_entitej'|trans({}, 'userclient') %}
+                                                {{ form_label(edit_form.r_bu_entitej, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                                <div class="col-lg-10">
+                                                    {{ form_widget(edit_form.r_bu_entitej, {'attr': {'class': 'form-control select2-search' }}) }}
                                                 </div>
                                             </div>
                                         </div>
@@ -235,6 +330,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                     </fieldset>
                                     <br/>
                                     <button type="submit" class="btn btn-primary" value="Edit">
@@ -242,6 +338,97 @@
                                         <i class="icon-arrow-right14 position-right"></i>
                                     </button>
                                 {{ form_end(edit_form, {'render_rest': true}) }}
+                                <script type="text/javascript">
+                                    (function($){
+                                        var title = ['{{ 'userclient.relation_fonction'|trans({}, 'userclient')}}', '{{ 'userclient.relation_profession'|trans({}, 'userclient')}}'];
+
+                                        var change = {
+                                            init: function(){
+                                                var parent = $(this).parents('fieldset').parent().find('fieldset:last');
+
+                                                var salarie = {
+                                                    actif: [$('[name*="[iDBusinessUnit]"]')],
+                                                    deactif: [$('[name*="[iDEntite]"]'), $('[name*="[r_bu_entitej]"]')]
+                                                }, 
+                                                contact = {
+                                                    actif: [$('[name*="[iDEntite]"]'), $('[name*="[r_bu_entitej]"]')],
+                                                    deactif: [$('[name*="[iDBusinessUnit]"]')]
+                                                };
+
+                                                var nature = $(this).val();
+                                                if( nature == 1 ) {
+                                                    $('#table_contact').hide();
+                                                    $('#table_client').show();
+
+
+                                                    parent.find('legend').html(title[0]);
+                                                    $(salarie.actif).each(function(self){
+                                                        $(this).parents('.form-group').show();
+                                                    });
+                                                    $(salarie.deactif).each(function(self){
+                                                        $(this).parents('.form-group').hide();
+                                                    });
+                                                }
+
+                                                if( nature == 2 ) {
+                                                    $('#table_client').hide();
+                                                    $('#table_contact').show();
+
+                                                    parent.find('legend').html(title[1]);
+                                                    $(contact.actif).each(function(self){
+                                                        // console.log(this);
+                                                        $(this).parents('.form-group').show();
+                                                    });
+                                                    $(contact.deactif).each(function(self){
+                                                        $(this).parents('.form-group').hide();
+                                                    });
+                                                }
+                                            }
+                                        };
+
+                                        /* initalize and event */
+                                        var nature = $('[name*="[iDNatureUser]"]');
+                                        change.init.apply(nature);
+                                        nature.on('change', change.init);
+
+                                        /* change entite */
+                                        $(function($){
+
+                                            $('[name*="[iDEntite]"]').on('change', function(){
+                                                if( this.value == 0 ) return;
+
+                                                $.ajax({
+                                                    url: '{{ path('user_ajax_entite') }}',
+                                                    data: {entite_id: this.value},
+                                                    success: function(response){
+                                                        if( !response ) return;
+
+                                                        var r_bu_entitej = $('[name*="[r_bu_entitej]"]');
+                                                        r_bu_entitej.find('option:not(:first)').remove();
+
+                                                        var option = '';
+                                                        for(var i in response ) {
+                                                            r_bu_entitej.append('<option value="' + i + '">' + response[i] + '</option>');
+                                                        }
+                                                    }
+                                                });
+                                            });
+
+                                            var codepostal_ville = {
+                                                {% for code in codePostal %}
+                                                    {{ code.id }}: '{{ code.ville }}',
+                                                {% endfor %}
+                                            };
+                                            $('[name*="[cp]"]').on('change', function() {
+                                                if( this.value == 0 ) return;
+                                                
+                                                $('[name*="[ville]"]').val( codepostal_ville[this.value] );
+                                            });
+
+                                        }(jQuery));
+
+                                    }(jQuery))
+                                </script>
                                 </div>
                             </div>
                         </div>

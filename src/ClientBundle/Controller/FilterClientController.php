@@ -42,19 +42,25 @@ class FilterClientController extends Controller
         $form->handleRequest($request);
 
         // form
-        if( !$form->isSubmitted() && !$form->isValid() )
-            return $this->render('ClientBundle:Default:filter_client.html.twig', ['form' => $form->createView()]);
+        if( !$form->isSubmitted() && !$form->isValid() ) {
+            if( $request->isXmlHttpRequest() ) return $this->render('ClientBundle:Default:filter_client.html.twig', ['form' => $form->createView()]);
+            else return $this->redirectToRoute('client_liste_clients');
+        }
 
         /* pour resultat du filtre */
         $clients = [];
         if( $clientFilter->getIdUser() )
             $clients = $this->search($clientFilter);
 
-        // $em->persist($clientFilter);
-        // $em->flush();
+        if($clients) {
+            foreach($clients as $key => &$client)
+                if( isset($client[0]) ) {
+                    $client[0]->setRelationsProfessionnelles($em->getRepository('UsersBundle:Back\UsersParamRelationsProfessionnelles')->findOneBy(['id' => (int)$client[0]->getIDRelationsProfessionnelles()]));
+                }
+        }
 
-        // /* flusher */
-        return $this->render('ClientBundle:Default:clients.html.twig', ['clients' => $clients]);
+        /* flusher */
+        return $this->render('ClientBundle:Default:clients.html.twig', ['filtre' => true, 'clients' => $clients]);
 	}
 
 	/**

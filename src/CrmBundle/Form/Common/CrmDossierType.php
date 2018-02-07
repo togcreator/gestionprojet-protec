@@ -51,8 +51,10 @@ class CrmDossierType extends AbstractType
     private function setEntite ($entites) {
         $return = ['global.none' => 0];
         if(count($entites)) {
-            foreach($entites as $entite)
-                $return[$entite[0]->getRaisonSociale()] = $entite[0]->getId();
+            foreach($entites as $entite) {
+                if( isset($entite['relationBusinessEntite']) )
+                    $return[$entite['relationBusinessEntite']->getEntite()->getRaisonSociale()] = $entite['relationBusinessEntite']->getEntite()->getId();
+            }
         }
         return $return;
     }

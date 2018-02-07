@@ -31,7 +31,7 @@ class ProjectEtapesOperationsUsersType extends AbstractType
         $etapes = Utils::Array_extract($options['dataForm']['etapes'], ['key' => 'getObject', 'value' => 'getId']);
         $operations = Utils::Array_extract($options['dataForm']['operations'], ['key' => 'getObject', 'value' => 'getId']);
         $roles = Utils::Array_extract($options['dataForm']['roles'], ['key' => 'getLabel', 'value' => 'getId']);
-        $users = Utils::Array_extract($options['dataForm']['users'], ['key' => 'getUsername', 'value' => 'getId']);
+        $users = Utils::Array_extract($options['dataForm']['users'], ['key' => ['getFirstname', 'getLastname'], 'value' => 'getId']);
         // for date
         $this->setDate($options['data']);
         // pour disable le projet

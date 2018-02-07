@@ -71,19 +71,17 @@ class ListeClientController extends Controller
     
     public function listeClientAction() {
 
+        $em = $this->getDoctrine()->getManager();
         $bu_id = $this->container->get('session')->get('BU');
-        $admin = $bu_id == null ? true : false;
+        $clients = $em->getRepository('ClientBundle:Client')->findByBU(null, $bu_id);
 
-        $clients = $this->getDoctrine()->getRepository('ClientBundle:Client')->findByBU($admin ? -1 : $bu_id);
+        $return = [];
         if($clients) {
-            foreach($clients as $client)
-                if( isset($client[0]) ){
-                    $pro_id = $client['id'];
-                    $pro = $this->getDoctrine()->getRepository('UsersBundle:Back\UsersParamRelationsProfessionnelles')->findOneBy(['id' => $pro_id]);
-                    $client[0]->setType($pro);
+            foreach($clients as $key => &$client)
+                if( isset($client[0]) ) {
+                    $client[0]->setRelationsProfessionnelles($em->getRepository('UsersBundle:Back\UsersParamRelationsProfessionnelles')->findOneBy(['id' => (int)$client[0]->getIDRelationsProfessionnelles()]));
                 }
         }
-
         return $this->render('ClientBundle:Default:clients.html.twig', array('clients' => $clients));
     }
 }

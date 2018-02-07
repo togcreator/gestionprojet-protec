@@ -24,6 +24,7 @@ crmdocsrecus.nomdoc: Nom du document
 crmdocsrecus.idTypedoc: Type du document
 crmdocsrecus.dateReception: Date de réception
 crmdocsrecus.version: Version
+crmdocsrecus.download: Téléchargement
 crmdocsrecus.confirm_delete: Voulez vous supprimer ce document ?
 
 # button

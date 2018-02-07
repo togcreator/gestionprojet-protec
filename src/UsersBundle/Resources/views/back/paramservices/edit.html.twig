@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# adding head of header page #}
+    {% include 'header.html.twig' %}
+
+    <div class="page-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Form horizontal -->
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">{{ 'paramservices.edition'|trans([], 'paramservices') }}</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="close" href="{{ path('paramservices_index') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        {{ form_start(edit_form) }}
+                            <fieldset class="content-group">
+
+                                <div class="row">
+                                    <div class="form-group" style="padding: 15px 0">
+                                        {% set name = 'paramservices.ouvert'|trans([], 'paramservices') %}
+                                        {{ form_label(edit_form.ouvert, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.ouvert, {'attr': {'class': 'form-control switchery'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'paramservices.label'|trans([], 'paramservices') %}
+                                        {{ form_label(edit_form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.label, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group" style="padding: 15px 0">
+                                        {% set name = 'paramservices.img'|trans([], 'paramservices') %}
+                                        {{ form_label(edit_form.img, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {% if isFile(edit_form.vars.value.img) %}
+                                                {% set preview = asset('uploads/' ~ edit_form.vars.value.img )|default('') %}
+                                            {% else %}
+                                                {% set preview = '' %}
+                                            {% endif %}
+                                            {% if preview %}{% set filetype = 'image' %}{% endif %}
+                                            {{ form_widget(edit_form.img, {'attr': {'class': 'form-control upload-file', 'data-preview': preview|default(''),  'filetype': filetype|default('')}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'paramservices.obs'|trans([], 'paramservices') %}
+                                        {{ form_label(edit_form.obs, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.obs, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group" style="padding: 15px 0">
+                                        {% set name = 'paramservices.valide'|trans([], 'paramservices') %}
+                                        {{ form_label(edit_form.valide, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(edit_form.valide, {'attr': {'class': 'form-control switchery'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">{{ 'paramservices.save_button'|trans([], 'paramservices') }} <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+                        {{ form_end(edit_form, {'render_rest': true}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

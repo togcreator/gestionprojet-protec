@@ -16,22 +16,20 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class CrmEtapesOperationsController extends Controller
 {
-        /**
+    /**
     * Override method getUser parent
     *
     * @return UserClient
     */
     protected function getUser() {
-        //==============================================
-        // $user = parent::getUser();
-        $session_id = $this->container->get('session')->get('log');
-        $bu_id = $this->container->get('session')->get('BU');
-        $manager = $this->getDoctrine()->getManager();
-        dump($session_id);
-        // $login = $manager->getRepository('UsersBundle:UserClient')->findOneBy(['iDCompte' => $session_id]);
-        $return = $manager->getRepository('UsersBundle:UserClient')->findBBU($session_id, $bu_id, true);
 
-       return $return;
+        $auth_checker = $this->get('security.authorization_checker');
+        if( $auth_checker->isGranted('ROLE_ADMIN') ) 
+            return true;
+        
+        $user_id = parent::getUser()->getId();
+        $bu_id = $this->container->get('session')->get('BU');
+        return $this->getDoctrine()->getRepository('UsersBundle:UserClient')->findUserByCompte($bu_id, $user_id);
     }
 
     /**
@@ -45,8 +43,15 @@ class CrmEtapesOperationsController extends Controller
         $em = $this->getDoctrine()->getManager();
         $orderby = $request->get('orderby') ? $request->get('orderby') : 'idCRM';
 
+        $by = [];
+        $user_id = is_object($this->getUser()) ? $this->getUser()->getId() : null;
+        $bu_id = $this->container->get('session')->get('BU');
+
+        if( ($idCRM = $request->get('idCRM')) )
+            $by = ['idCRM' => $idCRM];
+
         $operations = [];
-        $crmEtapesOperations = $em->getRepository('CrmBundle:Common\CrmEtapesOperations')->findAll();
+        $crmEtapesOperations = $em->getRepository('CrmBundle:Common\CrmEtapesOperations')->findAllBy($by, $user_id, $bu_id);
         if( $crmEtapesOperations )
             foreach($crmEtapesOperations as $key => $operation) 
             {
@@ -310,17 +315,19 @@ class CrmEtapesOperationsController extends Controller
     private function dataForm ($id_entite_juridique, $id_cycle, $idCycleDetail)
     {
         $em = $this->getDoctrine()->getManager();
+        $bu_id = $this->container->get('session')->get('BU');
+        $user_id = is_object($this->getuser()) ? $this->getUser()->getId() : null;
+
         return [
-            'crms' => $em->getRepository('CrmBundle:Common\CrmDossier')->findAll(),
-            'etapes' => $em->getRepository('CrmBundle:Common\CrmEtapes')->findAll(),
+            'crms' => $em->getRepository('CrmBundle:Common\CrmDossier')->findAllBy($user_id, $bu_id),
             'cyclesdetails' => $em->getRepository('CrmBundle:Back\CrmParamCyclesDetails')->findBy(['idCycle' => $id_cycle]),
             'detailActivity' => $em->getRepository('CrmBundle:Back\CrmParamCyclesDetailsActivity')->findBy(['idCycle' => $id_cycle, 'idCycledetail' => $idCycleDetail]),
             'resultats' => $em->getRepository('CrmBundle:Back\CrmParamResultat')->findAll(),
             'users'     => $em->getRepository('UsersBundle:UserClient')->findEmploye(),
-            'statuts' => $em->getRepository('CrmBundle:Back\CrmParamStatut')->findAll(),
+            'statuts' => $em->getRepository('CrmBundle:Back\CrmParamStatut')->findBy(['ouvert' => 1]),
             'alertes' => $em->getRepository('CrmBundle:Back\CrmParamAlert')->findBy(['typeAlerte' => 1]),
             'rappels' => $em->getRepository('CrmBundle:Back\CrmParamAlert')->findBy(['typeAlerte' => 2]),
-            'priorites' => $em->getRepository('CrmBundle:Back\CrmParamPriorites')->findAll(),
+            'priorites' => $em->getRepository('CrmBundle:Back\CrmParamPriorites')->findBy(['ouvert' => 1]),
             'contact' => $em->getRepository('UsersBundle:UserClient')->findContactsClient($id_entite_juridique)
         ];
     }

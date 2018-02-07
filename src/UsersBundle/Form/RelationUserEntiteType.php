@@ -22,6 +22,7 @@ class RelationUserEntiteType extends AbstractType
         $builder
             ->add('idEntiteJ', ChoiceType::class, ['choices' => $entites])
             ->add('iDUser', ChoiceType::class, ['choices' => $users])
+            ->add('iDUserEntite', ChoiceType::class, ['choices' => $options['dataForm']['iDUserEntite']])
             ->add('iDRelation_Fonctionnelle', ChoiceType::class, ['choices' => $relation_fonction]);
     }
     

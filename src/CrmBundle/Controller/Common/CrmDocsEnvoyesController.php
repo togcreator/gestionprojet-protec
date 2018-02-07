@@ -16,16 +16,38 @@ use Symfony\Component\HttpFoundation\Request;
 class CrmDocsEnvoyesController extends Controller
 {
     /**
+     * Override method getUser parent
+     *
+     * @return UserClient
+     */
+    protected function getUser() {
+
+        $auth_checker = $this->get('security.authorization_checker');
+        if( $auth_checker->isGranted('ROLE_ADMIN') ) 
+            return true;
+        
+        $user_id = parent::getUser()->getId();
+        $bu_id = $this->container->get('session')->get('BU');
+        return $this->getDoctrine()->getRepository('UsersBundle:UserClient')->findUserByCompte($bu_id, $user_id);
+    }
+
+    /**
      * Lists all crmDocsEnvoye entities.
      *
      * @Route("/", name="crmdocsenvoyes_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $user_id = is_object($this->getuser()) ? $this->getUser()->getId() : null;
+        $bu_id = $this->container->get('session')->get('BU');
 
-        $crmDocsEnvoyes = $em->getRepository('CrmBundle:Common\CrmDocsEnvoyes')->findAll();
+        $criter = $request->get('idCRM') ? ['idCrm' => $request->get('idCRM')] : [];
+        if( $request->get('idOperation') )
+            $criter['idCrm'] = $request->get('idOperation');
+
+        $crmDocsEnvoyes = $em->getRepository('CrmBundle:Common\CrmDocsEnvoyes')->findAllBy($criter, $user_id, $bu_id);
         if( $crmDocsEnvoyes )
             foreach( $crmDocsEnvoyes as &$envoye ) {
                 $envoye->setCrm($em->getRepository('CrmBundle:Common\CrmDossier')->findOneBy(['id' => $envoye->getIdCrm()]));
@@ -116,6 +138,17 @@ class CrmDocsEnvoyesController extends Controller
             return $obj->getId();
         }, $this->getDoctrine()->getRepository('CrmBundle:Common\CrmEtapesOperations')->findBy(['idCRM' => $crmDocsEnvoye->getIdCRM()]));
 
+        /* pour crm */
+        if( ($idCRM = $request->get('idCRM')) ) {
+            //============ crm
+            $crmDocsEnvoye->setIdCRM($idCRM);
+            //============ opération
+            $idOperation = array_map(function($obj){
+                return $obj->getId();
+            }, $this->getDoctrine()->getRepository('CrmBundle:Common\CrmEtapesOperations')->findBy(['idCRM' => $idCRM]));
+        }
+        $dataForm = $this->dataForm($idOperation);
+
         // type document
         $type_file = '';
         $file = $this->getParameter('upload_dir') . DIRECTORY_SEPARATOR . 'document' . DIRECTORY_SEPARATOR . $crmDocsEnvoye->getNomDoc();
@@ -191,8 +224,11 @@ class CrmDocsEnvoyesController extends Controller
     private function dataForm ($idOp)
     {
         $em = $this->getDoctrine()->getManager();
+        $user_id = is_object($this->getuser()) ? $this->getUser()->getId() : null;
+        $bu_id = $this->container->get('session')->get('BU');
+
         return [
-            'crms' => $em->getRepository('CrmBundle:Common\CrmDossier')->findAll(),
+            'crms' => $em->getRepository('CrmBundle:Common\CrmDossier')->findAllBy($user_id, $bu_id),
             'operations' => $em->getRepository('CrmBundle:Common\CrmEtapesOperations')->findBy(['id' => $idOp]),
         ];
     }

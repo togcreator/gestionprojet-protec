@@ -26,7 +26,7 @@ class ProjectVersionUserType extends AbstractType
         // pour projet
         $projects = Utils::Array_extract($options['dataForm']['projects'], ['key'=>'getLabel', 'value'=>'getId']);
         // pour user/intervenant
-        $users = Utils::Array_extract($options['dataForm']['users'], ['key'=>'getFirstname', 'value'=>'getId']);
+        $users = Utils::Array_extract($options['dataForm']['users'], ['key'=>['getFirstname', 'getLastname'], 'value'=>'getId']);
         // pour roles
         $roles = Utils::Array_extract($options['dataForm']['roles'], ['key'=>'getLabel', 'value'=>'getId']);
 

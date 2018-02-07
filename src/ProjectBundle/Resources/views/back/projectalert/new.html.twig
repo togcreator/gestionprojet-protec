@@ -26,76 +26,83 @@
                     <div class="panel-body">
                         {{ form_start(form) }}
                             <fieldset class="content-group">
-                                <div class="form-group col-md-12">
-                                    {% set name = 'projectalert.open'|trans({}, 'projectalert') %}
-                                    {{ form_label(form.ouvert, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10">
-                                        {{ form_widget(form.ouvert, {'attr': {'class': 'form-control switchery'}}) }}
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'projectalert.open'|trans({}, 'projectalert') %}
+                                        {{ form_label(form.ouvert, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(form.ouvert, {'attr': {'class': 'form-control switchery'}}) }}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    {% set name = 'projectalert.label'|trans({}, 'projectalert') %}
-                                    {{ form_label(form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10">
-                                        {{ form_widget(form.label, {'attr': {'class': 'form-control'}}) }}
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'projectalert.label'|trans({}, 'projectalert') %}
+                                        {{ form_label(form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(form.label, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'projectalert.couleur'|trans({}, 'projectalert') %}
+                                        {{ form_label(form.couleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10" style="padding: 15px 0">
+                                            {{ form_widget(form.couleur, {'attr': {'class': 'form-control colorpicker-show-input'}}) }}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        {% set name = 'projectalert.nomcouleur'|trans({}, 'projectalert') %}
+                                        {{ form_label(form.nomcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(form.nomcouleur, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'projectalert.typeAlerte'|trans({}, 'projectalert') %}
+                                        {{ form_label(form.typeAlerte, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(form.typeAlerte, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'projectalert.declenchementdelai'|trans({}, 'projectalert') %}
+                                        {{ form_label(form.declenchementdelai, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(form.declenchementdelai, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {% set name = 'projectalert.typedelai'|trans({}, 'projectalert') %}
+                                        {{ form_label(form.typedelai, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10">
+                                            {{ form_widget(form.typedelai, {'attr': {'class': 'form-control datepicker'}}) }}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    {% set name = 'projectalert.couleur'|trans({}, 'projectalert') %}
-                                    {{ form_label(form.couleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10" style="padding: 15px 0">
-                                        {{ form_widget(form.couleur, {'attr': {'class': 'form-control colorpicker-show-input'}}) }}
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'projectalert.obligatoire'|trans({}, 'projectalert') %}
+                                        {{ form_label(form.obligatoire, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10" style="padding: 15px 0">
+                                            {{ form_widget(form.obligatoire, {'attr': {'class': 'form-control switchery'}}) }}
+                                        </div>
                                     </div>
                                 </div>
-                                
-                                <div class="form-group">
-                                    {% set name = 'projectalert.nomcouleur'|trans({}, 'projectalert') %}
-                                    {{ form_label(form.nomcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10">
-                                        {{ form_widget(form.nomcouleur, {'attr': {'class': 'form-control'}}) }}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    {% set name = 'projectalert.typeAlerte'|trans({}, 'projectalert') %}
-                                    {{ form_label(form.typeAlerte, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10">
-                                        {{ form_widget(form.typeAlerte, {'attr': {'class': 'form-control'}}) }}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    {% set name = 'projectalert.declenchementdelai'|trans({}, 'projectalert') %}
-                                    {{ form_label(form.declenchementdelai, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10">
-                                        {{ form_widget(form.declenchementdelai, {'attr': {'class': 'form-control'}}) }}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    {% set name = 'projectalert.typedelai'|trans({}, 'projectalert') %}
-                                    {{ form_label(form.typedelai, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10">
-                                        {{ form_widget(form.typedelai, {'attr': {'class': 'form-control'}}) }}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    {% set name = 'projectalert.obligatoire'|trans({}, 'projectalert') %}
-                                    {{ form_label(form.obligatoire, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10">
-                                        {{ form_widget(form.obligatoire, {'attr': {'class': 'form-control'}}) }}
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    {% set name = 'projectalert.valide'|trans({}, 'projectalert') %}
-                                    {{ form_label(form.valide, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10" style="padding: 15px 0">
-                                        {{ form_widget(form.valide, {'attr': {'class': 'form-control switchery'}}) }}
+                                <div class="row">
+                                    <div class="form-group">
+                                        {% set name = 'projectalert.valide'|trans({}, 'projectalert') %}
+                                        {{ form_label(form.valide, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                        <div class="col-lg-10" style="padding: 15px 0">
+                                            {{ form_widget(form.valide, {'attr': {'class': 'form-control switchery'}}) }}
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     {% set name = 'projectalert.logo'|trans({}, 'projectalert') %}
                                     {{ form_label(form.logo, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                     <div class="col-lg-10" style="padding: 15px 0">
-                                        {% set preview = asset('uploads/' ~ form.vars.value.logo) %}
-                                        {{ form_widget(form.logo, {'attr': {'class': 'form-control upload-file', 'data-preview': preview}}) }}
+                                        {{ form_widget(form.logo, {'attr': {'class': 'form-control upload-file', 'data-preview': ''}}) }}
                                     </div>
                                 </div>
                                 

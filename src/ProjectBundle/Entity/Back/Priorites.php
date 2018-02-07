@@ -27,7 +27,7 @@ class Priorites
      *
      * @ORM\Column(name="ouvert", type="integer", length=11)
      */
-    private $ouvert = 0;
+    private $ouvert;
 
     /**
      * @var string

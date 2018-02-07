@@ -33,6 +33,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    {% set name = 'relationuserentite.iDUserEntite'|trans({}, 'relationuserentite') %}
+                                    {{ form_label(form.iDUserEntite, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(form.iDUserEntite, {'attr': {'class': 'form-control select2-search' }}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     {% set name = 'relationuserentite.iDRelation_Fonctionnelle'|trans({}, 'relationuserentite') %}
                                     {{ form_label(form.iDRelation_Fonctionnelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                     <div class="col-lg-10">
@@ -45,6 +52,16 @@
                                 <i class="icon-arrow-right14 position-right"></i>
                             </button>
                         {{ form_end(form, {'render_rest': true}) }}
+                        <script type="text/javascript">
+                            (function($){
+                                $('[name*="[idEntiteJ]"]').on('change', function(){
+                                    if( this.value == 0 ) return;
+                                    var _location = document.location.href.toString().split('?');
+                                    _location = _location[0];
+                                    redirectTo(_location + '?entite_id=' + this.value);
+                                });
+                            }(jQuery));
+                        </script>
                     </div>
                 </div>
             </div>

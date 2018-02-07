@@ -41,7 +41,7 @@
                                                 <option value="0"{% if not selected %} selected="select" {% endif %}>{{ 'project.sort_by'|trans({}, 'project') }}</option>
                                                 <option value="idLeader"{% if selected and selected == 'idLeader' %} selected="select" {% endif %}>{{ 'project.sort_by'|trans({}, 'project') }} - {{ 'project.idLeader'|trans({}, 'project') }}</option>
                                                 <option value="idContact"{% if selected and selected == 'idContact' %} selected="select" {% endif %}>{{ 'project.sort_by'|trans({}, 'project') }} - {{ 'project.contact'|trans({}, 'project') }}</option>
-                                                <option value="datefinprevue"{% if selected and selected == 'datefinprevue' %} selected="select" {% endif %}>{{ 'project.sort_by'|trans({}, 'project') }} - {{ 'project.datefinPrevue'|trans({}, 'project') }}</option>
+                                                <option value="datefinprevue"{% if selected and selected == 'datefinprevue' %} selected="select" {% endif %}>{{ 'project.sort_by'|trans({}, 'project') }} - {{ 'project.datefin'|trans({}, 'project') }}</option>
                                                 <option value="idWorkshop"{% if selected and selected == 'idWorkshop' %} selected="select" {% endif %}>{{ 'project.sort_by'|trans({}, 'project') }} - {{ 'project.idWorkshop'|trans({}, 'project') }}</option>
                                                 <option value="idStatut"{% if selected and selected == 'idStatut' %} selected="select" {% endif %}>{{ 'project.sort_by'|trans({}, 'project') }} - {{ 'projectetapesoperations.idStatut'|trans({}, 'projectetapesoperations') }}</option>
                                             </select>
@@ -81,13 +81,38 @@
                                             {% for projets in project %}
                                             <tr data-toggle="collapse" data-target=".accordion_project_{{ projets.id }}" class="accordion_users_{{ key }} clickable collapse in project animated">
                                                 <td class="col-md-3">{{ projets.label }}</td>
-                                                <td class="col-md-4">{{ projets.workshop.label }}</td>
-                                                <td class="col-md-2">{{ projets.createur.firstname }}</td>
-                                                <td class="col-md-1"> </td>
-                                                <td class="col-md-2">{{ projets.datedebutReelle|date(date_format) }}</td>
-                                                <td class="col-md-2">{{ projets.datefinReelle|date(date_format) }}</td>
+                                                <td class="col-md-4">{% if projets.workshop %}{{ projets.workshop.label }}{% endif %}</td>
+                                                <td class="col-md-2">
+                                                    {% if projets.createur %}
+                                                        {{ projets.createur.firstname }} {{ projets.createur.lastname }}
+                                                    {% endif %}
+                                                </td>
+                                                <td class="col-md-1">
+                                                    {# {{ date_diff({0: projets.datedebutReelle, 1: projets.datedebutPrevue}, {0: projets.datefinReelle, 1: projets.datefinPrevue}) }} #}
+                                                    {% if projets.joursHommesReels %}
+                                                         {{ projets.joursHommesReels }}
+                                                    {% else %}
+                                                        {{ projets.joursHommesPrevus }}
+                                                    {% endif %}
+                                                </td>
+                                                <td class="col-md-2">
+                                                    {% if projets.datedebutReelle %}
+                                                        {{ projets.datedebutReelle|date(date_format) }}
+                                                    {% else %}
+                                                        {{ projets.datedebutPrevue|date(date_format) }}
+                                                    {% endif %}
+                                                </td>
+                                                <td class="col-md-2">
+                                                    {% if projets.datefinReelle %}
+                                                        {{ projets.datefinReelle|date(date_format) }}
+                                                    {% else %}
+                                                        {{ projets.datefinPrevue|date(date_format) }}
+                                                    {% endif %}
+                                                </td>
                                                 <td class="col-md-1" style="text-align: center" data="{{ projets.statuts.id }}">
-                                                    <img src="{{ asset('uploads/' ~ projets.statuts.logo )}}" style="background-color: {{ projets.statuts.couleur }}; max-width: 50%; text-align: center" alt="{{ projets.statuts.couleur }}"  title="{{ projets.statuts.label }}"/>
+                                                    {% if isFile(projets.statuts.logo) %}
+                                                        <img src="{{ asset('uploads/' ~ projets.statuts.logo )}}" style="background-color: {{ projets.statuts.couleur }}; max-width: 50%; text-align: center" alt="{{ projets.statuts.couleur }}"  title="{{ projets.statuts.label }}"/>
+                                                    {% endif %}
                                                 </td>
                                                 <td class="col-md-3">
                                                     {% set complete = 5 %}
@@ -122,15 +147,30 @@
 
                                             {# loop etape for projet  #}
                                             
-                                              {#   {{ dump(projets.etape) }} #}
                                                 {% for etape in projets.etape %}
                                                 <tr style="background-color: #AED581" data-toggle="collapse" data-target=".accordion_etape_{{ etape.id }}" class="collapse accordion_project_{{ projets.id }} clickable animated">
                                                     <td class="col-md-3" style="text-align:right"><i class="icon-arrow-right22"></i>{{ etape.object }}</td>
-                                                    <td class="col-md-4">{{ projets.idTypeProjet }}</td>
-                                                    <td class="col-md-2">{{ projets.createur.firstname }}</td>
+                                                    <td class="col-md-4">{% if projets.workshop %}{{ projets.workshop.label }}{% endif %}</td>
+                                                    <td class="col-md-2">
+                                                        {% if projets.createur %}
+                                                            {{ projets.createur.firstname }} {{ projets.createur.lastname }}
+                                                        {% endif %}
+                                                    </td>
                                                     <td class="col-md-1">{{ etape.dureereelle|number_format }}</td>
-                                                    <td class="col-md-2">{{ etape.datedebutreelle|date(date_format) }}</td>
-                                                    <td class="col-md-2">{{ etape.datefinreelle|date(date_format) }}</td>
+                                                    <td class="col-md-2">
+                                                        {% if etape.datedebutreelle|date(date_format) %}
+                                                            {{ etape.datedebutreelle|date(date_format) }}
+                                                        {% else %}
+                                                            {{ etape.datedebutprevue|date(date_format) }}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td class="col-md-2">
+                                                        {% if etape.datefinreelle|date(date_format) %}
+                                                            {{ etape.datefinreelle|date(date_format) }}
+                                                        {% else %}
+                                                            {{ etape.datefinprevue|date(date_format) }}
+                                                        {% endif %}
+                                                    </td>
                                                     <td class="col-md-1">{% if etape.statuts.logo is defined %}
                                                         <img src="{{ asset('uploads/' ~ etape.statuts.logo )}}" style="background-color: {{ etape.statuts.couleur }}; max-width: 50%" alt="{{ etape.statuts.couleur }}" title="{{ etape.statuts.label }}" />
                                                         {% else %}
@@ -164,11 +204,35 @@
                                                 {% for operation in etape.operations %}
                                                     <tr class="accordion_etape_{{ etape.id }} collapse  animated">
                                                         <td class="col-md-3" style="text-align:right">{{ operation.object }}</td>
-                                                        <td class="col-md-4">{{ projets.idTypeProjet }}</td>
-                                                        <td class="col-md-2">{{ projets.createur.username }}</td>
-                                                        <td class="col-md-1">{{ operation.dureereelle|number_format }}</td>
-                                                        <td class="col-md-2">{{ operation.datedebutreelle|date(date_format) }}</td>
-                                                        <td class="col-md-2">{{ operation.datefinreelle|date(date_format) }}</td>
+                                                        <td class="col-md-4">{% if projets.workshop %}{{ projets.workshop.label }}{% endif %}</td>
+                                                        <td class="col-md-2">
+                                                            {% if projets.createur %}
+                                                                {{ projets.createur.firstname }} {{ projets.createur.lastname }}
+                                                            {% endif %}
+                                                        </td>
+                                                        <td class="col-md-1">
+                                                            {% if operation.dureereelle|number_format %}
+                                                                {{ operation.dureereelle|number_format }}
+                                                            {% elseif operation.dureeprevue|number_format %}
+                                                                {{ operation.dureeprevue|number_format }}
+                                                            {% else %}
+                                                                0
+                                                            {% endif %}
+                                                        </td>
+                                                        <td class="col-md-2">
+                                                            {% if operation.datedebutreelle|date(date_format) %}
+                                                                {{ operation.datedebutreelle|date(date_format) }}
+                                                            {% else %}
+                                                                {{ operation.datedebutprevue|date(date_format) }}
+                                                            {% endif %}
+                                                        </td>
+                                                        <td class="col-md-2">
+                                                            {% if operation.datefinreelle|date(date_format) %}
+                                                                {{ operation.datefinreelle|date(date_format) }}
+                                                            {% else %}
+                                                                {{ operation.datefinprevue|date(date_format) }}
+                                                            {% endif %}
+                                                        </td>
                                                         <td class="col-md-1">{% if operation.idStatut is defined %}
                                                             <img src="{{ asset('uploads/' ~ operation.statuts.logo )}}" style="background-color: {{ operation.statuts.couleur }}; max-width: 50%" alt="{{ operation.statuts.couleur }}" title="{{ operation.statuts.label }}" />
                                                             {% else %}

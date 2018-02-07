@@ -38,6 +38,12 @@ class UsersParamRelationsProfessionnelles
     private $natureUser;
 
     /**
+     * @var object
+     * @ORM\OneToMany(targetEntity="UsersBundle\Entity\RelationBusinessEntite", mappedBy="relationsProfessionnelles")
+     */
+    private $relation;
+
+    /**
      * @var string
      */
     private $label;
@@ -464,5 +470,29 @@ class UsersParamRelationsProfessionnelles
     public function getNatureUser()
     {
         return $this->natureUser;
+    }
+
+    /**
+     * Set relation
+     *
+     * @param $relation
+     *
+     * @return object
+     */
+    public function setRelation($relation = null)
+    {
+        $this->relation = $relation;
+
+        return $this;
+    }
+
+    /**
+     * Get relation
+     *
+     * @return \object
+     */
+    public function getRelation()
+    {
+        return $this->relation;
     }
 }

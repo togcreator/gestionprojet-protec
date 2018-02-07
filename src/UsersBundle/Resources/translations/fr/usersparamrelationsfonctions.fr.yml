@@ -1,7 +1,7 @@
 # usersparamrelationsfonctions.fr.yml
 
 # general
-usersparamrelationsfonctions.list: Liste de relation de fonction utilisateur
+usersparamrelationsfonctions.list: Liste de relation fonction
 usersparamrelationsfonctions.creation: Nouveau
 usersparamrelationsfonctions.edition: Modification
 usersparamrelationsfonctions.confirm_title: Confirmation
@@ -9,7 +9,9 @@ usersparamrelationsfonctions.no_data: Aucun resultat
 
 # form
 usersparamrelationsfonctions.label: Libellé
+usersparamrelationsfonctions.iDService: Service
 usersparamrelationsfonctions.version: Version
+usersparamrelationsfonctions.service: Service
 usersparamrelationsfonctions.confirm_delete: Êtes vous sûr vouloir supprimer cette fonction ?
 
 # button

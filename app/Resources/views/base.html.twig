@@ -230,6 +230,8 @@
                 try {
                     // alert(bSort);
                     var table = $('.datatable-basic').DataTable({
+                        searching: typeof searching != 'undefined' ? searching : true,
+                        paging: typeof paging != 'undefined' ? paging : true,
                         orderCellsTop: true,
                         dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
                         language: {
@@ -251,7 +253,7 @@
                         initComplete: typeof initComplete !== 'undefined' ? initComplete : function() {}
                     });
 
-                    // Enable Select2 select for individual column searching
+                    /*Enable Select2 select for individual column searching*/
                     $('.filter-select').select2({ minimumResultsForSearch: Infinity, containerCssClass: 'select-xs' });
 
                 }catch(e){console.warn(e)}
@@ -296,7 +298,7 @@
                                         "       {browse}\n" +
                                         "   </div>\n" +
                                         "</div>",
-                                    actionDownload: '<a href="{downloadUrl}" class="{downloadClass}" title="{downloadTitle}" download="{caption}">{downloadIcon}</a>\n',
+                                    actionDownload: '<a href="{downloadUrl}" class="{downloadClass}" title="{downloadTitle}" ' + 'download="{caption}">{downloadIcon}</a>\n',
                                 },
                                 previewFileIconSettings: { 
                                     'doc': '<i class="fa fa-file-word-o text-primary"></i>',

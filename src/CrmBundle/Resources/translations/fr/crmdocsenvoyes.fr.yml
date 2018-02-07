@@ -23,6 +23,7 @@ crmdocsenvoyes.nomdoc: Document
 crmdocsenvoyes.idTypedoc: Type du document
 crmdocsenvoyes.dateEnvoi: Date d'envoie
 crmdocsenvoyes.version: Version
+crmdocsenvoyes.download: Téléchargement
 crmdocsenvoyes.confirm_delete: Voulez vous supprimer ce document ?
 
 # button

@@ -36,7 +36,7 @@ class CrmFiltersType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // for entityJ
-        $entityJs = Utils::Array_extract($options['dataForm']['entityJs'], ['key'=>'getName','value'=>'getId']);
+        $entityJs = Utils::Array_extract($options['dataForm']['entityJs'], ['key'=>'getRaisonSociale','value'=>'getId']);
         // statuts
         $statuts = Utils::Array_extract($options['dataForm']['statuts'], ['key'=>'getLabel','value'=>'getId']);
         // for mode acces

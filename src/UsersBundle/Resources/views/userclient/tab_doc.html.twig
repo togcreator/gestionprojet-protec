@@ -14,8 +14,8 @@
                 <table class="table datatable-basic">
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>{{ 'userdocs.designation'|trans({}, 'userdocs') }}</th>
+                            <th>{{ 'userdocs.datecreation'|trans({}, 'userdocs') }}</th>
                             <th>{{ 'userdocs.download'|trans({}, 'userdocs') }}</th>
                             <th class="no-sort">{{ 'global.actions'|trans }}</th>
                         </tr>
@@ -23,11 +23,13 @@
                     <tbody>
                     {% for user in userDocs %}
                         <tr>
-                            <td>{{ user.id }}</td>
                             <td>{{ user.designation }}</td>
+                            <td>{{ user.datecreation|date(date_format) }}</td>
                             <td>
-                                {% if user.nomdoc %}<a ref="{{ asset('/uploads/document/') ~ user.nomdoc }}">{% endif %}
-                                    <i class="icon-attachment position-left"></i>
+                                {% if user.nomdoc %}<a href="{{ asset('uploads/document/') ~ user.nomdoc }}" target="_blank">
+                                    ({{ user.nomdoc }})
+                                {% endif %}
+                                <i class="icon-attachment position-left"></i>
                                 {% if user.nomdoc %}</a>{% endif %}
                             </td>
                             <td class="text-center">

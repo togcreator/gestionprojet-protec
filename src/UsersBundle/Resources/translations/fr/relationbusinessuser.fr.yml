@@ -1,18 +1,19 @@
 # relationbusinessuser.fr.yml
 
 # general
-relationbusinessuser.list: Liste de relation fonctionnelles
+relationbusinessuser.list: Liste de relation fonctionnel salarié
 relationbusinessuser.creation: Nouveau
 relationbusinessuser.edition: Modification
 relationbusinessuser.confirm_title: Confirmation
 relationbusinessuser.no_data: Aucun resultat
 
 # form
-relationbusinessuser.iDUser: Utilisateur
+relationbusinessuser.iDUser: Nom/Prénom
 relationbusinessuser.iDBusinessUnit: Business unité
-relationbusinessuser.iDRelation_Fonctionnelle: Relation fonctionnelle
-relationbusinessuser.relation: Relation fonctionnelle
-relationbusinessuser.business: Relation business
+relationbusinessuser.iDRelation_Fonctionnelle: Fonction
+relationbusinessuser.relation: Fonction
+relationbusinessuser.business: Business Unit
+relationbusinessuser.service: Service
 relationbusinessuser.confirm_delete: Êtes vous sûr vouloir supprimer cette relation ?
 
 # button

@@ -31,22 +31,32 @@
                                     <table class="table text-nowrap datatable-basic">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
+                                                <th>{{ 'crmdocsrecus.designation'|trans({}, 'crmdocsrecus') }}</th>
                                                 <th>{{ 'crmdocsrecus.idOperation'|trans({}, 'crmdocsrecus') }}</th>
                                                 <th>{{ 'crmdocsrecus.idCrm'|trans({}, 'crmdocsrecus') }}</th>
-                                                <th>{{ 'crmdocsrecus.designation'|trans({}, 'crmdocsrecus') }}</th>
                                                 <th>{{ 'crmdocsrecus.dateReception'|trans({}, 'crmdocsrecus') }}</th>
-                                                <th>{{ 'global.actions'|trans }}</th>
+                                                <th>{{ 'crmdocsrecus.download'|trans({}, 'crmdocsrecus') }}</th>
+                                                <th class="no-sort">{{ 'global.actions'|trans }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         {% for crmDocsRecus in crmDocsRecus %}
                                             <tr>
-                                                <td>{{ crmDocsRecus.id }}</td>
                                                 <td>{% if crmDocsRecus.operation %}{{ crmDocsRecus.operation.objet }}{% endif %}</td>
                                                 <td>{{ crmDocsRecus.crm.label }}</td>
                                                 <td>{{ crmDocsRecus.designation }}</td>
                                                 <td>{{ crmDocsRecus.dateReception|date(date_format) }}</td>
+                                                <td>
+                                                    {% set is_file = isFile(crmDocsRecus.nomdoc, 'document') %}
+                                                    {% if crmDocsRecus.nomdoc and is_file != false %}
+                                                        <a href="{{ asset('uploads/document/') ~ crmDocsRecus.nomdoc }}" target="_blank">
+                                                            <i class="icon-attachment position-left"></i>
+                                                            ({{ crmDocsRecus.nomdoc }})
+                                                        </a>
+                                                    {% else %}
+                                                        {{ 'global.no_file'|trans }}
+                                                    {% endif %}
+                                                </td>
                                                 <td class="text-center">
                                                     <ul class="icons-list">
                                                         <li class="dropdown">

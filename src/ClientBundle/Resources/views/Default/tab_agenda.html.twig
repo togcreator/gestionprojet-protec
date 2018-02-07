@@ -1,0 +1,67 @@
+
+<div class="panel-heading">
+    <h5 class="panel-title">{{ 'userclient.tab.agenda'|trans({}, 'userclient') }}</h5>
+</div>
+<div class="panel-body">
+	<div class="fullcalendar-event-colors"></div>
+    <script type="text/javascript">
+        var eventColors = [
+        // pour etapes operations
+        {% if operations is defined %}
+            {% for retour in operations %}
+
+                {% if retour.dateDebReelle|date('Y-m-d') %}
+                    {% set datedebut = retour.dateDebReelle|date('Y-m-d') %}
+                {% else %}
+                    {% set datedebut = retour.dateDebPrevue|date('Y-m-d') %}
+                {% endif %}
+
+                {% if retour.dateFinReelle|date('Y-m-d') %}
+                    {% set datefin = retour.dateFinReelle|date('Y-m-d') %}
+                {% else %}
+                    {% set datefin = retour.dateFinPrevue|date('Y-m-d') %}
+                {% endif %}
+
+              {#  {% if retour.firstname and retour.lastname %}
+                    {% set user = ' - ' ~ retour.firstname|capitalize ~ ' ' ~ retour.lastname|capitalize %}
+                {% else %}
+                    {% set user = '' %}
+                {% endif %} #}
+
+                {% set label = ' - ' ~ retour[0].label|capitalize|raw|default('') %}
+
+                {% if datedebut and datefin %}
+                {
+                    title: '{{ retour.objet|capitalize ~ label }}',
+                    start: '{{ datedebut }}',
+                    end: '{{ datefin }}',
+                    color: '{{ retour.couleur|default('#26A69A') }}',
+                    url: '{{ path('crmetapesoperations_edit', {'id': retour.id }) }}'
+                },
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        ];
+    </script>
+</div>
+<script type="text/javascript" src="{{asset('assets/backoffice/js/plugins/ui/moment/moment.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/backoffice/js/plugins/ui/fullcalendar/fullcalendar.min.js')}}"></script>
+<script type="t	ext/javascript" src="{{asset('assets/backoffice/js/plugins/ui/fullcalendar/lang/all.js')}}"></script>
+<script type="text/javascript">
+    (function($){
+         // Event colors
+        $('.fullcalendar-event-colors').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            defaultDate: Date.now(),
+            editable: false,
+            events: eventColors,
+            locale: '{{ app.request.locale }}'.toLowerCase()
+        });
+    }(jQuery))
+</script>
+
+               

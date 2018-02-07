@@ -9,11 +9,12 @@ relationuserentite.no_data: Aucun resultat
 
 # form
 relationuserentite.iDUser: Utilisateur
-relationuserentite.idEntiteJ: Entité Juridique
+relationuserentite.idEntiteJ: Entreprise
 relationuserentite.bu: Business unit
 relationuserentite.iDRelation_Fonctionnelle: Fonction
-relationuserentite.iDUserEntite: Relation business unit
+relationuserentite.iDUserEntite: Relation professionnelle
 relationuserentite.user: Utilisateur
+relationuserentite.service: Service
 relationuserentite.confirm_delete: Êtes vous sûr vouloir supprimer cette relation ?
 
 # button

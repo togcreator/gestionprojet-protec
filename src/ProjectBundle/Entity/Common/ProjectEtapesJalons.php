@@ -31,8 +31,10 @@ class ProjectEtapesJalons
 
     /**
      * @var int
+     * @ORM\ManyToOne(targetEntity="Project", fetch="EAGER")
+     * @ORM\JoinColumn(name="idProjetversion", referencedColumnName="id")
      */
-    private $projet;
+    private $project;
 
     /**
      * @var int
@@ -41,10 +43,11 @@ class ProjectEtapesJalons
      */
     private $idEtape;
 
-    // *
-    //  * @var int
-    //  * @ORM\ManyToOne(targetEntity="ProjectEtape", fetch="EAGER")
-    //  * @ORM\JoinColumn(name="idEtape", referencedColumnName="id")
+    /**
+     * @var int
+     * @ORM\ManyToOne(targetEntity="ProjectEtape", fetch="EAGER")
+     * @ORM\JoinColumn(name="idEtape", referencedColumnName="id", nullable=true)
+     */
     private $etape;
 
     /**
@@ -115,10 +118,11 @@ class ProjectEtapesJalons
      *
      * @ORM\Column(name="idResultat", type="integer", length=11)
      */
-    private $idResultat = 0;
+    private $idResultat;
 
     /**
-     * @var int
+     * @ORM\ManyToOne(targetEntity="\ProjectBundle\Entity\Back\Resultat", fetch="EAGER")
+     * @ORM\JoinColumn(name="idResultat", referencedColumnName="id", nullable=true)
      */
     private $resultat;
 
@@ -157,6 +161,30 @@ class ProjectEtapesJalons
     }
 
     /**
+     * Set project
+     *
+     * @param integer $project
+     *
+     * @return ProjectEtapesJalons
+     */
+    public function setProject(Project $project)
+    {
+        $this->project = $project;
+
+        return $this;
+    }
+
+    /**
+     * Get project
+     *
+     * @return int
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
      * Set projet
      *
      * @param integer $projet
@@ -189,7 +217,7 @@ class ProjectEtapesJalons
      */
     public function setIdEtape($idEtape)
     {
-        $this->idEtape = $idEtape;
+        $this->idEtape = $idEtape ? $idEtape : $this->idEtape;
 
         return $this;
     }

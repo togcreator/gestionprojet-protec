@@ -29,12 +29,11 @@
                                 </div>
                                 <div class="">
                                     <div style="display: none" class="datatable-toolbar">
-                                        {# par tri #}
                                         <div>
                                             {% set selected = app.request.get('orderby')|default('idCRM') %}
                                             <select name="search_operations[tri]" class="form-control col-md-4">
                                                 <option value="idCRM"{% if selected and selected == 'idCRM' %} selected="select" {% endif %}>{{ 'global.sorting'|trans }} - {{ 'crmetapesoperations.idCRM'|trans({}, 'crmetapesoperations') }}</option>
-                                                <option value="datefinprevue"{% if selected and selected == 'datefinprevue' %} selected="select" {% endif %}>{{ 'global.sorting'|trans }} - {{ 'project.datefinPrevue'|trans({}, 'project') }}</option>
+                                                <option value="datefinprevue"{% if selected and selected == 'datefinprevue' %} selected="select" {% endif %}>{{ 'global.sorting'|trans }} - {{ 'project.datefin'|trans({}, 'project') }}</option>
                                                 <option value="idStatut"{% if selected and selected == 'idStatut' %} selected="select" {% endif %}>{{ 'global.sorting'|trans }} - {{ 'crmetapesoperations.idStatut'|trans({}, 'crmetapesoperations') }}</option>
                                             </select>
                                         </div>
@@ -42,7 +41,6 @@
                                     <table class="table text-nowrap datatable-basic">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
                                                 <th>{{ 'crmetapesoperations.objet'|trans({}, 'crmetapesoperations') }}</th>
                                                 <th>{{ 'crmetapesoperations.idCRM'|trans({}, 'crmetapesoperations') }}</th>
                                                 <th>{{ 'crmetapesoperations.idCycle'|trans({}, 'crmetapesoperations') }}</th>
@@ -62,12 +60,10 @@
                                                 <td style="background-color: #64B5F6;"></td>
                                                 <td style="background-color: #64B5F6;"></td>
                                                 <td style="background-color: #64B5F6;"></td>
-                                                <td style="background-color: #64B5F6;"></td>
                                             </tr>
 
                                             {% for operation in crmetapesoperations %}
                                                 <tr>
-                                                    <td>{{ operation.id }}</td>
                                                     <td>{{ operation.objet|capitalize }}</td>
                                                     <td>{{ operation.crm.label|capitalize }}</td>
                                                     <td>{{ operation.crm.cycle.label|capitalize }}</td>

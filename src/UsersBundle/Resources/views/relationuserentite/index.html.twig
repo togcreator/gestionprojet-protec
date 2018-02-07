@@ -18,20 +18,20 @@
                         <table class="table datatable-basic">
                             <thead>
                                 <tr>
-                                    <th>#</th>
                                     <th>{{ 'relationuserentite.user'|trans({}, 'relationuserentite') }}</th>
                                     <th>{{ 'relationuserentite.idEntiteJ'|trans({}, 'relationuserentite') }}</th>
                                     <th>{{ 'relationuserentite.iDRelation_Fonctionnelle'|trans({}, 'relationuserentite') }}</th>
-                                    <th>{{ 'global.actions'|trans }}</th>
+                                    <th>{{ 'relationuserentite.service'|trans({}, 'relationuserentite') }}</th>
+                                    <th class="no-sort">{{ 'global.actions'|trans }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                             {% for relation in relationUserEntites %}
                                 <tr>
-                                    <td>{{ relation.id }}</td>
                                     <td>{{ relation.user.firstname }} {{ relation.user.lastname }}</td>
-                                    <td>{{ relation.entite.raisonSociale }}</td>
+                                    <td>{% if relation.entite %}{{ relation.entite.raisonSociale }}{% endif %}</td>
                                     <td>{% if relation.relations_fonction %}{{ relation.relations_fonction.label }}{% endif %}</td>
+                                    <td>{% if relation.service %}{{ relation.service.label }}{% endif %}</td>
                                     
                                     <td class="text-center">
                                         <ul class="icons-list">

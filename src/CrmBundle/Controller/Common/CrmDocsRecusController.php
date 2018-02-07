@@ -16,16 +16,38 @@ use Symfony\Component\HttpFoundation\Request;
 class CrmDocsRecusController extends Controller
 {
     /**
+     * Override method getUser parent
+     *
+     * @return UserClient
+     */
+    protected function getUser() {
+
+        $auth_checker = $this->get('security.authorization_checker');
+        if( $auth_checker->isGranted('ROLE_ADMIN') ) 
+            return true;
+        
+        $user_id = parent::getUser()->getId();
+        $bu_id = $this->container->get('session')->get('BU');
+        return $this->getDoctrine()->getRepository('UsersBundle:UserClient')->findUserByCompte($bu_id, $user_id);
+    }
+
+    /**
      * Lists all crmDocsRecus entities.
      *
      * @Route("/", name="crmdocsrecus_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $user_id = is_object($this->getUser()) ? $this->getUser()->getId() : null;
+        $bu_id = $this->container->get('session')->get('BU');
 
-        $crmDocsRecus = $em->getRepository('CrmBundle:Common\CrmDocsRecus')->findAll();
+        $criter = $request->get('idCRM') ? ['idCrm' => $request->get('idCRM')] : [];
+        if( $request->get('idOperation') )
+            $criter['idCrm'] = $request->get('idOperation');
+
+        $crmDocsRecus = $em->getRepository('CrmBundle:Common\CrmDocsRecus')->findAllBy($criter, $user_id, $bu_id);
         if( $crmDocsRecus )
             foreach( $crmDocsRecus as &$recus ) {
                 $recus->setCrm($em->getRepository('CrmBundle:Common\CrmDossier')->findOneBy(['id' => $recus->getIdCRM()]));
@@ -202,8 +224,11 @@ class CrmDocsRecusController extends Controller
     private function dataForm ($idOp)
     {
         $em = $this->getDoctrine()->getManager();
+        $user_id = is_object($this->getuser()) ? $this->getUser()->getId() : null;
+        $bu_id = $this->container->get('session')->get('BU');
+        
         return [
-            'crms' => $em->getRepository('CrmBundle:Common\CrmDossier')->findAll(),
+            'crms' => $em->getRepository('CrmBundle:Common\CrmDossier')->findAllBy($user_id, $bu_id),
             'operations' => $em->getRepository('CrmBundle:Common\CrmEtapesOperations')->findBy(['id' => $idOp])
         ];
     }

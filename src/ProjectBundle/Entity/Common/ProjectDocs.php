@@ -39,8 +39,10 @@ class ProjectDocs
 
     /**
      * @var object
+     * @ORM\ManyToOne(targetEntity="Project")
+     * @ORM\JoinColumn(name="idProjet", referencedColumnName="id")
      */
-    private $projet;
+    private $project;
 
     /**
      * @var int
@@ -51,6 +53,8 @@ class ProjectDocs
 
     /**
      * @var object
+     * @ORM\ManyToOne(targetEntity="ProjectEtapesOperations")
+     * @ORM\JoinColumn(name="idOperation", referencedColumnName="id", nullable=true)
      */
     private $operation;
 
@@ -217,27 +221,27 @@ class ProjectDocs
     }
 
     /**
-     * Set projet
+     * Set project
      *
-     * @param integer $projet
+     * @param integer $project
      *
      * @return ProjectDocs
      */
-    public function setProjet($projet)
+    public function setProject($project)
     {
-        $this->projet = $projet;
+        $this->project = $project;
 
         return $this;
     }
 
     /**
-     * Get projet
+     * Get project
      *
      * @return int
      */
-    public function getProjet()
+    public function getProject()
     {
-        return $this->projet;
+        return $this->project;
     }
 
     /**

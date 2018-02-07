@@ -43,8 +43,10 @@
                                         {% set name = 'crmdocsenvoyes.nomdoc'|trans({}, 'crmdocsenvoyes') %}
                                         {{ form_label(edit_form.nomdoc, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                         <div class="col-lg-10">
-                                            {% set preview = asset('uploads/document/' ~ edit_form.vars.value.nomdoc )|default('') %}
-                                            {{ form_widget(edit_form.nomdoc, {'attr': {'class': 'form-control upload-file', 'data-preview': preview, 'filetype': filetype|default('')}}) }}
+                                            {% if isFile(edit_form.vars.value.nomdoc, 'document') %}
+                                                {% set preview = asset('uploads/document/' ~ edit_form.vars.value.nomdoc )|default('') %}
+                                            {% endif %}
+                                            {{ form_widget(edit_form.nomdoc, {'attr': {'class': 'form-control upload-file', 'data-preview': preview|default(''), 'filetype': filetype|default('')}}) }}
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -111,6 +113,16 @@
                                 <i class="icon-arrow-right14 position-right"></i>
                             </button>
                         {{ form_end(edit_form, {'render_rest': true}) }}
+                        <script type="text/javascript">
+                            (function($){
+                                /* pour projet redirection */
+                                $('[name*="[idCrm]"]').on('change', function(){
+                                    var _location = document.location.href.toString().split('?');
+                                    _location = _location[0];
+                                    redirectTo(_location + '?idCRM=' + this.value);
+                                });
+                            }(jQuery));
+                        </script>
                     </div>
                 </div>
             </div>

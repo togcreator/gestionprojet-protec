@@ -37,4 +37,28 @@ class ProjectEtapesOperationsUsersRepository extends \Doctrine\ORM\EntityReposit
         $return = $return->getQuery()->execute();
         return count($return) ? $return : null;
 	}
+
+	/**
+	 * Find all by
+	 */
+	public function findAllBy ($user_id, $bu_id = null)
+	{
+		$return = $this->createQueryBuilder('o')
+			->select('u')
+			->innerJoin('ProjectBundle:Common\ProjectEtapesOperations', 'oe', Join::WITH, 'oe.id = o.idOperation')
+			->innerJoin('UsersBundle:UserClient', 'u', Join::WITH, 'u.id = o.idUser');
+
+		if( $user_id ) {
+			$return
+				->andWhere('u.id = :user_id')
+				->setParameter('user_id', $user_id);
+		}
+
+		// if( $bu_id ) {
+		// 	$return
+		// 		->andWhere('u.id = :user_id')
+		// 		->setParameter('user_id', $user_id);
+		// }
+		return $return->getQuery()->execute();
+	}
 }

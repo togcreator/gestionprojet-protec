@@ -12,7 +12,7 @@ crmdossier.crm: CRM
 crmdossier.users: Utilisateurs
 crmdossier.user: Utilisateur
 crmdossier.icone: Icône
-crmdossier.idEntiteJ: Entité Juridique
+crmdossier.idEntiteJ: Entreprise
 crmdossier.idCycle: Cycle
 crmdossier.idTypeCycle: Type de Cycle
 crmdossier.info: Information

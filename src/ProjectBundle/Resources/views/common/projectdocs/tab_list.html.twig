@@ -8,7 +8,6 @@
         <thead>
             <tr>
                 <th>{{ 'projectdocs.date'|trans({}, 'projectdocs') }}</th>
-                <th>{{ 'projectdocs.idEtape'|trans({}, 'projectdocs') }}</th>
                 <th>{{ 'projectdocs.idOperation'|trans({}, 'projectdocs') }}</th>
                 <th>{{ 'projectdocs.titre'|trans({}, 'projectdocs') }}</th>
                 <th>{{ 'projectdocs.idUser'|trans({}, 'projectdocs') }}</th>
@@ -19,7 +18,6 @@
             {% for projectdocs in projectDocs %}
             <tr href="{{ path('projectdocs_ajax_get', {'id': projectdocs.id}) }}">
                 <td data-order="{{ projectdocs.dateReception|date('Y-m-d') }}">{{ projectdocs.dateReception|date(date_format) }}</td>
-                <td>{{ projectdocs.etape.object|default('') }}</td>
                 <td>{{ projectdocs.operation.object|default('') }}</td>
                 <td>{{ projectdocs.designation }}</td>
                 <td>{% if projectdocs.user %}{{ projectdocs.user.firstname }} {{ projectdocs.user.lastname }}{% endif %}</td>

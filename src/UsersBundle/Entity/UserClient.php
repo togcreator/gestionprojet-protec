@@ -90,7 +90,7 @@ class UserClient
      *
      * @ORM\Column(name="Adr1", type="string", length=200)
      */
-    private $adr1;
+    private $adr1 = '';
 
     /**
      * @var string
@@ -219,7 +219,17 @@ class UserClient
     /**
      * @var integer
      */
-    private $iDRelation_Fonctionnelle;
+    private $iDRelationFonctionnelle;
+
+    /**
+     * @var integer
+     */
+    private $r_bu_entitej;
+
+    /**
+     * @var integer
+     */
+    private $iDEntite;
 
     /**
      * Get id
@@ -398,7 +408,7 @@ class UserClient
      */
     public function setAdr1($adr1)
     {
-        $this->adr1 = $adr1;
+        $this->adr1 = $adr1 ? $adr1 : $this->adr1;
 
         return $this;
     }
@@ -870,27 +880,75 @@ class UserClient
     }
 
     /**
-     * Set iDRelation_Fonctionnelle
+     * Set iDRelationFonctionnelle
      *
-     * @param string $iDRelation_Fonctionnelle
+     * @param string $iDRelationFonctionnelle
      *
      * @return UserClient
      */
-    public function setIDRelationFonctionnelle($iDRelation_Fonctionnelle)
+    public function setIDRelationFonctionnelle($iDRelationFonctionnelle)
     {
-        $this->iDRelation_Fonctionnelle = $iDRelation_Fonctionnelle;
+        $this->iDRelationFonctionnelle = $iDRelationFonctionnelle;
 
         return $this;
     }
 
     /**
-     * Get iDRelation_Fonctionnelle
+     * Get r_bu_entitej
      *
      * @return string
      */
     public function getIDRelationFonctionnelle()
     {
-        return $this->iDRelation_Fonctionnelle;
+        return $this->iDRelationFonctionnelle;
+    }
+
+    /**
+     * Set r_bu_entitej
+     *
+     * @param string $r_bu_entitej
+     *
+     * @return UserClient
+     */
+    public function setRbuentitej($r_bu_entitej)
+    {
+        $this->r_bu_entitej = $r_bu_entitej;
+
+        return $this;
+    }
+
+    /**
+     * Get r_bu_entitej
+     *
+     * @return string
+     */
+    public function getRbuentitej()
+    {
+        return $this->r_bu_entitej;
+    }
+
+    /**
+     * Set iDEntite
+     *
+     * @param string $iDEntite
+     *
+     * @return UserClient
+     */
+    public function setIDEntite($iDEntite)
+    {
+        $this->iDEntite = $iDEntite;
+
+        return $this;
+    }
+
+    /**
+     * Get iDEntite
+     *
+     * @return string
+     */
+    public function getIDEntite()
+    {
+        return $this->iDEntite;
     }
 
     /**

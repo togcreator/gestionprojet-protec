@@ -18,7 +18,7 @@ class UserDocsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $doc = $options['data']->getNomdoc() ? ['data_class' => null] : [];
-        $users = Utils::Array_extract($options['dataForm']['user'], ['key' => 'getFirstname', 'value' => 'getId']);
+        $users = Utils::Array_extract($options['dataForm']['user'], ['key' => ['getFirstname', 'getLastname'], 'value' => 'getId']);
 
         $builder
             ->add('iDUser', HiddenType::class)

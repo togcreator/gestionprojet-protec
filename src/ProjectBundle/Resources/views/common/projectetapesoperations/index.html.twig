@@ -31,34 +31,44 @@
                     <table class="table datatable-basic">
                         <thead>
                             <tr>
-                                <th>{{ '#' }}</th>
-                                <th>{{ 'projectetapesoperations.idProjectVersion'|trans({}, 'projectetapesoperations') }}</th>
-                                <th>{{ 'projectetapesoperations.idEtape'|trans({}, 'projectetapesoperations') }}</th>
                                 <th>{{ 'projectetapesoperations.object'|trans({}, 'projectetapesoperations') }}</th>
-                                <th>{{ 'projectetapesoperations.datedebutreelle'|trans({}, 'projectetapesoperations') }}</th>
-                                <th>{{ 'projectetapesoperations.datefinreelle'|trans({}, 'projectetapesoperations') }}</th>
+                                <th>{{ 'projectetapesoperations.idProjectVersion'|trans({}, 'projectetapesoperations') }}</th>
+                                <th>{{ 'project.datedebut'|trans({}, 'project') }}</th>
+                                <th>{{ 'project.datefin'|trans({}, 'project') }}</th>
                                 <th>{{ 'projectetapesoperations.dureereelle'|trans({}, 'projectetapesoperations') }}</th>
-                                <th class="text-center">{{ 'projectetapesoperations.actions'|trans({}, 'projectetapesoperations') }}</th>
+                                <th class="text-center no-sort">{{ 'projectetapesoperations.actions'|trans({}, 'projectetapesoperations') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for projectetapesoperations in projectEtapesOperations %}
                             <tr>
-                                <td style="cursor:pointer">{{ projectetapesoperations.id }}</td>
-                                <td>
-                                    {% if projectetapesoperations.projet %}
-                                    {{ projectetapesoperations.projet.label }}
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    {% if projectetapesoperations.etape %}
-                                    {{ projectetapesoperations.etape.object }}
-                                    {% endif %}
-                                </td>
                                 <td>{{ projectetapesoperations.object }}</td>
-                                <td>{{ projectetapesoperations.datedebutreelle|date(date_format) }}</td>
-                                <td>{{ projectetapesoperations.datefinreelle|date(date_format) }}</td>
-                                <td>{{ projectetapesoperations.dureereelle }}</td>
+                                <td>
+                                    {% if projectetapesoperations.project %}
+                                    {{ projectetapesoperations.project.label }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if projectetapesoperations.datedebutreelle %}
+                                        {{ projectetapesoperations.datedebutreelle|date(date_format) }}
+                                    {% else %}
+                                        {{ projectetapesoperations.datedebutprevue|date(date_format) }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if projectetapesoperations.datefinreelle|date(date_format) %}
+                                        {{ projectetapesoperations.datefinreelle|date(date_format) }}
+                                    {% else %}
+                                        {{ projectetapesoperations.datefinprevue|date(date_format) }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if projectetapesoperations.dureereelle %}
+                                        {{ projectetapesoperations.dureereelle }}
+                                    {% else %}
+                                        {{ date_diff({0: projectetapesoperations.datedebutreelle, 1: projectetapesoperations.datedebutprevue}, {0: projectetapesoperations.datefinreelle, 1: projectetapesoperations.datefinprevue}) }}
+                                    {% endif %}
+                                </td>
                                 <td class="text-center">
                                     <ul class="icons-list">
                                         <li class="dropdown">

@@ -18,20 +18,28 @@
                         <table class="table datatable-basic">
                             <thead>
                                 <tr>
-                                    <th>#</th>
                                     <th>{{ 'relationbusinessuser.iDUser'|trans({}, 'relationbusinessuser') }}</th>
-                                    <th>{{ 'relationbusinessuser.relation'|trans({}, 'relationbusinessuser') }}</th>
                                     <th>{{ 'relationbusinessuser.business'|trans({}, 'relationbusinessuser') }}</th>
-                                    <th>{{ 'global.actions'|trans }}</th>
+                                    <th>{{ 'relationbusinessuser.relation'|trans({}, 'relationbusinessuser') }}</th>
+                                    <th>{{ 'relationbusinessuser.service'|trans({}, 'relationbusinessuser') }}</th>
+                                    <th class="no-sort">{{ 'global.actions'|trans }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                             {% for relation in relationBusinessUsers %}
                                 <tr>
-                                    <td>{{ relation.id }}</td>
                                     <td>{{ relation.user.firstname }} {{ relation.user.lastname }}</td>
-                                    <td>{{ relation.relationsFonctionnelles.label }}</td>
                                     <td>{{ relation.businessunit.nomBusinessUnit }}</td>
+                                    <td>
+                                        {% if relation.relationsFonctionnelles %}
+                                        {{ relation.relationsFonctionnelles.label }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if relation.service %}
+                                            {{ relation.service.label }}
+                                        {% endif %}
+                                    </td>
                                     <td class="text-center">
                                         <ul class="icons-list">
                                             <li class="dropdown">

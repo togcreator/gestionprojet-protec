@@ -1,6 +1,7 @@
 <?php
 
 namespace CrmBundle\Repository\Common;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * CrmDocsEnvoyesRepository
@@ -10,4 +11,38 @@ namespace CrmBundle\Repository\Common;
  */
 class CrmDocsEnvoyesRepository extends \Doctrine\ORM\EntityRepository
 {
+	/**
+	 * Find all by
+	 */
+	public function findAllBy ($criter, $user_id, $bu_id) {
+
+		$return = $this->createQueryBuilder('o')->select('o');
+
+		if( is_array($criter) && count($criter) ) {
+			foreach( $criter as $key => $value ) {
+				$return
+					->andWhere("o.$key = :$key")
+					->setParameter($key, $value);
+			}
+		}
+
+		if( $bu_id ) {
+			$return 
+				->innerJoin('CrmBundle:Common\CrmDossier', 'c', Join::WITH, 'c.id = o.idCrm')
+				->innerJoin('UsersBundle:RelationBusinessEntite', 'rbe', Join::WITH, 'rbe.iDentite = c.idEntiteJ')
+				->andWhere('rbe.iDBusinessUnit = :bu_id')
+				->setParameter('bu_id', $bu_id);
+		}
+
+        if( $user_id ){
+            $return
+                ->innerJoin('UsersBundle:UserClient', 'u', Join::WITH, 'c.idCreateur = u.id')
+                ->innerJoin('UsersBundle:Users', 'us', Join::WITH, 'us.id = u.iDCompte')
+                ->andWhere('u.id = :user_id')
+                ->setParameter('user_id', $user_id);
+        }
+
+        $return = $return->getQuery();
+        return $return->execute();
+	}
 }

@@ -23,7 +23,7 @@ class ProjectEtapesJalonsType extends AbstractType
 
     // setting project version
     public function setProject ($options) {
-        return Utils::Array_extract($options, ['key'=>'getLabel', 'value'=>'getId']);
+        return Utils::Array_extract($options, ['key' => 'getLabel', 'value'=>'getId']);
     }
 
     // setting etapes
@@ -57,12 +57,12 @@ class ProjectEtapesJalonsType extends AbstractType
         // pour disable etapes
         $eDisabled = $options['data']->getId() && $options['data']->getIdEtape() ? ['disabled' => true] : [];
         // pour disable type jalon
-        $tDisabled = $options['data']->getId() && $options['data']->getidTypeJalon() ? ['disabled' => true] : [];
+        // $tDisabled = $options['data']->getId() && $options['data']->getidTypeJalon() ? ['disabled' => true] : [];
 
         $builder
             ->add('idProjectVersion', ChoiceType::class, ['choices' => $project, 'attr' => array_merge(['required' => true], $pDisabled)])
             ->add('idEtape', ChoiceType::class, ['choices' => $etape, 'attr' => $eDisabled])
-            ->add('idTypeJalon', ChoiceType::class, ['choices' => $jalons, 'attr' => array_merge(['required' => true], $tDisabled)])
+            ->add('idTypeJalon', ChoiceType::class, ['choices' => $jalons, 'attr' => ['required' => true]])
             ->add('object')
             ->add('description')
             ->add('dateprevue', TextType::class,['required'=>false])
@@ -70,6 +70,8 @@ class ProjectEtapesJalonsType extends AbstractType
             ->add('journeesHommesprevues', null, ['required'=>false])
             ->add('journeesHommesreelles', null, ['required'=>false])
             ->add('idResultat', ChoiceType::class, ['choices' => $result]);
+
+        $builder->get('idProjectVersion')->resetViewTransformers();
     }
     
     /**

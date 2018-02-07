@@ -192,7 +192,12 @@ class CrmEtapesOperations
     /**
      * @var object
      */
-    private $docs;
+    private $doc_Recus;
+
+    /**
+     * @var object
+     */
+    private $doc_Rnvoyes;
 
     /**
      * Get id
@@ -805,26 +810,50 @@ class CrmEtapesOperations
     }
 
     /**
-     * Set docs
+     * Set doc_recus
      *
-     * @param datetime $docs
+     * @param datetime $doc_recus
      *
      * @return ProjectEtapesOperations
      */
-    public function setDocs($docs)
+    public function setDocRecus($doc_recus)
     {
-        $this->docs = $docs;
+        $this->doc_recus = $doc_recus;
 
         return $this;
     }
 
     /**
-     * Get docs
+     * Get doc_recus
      *
      * @return object
      */
-    public function getDocs()
+    public function getDocRecus()
     {
-        return $this->docs;
+        return $this->doc_recus;
+    }
+
+     /**
+     * Set doc_envoyes
+     *
+     * @param datetime $doc_envoyes
+     *
+     * @return ProjectEtapesOperations
+     */
+    public function setDocEnvoyes($doc_envoyes)
+    {
+        $this->doc_envoyes = $doc_envoyes;
+
+        return $this;
+    }
+
+    /**
+     * Get doc_envoyes
+     *
+     * @return object
+     */
+    public function getDocEnvoyes()
+    {
+        return $this->doc_envoyes;
     }
 }

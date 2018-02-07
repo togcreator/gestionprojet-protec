@@ -9,7 +9,6 @@
         <thead>
             <tr>
                 <th>{{ 'projectnotes.date'|trans({}, 'projectnotes') }}</th>
-                <th>{{ 'projectnotes.idEtape'|trans({}, 'projectnotes') }}</th>
                 <th>{{ 'projectnotes.idOperation'|trans({}, 'projectnotes') }}</th>
                 <th>{{ 'projectnotes.titre'|trans({}, 'projectnotes') }}</th>
                 <th>{{ 'projectnotes.idUser'|trans({}, 'projectnotes') }}</th>
@@ -20,7 +19,6 @@
             {% for projectnotes in projectNotes %}
             <tr href="{{ path('projectnotes_ajax_get', {'idNote': projectnotes.id}) }}">
                 <td data-order="{{ projectnotes.date|date('Y-m-d') }}">{{ projectnotes.date|date(date_format) }}</td>
-                <td>{{ projectnotes.etape.object|default('') }}</td>
                 <td>{{ projectnotes.operation.object|default('') }}</td>
                 <td>{{ projectnotes.titre }}</td>
                 <td>{% if projectnotes.user %}{{ projectnotes.user.firstname }} {{ projectnotes.user.lastname }}{% endif %}</td>

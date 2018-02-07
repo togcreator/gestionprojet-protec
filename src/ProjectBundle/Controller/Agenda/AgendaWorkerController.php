@@ -17,21 +17,19 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class AgendaWorkerController extends Controller
 {
     /**
-    * Override method getUser parent
-    *
-    * @return UserClient
-    */
+     * Override method getUser parent
+     *
+     * @return UserClient
+     */
     protected function getUser() {
-        //==============================================
-        // $user = parent::getUser();
-        $session_id = $this->container->get('session')->get('log');
-        $bu_id = $this->container->get('session')->get('BU');
-        $manager = $this->getDoctrine()->getManager();
-        $login = $manager->getRepository('UsersBundle:Users')->findOneBy(['id' => $session_id]); 
-        if( $login && $login->getUsername() == 'admins' ) $return = $manager->getRepository('UsersBundle:UserClient')->findOneBy(['login' => $login->getUsername()]);
-        else $return = $manager->getRepository('UsersBundle:UserClient')->findBBU($login->getUsername(), $bu_id, true);
 
-        return $return;
+        $auth_checker = $this->get('security.authorization_checker');
+        if( $auth_checker->isGranted('ROLE_ADMIN') ) 
+            return true;
+        
+        $user_id = parent::getUser()->getId();
+        $bu_id = $this->container->get('session')->get('BU');
+        return $this->getDoctrine()->getRepository('UsersBundle:UserClient')->findUserByCompte($bu_id, $user_id);
     }
 
     /**
@@ -43,14 +41,13 @@ class AgendaWorkerController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $user = $this->getUser() != null ? $this->getUser() : null;
-        $admin = ($user != null && $user->getLogin() == 'admins') ? true : false;
+        $user_id = is_object($this->getUser()) ? $this->getuser()->getId() : null;
 
         $agendaWorkers = $em->getRepository('ProjectBundle:Agenda\AgendaWorker')->findAll();
         $project_etapes = $em->getRepository('ProjectBundle:Agenda\AgendaWorker')->findProjectEtapeAll();
         $project_operations = $em->getRepository('ProjectBundle:Agenda\AgendaWorker')->findProjectEtapeOperationAll();
         $project_operations_issues = $em->getRepository('ProjectBundle:Agenda\AgendaWorker')->findProjectEtapeOperationIssueAll();
-        $crm_etapes_operations = $em->getRepository('ProjectBundle:Agenda\AgendaWorker')->findCrmEtapesOperationsByUser($admin ? null : ($user != null ? $user->getId() : 0));
+        $crm_etapes_operations = $em->getRepository('ProjectBundle:Agenda\AgendaWorker')->findCrmEtapesOperationsByUser($user_id, null, $this->container->get('session')->get('BU'));
 
         $agendaWorkers = [
             'project_etapes' => $project_etapes,

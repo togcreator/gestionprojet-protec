@@ -133,7 +133,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
                 $projects->setParameter('idRelationProfessionnelles', $project['idRelationProfessionnelles']);
             }
 
-            dump('madalo');
         }else {
             $projects->andWhere('pv.idUser = :contact AND us.iDNatureUser = 2 AND r.iDBusinessUnit = :idBusinessUnit AND r.iDRelationsProfessionnelles = :idRelationProfessionnelles');
             $projects->setParameters([
@@ -183,8 +182,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             $project['tri'] = 'p.idLeader';
         $projects->orderBy( $project['tri'] );
 
-        dump($projects->getQuery());
-
         // execute this
         $return = $projects->getQuery()->execute();
         return $return;
@@ -194,13 +191,8 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     /**
     * Pour les critères de projet en mode d'accès
     * pour les propriétaires des données
-    *
-    * @param Array $criteria
-    * @return result
     */ 
     public function findClient($id, $orderby = 'id') {
-
-        dump($orderby);
 
         // test si utilisateur contact
         if( ($contact = $this->getEntityManager()->getRepository('UsersBundle:UserClient')->findOneBy(['id' => $id, 'iDNatureUser' => 2])) ) {
@@ -218,5 +210,41 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         $projects->where('p.modeAcces = :modeAcces OR p.idCreateur = :idCreateur');
         $projects->setParameters(['modeAcces' => 2, 'idCreateur' => $id]);
         return $projects->getQuery()->execute();
+    }
+
+
+    /**
+     * Find by BU
+     */
+    public function findByBU ($criter, $user_id = null, $bu_id = null,$orderby = null) {
+        $projects = $this->createQueryBuilder('p');
+
+        if( $criter && count($criter) ) {
+            foreach( $criter as $key => $value ) {
+                $projects
+                    ->andWhere("$key = :{$key}")
+                    ->setParameter($key, $value);
+            }
+        }
+
+        if( $bu_id ) {
+            $projects
+                ->innerJoin('UsersBundle:RelationBusinessEntite', 'rbe', Join::WITH, 'rbe.iDentite = p.idEntiteJ')
+                ->andWhere('rbe.iDBusinessUnit = :bu_id')
+                ->setParameter('bu_id', $bu_id);
+        }
+
+        if( $user_id ) {
+            $projects
+                ->innerJoin('UsersBundle:UserClient', 'u', Join::WITH, 'u.id = p.idCreateur')
+                ->andWhere('u.id = :user_id or p.modeAcces = 2')
+                ->setParameter('user_id', $user_id);
+        }
+
+        if( !$orderby ) $orderby = 'id';
+        return $projects
+                ->orderBy('p.' . $orderby, 'DESC')
+                ->getQuery()
+                ->execute();
     }
 }

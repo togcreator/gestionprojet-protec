@@ -18,16 +18,19 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class ProjectEtapesOperationsController extends Controller
 {
     /**
-    * Override method getUser parent
-    *
-    * @return UserClient
-    */
+     * Override method getUser parent
+     *
+     * @return UserClient
+     */
     protected function getUser() {
-        //==============================================
-        // $user = parent::getUser();
-        $session_id = $this->container->get('session')->get('log');
-        $manager = $this->getDoctrine()->getManager();
-        return $manager->getRepository('UsersBundle:UserClient')->findOneBy(['id' => $session_id]);
+
+        $auth_checker = $this->get('security.authorization_checker');
+        if( $auth_checker->isGranted('ROLE_ADMIN') ) 
+            return true;
+        
+        $user_id = parent::getUser()->getId();
+        $bu_id = $this->container->get('session')->get('BU');
+        return $this->getDoctrine()->getRepository('UsersBundle:UserClient')->findUserByCompte($bu_id, $user_id);
     }
 
     /**
@@ -39,19 +42,10 @@ class ProjectEtapesOperationsController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $user_id = is_object($this->getUser()) ? $this->getUser()->getId() : null;
+        $bu_id = $this->container->get('session')->get('BU');
 
-        $projectEtapesOperations = $em->getRepository('ProjectBundle:Common\ProjectEtapesOperations')->findAll();
-        if( count($projectEtapesOperations) )
-            foreach($projectEtapesOperations as &$operations) {
-                $currentUser = $this->getUser();
-                $operations->setProjet($em->getRepository('ProjectBundle:Common\Project')->findOneBy(['id' => $operations->getIdProjectVersion()]));
-                if($operations->getProjet()->getIdCreateur() != $currentUser && $currentUser != 1) {
-                    unset($operations);
-                    continue;
-                }
-                $operations->setEtape($em->getRepository('ProjectBundle:Common\ProjectEtape')->findOneBy(['id' => $operations->getIdEtape()]));
-            }
-
+        $projectEtapesOperations = $em->getRepository('ProjectBundle:Common\ProjectEtapesOperations')->findAllBy(null, $user_id, $bu_id);
         return $this->render('ProjectBundle:common/projectetapesoperations:index.html.twig', array(
             'projectEtapesOperations' => $projectEtapesOperations,
         ));
@@ -138,9 +132,9 @@ class ProjectEtapesOperationsController extends Controller
         {
             $em = $this->getDoctrine()->getManager();
 
-            /* pour etapes jalons */
-            $etapesjalons = $em->getRepository('ProjectBundle:Common\ProjectEtapesOperations')->findOneBy(['id' => $id]);
-            if( !$etapesjalons ) 
+            /* pour etapes operations */
+            $etapesoperations = $em->getRepository('ProjectBundle:Common\ProjectEtapesOperations')->findOneBy(['id' => $id]);
+            if( !$etapesoperations ) 
                 return new JsonResponse(['resultat' => false]);
 
             /* pour agenda*/
@@ -149,7 +143,7 @@ class ProjectEtapesOperationsController extends Controller
             ?>
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h5 class="modal-title"><?php echo $etapesjalons->getObject() ?></h5>
+                <h5 class="modal-title"><?php echo $etapesoperations->getObject() ?></h5>
             </div>
 
             <div class="modal-body">
@@ -236,8 +230,11 @@ class ProjectEtapesOperationsController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // etape
-            // $this->setEtape($projectEtapesOperation);
+            /**
+             * Pour project
+             */
+            $project = $em->getRepository('ProjectBundle:Common\Project')->findOneBy(['id' => $projectEtapesOperation->getIdProjectVersion()]);
+            $projectEtapesOperation->setProject($project);
 
             // pour agenda
             $id_agenda = $this->setAgenda($projectEtapesOperation);
@@ -430,7 +427,7 @@ class ProjectEtapesOperationsController extends Controller
 
         /* à supprimer d'abord **/
         $operation_users = $em->getRepository('ProjectBundle:Common\ProjectEtapesOperationsUsers')->findOneBy(['idOperation' => $projectEtapesOperation->getId()]);
-        if( count($operation_users) )
+        if( is_array($operation_users) && count($operation_users) )
             foreach( $operation_users as $user )
                 if( !in_array($user->getIdUser(), $users) ) 
                 {
@@ -486,10 +483,13 @@ class ProjectEtapesOperationsController extends Controller
     // data for form
     private function dataForm() {
         $em = $this->getDoctrine()->getManager();
+        $user_id = is_object($this->getUser()) ? $this->getUser()->getId() : null;
+        $bu_id = $this->container->get('session')->get('BU');
+
         return [
             'etapes'        => $em->getRepository('ProjectBundle:Common\ProjectEtape')->findAll(), 
-            'projects'      => $em->getRepository('ProjectBundle:Common\Project')->findAll(), 
-            'jalons'    => $em->getRepository('ProjectBundle:Common\ProjectEtapesJalons')->findAll(),
+            'projects'      => $em->getRepository('ProjectBundle:Common\Project')->findByBU(null, $user_id, $bu_id), 
+            'jalons'        => $em->getRepository('ProjectBundle:Common\ProjectEtapesJalons')->findAll(),
             'users'         => $em->getRepository('UsersBundle:UserClient')->findAll(),
             // other
             'priorites'     => $em->getRepository('ProjectBundle:Back\Priorites')->findAll(),

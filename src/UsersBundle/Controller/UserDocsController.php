@@ -40,6 +40,10 @@ class UserDocsController extends Controller
     public function newAction(Request $request)
     {
         $userDoc = new UserDocs();
+
+        if( ($user_id = $request->get('idUser')) )
+            $userDoc->setIdUser4origine((int)$user_id);
+
         $form = $this->createForm('UsersBundle\Form\UserDocsType', $userDoc, ['dataForm' => $this->dataForm()]);
         $form->handleRequest($request);
 

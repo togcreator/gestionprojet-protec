@@ -17,20 +17,19 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class CrmDossierController extends Controller
 {
     /**
-    * Override method getUser parent
-    *
-    * @return UserClient
-    */
+     * Override method getUser parent
+     *
+     * @return UserClient
+     */
     protected function getUser() {
-        //==============================================
-        // $user = parent::getUser();
-        $session_id = $this->container->get('session')->get('log');
-        $bu_id = $this->container->get('session')->get('BU');
-        $manager = $this->getDoctrine()->getManager();
-        $login = $manager->getRepository('UsersBundle:Users')->findOneBy(['id' => $session_id]);
-        $return = $manager->getRepository('UsersBundle:UserClient')->findBBU($login->getUsername(), $bu_id, true);
 
-       return $return;
+        $auth_checker = $this->get('security.authorization_checker');
+        if( $auth_checker->isGranted('ROLE_ADMIN') ) 
+            return true;
+        
+        $user_id = parent::getUser()->getId();
+        $bu_id = $this->container->get('session')->get('BU');
+        return $this->getDoctrine()->getRepository('UsersBundle:UserClient')->findUserByCompte($bu_id, $user_id);
     }
 
     /**
@@ -44,8 +43,10 @@ class CrmDossierController extends Controller
         $em = $this->getDoctrine()->getManager();
         $orderby = ($orderby = $request->get('orderby')) ? $orderby : 'Statut';
         $orderby = $this->getOrderProject($orderby);
+        $user_id = is_object($this->getUser()) ? $this->getUser()->getId() : null;
+        $bu_id = $this->container->get('session')->get('BU');
 
-        $crmDossiers = $em->getRepository('CrmBundle:Common\CrmDossier')->findAllBy($this->getUser());
+        $crmDossiers = $em->getRepository('CrmBundle:Common\CrmDossier')->findAllBy($user_id, $bu_id);
 
         // return
         $crms = [];
@@ -238,14 +239,14 @@ class CrmDossierController extends Controller
         $bu_id = $this->container->get('session')->get('BU');
         
         return [
-            'entityJ' => $em->getRepository('ClientBundle:Client')->findByBU($this->getUser() ? $bu_id : -1),
+            'entityJ' => $em->getRepository('ClientBundle:Client')->findByBU($bu_id),
             'clients' => $this->client(),
-            'owner' => $em->getRepository('UsersBundle:UserClient')->findSalarierCom([10]), 
-            'watcher' => $em->getRepository('UsersBundle:UserClient')->findSalarierCom([13]), 
+            'owner' => $em->getRepository('UsersBundle:UserClient')->findSalarierCom([10], $bu_id), 
+            'watcher' => $em->getRepository('UsersBundle:UserClient')->findSalarierCom([13], $bu_id), 
             'modeacces' => $em->getRepository('CrmBundle:Back\CrmParamModeAccess')->findAll(),
-            'statuts' => $em->getRepository('CrmBundle:Back\CrmParamStatut')->findAll(),
-            'resultats' => $em->getRepository('CrmBundle:Back\CrmParamResultat')->findAll(),
-            'cycles' => $em->getRepository('CrmBundle:Back\CrmParamCycles')->findAll()
+            'statuts' => $em->getRepository('CrmBundle:Back\CrmParamStatut')->findBy(['ouvert' => 1]),
+            'resultats' => $em->getRepository('CrmBundle:Back\CrmParamResultat')->findBy(['ouvert' => 1]),
+            'cycles' => $em->getRepository('CrmBundle:Back\CrmParamCycles')->findBy(['ouvert' => 1])
         ];
     }
 

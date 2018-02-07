@@ -40,7 +40,7 @@ class UsersParamRelationsFonctionsController extends Controller
     public function newAction(Request $request)
     {
         $usersParam = new UsersParamRelationsFonctions();
-        $form = $this->createForm('UsersBundle\Form\Back\UsersParamRelationsFonctionsType', $usersParam);
+        $form = $this->createForm('UsersBundle\Form\Back\UsersParamRelationsFonctionsType', $usersParam, ['dataForm' => $this->dataForm()]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -86,7 +86,7 @@ class UsersParamRelationsFonctionsController extends Controller
     public function editAction(Request $request, UsersParamRelationsFonctions $usersParam)
     {
         $deleteForm = $this->createDeleteForm($usersParam);
-        $editForm = $this->createForm('UsersBundle\Form\Back\UsersParamRelationsFonctionsType', $usersParam);
+        $editForm = $this->createForm('UsersBundle\Form\Back\UsersParamRelationsFonctionsType', $usersParam, ['dataForm' => $this->dataForm()]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -136,5 +136,14 @@ class UsersParamRelationsFonctionsController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /* data form */
+    private function dataForm ()
+    {
+        $em = $this->getDoctrine()->getManager();
+        return [
+            'paramServices' =>  $em->getRepository('UsersBundle:Back\ParamServices')->findAll()
+        ];
     }
 }

@@ -15,17 +15,20 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ProjectEtapeController extends Controller
 {
-    /**
-    * Override method getUser parent
-    *
-    * @return UserClient
-    */
+        /**
+     * Override method getUser parent
+     *
+     * @return UserClient
+     */
     protected function getUser() {
-        //==============================================
-        // $user = parent::getUser();
-        $session_id = $this->container->get('session')->get('log');
-        $manager = $this->getDoctrine()->getManager();
-        return $manager->getRepository('UsersBundle:UserClient')->findOneBy(['id' => $session_id]);
+
+        $auth_checker = $this->get('security.authorization_checker');
+        if( $auth_checker->isGranted('ROLE_ADMIN') ) 
+            return true;
+        
+        $user_id = parent::getUser()->getId();
+        $bu_id = $this->container->get('session')->get('BU');
+        return $this->getDoctrine()->getRepository('UsersBundle:UserClient')->findUserByCompte($bu_id, $user_id);
     }
 
     /**
@@ -37,14 +40,10 @@ class ProjectEtapeController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $user_id = is_object($this->getUser()) ? $this->getUser()->getId() : null;
+        $bu_id = $this->container->get('session')->get('BU');
 
-        $projectEtapes = $em->getRepository('ProjectBundle:Common\ProjectEtape')->findAll();
-        if( count($projectEtapes) )
-            foreach( $projectEtapes as $key => &$etape ) {
-                $currentUser = $this->getUser()->getId();
-                if( $etape->getProjet()->getIdCreateur() != $currentUser && $currentUser != 1 ) 
-                    unset($projectEtapes[$key]);
-            }
+        $projectEtapes = $em->getRepository('ProjectBundle:Common\ProjectEtape')->findAllBy(null, $user_id, $bu_id);
 
         return $this->render('ProjectBundle:common\projectetape:index.html.twig', array(
             'projectEtapes' => $projectEtapes,

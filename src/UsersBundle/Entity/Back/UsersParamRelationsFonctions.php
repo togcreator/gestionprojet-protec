@@ -105,6 +105,14 @@ class UsersParamRelationsFonctions
     private $iDService;
 
     /**
+     * @var object
+     *
+     * @ORM\ManyToOne(targetEntity="ParamServices", fetch="EAGER")
+     * @ORM\JoinColumn(name="iDService", referencedColumnName="id", nullable=true)
+     */
+    private $service;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="Version", type="integer")
@@ -432,5 +440,29 @@ class UsersParamRelationsFonctions
     public function getLib9()
     {
         return $this->lib9;
+    }
+
+    /**
+     * Set service
+     *
+     * @param string $service
+     *
+     * @return UsersParamRelationsFonctions
+     */
+    public function setService($service)
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * Get service
+     *
+     * @return string
+     */
+    public function getService()
+    {
+        return $this->service;
     }
 }

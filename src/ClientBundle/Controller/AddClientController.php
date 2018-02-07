@@ -23,9 +23,29 @@ use Symfony\Component\HttpFoundation\Request;
 class AddClientController extends Controller
 {
     public function addAction(Request $requete) {
+        $em = $this->getDoctrine()->getManager();
         $client = new Client();
         $formBuilder = $this->createFormBuilder($client);
+        
+        $user_param_groupe = [];
+        $admins = $em->getRepository('UsersBundle:UserClient')->findBy(['id' => $this->container->get('session')->get('log')]);
+        if( $admins )
+            foreach( $admins as $admin ) {
+
+                $criter = [];
+                switch($admin->getIDGroupe()) {
+                    case 2:
+                        $criter = ['id' => [3, 4]];
+                        break;
+                    case 3:
+                        $criter = ['id' => 4];
+                }
+
+                $user_param_groupe = $em->getRepository('UsersBundle:Back\UsersParamGroupe')->findBy($criter);
+            }
+
         $formBuilder
+            ->add('idGroupe',              TextType::class)
             ->add('raisonSociale',         TextType::class)
             ->add('adr1',                  TextType::class)
             ->add('adr2',                  TextType::class, array('required' => false))
@@ -53,6 +73,8 @@ class AddClientController extends Controller
             ->add('idTypeFacturation',     TextType::class, array('required' => false))
             ->add('echeance',              TextType::class, array('required' => false))
             ->add('siteweb',               TextType::class, array('required' => false))
+            ->add('iDBusinessUnit',        ChoiceType::class,  array('required' => false, 'choices' => $this->dataForm('iDBusinessUnit')))
+            ->add('relationsProfessionnelles', ChoiceType::class,  array('required' => false, 'choices' => $this->dataForm('relationsProfessionnelles')))
             ->add('version',               TextType::class, array('required' => false));
         $form = $formBuilder->getForm();
         if($requete->getMethod() == 'POST') {
@@ -96,5 +118,29 @@ class AddClientController extends Controller
             $return = $codepostal;
 
         return $return;
+    }
+
+    /**
+    * getting contact
+    */
+    public function getContacts ($id_entite_juridique) {
+
+        $em = $this->getDoctrine()->getManager();
+        $contacts = $em->getRepository('UsersBundle:UserClient')->findContactsClient($id_entite_juridique);
+        return $contacts;
+    }
+
+    /**
+    * dataForm
+    */
+    public function dataForm ( $id ) {
+        $em = $this->getDoctrine()->getManager();
+        $return = [
+            'idGroupe' => \AppBundle\Entity\Classes\Utils::Array_extract($em->getRepository('UsersBundle:Back\UsersParamGroupe')->findBy(['ouvert' => 1]), ['key' => 'getLabel', 'value' => 'getId']),
+            'iDBusinessUnit' => \AppBundle\Entity\Classes\Utils::Array_extract($em->getRepository('UsersBundle:BusinessUnit')->findAll(), ['key' => 'getNomBusinessUnit', 'value' => 'getId']),
+            'relationsProfessionnelles' => \AppBundle\Entity\Classes\Utils::Array_extract($em->getRepository('UsersBundle:Back\UsersParamRelationsProfessionnelles')->findBy(['IDNatureUser' => 2]), ['key' => 'getLabel', 'value' => 'getId']),
+        ];
+
+        return isset($return[$id]) ? $return[$id] : [];
     }
 }

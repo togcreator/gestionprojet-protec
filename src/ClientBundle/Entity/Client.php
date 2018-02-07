@@ -253,6 +253,16 @@ class Client
     /**
     * var type
     */
+    private $iDBusinessUnit;
+
+    /**
+    * var type
+    */
+    private $relationsProfessionnelles;
+
+    /**
+    * var type
+    */
     private $type;
 
 
@@ -1057,6 +1067,55 @@ class Client
     {
         return $this->logo;
     }
+
+    /**
+     * Set iDBusinessUnit
+     *
+     * @param object $iDBusinessUnit
+     *
+     * @return Client
+     */
+    public function setIDBusinessUnit($iDBusinessUnit)
+    {
+        $this->iDBusinessUnit = $iDBusinessUnit ? $iDBusinessUnit : $this->iDBusinessUnit;
+
+        return $this;
+    }
+
+    /**
+     * Get iDBusinessUnit
+     *
+     * @return object
+     */
+    public function getIDBusinessUnit()
+    {
+        return $this->iDBusinessUnit;
+    }
+
+    /**
+     * Set relationsProfessionnelles
+     *
+     * @param object $relationsProfessionnelles
+     *
+     * @return Client
+     */
+    public function setRelationsProfessionnelles($relationsProfessionnelles)
+    {
+        $this->relationsProfessionnelles = $relationsProfessionnelles ? $relationsProfessionnelles : $this->relationsProfessionnelles;
+
+        return $this;
+    }
+
+    /**
+     * Get relationsProfessionnelles
+     *
+     * @return object
+     */
+    public function getRelationsProfessionnelles()
+    {
+        return $this->relationsProfessionnelles;
+    }
+
     /**
      * Constructor
      */

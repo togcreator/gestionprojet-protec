@@ -10,7 +10,7 @@ global.relationbusinessuser: Fonctionnal user relationship
 # back
 back.menu_users:  User account
 back.menu_user_client: User
-back.menu_param_user: User setting
+back.menu_param_user: User settings
 back.menu_usersparamnature: Nature user
 back.menu_usersparamrelationsfonctions: Fonctional user relationship
 back.menu_relation: Relation
@@ -21,3 +21,6 @@ back.menu_relationuserentite: Entity user relationship
 
 # users
 users.connect_as: "User as:"
+users.enterprise: "Enterprise:"
+users.all: All
+users.no_user: None

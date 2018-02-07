@@ -29,10 +29,10 @@
 				<div class="tab-content">
 					<div id="project" class="tab-pane active col-md-12">
 						<div class="form-group col-md-6">
-                            {% set name = 'project.idEntiteJ'|trans({}, 'project') %}
+                            {% set name = 'project.entiteJ'|trans({}, 'project') %}
                             {{ form_label(form.idEntiteJ, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
                             <div class="col-lg-8">
-                                {{ form_widget(form.idEntiteJ, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(form.idEntiteJ, {'attr': {'class': 'form-control select2-search'}}) }}
                             </div>
 						</div>
 						<div class="form-group col-md-6">
@@ -284,5 +284,7 @@
                 });
             });
         })
+
+         $('.select2-search').select2();
 	}(jQuery))
 </script>

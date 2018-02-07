@@ -23,11 +23,16 @@ class RelationBusinessUserController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $bu_id = $this->container->get('session')->get('BU');
 
-        $relationBusinessUsers = $em->getRepository('UsersBundle:RelationBusinessUser')->findByUser();
+        $relationBusinessUsers = $em->getRepository('UsersBundle:RelationBusinessUser')->findByUser($bu_id);
         if(count($relationBusinessUsers))
             foreach($relationBusinessUsers as &$relation) {
-                $relation->setRelationsFonctionnelles($em->getRepository('UsersBundle:Back\UsersParamRelationsFonctions')->findOneBy(['id' => $relation->getIDRelationFonctionnelle()]));
+                $rel = $em->getRepository('UsersBundle:Back\UsersParamRelationsFonctions')->findOneBy(['id' => $relation->getIDRelationFonctionnelle()]);
+                if( $rel ) {
+                    $relation->setRelationsFonctionnelles($rel);
+                    $relation->setService($em->getRepository('UsersBundle:Back\ParamServices')->findOneBy(['id' => $rel->getIDService()]));
+                }
             }
 
         return $this->render('UsersBundle:relationbusinessuser:index.html.twig', array(
@@ -49,6 +54,17 @@ class RelationBusinessUserController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            /**
+             * Si l'element existe déjà
+             */
+            $user_id = $relationBusinessUser->getIDUser();
+            $bu_id = $relationBusinessUser->getIDBusinessUnit();
+            $fonc_id = $relationBusinessUser->getIDRelationFonctionnelle();
+            if( ($rel = $em->getRepository('UsersBundle:RelationBusinessUser')->findOneBy(['iDUser' => $user_id, 'iDBusinessUnit' => $bu_id])) ) {
+                $relationBusinessUser = $rel;
+                $relationBusinessUser->setIDRelationFonctionnelle($fonc_id);
+            }
 
             //============================================
             $rf = $relationBusinessUser->getIDRelationFonctionnelle();

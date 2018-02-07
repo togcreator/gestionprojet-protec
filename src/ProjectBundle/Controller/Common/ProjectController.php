@@ -17,20 +17,19 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class ProjectController extends Controller
 {   
     /**
-    * Override method getUser parent
-    *
-    * @return UserClient
-    */
+     * Override method getUser parent
+     *
+     * @return UserClient
+     */
     protected function getUser() {
-        //==============================================
-        // $user = parent::getUser();
-        $session_id = $this->container->get('session')->get('log');
-        $bu_id = $this->container->get('session')->get('BU');
-        $manager = $this->getDoctrine()->getManager();
-        $login = $manager->getRepository('UsersBundle:Users')->findOneBy(['id' => $session_id]);
-        $return = $manager->getRepository('UsersBundle:UserClient')->findBBU($login->getUsername(), $bu_id, true);
 
-       return $return;
+        $auth_checker = $this->get('security.authorization_checker');
+        if( $auth_checker->isGranted('ROLE_ADMIN') ) 
+            return true;
+        
+        $user_id = parent::getUser()->getId();
+        $bu_id = $this->container->get('session')->get('BU');
+        return $this->getDoctrine()->getRepository('UsersBundle:UserClient')->findUserByCompte($bu_id, $user_id);
     }
 
     /**
@@ -62,13 +61,15 @@ class ProjectController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $orderby = ($orderby = $request->get('orderby')) ? $orderby : 'idLeader';
+        $orderby = ($orderby = $request->get('orderby')) ? ($orderby != 'idContact' ? $orderby : 'idLeader') : 'idLeader';
         $orderby = $this->getOrderProject($orderby);
+        $user_id = is_object($this->getUser()) ? $this->getUser()->getId() : null;
+        $bu_id = $this->container->get('session')->get('BU');
 
-        $projects = $em->getRepository('ProjectBundle:Common\Project')->findClient($this->getUser()->getId(), $orderby);
+        $projects = $em->getRepository('ProjectBundle:Common\Project')->findByBU(null, $user_id, $bu_id, $orderby);
 
         // return
-        $projet = $projets = [];
+        $retour = [];
         foreach($projects as $key => $project) 
         {
             $clefs = null;
@@ -77,8 +78,12 @@ class ProjectController extends Controller
             if( strpos(strtolower($orderby), 'leader') !== false || $orderby == "" )
                 $clefs = $project->getLeaders()->getFirstname();
 
-            if( strpos(strtolower($orderby), 'date') !== false )
-                $clefs = $project->getDatefinPrevue();
+            if( strpos(strtolower($orderby), 'date') !== false ) {
+                if( $project->getDatefinPrevue() instanceof \DateTime && $project->getDatefinPrevue()->format('Y-m-d') == '-0001-11-30')
+                    $clefs = $project->getDatefinPrevue();
+                else
+                    $project->getDatefinPrevue();
+            }
 
             if( strpos(strtolower($orderby), 'statut') !== false )
                 $clefs = $project->getStatuts()->getlabel();
@@ -104,6 +109,9 @@ class ProjectController extends Controller
                 $format = array_key_exists($locale, $date_format) ? $date_format[$locale] : $date_format['en'];
                 $clefs = $clefs->format($format );
                 $clefs = str_replace('--', '-', $clefs);
+                if( $clefs == '30-11-0001' || $clefs == '-0001-11-30' ) {
+                    continue;
+                }
             }
 
             $clefs = str_replace(' ', '-', $clefs);
@@ -115,13 +123,13 @@ class ProjectController extends Controller
                 $etape->setOperations($operations);
             }
 
-            if( !isset($projets[$clefs]) ) $projets[$clefs] = [];
-            $projets[$clefs][] = $project;
+            if( !isset($retour[$clefs]) ) $retour[$clefs] = [];
+            $retour[$clefs][] = $project;
         }
 
         // return
         return $this->render('ProjectBundle:common\project:index.html.twig', array(
-            'projects' => $projets,
+            'projects' => $retour,
             'statuts' => $em->getRepository('ProjectBundle:Back\Statut')->findAll(),
             'piorites' => $em->getRepository('ProjectBundle:Back\Priorites')->findAll(),
             'workshops' => $em->getRepository('ProjectBundle:Back\Workshop')->findAll(),
@@ -211,29 +219,12 @@ class ProjectController extends Controller
         foreach($users as $key => $user)
             $user_ids[] = (string)$user->getIdRelation();
         $project->setUser($user_ids); // setter user
-        dump($user_ids);
 
         $contact = [];
-        $user = $em->getRepository('ProjectBundle:Common\ProjectVersionUser')->findContact(['idProjetVersion' => $project->getId()]);
+        $user = $em->getRepository('ProjectBundle:Common\ProjectVersionUser')->findContact($project->getId(), $project->getIdEntitej());
         if(count($user)) {
-            $user_id = $user[0]->getIdUser();
-
-            $relation = $user[0]->getIdRelation();
-            $relations = explode('-', $relation);
-            $project->setContact($relation);
-
-            $user_contact = $em->getRepository('UsersBundle:UserClient')->findOneBy(['id' => $user_id]);
-            $rbu = $em->getRepository('UsersBundle:BusinessUnit')->findByUser($user_id); // business unit
-            if(count($rbu) && count($relations)) {
-                foreach( $rbu as $r ) {
-                    if( $r->getId() == (int)$relations[1] )
-                        $key = $user_contact->getFirstname() . ' ' . $user_contact->getLastname() . ' - ' . $r->getNomBusinessUnit();
-                }
-            }
-            else $key = $user_contact->getFirstname() . ' ' . $user_contact->getLastname();
-
-            $id = "{$user_contact->getId()}-{$rbu[0]->getId()}";
-            $contact = [$key => $id];
+            $user = $user[0];
+            $contact = [sprintf('%s %s', $user->getFirstname(), $user->getLastname()) => $user->getId()];
         }
         $dataForm = $this->dataForm($contact);
         //==================================================================
@@ -257,7 +248,7 @@ class ProjectController extends Controller
             return $this->redirectToRoute('project_edit', array('id' => $project->getId()));
         }
 
-        // on affiche les note et documents du projet en cours
+        // on affiche les note et documents du project en cours
         $projectNotes = $em->getRepository('ProjectBundle:Common\ProjectNotes')->findBy(['idProjetVersion' => $project->getId()]);
         if( $projectNotes ) {
             foreach($projectNotes as &$notes)
@@ -287,11 +278,7 @@ class ProjectController extends Controller
 
         // pour etape jalons
         $projectEtapesJalons = $em->getRepository('ProjectBundle:Common\ProjectEtapesJalons')->findBy(['idProjectVersion' => $project->getId()]);
-        if( $projectEtapesJalons ) {
-            foreach($projectEtapesJalons as &$jalons)
-                if( ($id_resultat = $jalons->getIdResultat()) )
-                    $jalons->setResultat($em->getRepository('ProjectBundle:Back\Resultat')->findOneBy(['id' => $id_resultat]));
-        }
+        
         // pour operations
         $projectEtapesOperations = $em->getRepository('ProjectBundle:Common\ProjectEtapesOperations')->findBy(['idProjectVersion' => $project->getId()]);
 
@@ -384,9 +371,6 @@ class ProjectController extends Controller
         return $orderby;
     }
 
-    // private 
-    // $em->getRepository('UsersBundle:UserClient')->findEmploye()
-
     //============ client ============
     private function client () 
     {   
@@ -425,67 +409,96 @@ class ProjectController extends Controller
     }
     //=================================
 
-    //============ contact ============
+    /**
+     * pour contact
+     */
     private function contact ($q) 
     {   
         $em = $this->getDoctrine()->getManager();
+        $bu_id = $this->container->get('session')->get('BU');
+
         $data = [
             'total_count' => 0,
             'incomplete_results' => true,
             'items' => []
         ];
 
-        $users = $em->getRepository('UsersBundle:UserClient')->findContactBy(['firstname' => $q, 'lastname' => $q], 'or');
-        if( count($users) ) {
+        if( !$q )
+            return $data;
+
+        $users = $em->getRepository('UsersBundle:UserClient')->findContact($q);
+        if( $users && count($users) ) {
             $data['total_count'] = count($users);
+
             foreach( $users as $user ) {
-                $user_id = $user->getId();
-                $rbu = $em->getRepository('UsersBundle:BusinessUnit')->findByUser($user_id); // business unit
-                if( count($rbu)) {
-                    foreach($rbu as $bu) {
-                        $text = $user->getFirstname() . ' ' .$user->getLastname() . ' - ' . $bu->getNomBusinessUnit();
-                        $data['items'][] = [
-                            'id' => "{$user_id}-{$bu->getId()}",
-                            'text' => $text
-                        ];
-                    }
-                }else {
-                    $text = $user->getFirstname() . ' ' .$user->getLastname();
-                    $data['items'][] = [
-                        'id' => $user_id,
-                        'text' => $text
-                    ];
-                }
+                $data['items'][] = [
+                    'id' => $user->getId(),
+                    'text' => sprintf('%s %s', $user->getFirstname(), $user->getLastname()),
+                ];
             }
+
             $data['incomplete_results'] = false;
         }
+
+        // $users = $em->getRepository('UsersBundle:UserClient')->findContactBy(['firstname' => $q, 'lastname' => $q], 'or', $bu_id);
+        // if( $users && count($users) ) {
+        //     $data['total_count'] = count($users);
+        //     foreach( $users as &$user ) {
+        //         $bu = $em->getRepository('UsersBundle:BusinessUnit')->findOneBy(['id' => $user['bu_id']]);
+
+        //         $text = $user['user']->getFirstname() . ' ' . $user['user']->getLastname() . ' - ' . $bu->getNomBusinessUnit();
+        //         $data['items'][] = [
+        //             'id' => sprintf('%d - %d', $user['user']->getId(), $bu->getId()),
+        //             'text' => $text
+        //         ];
+        //     }
+        //      $data['incomplete_results'] = false;
+        // }
 
         return $data;
     }
     //=================================
 
-    // data form
+    /**
+     * data Form
+     */
     private function dataForm ($contact)
     {
         $em = $this->getDoctrine()->getManager();
+        $bu_id = $this->container->get('session')->get('BU');
+
         return [
-            'entityJs' => $em->getRepository('ProjectBundle:Back\EntityJ')->findAll(),
-            'workshops' => $em->getRepository('ProjectBundle:Back\Workshop')->findAll(),
-            'statuts' => $em->getRepository('ProjectBundle:Back\Statut')->findAll(),
+            'entityJs' => $this->getEntiteJ($bu_id),
+            'workshops' => $em->getRepository('ProjectBundle:Back\Workshop')->findBy([]),
+            'statuts' => $em->getRepository('ProjectBundle:Back\Statut')->findBy(['ouvert' => 1]),
             'modeacces' => $em->getRepository('ProjectBundle:Back\ModeAcces')->findAll(),
-            'users' => $em->getRepository('UsersBundle:UserClient')->findEmploye(),
+            'users' => $em->getRepository('UsersBundle:UserClient')->findUser(0, $bu_id),
             'clients' => $this->client(),
             'contact' => $contact
         ];
+    }
+
+    /**
+     *  Pour entitej
+     */
+    private function getEntiteJ ($bu_id) {
+        // rbe
+        $clients = $this->getDoctrine()->getRepository('ClientBundle:Client')->findByBU($bu_id);
+        $return = [];
+        foreach( $clients as &$client ) {
+            if( isset($client['relationBusinessEntite']) && is_object($client['relationBusinessEntite']))
+                $return[$client['relationBusinessEntite']->getEntite()->getId()] = $client['relationBusinessEntite']->getEntite();
+        }
+        return $return;
     }
 
     // for user or createur
     private function setUser ($project)
     {
         $em = $this->getDoctrine()->getManager();
-        $createur = $em->getRepository('UsersBundle:UserClient')->findOneBy(['id'=>$project->getIdCreateur()]);
+        $createur = $em->getRepository('UsersBundle:UserClient')->findOneBy(['id' => $project->getIdCreateur()]);
         $project->setCreateur($createur);
-        $leader = $em->getRepository('UsersBundle:UserClient')->findOneBy(['id'=>$project->getIdLeader()]);
+        $leader = $em->getRepository('UsersBundle:UserClient')->findOneBy(['id' => $project->getIdLeader()]);
         $project->setLeaders($leader);
     }
 
@@ -493,7 +506,6 @@ class ProjectController extends Controller
     private function setStatut ($project) 
     {
         $statut = $this->getDoctrine()->getManager()->getRepository('ProjectBundle:Back\Statut')->findOneBy(['id'=>$project->getStatut()]);
-        // dump($statut);
         $project->setStatuts($statut);
     }
 
@@ -528,11 +540,11 @@ class ProjectController extends Controller
         $users['contact'] = (int)$contacts[0];
 
         // erase for exist data
-        $projects = $em->getRepository('ProjectBundle:Common\ProjectVersionUser')->findBy(['idProjetVersion' => $project_id]);
-        if( count($projects) )
-            foreach( $projects as $project )
-                if( !in_array($project->getIdUser(), $users) ) { /* if not inside change to 0 */
-                    $em->remove($project);
+        $project_users = $em->getRepository('ProjectBundle:Common\ProjectVersionUser')->findBy(['idProjetVersion' => $project_id]);
+        if( count($project_users) )
+            foreach( $project_users as $user )
+                if( !in_array($user->getIdUser(), $users) ) { /* if not inside change to 0 */
+                    $em->remove($user);
                     $em->flush(); // update it
                 }
 
@@ -556,6 +568,15 @@ class ProjectController extends Controller
                 $user->setIdRelation($s);
             }
 
+            /**
+             * date réelle priorité
+             */
+            if( $project->getDatedebutReelle() ) $user->setDatedebut($project->getDatedebutReelle());
+            else if ( $project->getDatedebutPrevue() ) $user->setDatedebut($project->getDatedebutPrevue());
+
+            if( $project->getDatefinReelle() ) $user->setDatefin($project->getDatefinReelle());
+            else if( $project->getDatefinPrevue() ) $user->setDatefin($project->getDatefinPrevue());
+
             /* persist user */
             $em->persist($user);
             $em->flush(); /* maj */
@@ -576,6 +597,6 @@ class ProjectController extends Controller
         }
 
         $recipient = $this->get('envoimail_handler');
-        $recipient->mailNotif('Création d\'un projet', "Un projet est crée et s'intitule \"{$project->getLabel()}\"", $codemail, $recip);
+        $recipient->mailNotif('Création d\'un project', "Un project est crée et s'intitule \"{$project->getLabel()}\"", $codemail, $recip);
     }
 }

@@ -11,18 +11,33 @@ use Doctrine\ORM\Query\Expr\Join;
  */
 class CrmDossierRepository extends \Doctrine\ORM\EntityRepository
 {
-	
-    public function findAllBy ($user) {
-        $user_id = !$user ? null : $user->getId();
+	/**
+     * Find all by user_id and bu_id if exists
+     */
+    public function findAllBy ($user_id, $bu_id = 0, $criter = array()) {
 
-        // getting crm by user of same login account of user connected
-        // user conected is user
         $return = $this->createQueryBuilder('c')->select('c');
-        if( $user ){
-            $return->innerJoin('UsersBundle:UserClient', 'u', Join::WITH, 'c.idCreateur = u.id')
-                    ->innerJoin('UsersBundle:Users', 'us', Join::WITH, 'us.username = u.login')
-                    ->where('u.id = :user_id')
-                    ->setParameter('user_id', $user_id);
+        if( count($criter) ) {
+            foreach( $criter as $key => $value ) {
+                $return
+                    ->andWhere("c.$key = :" . strtolower($key))
+                    ->setParameter(strtolower($key), $value);
+            }
+        }
+
+        if( $user_id ){
+            $return
+                ->innerJoin('UsersBundle:UserClient', 'u', Join::WITH, 'c.idCreateur = u.id')
+                ->innerJoin('UsersBundle:Users', 'us', Join::WITH, 'us.id = u.iDCompte')
+                ->andWhere('u.id = :user_id')
+                ->setParameter('user_id', $user_id);
+        }
+
+        if( $bu_id ) {
+             $return
+                ->innerJoin('UsersBundle:RelationBusinessEntite', 'rbe', Join::WITH, 'rbe.iDentite = c.idEntiteJ')
+                ->andWhere('rbe.iDBusinessUnit = :bu_id')
+                ->setParameter('bu_id', $bu_id);
         }
 
         return $return->getQuery()->execute();
@@ -105,16 +120,14 @@ class CrmDossierRepository extends \Doctrine\ORM\EntityRepository
         //================= 1 des 3 ==================
         if( ($contact || $idBusinessUnit || $idRelationProfessionnelles) ) 
         {
-            $crms->innerJoin('CrmBundle:Common\CrmUsers', 'pv', Join::WITH, 'pv.idCRM = p.id');
-            $crms->innerJoin('UsersBundle:UserClient', 'u', Join::WITH, 'pv.idUser = u.id');
-            $crms->innerJoin('UsersBundle:RelationBusinessUser', 'ru', Join::WITH, 'ru.iDUser = u.id');
-            $crms->innerJoin('UsersBundle:RelationBusinessEntite', 'r', Join::WITH, 'r.iDBusinessUnit = ru.iDBusinessUnit');
+            // $crms->innerJoin('CrmBundle:Common\CrmUsers', 'pv', Join::WITH, 'pv.idCRM = p.id');
+            // $crms->innerJoin('UsersBundle:UserClient', 'u', Join::WITH, 'pv.idUser = u.id');
+            // $crms->innerJoin('UsersBundle:RelationBusinessUser', 'ru', Join::WITH, 'ru.iDUser = u.id');
+            $crms->innerJoin('UsersBundle:RelationBusinessEntite', 'r', Join::WITH, 'r.iDentite = p.idEntiteJ');
             
             // c => id == pu => idUser
             // rbu => idUser == c => id
             // rbe => idBusinessUnit == rbu => idBusinessUnit
-
-
         }
 
         // for etapes
@@ -132,10 +145,10 @@ class CrmDossierRepository extends \Doctrine\ORM\EntityRepository
         //=========================
         if( !($contact && $idBusinessUnit && $idRelationProfessionnelles) ) {
 
-            if( $contact )
-                $crms->andWhere('pv.idUser = :contact AND u.iDNatureUser = 2');
+            // if( $contact )
+            //     $crms->andWhere('pv.idUser = :contact AND u.iDNatureUser = 2');
             if( $idBusinessUnit )
-                $crms->andWhere('ru.iDBusinessUnit = :idBusinessUnit');
+                $crms->andWhere('r.iDBusinessUnit = :idBusinessUnit');
             if( $idRelationProfessionnelles )
                 $crms->andWhere('r.iDRelationsProfessionnelles = :idRelationProfessionnelles');
 
@@ -149,9 +162,9 @@ class CrmDossierRepository extends \Doctrine\ORM\EntityRepository
                 $crms->setParameter('idRelationProfessionnelles', $crm['idRelationProfessionnelles']);
             }
         }else {
-            $crms->andWhere('pv.idUser = :contact AND us.iDNatureUser = 2 AND r.iDBusinessUnit = :idBusinessUnit AND r.iDRelationsProfessionnelles = :idRelationProfessionnelles');
+            $crms->andWhere(/*'pv.idUser = :contact AND */' us.iDNatureUser = 2 AND r.iDBusinessUnit = :idBusinessUnit AND r.iDRelationsProfessionnelles = :idRelationProfessionnelles');
             $crms->setParameters([
-                'contact' => $crm['contact'],
+                // 'contact' => $crm['contact'],
                 'iDBusinessUnit' => $crm['idBusinessUnit'],
                 'iDRelationsProfessionnelles' => $crm['idRelationProfessionnelles']
             ]);

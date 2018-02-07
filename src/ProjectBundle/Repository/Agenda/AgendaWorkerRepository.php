@@ -54,33 +54,48 @@ class AgendaWorkerRepository extends \Doctrine\ORM\EntityRepository
 	}
 
 	// crm etape all
-	public function findCrmEtapesOperationsByUser ($user_id) 
+	public function findCrmEtapesOperationsByUser ($user_id = null, $entite_id = null, $bu_id = null) 
 	{	
-		if( $user_id === 0 ) return [];
-		$user_id = $user_id != null ? $user_id : 0;
-
 		$select = ['o.dateDebPrevue', 'o.dateFinPrevue', 'o.dateDebReelle', 'o.dateFinReelle', 'e.objet', 'e.id', 's.couleur', 'u.firstname', 'u.lastname'];
+
 		$return = $this->createQueryBuilder('o')
-			->select($select)
-			// ->addSelect('d')
-			->innerJoin('CrmBundle:Common\CrmOperationsUsers', 'ou', Join::WITH, 'ou.idUser = o.idUser and ou.idOperation = o.idCRMOperation')
+			->select($select);
+		$return->distinct();
+
+		$return
 			->innerJoin('CrmBundle:Common\CrmEtapesOperations', 'e', Join::WITH, 'e.id = o.idCRMOperation')
+			->innerJoin('CrmBundle:Back\CrmParamStatut', 's', Join::WITH, 's.id = e.idStatut')
 			->innerJoin('CrmBundle:Common\CrmDossier', 'c', Join::WITH, 'c.id = e.idCRM')
-			->leftJoin('CrmBundle:Back\CrmParamStatut', 's', Join::WITH, 's.id = e.idStatut')
-			->leftJoin('UsersBundle:UserClient', 'u', Join::WITH, 'u.id = ou.idUser');
+			->innerJoin('UsersBundle:UserClient', 'u', Join::WITH, 'u.id = o.idUser')
+			->innerJoin('ClientBundle:Client', 'ec', Join::WITH, 'ec.id = c.idEntiteJ and ec.id = o.idEntityJ');
 
 		if( $user_id ) {
-			$return->where('u.id = :user_id or c.idCreateur = :user_id')
+			$return
+				// ->innerJoin('CrmBundle:Common\CrmOperationsUsers', 'ou', Join::WITH, 'ou.idOperation = o.idCRMOperation')
+				->andWhere('u.id = :user_id or c.idCreateur = :user_id')
 				->setParameter('user_id', $user_id);
 		}
-		
+
+		if( $bu_id ) {
+			$return
+				->leftJoin('UsersBundle:RelationBusinessEntite', 'rbe', Join::WITH, 'rbe.iDentite = ec.id')
+				->andWhere('rbe.iDBusinessUnit = :bu_id')
+				->setParameter('bu_id', $bu_id);
+		}
+
+		if( $entite_id ) {
+			$return
+				->where('ec.id = :entite_id')
+				->setParameter('entite_id', $entite_id);
+		}
+
         // return
         $return = $return->getQuery()->execute();
+
         if($return)
         	foreach($return as $key => &$operation) {
         		$res = $this->createQueryBuilder('o')
 					->select('d')
-					->innerJoin('CrmBundle:Common\CrmOperationsUsers', 'ou', Join::WITH, 'ou.idUser = o.idUser and ou.idOperation = o.idCRMOperation')
 					->innerJoin('CrmBundle:Common\CrmEtapesOperations', 'e', Join::WITH, 'e.id = o.idCRMOperation')
 					->leftJoin('CrmBundle:Back\CrmParamCyclesDetails', 'd', Join::WITH, 'd.id = e.idCycledetail')
 					->where('e.id = :op_id')
@@ -90,6 +105,8 @@ class AgendaWorkerRepository extends \Doctrine\ORM\EntityRepository
 					$operation[] = $res[0];
 
         	}
+
+        	
         return count($return) ? $return : null;
 	}
 }

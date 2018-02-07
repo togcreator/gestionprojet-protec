@@ -28,10 +28,6 @@
                 <div class="panel panel-flat">
                     <div class="panel-heading">
                         <h5 class="panel-title">{{ 'projectetapesoperationsusers.list'|trans({}, 'projectetapesoperationsusers') }}</h5><br/>
-                        <button type="button" class="btn bg-teal-400 btn-labeled legitRipple" onclick="document.location='{{ path('operationsusers_new')}}'">
-                            <b><i class="icon-add"></i></b> {{ 'projectetapesoperationsusers.add_button'|trans({}, 'projectetapesoperationsusers') }}
-                        </button>
-
                         <div class="heading-elements">
                             <ul class="icons-list">
                                 <li><a data-action="close" href="{{ path('Issuesrealisations_index') }}"></a></li>
@@ -49,7 +45,6 @@
                                 <th>{{ 'projectetapesoperationsusers.idUser'|trans({}, 'projectetapesoperationsusers') }}</th>
                                 <th>{{ 'projectetapesoperationsusers.datedebutPrevue'|trans({}, 'projectetapesoperationsusers') }}</th>
                                 <th>{{ 'projectetapesoperationsusers.datefinPrevue'|trans({}, 'projectetapesoperationsusers') }}</th>
-                                <th>{{ 'global.actions'|trans }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -80,19 +75,6 @@
                                 <td>{% if projectetapesoperationsusers.agenda %}
                                         {{ projectetapesoperationsusers.agenda.dateFinPrevue|date(date_format) }}
                                     {% endif %}
-                                </td>
-                                <td class="text-center">
-                                    <ul class="icons-list">
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                <i class="icon-menu9"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="{{ path('operationsusers_edit', { 'id': projectetapesoperationsusers.id }) }}"><i class="icon-pen"></i> {{ 'projectetapesoperationsusers.edit_button'|trans({}, 'projectetapesoperationsusers') }}</a></li>
-                                                <li><a href="{{ path('operationsusers_delete', { 'id': projectetapesoperationsusers.id }) }}" data-target="#modal_remote" data-toggle="modal"><i class="icon-folder-remove"></i> {{ 'projectetapesoperationsusers.del_button'|trans({}, 'projectetapesoperationsusers') }}</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
                                 </td>
                             </tr>
                         {% endfor %}

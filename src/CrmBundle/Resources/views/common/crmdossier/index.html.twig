@@ -15,6 +15,9 @@
                                 <a id="combobox" href="{{ path('crmfilters_index', {id: 0}) }}" data-target="#modal_remote" data-toggle="modal"></a>
                                 <a id="filter_trash" href="{{ path('crmfilters_index', {id: 0, action: 'trash'}) }}" data-target="#modal_remote" data-toggle="modal"></a>
                             </span>
+                            {% if filtre is defined %}
+                            <button type="button" style="margin-right: 10px" class="btn btn-primary btn-danger filter pull-left" onclick="document.location.href = '{{path('crmdossier_index')}}';"><i class="icon-close2 {# position-left #}"></i>{# {{ 'client.filter.return'|trans }} #}</button>
+                            {% endif %}
                             <button type="button" style="margin-right: 10px" class="btn btn-primary filter pull-left" href="{{path('crmfilters_index')}}" data-target="#modal_remote" data-toggle="modal"><i class="icon-filter3 position-left"></i>{{ 'project.filter_button'|trans({}, 'project') }}</button>
                             <button type="button" class="btn btn-primary pull-left" onclick="document.location.href = '{{ path('crmdossier_new') }}'"><i class="icon-add position-left"></i>{{ 'crmdossier.add_button'|trans({}, 'crmdossier') }}</button>
                             <span class="label bg-success heading-text">{{ crmDossiers|length }} {{ 'global.active'|trans }}</span>
@@ -39,7 +42,7 @@
                                 {% set selected = app.request.get('orderby')|default('idStatut') %}
                                 <select name="search_operations[tri]" class="form-control col-md-4">
                                     <option value="idStatut"{% if selected and selected == 'idStatut' %} selected="select" {% endif %}>{{ 'global.sorting'|trans }} - {{ 'crmdossier.statut'|trans({}, 'crmdossier') }}</option>
-                                    <option value="datefinprevue"{% if selected and selected == 'datefinprevue' %} selected="select" {% endif %}>{{ 'global.sorting'|trans }} - {{ 'project.datefinPrevue'|trans({}, 'project') }}</option>
+                                    <option value="datefinprevue"{% if selected and selected == 'datefinprevue' %} selected="select" {% endif %}>{{ 'global.sorting'|trans }} - {{ 'project.datefin'|trans({}, 'project') }}</option>
                                     <option value="idEntiteJ"{% if selected and selected == 'idEntiteJ' %} selected="select" {% endif %}>{{ 'global.sorting'|trans }} - {{ 'crmdossier.idEntiteJ'|trans({}, 'crmdossier') }}</option>
                                 </select>
                             </div>
@@ -47,13 +50,12 @@
                         <table class="table text-nowrap datatable-basic">
                             <thead>
                                 <tr>
-                                    <th>#</th>
                                     <th>{{ 'crmdossier.label'|trans({}, 'crmdossier') }}</th>
                                     <th>{{ 'crmdossier.idCycle'|trans({}, 'crmdossier') }}</th>
                                     <th>{{ 'crmdossier.idEntiteJ'|trans({}, 'crmdossier') }}</th>
                                     <th>{{ 'crmdossier.datedebut'|trans({}, 'crmdossier') }}</th>
                                     <th>{{ 'crmdossier.datefin'|trans({}, 'crmdossier') }}</th>
-                                    <th>{{ 'global.actions'|trans }}</th>
+                                    <th class="no-sort">{{ 'global.actions'|trans }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,15 +68,13 @@
                                     <td style="background-color: #64B5F6;"></td>
                                     <td style="background-color: #64B5F6;"></td>
                                     <td style="background-color: #64B5F6;"></td>
-                                    <td style="background-color: #64B5F6;"></td>
                                 </tr>
 
                                 {% for crmdossier in crm %}
                                 <tr class="accordion_users_{{ key }}">
-                                    <td>{{ crmdossier.id }}</td>
                                     <td>{{ crmdossier.label }}</td>
-                                    <td>{{ crmdossier.cycle.label }}</td>
-                                    <td>{{ crmdossier.entite.raisonSociale }}</td>
+                                    <td>{% if crmdossier.cycle %}{{ crmdossier.cycle.label }}{% endif %}</td>
+                                    <td>{% if crmdossier.entite %}{{ crmdossier.entite.raisonSociale }}{% endif %}</td>
                                     <td>
                                         {% if crmdossier.datedebutReelle|date(date_format) %}
                                             {{ crmdossier.datedebutReelle|date(date_format) }}

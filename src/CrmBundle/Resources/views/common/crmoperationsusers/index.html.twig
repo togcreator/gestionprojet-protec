@@ -30,25 +30,23 @@
                                     <table class="table text-nowrap datatable-basic">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
+                                                <th>{{ 'crmoperationsusers.idUser'|trans({}, 'crmoperationsusers') }}</th>
                                                 <th>{{ 'crmoperationsusers.idOperation'|trans({}, 'crmoperationsusers') }}</th>
                                                 <th>{{ 'crmoperationsusers.idCRM'|trans({}, 'crmoperationsusers') }}</th>
                                                 <th>{{ 'crmoperationsusers.idCycle'|trans({}, 'crmoperationsusers') }}</th>
                                                 <th>{{ 'crmoperationsusers.datedebut'|trans({}, 'crmoperationsusers') }}</th>
                                                 <th>{{ 'crmoperationsusers.datefin'|trans({}, 'crmoperationsusers') }}</th>
-                                                <th>{{ 'crmoperationsusers.idUser'|trans({}, 'crmoperationsusers') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         {% for crmoperationsusers in crmOperationsUsers %}
                                             <tr>
-                                                <td>{{ crmoperationsusers.id }}</td>
+                                                <td>{{ crmoperationsusers.user.firstname }} {{ crmoperationsusers.user.lastname }}</td>
                                                 <td>{{ crmoperationsusers.operation.objet }}</td>
                                                 <td>{{ crmoperationsusers.crm.label }}</td>
                                                 <td>{{ crmoperationsusers.cycle.label }}</td>
                                                 <td>{{ crmoperationsusers.datedebut|date(date_format) }}</td>
                                                 <td>{{ crmoperationsusers.datefin|date(date_format) }}</td>
-                                                <td>{{ crmoperationsusers.user.firstname }} {{ crmoperationsusers.user.lastname }}</td>
                                             </tr>
                                         {% endfor %}
                                         </tbody>

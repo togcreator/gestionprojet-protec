@@ -43,12 +43,11 @@ class ResultatType extends AbstractType
             ->add('lib7', HiddenType::class)
             ->add('lib8', HiddenType::class)
             ->add('lib9', HiddenType::class)
-            ->add('couleur')
-            ->add('nomcouleur')
+            ->add('couleur', null, ['required' => false])
+            ->add('nomcouleur', null, ['required' => false])
             ->add('logo', FileType::class, array_merge(['required' => false], $logo))
             ->add('imgcouleur', FileType::class, array_merge(['required' => false], $imgcouleur))
-            ->add('obs')
-            ->add('version', HiddenType::class, ['attr' => ['value' => 0]]);
+            ->add('obs', null, ['required' => false]);
     }
     
     /**

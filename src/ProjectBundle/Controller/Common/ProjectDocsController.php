@@ -20,6 +20,22 @@ use Doctrine\ORM\Query\Expr\Join;
 class ProjectDocsController extends Controller
 {
     /**
+     * Override method getUser parent
+     *
+     * @return UserClient
+     */
+    protected function getUser() {
+
+        $auth_checker = $this->get('security.authorization_checker');
+        if( $auth_checker->isGranted('ROLE_ADMIN') ) 
+            return true;
+        
+        $user_id = parent::getUser()->getId();
+        $bu_id = $this->container->get('session')->get('BU');
+        return $this->getDoctrine()->getRepository('UsersBundle:UserClient')->findUserByCompte($bu_id, $user_id);
+    }
+
+    /**
      * Filter result.
      *
      * @Route("/filter", name="projectdocs_filters")
@@ -44,8 +60,11 @@ class ProjectDocsController extends Controller
         $projectdocs = $this->searchDocs($data);
 
         // enregistrer dans la base de données
-        $em->persist($projectDocsfilters);
-        $em->flush();
+        /**
+         * en attente
+         */
+        // $em->persist($projectDocsfilters);
+        // $em->flush();
 
         return $this->render('ProjectBundle:common/projectdocs:index.html.twig', array(
             'project' => [],
@@ -111,7 +130,7 @@ class ProjectDocsController extends Controller
                 $tri = $project->getWorkshop()->getLabel();
 
             if( $data->getTri() == 'idLeader' )
-                $tri = $project->getLeaders()->getRole()->getLabel();
+                $tri = $project->getLeaders()->getFirstname();
 
             // document
             if( !isset($projectdocs[$tri][1]) ) $projectdocs[$tri][1] = ['etape' => [], 'operation' => []];
@@ -442,13 +461,10 @@ class ProjectDocsController extends Controller
     public function listAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $project_docs = $em->getRepository('ProjectBundle:Common\ProjectDocs')->findAll();
-        if( $project_docs )
-            foreach( $project_docs as &$docs ) {
-                $docs->setProjet($em->getRepository('ProjectBundle:Common\Project')->findOneBy(['id' => $docs->getIdProjet()]));
-                $docs->setEtape($em->getRepository('ProjectBundle:Common\ProjectEtape')->findOneBy(['id' => $docs->getIdEtape()]));
-                $docs->setOperation($em->getRepository('ProjectBundle:Common\ProjectEtapesOperations')->findOneBy(['id' => $docs->getIdOperation()]));
-            }
+        $user_id = is_object($this->getUser()) ? $this->getUser()->getId() : null;
+        $bu_id = $this->container->get('session')->get('BU');
+
+        $project_docs = $em->getRepository('ProjectBundle:Common\ProjectDocs')->findAllBy(null, $user_id, $bu_id);
 
         return $this->render('ProjectBundle:common/projectdocs:list.html.twig', array(
             'projectDocs' => $project_docs,
@@ -692,7 +708,12 @@ class ProjectDocsController extends Controller
             $dir = $this->getParameter('upload_dir');
             $projectDocs->setNomdoc(Utils::Upload_file($projectDocs->getNomdoc(), $dir));
 
-            $this->getDoctrine()->getManager()->flush();
+            $this->setProjet($projectDocs);
+            $this->setUser($projectDocs);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($projectDocs);
+            $em->flush();
 
             // redirect vers project
             if( $request->get('idProject') )
@@ -804,7 +825,7 @@ class ProjectDocsController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $projet = $em->getRepository('ProjectBundle:Common\Project')->findOneBy(['id' => $projectDocs->getIdProjet()]);
-        $projectDocs->setProjet($projet);
+        $projectDocs->setProject($projet);
     }
 
     /* pour etape */
@@ -817,7 +838,9 @@ class ProjectDocsController extends Controller
     /* pour etape */
     private function setUser ($projectDocs) {
         $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository('UsersBundle:UserClient')->findOneBy(['id' => $projectDocs->getIdUser()]);
+        $user_id = (is_object($this->getUser())) ? $this->getUser()->getId() : parent::getUser()->getId();
+
+        $user = $em->getRepository('UsersBundle:UserClient')->findOneBy(['id' => $user_id]);
         $projectDocs->setUser($user);
     }
 

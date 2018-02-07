@@ -16,12 +16,14 @@
                                             <legend class="text-bold">{{ 'crmdossier.crm'|trans({}, 'crmdossier') }}</legend>
                                             <div class="row">
                                                 <div class="form-group">
-                                                    {% set preview = asset('uploads/' ~ edit_form.vars.value.icone )|default('') %}
+                                                    {% if isFile(edit_form.vars.value.icone) %}
+                                                        {% set preview = asset('uploads/' ~ edit_form.vars.value.icone )|default('') %}
+                                                    {% endif %}
                                                     {% set name = 'crmdossier.icone'|trans({}, 'crmdossier') %}
-                                                    {% if preview %}{% set filetype = 'image' %}{% endif %}
+                                                    {% if preview is defined %}{% set filetype = 'image' %}{% endif %}
                                                     {{ form_label(edit_form.icone, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                                     <div class="col-lg-10">
-                                                        {{ form_widget(edit_form.icone, {'attr': {'class': 'form-control upload-file', 'data-preview': preview, 'filetype': filetype|default('')}}) }}
+                                                        {{ form_widget(edit_form.icone, {'attr': {'class': 'form-control upload-file', 'data-preview': preview|default(''), 'filetype': filetype|default('')}}) }}
                                                     </div>
                                                 </div>
                                             </div>

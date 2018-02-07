@@ -207,7 +207,6 @@ class ProjectEtapesOperationsUsersController extends Controller
      */
     public function editAction(Request $request, ProjectEtapesOperationsUsers $ProjectEtapesOperationsUser)
     {
-        dump($ProjectEtapesOperationsUser);
         $deleteForm = $this->createDeleteForm($ProjectEtapesOperationsUser);
         $editForm = $this->createForm('ProjectBundle\Form\Common\ProjectEtapesOperationsUsersType', $ProjectEtapesOperationsUser, ['dataForm' => $this->dataForm()]);
         $editForm->handleRequest($request);
@@ -281,8 +280,9 @@ class ProjectEtapesOperationsUsersController extends Controller
             'projects' => $em->getRepository('ProjectBundle:Common\Project')->findAll(),
             'etapes' => $em->getRepository('ProjectBundle:Common\ProjectEtape')->findAll(),
             'operations' => $em->getRepository('ProjectBundle:Common\ProjectEtapesOperations')->findAll(),
-            'roles' => $em->getRepository('ProjectBundle:Back\Roles')->findAll(), // à modifier
-            'users' => $em->getRepository('UsersBundle:UserClient')->findAll(), // à modifier
+            'roles' => $em->getRepository('ProjectBundle:Back\Roles')->findBy(['ouvert' => 1]), // à modifier
+            // 'users' => $em->getRepository('ProjectBundle:Common\ProjectOperationsUser')->findAll(), // à modifier
+            'users' => $em->getRepository('UsersBundle:UserClient')->findAll()
         ];
     }
 

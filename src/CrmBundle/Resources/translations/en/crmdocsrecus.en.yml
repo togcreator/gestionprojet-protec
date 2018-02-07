@@ -23,6 +23,7 @@ crmdocsrecus.designation: Label
 crmdocsrecus.nomdoc: Document name
 crmdocsrecus.idTypedoc: Document type
 crmdocsrecus.dateReception: Date receive
+crmdocsrecus.download: Download
 crmdocsrecus.version: Version
 crmdocsrecus.confirm_delete: Do you want to remove this document?
 

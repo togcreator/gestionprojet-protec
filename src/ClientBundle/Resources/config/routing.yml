@@ -60,6 +60,10 @@ pipeline_attach:
     path: /attach_pipeline
     defaults: { _controller: ClientBundle:Pipeline:pipelineAttach }
 
+contact_index:
+    path: /contact
+    defaults: { _controller: ClientBundle:Contact:index }
+
 srih_index:
     path: /srih
     defaults: { _controller: ClientBundle:Srih:index }

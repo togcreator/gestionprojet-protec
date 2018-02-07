@@ -105,7 +105,7 @@
                                                 {% set name = 'project.idLeader'|trans({}, 'project') %}
                                                 {{ form_label(edit_form.idLeader, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
                                                 <div class="col-lg-8">
-                                                    {{ form_widget(edit_form.idLeader, {'attr': {'class': 'form-control'}}) }}
+                                                    {{ form_widget(edit_form.idLeader, {'attr': {'class': 'form-control select2-search'}}) }}
                                                 </div>
                                             </div>
                                         </div>
@@ -114,15 +114,15 @@
                                                 {% set name = 'project.idWorkshop'|trans({}, 'project') %}
                                                 {{ form_label(edit_form.idWorkshop, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
                                                 <div class="col-lg-8">
-                                                    {{ form_widget(edit_form.idWorkshop, {'attr': {'class': 'form-control'}}) }}
+                                                    {{ form_widget(edit_form.idWorkshop, {'attr': {'class': 'form-control select2-search'}}) }}
                                                 </div>
                                             </div>
                                         
                                             <div class="form-group col-md-6">
-                                                {% set name = 'project.idEntiteJ'|trans({}, 'project') %}
+                                                {% set name = 'project.entiteJ'|trans({}, 'project') %}
                                                 {{ form_label(edit_form.idEntiteJ, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
                                                 <div class="col-lg-8">
-                                                    {{ form_widget(edit_form.idEntiteJ, {'attr': {'class': 'form-control'}}) }}
+                                                    {{ form_widget(edit_form.idEntiteJ, {'attr': {'class': 'form-control select2-search'}}) }}
                                                 </div>
                                             </div>
                                         </div>
@@ -278,7 +278,7 @@
                                             delay: 250,
                                             data: function (params) {
                                                 return {
-                                                    q: params.term, // search term
+                                                    q: $('[name*="[idEntiteJ]"').val(), // search term
                                                     page: params.page
                                                 };
                                             },

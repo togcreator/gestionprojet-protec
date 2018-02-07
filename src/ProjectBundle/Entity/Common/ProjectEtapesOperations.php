@@ -31,8 +31,10 @@ class ProjectEtapesOperations
 
     /**
      * @var int
+     * @ORM\ManyToOne(targetEntity="Project", fetch="EAGER")
+     * @ORM\JoinColumn(name="idProjetversion", referencedColumnName="id")
      */
-    private $projet;
+    private $project;
 
     /**
      * @var int
@@ -253,15 +255,15 @@ class ProjectEtapesOperations
     }
 
     /**
-     * Set projet
+     * Set project
      *
-     * @param integer $projet
+     * @param integer $project
      *
      * @return ProjectEtapesJalons
      */
-    public function setProjet($projet)
+    public function setProject($project)
     {
-        $this->projet = $projet;
+        $this->project = $project;
 
         return $this;
     }
@@ -271,9 +273,9 @@ class ProjectEtapesOperations
      *
      * @return int
      */
-    public function getProjet()
+    public function getProject()
     {
-        return $this->projet;
+        return $this->project;
     }
 
     /**

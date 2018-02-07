@@ -6,17 +6,9 @@
 {% block body %}
     {# adding head of header page #}
     {% include 'header.html.twig' %}
-
-    <!-- Page container -->
     <div class="page-container">
-
-        <!-- Page content -->
         <div class="page-content">
-
-            <!-- Main content -->
             <div class="content-wrapper">
-
-                <!-- Page length options -->
                 <div class="panel panel-flat">
                     <div class="panel-heading">
                         <h5 class="panel-title">{{ 'resultat.list'|trans({}, 'resultat') }}</h5><br/>
@@ -39,7 +31,6 @@
                                 <th>{{ 'resultat.label'|trans({}, 'resultat') }}</th>
                                 <th class="col-md-2 text-center">{{ 'resultat.couleur'|trans({},'resultat') }}</th>
                                 <th class="col-md-1 text-center">{{ 'resultat.logo'|trans({},'resultat') }}</th>
-                                <th class="col-md-1 text-center">{{ 'resultat.note'|trans({},'resultat') }}</th>
                                 <th class="text-center">{{ 'resultat.actions'|trans({}, 'resultat') }}</th>
                             </tr>
                         </thead>
@@ -56,12 +47,10 @@
                                 <td>{{ resultat.label }}</td>
                                 <td class="col-md-2 text-center" style="background: {{ resultat.couleur }};">{{ resultat.couleur }}</td>
                                 <td class="col-md-1 text-center">
-                                    {% if resultat.logo %}
+                                    {% if isFile(resultat.logo) %}
                                         <img src="{{ asset('uploads/' ~ resultat.logo ) }}" alt="logo" style="max-width: 50%" />
                                     {% endif %}
                                 </td>
-                                <td class="col-md-1 text-center">{% if resultat.obs %}<i class="icon-file-text"></i>{% else %}<i class="icon-file-minus2" style="color: #ccc"></i>{% endif %}</td>
-
                                 <td class="text-center">
                                     <ul class="icons-list">
                                         <li class="dropdown">

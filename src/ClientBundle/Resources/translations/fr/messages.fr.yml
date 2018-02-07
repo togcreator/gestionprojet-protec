@@ -1,7 +1,13 @@
 
 global:
-    listeclient: Entité juridique
-    srih: Srih
+    listeclient: Entreprises
+    srih: Sirh
+    filterclient: Filtre client
+    addclient: Entreprises
+
+param:
+    listeclient: Entreprises
+    client: CRM
 
 # Fiche client
 client:
@@ -45,6 +51,11 @@ client:
         info_customer: Informations sur le client
         contact_customer: Contacts
         more_info: Informations Complémentaire
+        iDBusinessUnit: Business Unit
+        relationsProfessionnelles: Profession
+        relation_fonction: Fonction
+        relation_fonction_list: Liste de relation professionnelle
+        relation_fonction_add: Ajouter relation professionnelle
     breadcrumb:
         home: Accueil
         customer: Liste clients
@@ -56,7 +67,8 @@ client:
         title: Contact
         firstname: Prénom
         lastname: Nom
-        typeprofession: Relation
+        typeprofession: Fonction
+        service: Service
     srih:
         id: '#'
         title: Liste des Salariés
@@ -65,8 +77,21 @@ client:
         bu: Business Unit
         fonction: Fonction
         typeprofession: Relation
+        service: Service
+    contacts:
+        id: '#'
+        title: Liste des contacts
+        first_last_name: Nom / Prénom
+        lastname: Nom
+        bu: Business Unit
+        fonction: Fonction
+        typeprofession: Relation
+        service: Service
+        entite: Entreprise
+        nature: Nature
+        edit_button: Modifier / Consulter
     pipeline:
-        title: Pipeline / Activité
+        title: Activités
         document: Document
         doc:
             envoye: Document envoyé
@@ -78,25 +103,35 @@ client:
             close: Fermer
     filter:
         title: Information
-        idEntiteJ: Entité juridique
+        idEntiteJ: Entreprises
         cp: Code postal
         idOwner: Commerciale
         idWatcher: Responsable Commerciale
         idStatut: Statut
         tri: Regroupé par
+        return: Retour
         save_button: Sauver et Filtrer
     title:
         add_customer: Ajouter un client
         edit_client: Modifier un fiche client
         edit: Modification / consultation
     info:
-        title: Information client
+        title: Informations
+        profil: Profil
         activity: Activité(s)
+        agenda: Agenda
+        mail: Messagerie
     menu:
-        customer: Entité juridique
+        customer: Entreprises
         contact: Contacts
-        entiteJ: Entité juridique
+        entiteJ: Entreprises
         pipeline: Activités
         srih: Sirh
     button:
         edit: Modifier/Consulter
+    add_button:
+        mail: Ajout Mail
+        agenda: Ajout Agenda
+        note: Ajout Note
+        document: Ajout Document
+        activite: Ajout Activité

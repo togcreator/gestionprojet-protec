@@ -36,7 +36,7 @@ class ProjectFiltersType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // for entityJ
-        $entityJs = Utils::Array_extract($options['dataForm']['entityJs'], ['key'=>'getName','value'=>'getId']);
+        $entityJs = Utils::Array_extract($options['dataForm']['entityJs'], ['key'=>'getRaisonSociale','value'=>'getId']);
         // workshop
         $workshops = Utils::Array_extract($options['dataForm']['workshops'], ['key'=>'getLabel','value'=>'getId']);
         // statuts

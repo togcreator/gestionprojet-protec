@@ -18,6 +18,8 @@
                 <td>{{ contact.firstname }}</td>
                 <td>{{ contact.lastname }}</td>
                 <td>{% if pro %}{{ pro.label }}{% endif %}</td>
+
+                {% if is_granted('ROLE_ADMIN') %}
                 <td class="text-center">
                     <ul class="icons-list">
                         <li class="dropdown">
@@ -31,6 +33,8 @@
                         </li>
                     </ul>
                 </td>
+                {% endif %}
+
             </tr>
             {% endfor %}
         </tbody>

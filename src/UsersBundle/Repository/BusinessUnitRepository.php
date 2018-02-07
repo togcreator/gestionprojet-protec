@@ -15,15 +15,23 @@ class BusinessUnitRepository extends \Doctrine\ORM\EntityRepository
 	//================================
 	// Relation Business User
 	//================================
-	public function findByUser ($user_id) {
+	public function findByUser ($user_id, $bu_id = 0) {
 		$business = $this->createQueryBuilder('b');
+			// ->innerJoin('UsersBundle:UserClient', 'u')
 
 		// getting BU user => r_bu_user
 		$business->innerJoin('UsersBundle:RelationBusinessUser', 'r', Join::WITH, 'r.iDBusinessUnit = b.id');
 		$business->innerJoin('UsersBundle:UserClient', 'u', Join::WITH, 'r.iDUser = u.id');
 
-		$business->where('u.id = :id');
-		$business->setParameter('id', $user_id);
+		$business
+			->where('u.id = :id')
+			->setParameter('id', $user_id);
+
+		if( $bu_id ) {
+			$business
+				->andwhere('b.id = :bu_id')
+				->setParameter('bu_id', $bu_id);
+		}
 		return $business->getQuery()->execute();
 	}
 }

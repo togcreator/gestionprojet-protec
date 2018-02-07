@@ -34,19 +34,16 @@
                     <table class="table datatable-basic">
                         <thead>
                             <tr>
-                                <th>{{ '#' }}</th>
                                 <th>{{ 'jalon.open'|trans({}, 'jalon') }}</th>
                                 <th>{{ 'jalon.label'|trans({}, 'jalon') }}</th>
                                 <th class="col-md-2 text-center">{{ 'jalon.couleur'|trans({},'jalon') }}</th>
                                 <th class="col-md-1 text-center">{{ 'jalon.logo'|trans({},'jalon') }}</th>
-                                <th class="col-md-1 text-center">{{ 'jalon.note'|trans({},'jalon') }}</th>
-                                <th class="text-center">{{ 'jalon.actions'|trans({}, 'jalon') }}</th>
+                                <th class="text-center no-sort">{{ 'jalon.actions'|trans({}, 'jalon') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for jalon in jalons %}
                             <tr>
-                                <td style="cursor:pointer" onclick="document.location = '{{ path('back_jalon_show', { 'id': jalon.id }) }}';">{{ jalon.id }}</td>
                                 <td>
                                     {% if jalon.ouvert %}
                                     <span class="label label-info">{{ 'global.yes'|trans }}</span> {% else %}
@@ -60,8 +57,6 @@
                                         <img src="{{ asset('uploads/' ~ jalon.logo ) }}" alt="logo" style="max-width: 50%" />
                                     {% endif %}
                                 </td>
-                                <td class="col-md-1 text-center">{% if jalon.obs %}<i class="icon-file-text"></i>{% else %}<i class="icon-file-minus2" style="color: #ccc"></i>{% endif %}</td>
-
                                 <td class="text-center">
                                     <ul class="icons-list">
                                         <li class="dropdown">

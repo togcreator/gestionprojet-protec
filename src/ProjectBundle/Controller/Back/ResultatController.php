@@ -59,9 +59,7 @@ class ResultatController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // imgcouleur
             $resultat->setImgcouleur($this->upload_file($resultat->getImgcouleur()));
-            // img
             $resultat->setLogo($this->upload_file($resultat->getLogo()));
 
             $em = $this->getDoctrine()->getManager();

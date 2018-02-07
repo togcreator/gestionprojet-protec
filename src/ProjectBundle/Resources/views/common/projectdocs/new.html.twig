@@ -22,7 +22,7 @@
                                                         {{ form_widget(form.idProjet, {'attr': {'class': 'form-control'}}) }}
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group hidden">
                                                     {% set name = 'projectdocs.idEtape'|trans({}, 'projectdocs') %}
                                                     {{ form_label(form.idEtape, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                                     <div class="col-lg-10">

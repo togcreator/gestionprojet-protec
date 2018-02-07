@@ -40,7 +40,7 @@ class UserDocs
      *
      * @ORM\Column(name="origine", type="string", length=20)
      */
-    private $origine;
+    private $origine = 0;
 
     /**
      * @var int
@@ -159,7 +159,7 @@ class UserDocs
      */
     public function setOrigine($origine)
     {
-        $this->origine = $origine;
+        $this->origine = $origine ? $origine : $this->origine;
 
         return $this;
     }

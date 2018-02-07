@@ -31,22 +31,32 @@
                                     <table class="table text-nowrap datatable-basic">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
+                                                <th>{{ 'crmdocsenvoyes.designation'|trans({}, 'crmdocsenvoyes') }}</th>
                                                 <th>{{ 'crmdocsenvoyes.idCrm'|trans({}, 'crmdocsenvoyes') }}</th>
                                                 <th>{{ 'crmdocsenvoyes.idOperation'|trans({}, 'crmdocsenvoyes') }}</th>
-                                                <th>{{ 'crmdocsenvoyes.designation'|trans({}, 'crmdocsenvoyes') }}</th>
                                                 <th>{{ 'crmdocsenvoyes.dateEnvoi'|trans({}, 'crmdocsenvoyes') }}</th>
-                                                <th>{{ 'global.actions'|trans }}</th>
+                                                <th>{{ 'crmdocsenvoyes.download'|trans({}, 'crmdocsenvoyes') }}</th>
+                                                <th class="no-sort">{{ 'global.actions'|trans }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         {% for crmDocsEnvoye in crmDocsEnvoyes %}
                                             <tr>
-                                                <td>{{ crmDocsEnvoye.id }}</td>
+                                                <td>{{ crmDocsEnvoye.designation|capitalize }}</td>
                                                 <td>{{ crmDocsEnvoye.crm.label|capitalize }}</td>
                                                 <td>{% if crmDocsEnvoye.operation %}{{ crmDocsEnvoye.operation.objet|capitalize }}{% endif %}</td>
-                                                <td>{{ crmDocsEnvoye.designation|capitalize }}</td>
                                                 <td>{{ crmDocsEnvoye.dateEnvoi|date(date_format) }}</td>
+                                                <td>
+                                                    {% set is_file = isFile(crmDocsEnvoye.nomdoc, 'document') %}
+                                                    {% if crmDocsEnvoye.nomdoc and is_file != false %}
+                                                        <a href="{{ asset('uploads/document/') ~ crmDocsEnvoye.nomdoc }}" target="_blank">
+                                                        ({{ crmDocsEnvoye.nomdoc }})
+                                                        <i class="icon-attachment position-left"></i>
+                                                        </a>
+                                                    {% else %}
+                                                        {{ 'global.no_file'|trans }}
+                                                    {% endif %}
+                                                </td>
                                                 <td class="text-center">
                                                     <ul class="icons-list">
                                                         <li class="dropdown">

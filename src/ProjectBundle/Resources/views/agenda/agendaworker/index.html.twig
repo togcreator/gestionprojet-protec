@@ -127,6 +127,7 @@
 
                                                 {% set label = ' - ' ~ retour[0].label|capitalize|raw|default('') %}
 
+                                                {% if datedebut and datefin %}
                                                 {
                                                     title: '{{ retour.objet|capitalize ~ label ~ user }}',
                                                     start: '{{ datedebut }}',
@@ -134,6 +135,7 @@
                                                     color: '{{ retour.couleur|default('#26A69A') }}',
                                                     url: '{{ path('crmetapesoperations_edit', {'id': retour.id }) }}'
                                                 },
+                                                {% endif %}
                                             {% endfor %}
                                         {% endif %}
                                         ];

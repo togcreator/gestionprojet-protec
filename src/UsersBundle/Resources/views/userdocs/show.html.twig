@@ -1,68 +1,15 @@
-{% extends 'base.html.twig' %}
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h5 class="modal-title">{{ 'project.confirm_title'|trans([], 'project') }}</h5>
+</div>
 
-{% block body %}
-    <h1>Userdoc</h1>
+<div class="modal-body">
+    <h2>{{ 'userdocs.confirm_delete'|trans([], 'userdocs')}}</h2>
+    {{ form_start(delete_form, {'attr': {'id': 'project_form'}}) }}
+    {{ form_end(delete_form) }}
+</div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ userDoc.id }}</td>
-            </tr>
-            <tr>
-                <th>Iduser</th>
-                <td>{{ userDoc.iDUser }}</td>
-            </tr>
-            <tr>
-                <th>Idtype</th>
-                <td>{{ userDoc.iDType }}</td>
-            </tr>
-            <tr>
-                <th>Origine</th>
-                <td>{{ userDoc.origine }}</td>
-            </tr>
-            <tr>
-                <th>Iduser4origine</th>
-                <td>{{ userDoc.idUser4origine }}</td>
-            </tr>
-            <tr>
-                <th>Datecreation</th>
-                <td>{% if userDoc.dateCreation %}{{ userDoc.dateCreation|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Designation</th>
-                <td>{{ userDoc.designation }}</td>
-            </tr>
-            <tr>
-                <th>Code</th>
-                <td>{{ userDoc.code }}</td>
-            </tr>
-            <tr>
-                <th>Nomdoc</th>
-                <td>{{ userDoc.nomdoc }}</td>
-            </tr>
-            <tr>
-                <th>Idbiblio</th>
-                <td>{{ userDoc.idBiblio }}</td>
-            </tr>
-            <tr>
-                <th>Version</th>
-                <td>{{ userDoc.version }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('userdocs_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('userdocs_edit', { 'id': userDoc.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-{% endblock %}
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-danger" data-dismiss="modal">{{ 'project.close_button'|trans([], 'project') }}</button>
+    <button type="button" class="btn btn-primary" onclick="jQuery('#project_form').submit()">{{ 'project.confirm_button'|trans([], 'project') }}</button>
+</div>

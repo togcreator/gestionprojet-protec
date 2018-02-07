@@ -18,6 +18,22 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class ProjectNotesController extends Controller
 {
     /**
+     * Override method getUser parent
+     *
+     * @return UserClient
+     */
+    protected function getUser() {
+
+        $auth_checker = $this->get('security.authorization_checker');
+        if( $auth_checker->isGranted('ROLE_ADMIN') ) 
+            return true;
+        
+        $user_id = parent::getUser()->getId();
+        $bu_id = $this->container->get('session')->get('BU');
+        return $this->getDoctrine()->getRepository('UsersBundle:UserClient')->findUserByCompte($bu_id, $user_id);
+    }
+
+    /**
      * Lists ajax.
      *
      * @Route("/ajax", name="projectnotes_ajax_get")
@@ -59,11 +75,12 @@ class ProjectNotesController extends Controller
      */
     public function indexAction(Request $request )
     {
-        $array = $request->get('idProject');
-        $array = !empty($array)?['idProjetVersion' => $array]:[];
+        $criter = $request->get('idProject') ? ['idProjectVersion' => $request->get('idProject')] : [];
+        $user_id = is_object($this->getUser()) ? $this->getUser()->getId() : null;
+        $bu_id = $this->container->get('session')->get('BU');
 
         $em = $this->getDoctrine()->getManager();
-        $projectNotes = $em->getRepository('ProjectBundle:Common\ProjectNotes')->findBy($array, ['date' => 'DESC']);
+        $projectNotes = $em->getRepository('ProjectBundle:Common\ProjectNotes')->findAllBy($criter, $user_id, $bu_id);
         if( $projectNotes )
             foreach( $projectNotes as $notes ) {
                 $notes->setEtape($em->getRepository('ProjectBundle:Common\ProjectEtape')->findOneBy(['id' => $notes->getIdEtape()]));
@@ -222,7 +239,7 @@ class ProjectNotesController extends Controller
         $dataForm['etapes'] = $etapes;
 
         /* operation et issue */
-        $dataForm['operations'] = $em->getRepository('ProjectBundle:Common\ProjectEtapesOperations')->findBy(['id' => $projectNote->getIdProjetVersion()]);
+        $dataForm['operations'] = $em->getRepository('ProjectBundle:Common\ProjectEtapesOperations')->findBy(['idProjectVersion' => $projectNote->getIdProjetVersion()]);
         $dataForm['issues'] = $em->getRepository('ProjectBundle:Common\ProjectEtapesOperationsIssues')->findBy(['idProjectVersion' => $projectNote->getIdProjetVersion()]);
 
         $editForm = $this->createForm('ProjectBundle\Form\Common\ProjectNotesType', $projectNote, ['dataForm' => $dataForm]);

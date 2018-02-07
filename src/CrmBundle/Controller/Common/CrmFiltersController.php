@@ -102,7 +102,6 @@ class CrmFiltersController extends Controller
                 $em->flush();
                 /* et on renvoye un vide */
                 $crmFilters = new CrmFilters();
-                // $crmfilters->setMode(0);
             }
 
         $form = $this->createForm('CrmBundle\Form\Common\CrmFiltersType', $crmFilters, ['dataForm' => $this->dataForm()]);
@@ -145,6 +144,14 @@ class CrmFiltersController extends Controller
                 }
 
                 if( !isset($crm[$clefs]) ) $crm[$clefs] = [];
+
+                 //=============== entite J ==============
+                $entite = $em->getRepository('ClientBundle:Client')->findOneBy(['id' => $cr->getIdEntiteJ()]);
+                $cr->setEntite($entite);
+                //=============== Cycle ================
+                $cycle = $em->getRepository('CrmBundle:Back\CrmParamCycles')->findOneBy(['id' => $cr->getIdCycle()]);
+                $cr->setCycle($cycle);
+
                 $crm[$clefs][] = $cr;
             }
         } 
@@ -153,12 +160,13 @@ class CrmFiltersController extends Controller
         $crmFilters->setLabel( strtolower($crmFilters->getLabel()) );
 
         /* flusher */
-        $em->persist($crmFilters);
-        $em->flush();
+        // $em->persist($crmFilters);
+        // $em->flush();
 
         // render
         return $this->render('CrmBundle:common\crmdossier:index.html.twig', array(
             'crmDossiers' => $crm,
+            'filtre' => true,
             'statuts' => $em->getRepository('CrmBundle:Back\CrmParamStatut'),
             'mode' => $crmFilters->getMode()
         ));
@@ -227,7 +235,7 @@ class CrmFiltersController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         return [
-            'entityJs'  => $em->getRepository('ProjectBundle:Back\EntityJ')->findAll(),
+            'entityJs'  => $em->getRepository('ClientBundle:Client')->findAll(),
             'statuts'   => $em->getRepository('CrmBundle:Back\CrmParamStatut')->findAll(),
             'resultats' => $em->getRepository('CrmBundle:Back\CrmParamResultat')->findAll(),
             'priorites' => $em->getRepository('CrmBundle:Back\CrmParamPriorites')->findAll(),

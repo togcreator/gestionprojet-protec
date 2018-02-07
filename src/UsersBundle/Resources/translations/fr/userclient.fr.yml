@@ -35,19 +35,21 @@ userclient.origine: Origine
 userclient.version: Version
 userclient.status: Statut
 userclient.business: Business Unit
+userclient.r_bu_entitej: Relation professionelle
 userclient.natureuser: Nature 
 userclient.fonction: Fonction
 userclient.service: Service
 userclient.entreprise: Entreprise
 userclient.confirm_delete: Êtes vous sûr vouloir supprimer cet utilisateur ?
-userclient.relation_utilisateur: Relation fonctionnelle
+userclient.relation_fonction: Fonction
+userclient.relation_profession: Profession
 userclient.tab:
     info: Identité
     detail: Profil
     agenda: Agenda
     mail: Messagerie
-    note: Note
-    doc: Document
+    note: Notes
+    doc: Documents
 
 # button
 userclient.add_button: Nouveau

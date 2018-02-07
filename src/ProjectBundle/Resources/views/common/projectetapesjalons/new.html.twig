@@ -42,7 +42,7 @@
                                     {{ form_label(form.idProjectVersion, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                     <div class="col-lg-10">
                                         <span class="input-group-addon">
-                                        {{ form_widget(form.idProjectVersion, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_widget(form.idProjectVersion, {'attr': {'class': 'form-control select2-search'}}) }}
                                         </span>
                                     </div>
                                 </div>
@@ -51,7 +51,7 @@
                                     {{ form_label(form.idEtape, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                     <div class="col-lg-10">
                                         <span class="input-group-addon">
-                                        {{ form_widget(form.idEtape, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_widget(form.idEtape, {'attr': {'class': 'form-control select2-search'}}) }}
                                         </span>
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@
                                     {{ form_label(form.idTypeJalon, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                     <div class="col-lg-10">
                                         <span class="input-group-addon">
-                                        {{ form_widget(form.idTypeJalon, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_widget(form.idTypeJalon, {'attr': {'class': 'form-control select2-search'}}) }}
                                         </span>
                                     </div>
                                 </div>
@@ -131,7 +131,7 @@
                                         {{ form_label(form.idResultat, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                         <div class="col-lg-10">
                                             <span class="input-group-addon">
-                                            {{ form_widget(form.idResultat, {'attr': {'class': 'form-control'}}) }}
+                                            {{ form_widget(form.idResultat, {'attr': {'class': 'form-control select2-search'}}) }}
                                             </span>
                                         </div>
                                     </div>
@@ -164,6 +164,13 @@
                                     var _location = document.location.href.toString().split('?');
                                     _location = _location[0];
                                     redirectTo(_location + '?idProject=' + this.value);
+                                });
+
+                                $('form').on('submit', function(e){
+                                    // e.preventDefault();
+
+                                    $('[name*="[idProjectVersion]"]').removeAttr('disabled');
+                                    this.submit();
                                 });
 
                             }(jQuery))

@@ -34,19 +34,16 @@
                     <table class="table datatable-basic">
                         <thead>
                             <tr>
-                                <th>{{ '#' }}</th>
                                 <th>{{ 'priorite.open'|trans({}, 'priorite') }}</th>
                                 <th>{{ 'priorite.label'|trans({}, 'priorite') }}</th>
                                 <th class="col-md-2 text-center">{{ 'priorite.couleur'|trans({},'priorite') }}</th>
                                 <th class="col-md-1 text-center">{{ 'priorite.logo'|trans({},'priorite') }}</th>
-                                <th class="col-md-1 text-center">{{ 'priorite.note'|trans({},'priorite') }}</th>
-                                <th class="text-center">{{ 'priorite.actions'|trans({}, 'priorite') }}</th>
+                                <th class="text-center no-sort">{{ 'priorite.actions'|trans({}, 'priorite') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for priorite in priorites %}
                             <tr>
-                                <td style="cursor:pointer">{{ priorite.id }}</td>
                                 <td>
                                     {% if priorite.ouvert %}
                                     <span class="label label-info">{{ 'global.yes'|trans }}</span> {% else %}
@@ -60,8 +57,6 @@
                                         <img src="{{ asset('uploads/' ~ priorite.logo ) }}" alt="logo" style="max-width: 50%" />
                                     {% endif %}
                                 </td>
-                                <td class="col-md-1 text-center">{% if priorite.obs %}<i class="icon-file-text"></i>{% else %}<i class="icon-file-minus2" style="color: #ccc"></i>{% endif %}</td>
-
                                 <td class="text-center">
                                     <ul class="icons-list">
                                         <li class="dropdown">

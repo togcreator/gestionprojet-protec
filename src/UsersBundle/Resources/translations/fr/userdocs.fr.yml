@@ -12,9 +12,10 @@ userdocs.information: Information
 userdocs.designation: Désignation
 userdocs.nomdoc: Document
 userdocs.origine: Origine
+userdocs.datecreation: Date création
 userdocs.idUser4origine: Utilisateur origine
 userdocs.download: Téléchargement
-userdocs.confirm_delete: Voulez vous vraiment supprimer cette note ?
+userdocs.confirm_delete: Voulez vous vraiment supprimer ce document ?
 
 # button
 userdocs.add_button: Nouveau

@@ -1,6 +1,7 @@
 <?php
 
 namespace CrmBundle\Repository\Common;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * CrmOperationsUsersRepository
@@ -36,5 +37,31 @@ class CrmOperationsUsersRepository extends \Doctrine\ORM\EntityRepository
         // return
         $return = $return->getQuery()->execute();
         return count($return) ? $return : null;
+	}
+
+	/**
+	 * Find all by
+	 */
+	public function findAllBy ($user_id, $bu_id) {
+
+		$return = $this->createQueryBuilder('ou')->select('ou')
+			->innerJoin('CrmBundle:Common\CrmEtapesOperations', 'o', Join::WITH, 'ou.idOperation = o.id');
+
+		if( $bu_id ) {
+			$return 
+				->innerJoin('CrmBundle:Common\CrmDossier', 'c', Join::WITH, 'c.id = o.idCRM')
+				->innerJoin('UsersBundle:RelationBusinessEntite', 'rbe', Join::WITH, 'rbe.iDentite = c.idEntiteJ')
+				->andWhere('rbe.iDBusinessUnit = :bu_id')
+				->setParameter('bu_id', $bu_id);
+		}
+
+        if( $user_id ){
+            $return
+                ->innerJoin('UsersBundle:UserClient', 'u', Join::WITH, 'c.idCreateur = u.id')
+                ->innerJoin('UsersBundle:Users', 'us', Join::WITH, 'us.id = u.iDCompte')
+                ->andWhere('u.id = :user_id')
+                ->setParameter('user_id', $user_id);
+        }
+        return $return->getQuery()->execute();
 	}
 }

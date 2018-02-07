@@ -340,6 +340,16 @@ class CrmDossier
      */
     private $etapes;
 
+    /**
+     * @var object
+     */
+    private $docRecus;
+
+    /**
+     * @var object
+     */
+    private $docEnvoyes;
+
 
     /**
      * Get id
@@ -1525,6 +1535,54 @@ class CrmDossier
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set docRecus
+     *
+     * @param datetime $docRecus
+     *
+     * @return CrmDossier
+     */
+    public function setDocRecus($docRecus)
+    {
+        $this->docRecus = $docRecus;
+
+        return $this;
+    }
+
+    /**
+     * Get docRecus
+     *
+     * @return object
+     */
+    public function getDocRecus()
+    {
+        return $this->docRecus;
+    }
+
+     /**
+     * Set docEnvoyes
+     *
+     * @param datetime $docEnvoyes
+     *
+     * @return CrmDossier
+     */
+    public function setDocEnvoyes($docEnvoyes)
+    {
+        $this->docEnvoyes = $docEnvoyes;
+
+        return $this;
+    }
+
+    /**
+     * Get docEnvoyes
+     *
+     * @return object
+     */
+    public function getDocEnvoyes()
+    {
+        return $this->docEnvoyes;
     }
 }
 

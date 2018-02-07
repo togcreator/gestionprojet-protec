@@ -33,7 +33,7 @@ class CrmEtapesOperationsType extends AbstractType
                 $id = $user['id'];
                 $text = $user['firstname'] . ' ' . $user['lastname'];
 
-                if( $user[0] != null ) {
+                if( isset($user[0]) && $user[0] != null ) {
                     $id = "{$user['id']}-{$user[0]->getId()}";
                     $text .= sprintf(' - %s', $user[0]->getLabel());
                 }
@@ -56,7 +56,6 @@ class CrmEtapesOperationsType extends AbstractType
         $crms = Utils::Array_extract($options['dataForm']['crms'], ['key'=>'getLabel', 'value'=>'getId']);
         $cyclesdetails = Utils::Array_extract($options['dataForm']['cyclesdetails'], ['key'=>'getLabel', 'value'=>'getId']);
         $detailActivity = Utils::Array_extract($options['dataForm']['detailActivity'], ['key'=>'getLabel', 'value'=>'getId']);
-        $etapes = Utils::Array_extract($options['dataForm']['etapes'], ['key'=>'getObjet', 'value'=>'getId']);
         $resultats = Utils::Array_extract($options['dataForm']['resultats'], ['key'=>'getLabel', 'value'=>'getId']);
         $statuts = Utils::Array_extract($options['dataForm']['statuts'], ['key'=>'getLabel', 'value'=>'getId']);
         $alertes = Utils::Array_extract($options['dataForm']['alertes'], ['key' => 'getLabel', 'value'=>'getId']);
@@ -72,7 +71,6 @@ class CrmEtapesOperationsType extends AbstractType
             ->add('objet', null, ['attr' => ['required' => true]])
             ->add('description')
             ->add('user4affectation', ChoiceType::class, ['choices' => $users, 'multiple' => true, 'attr' => ['required' => true]])
-            // ->add('userDate', TextType::class)
             ->add('datedebutprevue', TextType::class, ['required' => false])
             ->add('datefinprevue', TextType::class, ['required' => false])
             ->add('datedebutreelle', TextType::class, ['required' => false])
@@ -106,6 +104,4 @@ class CrmEtapesOperationsType extends AbstractType
     {
         return 'crmbundle_common_crmetapes';
     }
-
-
 }

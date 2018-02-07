@@ -179,7 +179,7 @@ class recipientsHandler {
      * @return bool
      */
     private function getRecipientCopy($request, $user, $obj, $manager, $mail, $way, $recip=false){
-        if(count($request->request->get('copyto_recipient')) !=0 || $recip === true){
+        if(($request->request->get('copyto_recipient') && count($request->request->get('copyto_recipient')) !=0) || $recip === true){
             if($request->request->get('copyto_recipient')){
                 foreach($request->request->get('copyto_recipient') as $key=>$value){
                     $recipient = explode("_",$value);
@@ -214,7 +214,7 @@ class recipientsHandler {
      * @return bool
      */
     private function getRecipientHidden($request, $user, $obj, $manager, $mail, $way){
-        if(count($request->request->get('hiddencopyto_recipient')) !=0){
+        if(($request->request->get('hiddencopyto_recipient') && count($request->request->get('hiddencopyto_recipient')) !=0)){
             foreach($request->request->get('hiddencopyto_recipient') as $key=>$value){
                 $recipient = explode("_",$value);
                 $userHd = $manager->getRepository('UsersBundle:UserClient')->find((int)$recipient[0]);

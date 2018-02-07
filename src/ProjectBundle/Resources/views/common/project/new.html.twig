@@ -14,14 +14,8 @@
     {% include 'header.html.twig' %}
 
         <div class="page-container">
-
-        <!-- Page content -->
         <div class="page-content">
-
-            <!-- Main content -->
             <div class="content-wrapper">
-
-                <!-- Form horizontal -->
                 <div class="panel panel-white">
                     <div class="panel-heading">
                         <h5 class="panel-title">{{ 'project.creation'|trans({}, 'project') }}</h5>
@@ -61,7 +55,7 @@
                                         {% set name = 'project.idLeader'|trans({}, 'project') %}
                                         {{ form_label(form.idLeader, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
                                         <div class="col-lg-8">
-                                            {{ form_widget(form.idLeader, {'attr': {'class': 'form-control'}}) }}
+                                            {{ form_widget(form.idLeader, {'attr': {'class': 'form-control select2-search'}}) }}
                                         </div>
                                     </div>
 
@@ -69,17 +63,17 @@
                                         {% set name = 'project.idWorkshop'|trans({}, 'project') %}
                                         {{ form_label(form.idWorkshop, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
                                         <div class="col-lg-8">
-                                            {{ form_widget(form.idWorkshop, {'attr': {'class': 'form-control'}}) }}
+                                            {{ form_widget(form.idWorkshop, {'attr': {'class': 'form-control select2-search'}}) }}
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        {% set name = 'project.idEntiteJ'|trans({}, 'project') %}
+                                        {% set name = 'project.entiteJ'|trans({}, 'project') %}
                                         {{ form_label(form.idEntiteJ, name, {'label_attr': {'class': 'control-label col-lg-4'}})|raw }}
                                         <div class="col-lg-8">
-                                            {{ form_widget(form.idEntiteJ, {'attr': {'class': 'form-control'}}) }}
+                                            {{ form_widget(form.idEntiteJ, {'attr': {'class': 'form-control select2-search'}}) }}
                                         </div>
                                     </div>
 
@@ -234,7 +228,7 @@
                                     delay: 250,
                                     data: function (params) {
                                         return {
-                                            q: params.term, // search term
+                                            q: $('[name*="[idEntiteJ]"').val() , // search term
                                             page: params.page
                                         };
                                     },

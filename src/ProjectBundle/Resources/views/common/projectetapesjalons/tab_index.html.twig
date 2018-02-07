@@ -8,32 +8,26 @@
     <table class="table datatable-basic">
         <thead>
             <tr>
-                <th>{{ '#' }}</th>
-                <th>{{ 'projectetapejalons.datereelle'|trans({}, 'projectetapejalons') }}</th>
-                <th>{{ 'projectetapejalons.idProjectversion'|trans({}, 'projectetapejalons') }}/{{ 'projectetapejalons.idEtape'|trans({}, 'projectetapejalons') }}</th>
-                <th>{{ 'projectetapejalons.idTypeJalon'|trans({}, 'projectetapejalons') }}</th>
                 <th>{{ 'projectetapejalons.title'|trans({}, 'projectetapejalons') }}</th>
+                <th>{{ 'projectetapejalons.idEtape'|trans({}, 'projectetapejalons') }}</th>
+                <th>{{ 'projectetapejalons.idTypeJalon'|trans({}, 'projectetapejalons') }}</th>
                 <th>{{ 'projectetapejalons.idResultat'|trans({}, 'projectetapejalons') }}</th>
+                <th>{{ 'projectetapejalons.datereelle'|trans({}, 'projectetapejalons') }}</th>
                 <th class="text-center">{{ 'projectetapejalons.actions'|trans({}, 'projectetapejalons') }}</th>
             </tr>
         </thead>
         <tbody>
             {% for projectetapejalons in projectEtapesJalons %}
-            <tr href="{{ path('projectetapesjalons_ajax_get', {'id': projectetapejalons.id}) }}">
-                <td style="cursor:pointer">{{ projectetapejalons.id }}</td>
-                <td>{{ projectetapejalons.datereelle|date(date_format) }}</td>
-                <td>
-                    {% if projectetapejalons.etape %}
-                        {{ projectetapejalons.etape.object }}
-                    {% endif %}
-                </td>
-                <td>{{ projectetapejalons.typejalon.label|default('') }}</td>
+            <tr>
                 <td>{{ projectetapejalons.object }}</td>
+                <td> {% if projectetapejalons.etape %}{{ projectetapejalons.etape.object }}{% endif %}</td>
+                <td>{{ projectetapejalons.typejalon.label|default('') }}</td>
                 <td>
                     {% if projectetapejalons.resultat %}
                         {{ projectetapejalons.resultat.label }}
                     {% endif %}
                 </td>
+                <td>{{ projectetapejalons.datereelle|date(date_format) }}</td>
                 <td class="text-center">
                     <ul class="icons-list">
                         <li class="dropdown">

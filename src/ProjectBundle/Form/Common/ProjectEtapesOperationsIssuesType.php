@@ -65,7 +65,7 @@ class ProjectEtapesOperationsIssuesType extends AbstractType
 
     // setting statut
     public function setUser ($options) {
-        return Utils::Array_extract($options, ['key'=>'getUsername', 'value'=>'getId']);
+        return Utils::Array_extract($options, ['key'=> ['getFirstname', 'getLastname'], 'value'=>'getId']);
     }
 
     /**

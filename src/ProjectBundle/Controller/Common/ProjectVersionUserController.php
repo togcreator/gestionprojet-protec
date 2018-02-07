@@ -124,7 +124,9 @@ class ProjectVersionUserController extends Controller
             $datefin = $projectVersionUser->getDatefin();
             $projectVersionUser->setDatefin( new \DateTime($datefin) );
 
-            $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($projectVersionUser);
+            $em->flush();
 
             // redirect ot project
             if( $request->get('idProjet') )
@@ -181,7 +183,7 @@ class ProjectVersionUserController extends Controller
         $em = $this->getDoctrine()->getManager();
         return [
             'projects'  => $em->getRepository('ProjectBundle:Common\Project')->findAll(),
-            'roles'  => $em->getRepository('ProjectBundle:Back\Roles')->findAll(),
+            'roles'  => $em->getRepository('ProjectBundle:Back\Roles')->findBy(['ouvert' => 1]),
             'users'  => $em->getRepository('UsersBundle:UserClient')->findAll()
         ];
     }

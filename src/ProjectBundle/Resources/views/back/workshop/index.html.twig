@@ -34,19 +34,16 @@
                     <table class="table datatable-basic">
                         <thead>
                             <tr>
-                                <th>{{ '#' }}</th>
                                 <th>{{ 'workshop.open'|trans({},'workshop') }}</th>
                                 <th>{{ 'workshop.wording'|trans({},'workshop') }}</th>
                                 <th class="col-md-2 text-center">{{ 'workshop.couleur'|trans({},'workshop') }}</th>
                                 <th class="col-md-1 text-center">{{ 'workshop.logo'|trans({},'workshop') }}</th>
-                                <th class="col-md-1 text-center">{{ 'workshop.note'|trans({},'workshop') }}</th>
-                                <th class="text-center">{{ 'workshop.actions'|trans({},'workshop') }}</th>
+                                <th class="text-center no-sort">{{ 'workshop.actions'|trans({},'workshop') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for workshop in workshops %}
                             <tr>
-                                <td style="cursor:pointer" onclick="document.location = '{{ path('back_workshop_show', { 'id': workshop.id }) }}';">{{ workshop.id }}</td>
                                 <td>
                                     {% if workshop.ouvert %}
                                         <span class="label label-info">{{ 'global.yes'|trans }}</span>
@@ -57,11 +54,10 @@
                                 <td>{{ workshop.label }}</td>
                                 <td class="col-md-2 text-center" style="background: {{ workshop.couleur }};">{{ workshop.couleur }}</td>
                                 <td class="col-md-1 text-center">
-                                    {% if workshop.logo %}
+                                    {% if isFile(workshop.logo) %}
                                         <img src="{{ asset('uploads/' ~ workshop.logo ) }}" alt="logo" style="max-width: 50%" />
                                     {% endif %}
                                 </td>
-                                <td class="col-md-1 text-center">{% if workshop.obs %}<i class="icon-file-text"></i>{% else %}<i class="icon-file-minus2" style="color: #ccc"></i>{% endif %}</td>
                                 <td class="text-center">
                                     <ul class="icons-list">
                                         <li class="dropdown">

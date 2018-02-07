@@ -34,18 +34,16 @@
                     <table class="table datatable-basic">
                         <thead>
                             <tr>
-                                <th>{{ '#' }}</th>
                                 <th>{{ 'projectalert.open'|trans({}, 'projectalert') }}</th>
                                 <th>{{ 'projectalert.label'|trans({}, 'projectalert') }}</th>
                                 <th class="col-md-2 text-center">{{ 'projectalert.couleur'|trans({},'projectalert') }}</th>
                                 <th class="col-md-1 text-center">{{ 'projectalert.logo'|trans({},'projectalert') }}</th>
-                                <th class="text-center">{{ 'projectalert.actions'|trans({}, 'projectalert') }}</th>
+                                <th class="text-center no-sort">{{ 'projectalert.actions'|trans({}, 'projectalert') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for projectalert in projectAlerts %}
                             <tr>
-                                <td style="cursor:pointer">{{ projectalert.id }}</td>
                                 <td>
                                     {% if projectalert.ouvert %}
                                     <span class="label label-info">{{ 'global.yes'|trans }}</span> {% else %}

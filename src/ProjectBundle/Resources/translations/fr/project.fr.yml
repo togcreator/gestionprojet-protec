@@ -23,13 +23,14 @@ project.idTypeProjet: Type de projet
 project.idCreateur: Créateur
 project.idLeader: Leader
 project.idWorkshop: Workshop
-project.idEntiteJ: Entité
+project.entiteJ: Entreprises
 project.idVersionCours: Version du projet en cours
 project.code: Code
 project.reference: Reférence
 project.descriptionPerimetres: Description paramètre
 project.datedebutPrevue: Date de debut prevue
 project.datefinPrevue: Date de fin prevue
+project.datefin: Date de fin
 project.statut: Statut
 project.datedebutReelle: Date de debut réelle
 project.datefinReelle: Date de fin réelle
@@ -46,10 +47,10 @@ project.notes: Notes
 project.confirm_delete: Voulez vous supprimer ce projet ?
 project.confirmfilter_delete: Voulez vous supprimer ce filtre ?
 project.cant_delete: Vous ne pouvez pas supprimer ce projet.
-project.entityj: Entité
+project.entityj: Entreprise
 project.flagprive: Filtre pour moi seul
 project.filter_save: Sauvegarde
-project.sort_by: 'Tri par'
+project.sort_by: 'Regroupé par'
 project.legend_user: Groupe d'utilisateur
 project.user: utilisateur
 project._user: Les intervenants
@@ -59,7 +60,7 @@ project.form_null: 'Le champ suivant est vide ou contenant une valeur érroné :
 
 # button
 project._add_button: Ajout
-project.add_button: Ajouter un projet
+project.add_button: Nouveau
 project.addfilter_button: Sauvegarder
 project.submit_button: Enregistrer
 project.edit_button: Modifier

@@ -16,7 +16,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown user-switch">
 					<a class="dropdown-toggle" data-toggle="dropdown">
-						{{ 'users.connect_as'|trans ~ ' ' ~ userConnect(path('user_log'), true) }}
+						{{ 'users.enterprise'|trans ~ ' ' ~ userConnect(path('user_log'), true)|trans }}
 						<i class="caret position-left"></i>
 					</a>
 					{{ userConnect(path('user_log'))|raw }}
@@ -71,7 +71,7 @@
 				<!-- Main -->
 				<li class="{{ setMenuActive(controller, 'default')|raw }}"><a href="{{ path('homepage')}}"><i class="icon-home4 position-left"></i> <span>{{ 'menu.dashboard'|trans  }}</span></a></li>
 
-				{# <li class="dropdown {{ setMenuActive(controller, 'project')|raw }}">
+				<li class="dropdown {{ setMenuActive(controller, 'project')|raw }}">
 					<a href="{{ path('project_index') }}" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-stack3 position-left"></i> <span>{{ 'menu.project'|trans }}</span><span class="caret"></span></a>
 					<ul class="dropdown-menu width-200">
 						<li class="{{ setMenuActive(controller, 'project')|raw }}"><a href="{{ path('project_index') }}">{{ 'menu.project'|trans }}</a></li>
@@ -82,8 +82,8 @@
 							<ul class="dropdown-menu">
 								<li class="{{ setMenuActive(controller, 'projectetapesoperations')|raw }}"><a href="{{ path('projectetapesoperations_index') }}">{{ 'menu.projectetapesoperations'|trans }}</a></li>
 								<li class="{{ setMenuActive(controller, 'operationsissues')|raw }}"><a href="{{ path('operationsissues_index') }}">{{ 'menu.operationsissues'|trans }}</a></li>
-								<li class="{{ setMenuActive(controller, 'Issuesrealisations')|raw }}"><a href="{{ path('Issuesrealisations_index') }}">{{ 'menu.issuesrealisations'|trans }}</a></li>
-								<li class="{{ setMenuActive(controller, 'issuesorganisation')|raw }}"><a href="{{ path('issuesorganisation_index') }}">{{ 'menu.issuesorganisation'|trans }}</a></li>
+								<li class="{{ setMenuActive(controller, 'Issuesrealisations')|raw }} hidden"><a href="{{ path('Issuesrealisations_index') }}">{{ 'menu.issuesrealisations'|trans }}</a></li>
+								<li class="{{ setMenuActive(controller, 'issuesorganisation')|raw }} hidden"><a href="{{ path('issuesorganisation_index') }}">{{ 'menu.issuesorganisation'|trans }}</a></li>
 								<li class="{{ setMenuActive(controller, 'operationsusers')|raw }}"><a href="{{ path('operationsusers_index') }}">{{ 'menu.operationsusers'|trans }}</a></li>
 							</ul>
 										
@@ -97,13 +97,14 @@
 						</li>
 						<li><a href="{{ path('projectnotes_index') }}">{{ 'menu.notes'|trans }}</a></li>
 					</ul>
-				</li> #}
+				</li>
 
 				<li class="dropdown {{ setMenuActive(controller, 'crm')|raw }}">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user position-left"></i> <span>{{ 'menu.crm'|trans }}</span><span class="caret"></span></a>
 					<ul class="dropdown-menu width-200">
 						<li class="{{ setMenuActive(controller, 'client')|raw }}"><a href="{{ path('client_liste_clients') }}">{{ 'client.menu.customer'|trans }}</a></li>
 						<li class="{{ setMenuActive(controller, 'pipeline')|raw }}"><a href="{{ path('pipeline_index')}}">{{ 'client.menu.pipeline'|trans }}</a></li>
+						<li class="{{ setMenuActive(controller, 'contact')|raw }}"><a href="{{ path('contact_index')}}">{{ 'client.menu.contact'|trans }}</a></li>
 						<li class="{{ setMenuActive(controller, 'crmdossier')|raw }}"><a href="{{ path('crmdossier_index') }}">{{ 'menu.crm'|trans }}</a></li>
 						<li class="{{ setMenuActive(controller, 'crmetapesoperations')|raw }}"><a href="{{ path('crmetapesoperations_index') }}">{{ 'menu.crm_etapesoperations'|trans }}</a></li>
 						{# <li class="{{ setMenuActive(controller, 'crmetapesrealisations')|raw }}"><a href="{{ path('crmetapesrealisations_index') }}">{{ 'menu.crm_etapesrealisation'|trans }}</a></li> #}
@@ -175,6 +176,9 @@
 													<li class="{{ setMenuActive(controller, 'usersparamrelationsprofessionnelles')|raw }}">
 														<a href="{{ path('usersparamrelationsprofessionnelles_index') }}"><i class="icon-collaboration"></i>{{ 'back.menu_usersparamrelationsprofessionnelles'|trans }}</a>
 													</li>
+													<li class="{{ setMenuActive(controller, 'paramservices')|raw }}">
+														<a href="{{ path('paramservices_index') }}"><i class="icon-collaboration"></i>{{ 'back.menu_paramservices'|trans }}</a>
+													</li>
 												</ul>
 											</a>
 										</li>
@@ -182,7 +186,7 @@
 
 								</div>
 
-								{# <div class="col-md-3">
+								<div class="col-md-3">
 									<span class="menu-heading underlined">{{ 'back.menu_project'|trans }}</span>
 
 									<ul class="menu-list">
@@ -190,11 +194,11 @@
 											<a href="{{ path('back_workshop_index') }}"> <i class="icon-pencil7"></i> {{ 'back.menu_workshop'|trans }}</a></li>
 										<li class="{{ setMenuActive(controller, 'statutType')|raw }}">
 											<a href="{{ path('back_statutType_index') }}"> <i class="icon-theater"></i> {{ 'back.menu_statutType'|trans }}</a></li>
-										<li class="{{ setMenuActive(controller, 'entityj')|raw }}">
+										<li class="{{ setMenuActive(controller, 'entityj')|raw }} hidden">
 											<a href="{{ path('back_entity_index') }}"> <i class="icon-folder"></i> {{ 'back.menu_entityj'|trans }}</a></li>
-										<li class="{{ setMenuActive(controller, 'projectversion')|raw }}">
+										<li class="{{ setMenuActive(controller, 'projectversion')|raw }} hidden">
 											<a href="{{ path('projectversion_index') }}"> <i class="icon-versions"></i> {{ 'back.menu_project_version'|trans }}</a></li>
-										<li class="{{ setMenuActive(controller, 'projectversionuser')|raw }}">
+										<li class="{{ setMenuActive(controller, 'projectversionuser')|raw }} hidden">
 											<a href="{{ path('projectversionuser_index') }}"><i class="icon-versions"></i>{{ 'back.menu_project_versionuser'|trans }}</a></li>
 										<li class="{{ setMenuActive(controller, 'jalon')|raw }}">
 											<a href="{{ path('back_jalon_index') }}"> <i class="icon-stars"></i> {{ 'back.menu_jalon'|trans }}</a></li>
@@ -204,10 +208,10 @@
 											<a href="{{ path('back_projectalert_index') }}"><i class="icon-alert"></i>{{ 'back.menu_projectalert'|trans }}</a></li>
 										<li class="{{ setMenuActive(controller, 'resultat')|raw }}">
 											<a href="{{ path('back_resultat_index') }}"><i class="icon-crown"></i>{{ 'back.menu_resultat'|trans }}</a></li>
-										<li class="{{ setMenuActive(controller, 'natureop')|raw }}">
+										<li class="{{ setMenuActive(controller, 'natureop')|raw }} hidden">
 											<a href="{{ path('back_natureop_index') }}"><i class="icon-folder"></i>{{ 'back.menu_natureop'|trans }}</a></li>
 									</ul>
-								</div> #}
+								</div>
 
 								<div class="col-md-3">
 									<span class="menu-heading underlined">{{ 'back.menu_crm'|trans }}</span>

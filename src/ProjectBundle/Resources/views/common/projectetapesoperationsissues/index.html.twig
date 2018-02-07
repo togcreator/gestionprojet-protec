@@ -40,7 +40,7 @@
                                 <th>{{ 'OperationsIssues.descriptionCorrection'|trans({}, 'operationsissues') }}</th>
                                 <th>{{ 'OperationsIssues.datedebut'|trans({}, 'operationsissues') }}</th>
                                 <th>{{ 'OperationsIssues.datefin'|trans({}, 'operationsissues') }}</th>
-                                <th class="text-center">{{ 'OperationsIssues.actions'|trans({}, 'operationsissues') }}</th>
+                                <th class="text-center no-sort">{{ 'OperationsIssues.actions'|trans({}, 'operationsissues') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,12 +54,12 @@
                                 </td>
                                 <td>
                                     {% if OperationsIssues.etape %}
-                                    {{ OperationsIssues.etape.label }}
+                                    {{ OperationsIssues.etape.object }}
                                     {% endif %}
                                 </td>
                                 <td>
                                     {% if OperationsIssues.operation %}
-                                    {{ OperationsIssues.operation.label }}
+                                    {{ OperationsIssues.operation.object }}
                                     {% endif %}
                                 </td>
                                 <td>{{ OperationsIssues.libelle }}</td>

@@ -16,6 +16,22 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class ProjectEtapesOperationsIssuesController extends Controller
 {
+        /**
+     * Override method getUser parent
+     *
+     * @return UserClient
+     */
+    protected function getUser() {
+
+        $auth_checker = $this->get('security.authorization_checker');
+        if( $auth_checker->isGranted('ROLE_ADMIN') ) 
+            return true;
+        
+        $user_id = parent::getUser()->getId();
+        $bu_id = $this->container->get('session')->get('BU');
+        return $this->getDoctrine()->getRepository('UsersBundle:UserClient')->findUserByCompte($bu_id, $user_id);
+    }
+
     /**
      * Lists all by ajax
      *
@@ -59,11 +75,10 @@ class ProjectEtapesOperationsIssuesController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $user_id = is_object($this->getUser()) ? $this->getUser()->getId() : null;
+        $bu_id = $this->container->get('session')->get('BU');
 
-        $projectEtapesOperationsIssues = $em->getRepository('ProjectBundle:Common\ProjectEtapesOperationsIssues')->findAll();
-        if( $projectEtapesOperationsIssues )
-            foreach($projectEtapesOperationsIssues as &$issues)
-                $issues->setProjet($em->getRepository('ProjectBundle:Common\Project')->findOneBy(['id' => $issues->getIdProjectVersion()]));
+        $projectEtapesOperationsIssues = $em->getRepository('ProjectBundle:Common\ProjectEtapesOperationsIssues')->findAllBy(null, $user_id, $bu_id);
 
         return $this->render('ProjectBundle:common/projectetapesoperationsissues:index.html.twig', array(
             'OperationsIssues' => $projectEtapesOperationsIssues,
@@ -140,6 +155,24 @@ class ProjectEtapesOperationsIssuesController extends Controller
             /* pour agenda de l'issue */
             $projectEtapesOperationsIssue->setIdAgenda(0);
 
+            /**
+             * Pour project
+             */
+            $project = $em->getRepository('ProjectBundle:Common\Project')->findOneBy(['id' => $projectEtapesOperationsIssue->getIdProjectVersion()]);
+            $projectEtapesOperationsIssue->setProjet($project);
+
+            /**
+             * Pour etape
+             */
+            $etape = $em->getRepository('ProjectBundle:Common\ProjectEtape')->findOneBy(['id' => $projectEtapesOperationsIssue->getIdEtape()]);
+            $projectEtapesOperationsIssue->setEtape($etape);
+
+            /**
+             * Pour operation
+             */
+            $operation = $em->getRepository('ProjectBundle:Common\ProjectEtapesOperations')->findOneBy(['id' => $projectEtapesOperationsIssue->getIdOperation()]);
+            $projectEtapesOperationsIssue->setOperation($operation);
+
             // for agenda 
             $em->persist($projectEtapesOperationsIssue);
             $em->flush();
@@ -189,6 +222,18 @@ class ProjectEtapesOperationsIssuesController extends Controller
 
             // for agenda 
             $agenda = $this->setAgenda($projectEtapesOperationsIssue);
+
+            /**
+             * Pour project
+             */
+            $project = $em->getRepository('ProjectBundle:Common\Project')->findOneBy(['id' => $projectEtapesOperationsIssue->getIdProjectVersion()]);
+            $projectEtapesOperationsIssue->setProjet($project);
+
+            /**
+             * Pour etape
+             */
+            $etape = $em->getRepository('ProjectBundle:Common\ProjectEtape')->findOneBy(['id' => $projectEtapesOperationsIssue->getIdEtape()]);
+            $projectEtapesOperationsIssue->setEtape($etape);
 
             // for issue
             $em->persist($projectEtapesOperationsIssue);
@@ -243,6 +288,8 @@ class ProjectEtapesOperationsIssuesController extends Controller
     // data for form
     private function dataForm() {
         $em = $this->getDoctrine()->getManager();
+        $bu_id = $this->container->get('session')->get('BU');
+
         return [
             'operations'        => $em->getRepository('ProjectBundle:Common\ProjectEtapesOperations')->findAll(), 
             'etapes'            => $em->getRepository('ProjectBundle:Common\ProjectEtape')->findAll(), 
@@ -251,7 +298,7 @@ class ProjectEtapesOperationsIssuesController extends Controller
             // other
             'priorites'         => $em->getRepository('ProjectBundle:Back\Priorites')->findAll(),
             'statuts'           => $em->getRepository('ProjectBundle:Back\Statut')->findAll(),
-            'users'             => $em->getRepository('UsersBundle:Users')->findAll(),
+            'users'             => $em->getRepository('UsersBundle:UserClient')->findEmploye(),
         ];
     }
 

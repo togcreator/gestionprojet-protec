@@ -122,42 +122,42 @@ class Roles
      *
      * @ORM\Column(name="couleur", type="string", length=10)
      */
-    private $couleur;
+    private $couleur = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="nomcouleur", type="string", length=20)
      */
-    private $nomcouleur;
+    private $nomcouleur = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="imgcouleur", type="string", length=100)
      */
-    private $imgcouleur;
+    private $imgcouleur = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="logo", type="string", length=255)
      */
-    private $logo;
+    private $logo = '';
 
     /**
      * @var text
      *
      * @ORM\Column(name="obs", type="text")
      */
-    private $obs;
+    private $obs = '';
 
     /**
      * @var int
      *
      * @ORM\Column(name="version", type="integer", length=11)
      */
-    private $version;
+    private $version = 1;
 
     /**
      * Get id
@@ -394,7 +394,7 @@ class Roles
      */
     public function setLib6($lib6)
     {
-        $this->lib6 = $lib6;
+        $this->lib6 = $lib6 ? $lib6 : $this->lib6;
 
         return $this;
     }
@@ -418,7 +418,7 @@ class Roles
      */
     public function setLib7($lib7)
     {
-        $this->lib7 = $lib7;
+        $this->lib7 = $lib7 ? $lib7 : $this->lib7;
 
         return $this;
     }
@@ -442,7 +442,7 @@ class Roles
      */
     public function setLib8($lib8)
     {
-        $this->lib8 = $lib8;
+        $this->lib8 = $lib8 ? $lib8 : $this->lib8;
 
         return $this;
     }
@@ -466,7 +466,7 @@ class Roles
      */
     public function setLib9($lib9)
     {
-        $this->lib9 = $lib9;
+        $this->lib9 = $lib9 ? $lib9 : $this->lib9;
 
         return $this;
     }
@@ -514,7 +514,7 @@ class Roles
      */
     public function setCouleur($couleur)
     {
-        $this->couleur = $couleur;
+        $this->couleur = $couleur ? $couleur : $this->couleur;
 
         return $this;
     }
@@ -538,7 +538,7 @@ class Roles
      */
     public function setImgcouleur($imgcouleur)
     {
-        $this->imgcouleur = $imgcouleur;
+        $this->imgcouleur = $imgcouleur ? $imgcouleur : $this->imgcouleur;
 
         return $this;
     }
@@ -563,7 +563,7 @@ class Roles
      */
     public function setNomcouleur($nomcouleur)
     {
-        $this->nomcouleur = $nomcouleur;
+        $this->nomcouleur = $nomcouleur ? $nomcouleur : $this->nomcouleur;
 
         return $this;
     }
@@ -587,7 +587,7 @@ class Roles
      */
     public function setLogo($logo)
     {
-        $this->logo = $logo;
+        $this->logo = $logo ? $logo : $this->logo;
 
         return $this;
     }
@@ -611,7 +611,7 @@ class Roles
      */
     public function setObs($obs)
     {
-        $this->obs = $obs;
+        $this->obs = $obs ? $obs : $this->obs;
 
         return $this;
     }
@@ -635,7 +635,7 @@ class Roles
      */
     public function setVersion($version)
     {
-        $this->version = $version;
+        $this->version = $version ? $version : $this->version;
 
         return $this;
     }

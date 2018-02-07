@@ -32,7 +32,6 @@ class PrioritesType extends AbstractType
 
         $builder
             ->add('ouvert', CheckboxType::class, ['required' => false])
-            ->add('code')
             ->add('label', null, ['required' => true])
             ->add('lib0', HiddenType::class)
             ->add('lib1', HiddenType::class)
@@ -44,7 +43,7 @@ class PrioritesType extends AbstractType
             ->add('lib7', HiddenType::class)
             ->add('lib8', HiddenType::class)
             ->add('lib9', HiddenType::class)
-            ->add('delai')
+            ->add('delai', null, ['required' => false])
             ->add('typedelai', HiddenType::class)
             ->add('couleur', null, ['required' => false])
             ->add('imgcouleur', FileType::class, array_merge(['required' => false], $imgcouleur))

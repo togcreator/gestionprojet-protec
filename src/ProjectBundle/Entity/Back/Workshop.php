@@ -183,6 +183,30 @@ class Workshop
     }
 
     /**
+     * Set label
+     *
+     * @param string $label
+     *
+     * @return workshop
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
+
+    /**
      * Set lib0
      *
      * @param string $lib0
@@ -420,30 +444,6 @@ class Workshop
     public function getLib9()
     {
         return $this->lib9;
-    }
-
-    /**
-     * Set label
-     *
-     * @param string $label
-     * @ORM\PostLoad
-     * @return workshop
-     */
-    public function setLabel($label)
-    {
-        $this->label = $label;
-
-        return $this;
-    }
-
-     /**
-     * Get label
-     *
-     * @return string
-     */
-    public function getLabel()
-    {
-        return $this->label;
     }
 
     /**

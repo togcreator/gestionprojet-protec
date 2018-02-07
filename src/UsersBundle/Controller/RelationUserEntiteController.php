@@ -28,7 +28,12 @@ class RelationUserEntiteController extends Controller
         $relationUserEntites = $em->getRepository('UsersBundle:RelationUserEntite')->findByUser();
         if(count($relationUserEntites))
             foreach($relationUserEntites as &$ue) {
-                $ue->setRelations_fonction($em->getRepository('UsersBundle:Back\UsersParamRelationsFonctions')->findOneBy(['id' => $ue->getIDRelationFonctionnelle()]));
+                $fonction = $em->getRepository('UsersBundle:Back\UsersParamRelationsFonctions')->findOneBy(['id' => $ue->getIDRelationFonctionnelle()]);
+                if( $fonction ) {
+                    $ue->setRelations_fonction($fonction);
+                    $ue->setService($em->getRepository('UsersBundle:Back\ParamServices')->findOneBy(['id' => $fonction->getIDService()]));
+                }
+                
             }
 
 
@@ -46,11 +51,30 @@ class RelationUserEntiteController extends Controller
     public function newAction(Request $request)
     {
         $relationUserEntite = new RelationUserEntite();
-        $form = $this->createForm('UsersBundle\Form\RelationUserEntiteType', $relationUserEntite, ['dataForm' => $this->dataForm()]);
+        $entite_id = $request->get('entite_id');
+        if( $entite_id )
+            $relationUserEntite->setIdEntiteJ($entite_id);
+
+        $form = $this->createForm('UsersBundle\Form\RelationUserEntiteType', $relationUserEntite, ['dataForm' => $this->dataForm($entite_id)]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            /**
+             * test is existe
+             */
+            $entite_id = $relationUserEntite->getIdEntiteJ();
+            $user_id = $relationUserEntite->getIDUser();
+            $r_bu_entite = $relationUserEntite->getIDUserEntite();
+            $fonc_id = $relationUserEntite->getIDRelationFonctionnelle();
+            $rel = $em->getRepository('UsersBundle:RelationUserEntite')->findOneBy(['iDUser' => $user_id, 'idEntiteJ' => $entite_id]);
+            if( $rel ) 
+            {
+                $relationUserEntite = $rel;
+                $relationUserEntite->setIDUserEntite($r_bu_entite);
+                $relationUserEntite->setIDRelationFonctionnelle($fonc_id);
+            }
 
             //============================================
             $ij = $relationUserEntite->getIdEntiteJ();
@@ -101,7 +125,13 @@ class RelationUserEntiteController extends Controller
     public function editAction(Request $request, RelationUserEntite $relationUserEntite)
     {
         $deleteForm = $this->createDeleteForm($relationUserEntite);
-        $editForm = $this->createForm('UsersBundle\Form\RelationUserEntiteType', $relationUserEntite, ['dataForm' => $this->dataForm()]);
+        $entite_id = $request->get('entite_id');
+        if( $entite_id )
+            $relationUserEntite->setIdEntiteJ($entite_id);
+        else
+            $entite_id = $relationUserEntite->getIdEntiteJ();
+
+        $editForm = $this->createForm('UsersBundle\Form\RelationUserEntiteType', $relationUserEntite, ['dataForm' => $this->dataForm($entite_id)]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -173,10 +203,26 @@ class RelationUserEntiteController extends Controller
     * 
     * @return Array
     */
-    private function dataForm ()
+    private function dataForm ($entite_id = 0)
     {
         $em = $this->getDoctrine()->getManager();
+        $iDUserEntites = ['global.none'  => 0];
+
+        if( $entite_id ) 
+        {
+            $bu_id = $this->container->get('session')->get('BU');
+            $criter = $bu_id ? ['iDBusinessUnit' => $bu_id] : [];
+            $criter['iDentite'] = $entite_id;
+            
+            $iDUserEntite = $em->getRepository('UsersBundle:RelationBusinessEntite')->findBy($criter);
+            foreach( $iDUserEntite as $rel ) {
+                $relationsProfessionnelles = $em->getRepository('UsersBundle:Back\UsersParamRelationsProfessionnelles')->findOneBy(['id' => $rel->getIDRelationsProfessionnelles()]);
+                $iDUserEntites [ sprintf('%s - %s - %s', $rel->getBusinessunit()->getNomBusinessUnit(), $relationsProfessionnelles->getLabel(), $rel->getEntite()->getRaisonSociale()) ] = $rel->getId();
+            }
+        }
+
         return [
+            'iDUserEntite' => $iDUserEntites,
             'entites' => $em->getRepository('ClientBundle:Client')->findAll(),
             'users' => $em->getRepository('UsersBundle:UserClient')->findContact(),
             'relations' => $em->getRepository('UsersBundle:RelationUserEntite')->findAll(),

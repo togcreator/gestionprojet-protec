@@ -34,14 +34,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    {% set name = 'priorite.code'|trans({}, 'priorite') %}
-                                    {{ form_label(edit_form.code, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
-                                    <div class="col-lg-10">
-                                        {{ form_widget(edit_form.code, {'attr': {'class': 'form-control'}}) }}
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
                                     {% set name = 'priorite.label'|trans({}, 'priorite') %}
                                     {{ form_label(edit_form.label, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                     <div class="col-lg-10">
@@ -81,16 +73,22 @@
                                     {% set name = 'priorite.imgcouleur'|trans({}, 'priorite') %}
                                     {{ form_label(edit_form.imgcouleur, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                     <div class="col-lg-10" style="padding: 15px 0">
-                                        {% set preview = asset('uploads/' ~ edit_form.vars.value.imgcouleur) %}
-                                        {{ form_widget(edit_form.imgcouleur, {'attr': {'class': 'form-control upload-file',  'data-preview': preview}}) }}
+                                        {% if isFile(edit_form.vars.value.logo) %}
+                                            {% set preview = asset('uploads/' ~ edit_form.vars.value.imgcouleur) %}
+                                        {% endif %}
+                                        {% if preview is defined %}{% set filetype = 'image' %}{% endif %}
+                                        {{ form_widget(edit_form.imgcouleur, {'attr': {'class': 'form-control upload-file', 'data-preview': preview|default(''), 'filetype': filetype|default('')}}) }}
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     {% set name = 'priorite.logo'|trans({}, 'priorite') %}
                                     {{ form_label(edit_form.logo, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                     <div class="col-lg-10" style="padding: 15px 0">
-                                        {% set preview = asset('uploads/' ~ edit_form.vars.value.logo) %}
-                                        {{ form_widget(edit_form.logo, {'attr': {'class': 'form-control upload-file', 'data-preview': preview}}) }}
+                                        {% if isFile(edit_form.vars.value.logo) %}
+                                            {% set preview = asset('uploads/' ~ edit_form.vars.value.logo) %}
+                                        {% endif %}
+                                        {% if preview is defined %}{% set filetype = 'image' %}{% endif %}
+                                        {{ form_widget(edit_form.logo, {'attr': {'class': 'form-control upload-file', 'data-preview': preview|default(''), 'filetype': filetype|default('')}}) }}
                                     </div>
                                 </div>
                                 

@@ -14,12 +14,18 @@ class RelationBusinessUserRepository extends \Doctrine\ORM\EntityRepository
 	/**
 	* find by User
 	*/
-	public function findByUser () {
-		return $this->createQueryBuilder('r')
+	public function findByUser ($bu_id = null) {
+		$return = $this->createQueryBuilder('r')
 			->select('r')
 			->innerJoin('UsersBundle:UserClient', 'u', Join::WITH, 'u.id = r.iDUser ')
-			->where('u.iDNatureUser = 1')
-			->getQuery()
-			->execute();
+			->where('u.iDNatureUser = 1');
+
+		if( $bu_id ) {
+			$return
+				->andWhere('r.iDBusinessUnit = :bu_id')
+				->setParameter('bu_id', $bu_id);
+		}
+
+		return $return->getQuery()->execute();
 	}
 }

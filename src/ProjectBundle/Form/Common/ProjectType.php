@@ -30,13 +30,13 @@ class ProjectType extends AbstractType
         $options->setDatefinReelle(is_object($datefinReelle) ? $datefinReelle->format('Y-m-d'): $datefinReelle);
     }
 
-    private function setClient ($clients) { 
-        $return = [];
-        foreach($clients['items'] as $items)
-            if(count($items))
-                $return[$items['text']] = $items['id'];
-        return $return;
-    }
+    // private function setClient ($clients) { 
+    //     $return = [];
+    //     foreach($clients['items'] as $items)
+    //         if(count($items))
+    //             $return[$items['text']] = $items['id'];
+    //     return $return;
+    // }
 
     /**
      * {@inheritdoc}
@@ -44,15 +44,17 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // for entityJ
-        $entityJs = Utils::Array_extract($options['dataForm']['entityJs'], ['key'=>'getName', 'value'=>'getId']);
+        $entityJs = Utils::Array_extract($options['dataForm']['entityJs'], ['key'=>'getRaisonSociale', 'value'=>'getId']);
         // need lang
-        $workshops = Utils::Array_extract($options['dataForm']['workshops'], ['key'=>'getLabel', 'value'=>'getId']);
+        $workshops = Utils::Array_extract($options['dataForm']['workshops'], ['key' => 'getLabel', 'value'=>'getId']);
         // statuts
         $statuts = Utils::Array_extract($options['dataForm']['statuts'], ['key' => 'getLabel', 'value'=>'getId']);
         // user
-        $leaders = Utils::Array_extract($options['dataForm']['users'], ['key' => 'getFirstname', 'value' => 'getId']);
+        $leaders = Utils::Array_extract($options['dataForm']['users'], ['key' => ['getFirstname', 'getLastname'], 'value' => 'getId']);
         //===================== user client ===================
-        $users = $this->setClient($options['dataForm']['clients']);
+        // $users = $this->setClient($options['dataForm']['clients']);
+        // $users = Utils::Array_extract($options['dataForm']['clients'], ['key' => 'getRaisonSociale', 'value' => 'getId']);
+        $users = Utils::Array_extract($options['dataForm']['users'], ['key' => ['getFirstname', 'getLastname'], 'value' => 'getId'], false);
         //===================== contact =======================
         $contact = $options['dataForm']['contact'];
         //===================== mode access ===================

@@ -52,6 +52,11 @@ class PrioritesController extends Controller
             // img
             $priorite->setLogo(Utils::Upload_file($priorite->getLogo(), $dir));
 
+            /**
+             * pour code
+             */
+            \AppBundle\Entity\Classes\Utils::setCode($priorite);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($priorite);
             $em->flush();

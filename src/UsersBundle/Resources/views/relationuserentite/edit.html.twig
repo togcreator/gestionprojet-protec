@@ -33,6 +33,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    {% set name = 'relationuserentite.iDUserEntite'|trans({}, 'relationuserentite') %}
+                                    {{ form_label(edit_form.iDUserEntite, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
+                                    <div class="col-lg-10">
+                                        {{ form_widget(edit_form.iDUserEntite, {'attr': {'class': 'form-control select2-search' }}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     {% set name = 'relationuserentite.iDRelation_Fonctionnelle'|trans({}, 'relationuserentite') %}
                                     {{ form_label(edit_form.iDRelation_Fonctionnelle, name, {'label_attr': {'class': 'control-label col-lg-2'}})|raw }}
                                     <div class="col-lg-10">

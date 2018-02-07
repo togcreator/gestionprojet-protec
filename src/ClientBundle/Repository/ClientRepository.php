@@ -45,14 +45,12 @@ class ClientRepository extends \Doctrine\ORM\EntityRepository
     // RelatinBusinessEntite
     public function findByBU ($bu_id) {
         $client = $this->createQueryBuilder('c')
-            ->select('c', 'upp.id', 'bu.nomBusinessUnit')
-            // ->distinct()
+            ->select('rbe as relationBusinessEntite', 'upp.id')
             ->innerJoin('UsersBundle:RelationBusinessEntite', 'rbe', Join::WITH, 'rbe.iDentite = c.id')
-            ->innerJoin('UsersBundle:BusinessUnit', 'bu', Join::WITH, 'bu.id = rbe.iDBusinessUnit')
-            ->innerJoin('UsersBundle:Back\UsersParamRelationsProfessionnelles', 'upp', Join::WITH, 'upp.id = rbe.iDRelationsProfessionnelles')
-            ->where('(upp.id = 1 or upp.id = 2)');
-
-        if( $bu_id != -1 ) { // admin
+            ->leftJoin('UsersBundle:BusinessUnit', 'bu', Join::WITH, 'bu.id = rbe.iDBusinessUnit')
+            ->leftJoin('UsersBundle:Back\UsersParamRelationsProfessionnelles', 'upp', Join::WITH, 'upp.id = rbe.iDRelationsProfessionnelles');
+            
+        if( $bu_id ) { // admin
             $client->andWhere('rbe.iDBusinessUnit = :bu_id');
             $client->setParameter('bu_id', $bu_id);
         }
@@ -70,7 +68,7 @@ class ClientRepository extends \Doctrine\ORM\EntityRepository
         $id_watcher = $data['idWatcher'];
 
         $client = $this->createQueryBuilder('c')
-            ->select('c', 'upp.id', 'bu.nomBusinessUnit')
+            ->select('rbe', 'upp.id')
             ->innerJoin('UsersBundle:RelationBusinessEntite', 'rbe', Join::WITH, 'rbe.iDentite = c.id')
             ->innerJoin('UsersBundle:BusinessUnit', 'bu', Join::WITH, 'bu.id = rbe.iDBusinessUnit')
             ->innerJoin('UsersBundle:Back\UsersParamRelationsProfessionnelles', 'upp', Join::WITH, 'upp.id = rbe.iDRelationsProfessionnelles');

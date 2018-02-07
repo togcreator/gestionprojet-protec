@@ -1,0 +1,26 @@
+#psparservices.fr.yml
+
+# general
+paramservices.list: Liste des services
+paramservices.creation: Nouveau
+paramservices.edition: Modification
+paramservices.confirm_title: Confirmation
+paramservices.no_data: Aucun resultat
+
+# form
+paramservices.ouvert: Ouvert
+paramservices.label: Libellé
+paramservices.img: Image
+paramservices.obs: Observation
+paramservices.valide: Valide
+paramservices.version: Version
+paramservices.confirm_delete: Êtes vous sûr vouloir supprimer ce service ?
+
+# button
+paramservices.add_button: Nouveau
+paramservices.save_button: Enregistrer
+paramservices.submit_button: Enregistrer
+paramservices.edit_button: Modifier
+paramservices.del_button: Supprimer
+paramservices.confirm_button: Oui, je confirme
+paramservices.close_button: Non
